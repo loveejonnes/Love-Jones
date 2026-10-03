@@ -441,7 +441,7 @@
 
   <!-- Encabezado -->
   <header>
-    <a href="index.html" class="brand-logo">Love Jones</a>
+    <a href="./" class="brand-logo">Love Jones</a>
     <nav class="header-nav">
       <a class="nav-link" href="https://substack.com/@loveejonnes" target="_blank" rel="noopener noreferrer">DROPGEMS</a>
       <a class="nav-link" href="contacto.html">CONTACTO</a>
@@ -608,6 +608,13 @@
   </footer>
 
   <script>
+    // Limpia automáticamente 'index.html' de la barra de direcciones
+    if (window.location.pathname.endsWith('/index.html')) {
+      const cleanPath = window.location.pathname.replace('/index.html', '/');
+      window.history.replaceState(null, '', cleanPath + window.location.search + window.location.hash);
+    }
+
+    // Lógica del Carrusel de Videos
     const track = document.getElementById('videoTrack');
     const wrapper = document.getElementById('carouselWrapper');
     let isPaused = false;
