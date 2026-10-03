@@ -204,12 +204,12 @@
       overflow-x: auto;
       scroll-behavior: auto;
       padding-bottom: 1.2rem;
-      scrollbar-width: none; /* Ocultar scrollbar estándar */
+      scrollbar-width: none;
       -ms-overflow-style: none;
     }
 
     .carousel-track::-webkit-scrollbar {
-      display: none; /* Ocultar barra en Chrome/Safari */
+      display: none;
     }
 
     .video-card {
@@ -238,11 +238,35 @@
       border: 0;
     }
 
+    /* Barra de Controles (Botón Canal + Flechas) */
     .carousel-controls {
       display: flex;
       justify-content: flex-end;
       align-items: center;
-      margin-top: 1.5rem;
+      gap: 1.2rem;
+      margin-top: 1.8rem;
+    }
+
+    .btn-visit-channel {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--text-main);
+      background-color: transparent;
+      border: 1px solid var(--accent-color);
+      padding: 0.65rem 1.4rem;
+      border-radius: 20px;
+      transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .btn-visit-channel:hover {
+      background-color: var(--accent-color);
+      color: #ffffff;
     }
 
     .carousel-arrows {
@@ -319,6 +343,7 @@
 
       .carousel-controls {
         justify-content: center;
+        flex-wrap: wrap;
       }
 
       footer {
@@ -415,6 +440,9 @@
         </div>
 
         <div class="carousel-controls">
+          <a class="btn-visit-channel" href="https://youtube.com/@loveejonnes?si=oOUMfSjxuuaMcoFe" target="_blank" rel="noopener noreferrer">
+            Visitar canal
+          </a>
           <div class="carousel-arrows">
             <button type="button" class="arrow-btn" onclick="manualScroll(-1)" aria-label="Anterior">&#8592;</button>
             <button type="button" class="arrow-btn" onclick="manualScroll(1)" aria-label="Siguiente">&#8594;</button>
@@ -440,7 +468,6 @@
     function autoScroll() {
       if (!isPaused && track) {
         track.scrollLeft += speed;
-        // Si llega al final del contenido, reinicia suavemente al inicio
         if (track.scrollLeft >= (track.scrollWidth - track.clientWidth - 1)) {
           track.scrollLeft = 0;
         }
@@ -448,7 +475,6 @@
       requestAnimationFrame(autoScroll);
     }
 
-    // Iniciar paneo
     requestAnimationFrame(autoScroll);
 
     // Pausar paneo al interactuar o pasar el cursor
