@@ -40,7 +40,7 @@
       line-height: 1.85;
     }
 
-    /* Encabezado / Barra superior */
+    /* Encabezado */
     header {
       width: 100%;
       padding: 2.8rem 2.5rem;
@@ -99,7 +99,7 @@
       padding: 5.5rem 2.5rem;
     }
 
-    /* Sección Principal (Biografía y Foto) */
+    /* Portada Principal */
     .hero-section {
       display: grid;
       grid-template-columns: 340px 1fr;
@@ -179,9 +179,11 @@
       transform: translateY(-2px);
     }
 
-    /* Sección de Divulgación */
+    /* Sección YouTube */
     .youtube-section {
       padding-top: 5.5rem;
+      padding-bottom: 5.5rem;
+      border-bottom: 1px solid var(--border-color);
     }
 
     .youtube-bio {
@@ -191,7 +193,6 @@
       margin-bottom: 3.5rem;
     }
 
-    /* Carrusel de Paneo Automático */
     .carousel-container {
       position: relative;
       width: 100%;
@@ -238,7 +239,6 @@
       border: 0;
     }
 
-    /* Barra de Controles (Botón Canal + Flechas) */
     .carousel-controls {
       display: flex;
       justify-content: flex-end;
@@ -259,7 +259,7 @@
       border: 1px solid var(--accent-color);
       padding: 0.65rem 1.4rem;
       border-radius: 20px;
-      transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+      transition: background-color 0.2s ease, color 0.2s ease;
       display: inline-flex;
       align-items: center;
     }
@@ -294,6 +294,98 @@
       background-color: #241e1c;
     }
 
+    /* Sección de Exhibición de Instagram */
+    .instagram-section {
+      padding-top: 5.5rem;
+    }
+
+    .instagram-card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 3rem 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2.5rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    }
+
+    .instagram-profile {
+      display: flex;
+      align-items: center;
+      gap: 1.8rem;
+    }
+
+    .instagram-avatar {
+      width: 78px;
+      height: 78px;
+      border-radius: 50%;
+      border: 2px solid var(--accent-color);
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .instagram-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .instagram-meta h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 1.45rem;
+      letter-spacing: 0.06em;
+      color: var(--text-main);
+      margin-bottom: 0.25rem;
+    }
+
+    .instagram-handle {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.95rem;
+      color: var(--accent-color);
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+
+    .instagram-desc {
+      font-family: 'Lora', Georgia, serif;
+      font-size: 0.98rem;
+      color: var(--text-muted);
+      max-width: 480px;
+    }
+
+    .btn-instagram {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--text-main);
+      background-color: transparent;
+      border: 1px solid var(--border-color);
+      padding: 0.8rem 1.6rem;
+      border-radius: 20px;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    }
+
+    .btn-instagram svg {
+      width: 16px;
+      height: 16px;
+      fill: currentColor;
+    }
+
+    .btn-instagram:hover {
+      background-color: #241e1c;
+      border-color: var(--accent-color);
+      color: #ffffff;
+    }
+
     /* Pie de página */
     footer {
       max-width: 1040px;
@@ -309,7 +401,7 @@
       color: #6d665b;
     }
 
-    /* Ajustes para Móvil */
+    /* Ajustes Móvil */
     @media (max-width: 820px) {
       .hero-section {
         grid-template-columns: 1fr;
@@ -333,6 +425,7 @@
 
       .youtube-section {
         padding-top: 3.5rem;
+        padding-bottom: 3.5rem;
         text-align: center;
       }
 
@@ -344,6 +437,21 @@
       .carousel-controls {
         justify-content: center;
         flex-wrap: wrap;
+      }
+
+      .instagram-section {
+        padding-top: 3.5rem;
+      }
+
+      .instagram-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 2.2rem 1.5rem;
+      }
+
+      .instagram-profile {
+        flex-direction: column;
+        gap: 1.2rem;
       }
 
       footer {
@@ -367,6 +475,7 @@
 
   <!-- Contenido Central -->
   <main>
+    <!-- Portada Principal -->
     <section class="hero-section">
       <div class="profile-container">
         <div class="profile-img-wrap">
@@ -405,7 +514,7 @@
       </div>
     </section>
 
-    <!-- Sección de Divulgación de Hip-Hop -->
+    <!-- Sección de Divulgación de Hip-Hop (YouTube) -->
     <section class="youtube-section">
       <p class="youtube-bio">
         En el 2016 crea un canal de YouTube de divulgación de la música Hip-Hop obteniendo como respuesta el feedback de más de 50.000 personas curiosas, además de haber adquirido un conocimiento más profundo sobre la cultura Hip-Hop participando directamente en la promoción y divulgación de proyectos musicales de artistas provenientes de países como Colombia, Argentina, México, Reino Unido, entre otros.
@@ -450,6 +559,28 @@
         </div>
       </div>
     </section>
+
+    <!-- Sección de Exhibición de Instagram -->
+    <section class="instagram-section">
+      <div class="instagram-card">
+        <div class="instagram-profile">
+          <div class="instagram-avatar">
+            <img src="LoveJones pic1.jpeg" alt="Love Jones">
+          </div>
+          <div class="instagram-meta">
+            <h3>Love Jones</h3>
+            <div class="instagram-handle">@loveejonnes</div>
+            <p class="instagram-desc">Registro visual, notas y archivo cotidiano en torno al proceso de escritura e investigación.</p>
+          </div>
+        </div>
+        <a class="btn-instagram" href="https://www.instagram.com/loveejonnes/" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+          </svg>
+          Seguir en Instagram
+        </a>
+      </div>
+    </section>
   </main>
 
   <!-- Pie de página -->
@@ -462,9 +593,8 @@
     const track = document.getElementById('videoTrack');
     const wrapper = document.getElementById('carouselWrapper');
     let isPaused = false;
-    const speed = 0.6; // Velocidad del paneo continuo
+    const speed = 0.6;
 
-    // Paneo continuo automático
     function autoScroll() {
       if (!isPaused && track) {
         track.scrollLeft += speed;
@@ -477,7 +607,6 @@
 
     requestAnimationFrame(autoScroll);
 
-    // Pausar paneo al interactuar o pasar el cursor
     wrapper.addEventListener('mouseenter', () => { isPaused = true; });
     wrapper.addEventListener('mouseleave', () => { isPaused = false; });
     wrapper.addEventListener('touchstart', () => { isPaused = true; }, { passive: true });
@@ -485,7 +614,6 @@
       setTimeout(() => { isPaused = false; }, 2000);
     });
 
-    // Control manual con las flechas
     function manualScroll(direction) {
       isPaused = true;
       const card = track.querySelector('.video-card');
