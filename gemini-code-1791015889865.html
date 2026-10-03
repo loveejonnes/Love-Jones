@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Love Jones</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Lora:ital,wght@0,400;0,600;1,400&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #111111;
+      --card-bg: #181818;
+      --accent-color: #9e3a2b;
+      --accent-hover: #b84534;
+      --text-main: #f4ecd8;
+      --text-muted: #b8b09f;
+      --border-color: #2e2624;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      font-family: 'Lora', Georgia, serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.7;
+    }
+
+    /* Navegación */
+    header {
+      width: 100%;
+      padding: 2.2rem 2rem;
+      max-width: 980px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .brand-logo {
+      font-family: 'Cinzel', serif;
+      font-size: 1.4rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-main);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .brand-logo span {
+      color: var(--accent-color);
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .nav-link {
+      font-family: 'Space Grotesk', sans-serif;
+      text-decoration: none;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      transition: color 0.2s ease, border-color 0.2s ease;
+      padding-bottom: 4px;
+      border-bottom: 1.5px solid transparent;
+    }
+
+    .nav-link:hover {
+      color: var(--text-main);
+      border-bottom-color: var(--accent-color);
+    }
+
+    /* Contenedor Principal */
+    main {
+      flex: 1;
+      max-width: 980px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 4.5rem 2rem;
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 3.5rem;
+      align-items: center;
+    }
+
+    /* Imagen */
+    .profile-container {
+      display: flex;
+      justify-content: center;
+    }
+
+    .profile-img-wrap {
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      border: 3px solid var(--accent-color);
+      box-shadow: 0 0 28px rgba(158, 58, 43, 0.25);
+      overflow: hidden;
+      background-color: #0d0d0d;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .profile-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Contenido / Bio */
+    .bio-content h1 {
+      font-family: 'Cinzel', serif;
+      font-size: 2.8rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.6rem;
+      color: var(--text-main);
+    }
+
+    .tagline {
+      font-family: 'Space Grotesk', sans-serif;
+      color: var(--accent-color);
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 0.18em;
+      font-weight: 600;
+      margin-bottom: 1.8rem;
+    }
+
+    .bio-text {
+      color: var(--text-muted);
+      font-size: 1.08rem;
+      margin-bottom: 2rem;
+    }
+
+    .bio-text p + p {
+      margin-top: 1rem;
+    }
+
+    /* Botón de acción */
+    .btn-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-decoration: none;
+      color: var(--text-main);
+      background-color: var(--accent-color);
+      padding: 0.8rem 1.6rem;
+      border-radius: 4px;
+      transition: background-color 0.2s ease, transform 0.15s ease;
+    }
+
+    .btn-action:hover {
+      background-color: var(--accent-hover);
+      transform: translateY(-1px);
+    }
+
+    /* Footer */
+    footer {
+      max-width: 980px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 2rem;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.82rem;
+      color: #6d665b;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      main {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 2.5rem;
+        padding: 3rem 1.5rem;
+      }
+
+      .profile-container {
+        order: -1;
+      }
+
+      .bio-content h1 {
+        font-size: 2.2rem;
+      }
+
+      footer {
+        flex-direction: column;
+        gap: 0.6rem;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navegación -->
+  <header>
+    <a href="#" class="brand-logo">Love <span>Jones</span></a>
+    <nav>
+      <ul>
+        <li>
+          <a class="nav-link" href="https://substack.com/@loveejonnes" target="_blank" rel="noopener noreferrer">dropgems</a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Contenido Central -->
+  <main>
+    <div class="profile-container">
+      <div class="profile-img-wrap">
+        <!-- Reemplaza "LoveJones pic1.jpeg" por el nombre exacto con el que subas la foto a GitHub -->
+        <img src="LoveJones pic1.jpeg" alt="Ilustración de Love Jones">
+      </div>
+    </div>
+
+    <section class="bio-content">
+      <div class="tagline">Escritor &bull; Investigador independiente</div>
+      <h1>Love Jones</h1>
+      <div class="bio-text">
+        <p>
+          Love Jones es el aka de un escritor e investigador independiente de la ciudad de Bogotá, Colombia. Su paso por universidades como la Universidad Autónoma de Colombia y la Universidad de La Salle le dieron las bases para seguir formándose de manera independiente como escritor e investigador.
+        </p>
+        <p>
+          Dentro de lo que podemos saber, actualmente se encuentra trabajando en un libro recopilatorio de ensayos sobre la cultura Hip-Hop.
+        </p>
+      </div>
+
+      <a class="btn-action" href="https://substack.com/@loveejonnes" target="_blank" rel="noopener noreferrer">
+        Leer en dropgems &rarr;
+      </a>
+    </section>
+  </main>
+
+  <!-- Pie de página -->
+  <footer>
+    <div>&copy; Bogotá, Colombia.</div>
+    <div>Love Jones &bull; dropgems</div>
+  </footer>
+
+</body>
+</html>
