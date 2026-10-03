@@ -179,18 +179,9 @@
       transform: translateY(-2px);
     }
 
-    /* Sección Inferior de YouTube */
+    /* Sección de Divulgación */
     .youtube-section {
       padding-top: 5.5rem;
-    }
-
-    .youtube-section h2 {
-      font-family: 'Cinzel', serif;
-      font-size: 2.1rem;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      margin-bottom: 1.5rem;
-      color: var(--text-main);
     }
 
     .youtube-bio {
@@ -200,40 +191,30 @@
       margin-bottom: 3.5rem;
     }
 
-    /* Carrusel de Videos */
+    /* Carrusel de Paneo Automático */
     .carousel-container {
       position: relative;
       width: 100%;
+      overflow: hidden;
     }
 
     .carousel-track {
       display: flex;
       gap: 1.8rem;
       overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      scroll-behavior: smooth;
+      scroll-behavior: auto;
       padding-bottom: 1.2rem;
-      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none; /* Ocultar scrollbar estándar */
+      -ms-overflow-style: none;
     }
 
     .carousel-track::-webkit-scrollbar {
-      height: 6px;
-    }
-
-    .carousel-track::-webkit-scrollbar-track {
-      background: #151312;
-      border-radius: 4px;
-    }
-
-    .carousel-track::-webkit-scrollbar-thumb {
-      background: var(--accent-color);
-      border-radius: 4px;
+      display: none; /* Ocultar barra en Chrome/Safari */
     }
 
     .video-card {
       flex: 0 0 calc(50% - 0.9rem);
       min-width: 320px;
-      scroll-snap-align: start;
       background-color: var(--card-bg);
       border: 1px solid var(--border-color);
       border-radius: 8px;
@@ -259,23 +240,9 @@
 
     .carousel-controls {
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-end;
       align-items: center;
       margin-top: 1.5rem;
-    }
-
-    .channel-anchor {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.92rem;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      text-decoration: none;
-      color: var(--accent-color);
-      transition: color 0.2s ease;
-    }
-
-    .channel-anchor:hover {
-      color: var(--accent-hover);
     }
 
     .carousel-arrows {
@@ -351,8 +318,7 @@
       }
 
       .carousel-controls {
-        flex-direction: column;
-        gap: 1.2rem;
+        justify-content: center;
       }
 
       footer {
@@ -414,14 +380,13 @@
       </div>
     </section>
 
-    <!-- Sección Canal de YouTube -->
+    <!-- Sección de Divulgación de Hip-Hop -->
     <section class="youtube-section">
-      <h2>Canal de YouTube</h2>
       <p class="youtube-bio">
         En el 2016 crea un canal de YouTube de divulgación de la música Hip-Hop obteniendo como respuesta el feedback de más de 50.000 personas curiosas, además de haber adquirido un conocimiento más profundo sobre la cultura Hip-Hop participando directamente en la promoción y divulgación de proyectos musicales de artistas provenientes de países como Colombia, Argentina, México, Reino Unido, entre otros.
       </p>
 
-      <div class="carousel-container">
+      <div class="carousel-container" id="carouselWrapper">
         <div class="carousel-track" id="videoTrack">
           <!-- Video 1 -->
           <div class="video-card">
@@ -450,12 +415,9 @@
         </div>
 
         <div class="carousel-controls">
-          <a class="channel-anchor" href="https://www.youtube.com/@LoveeJonnes" target="_blank" rel="noopener noreferrer">
-            Explorar todos los ensayos en el canal &rarr;
-          </a>
           <div class="carousel-arrows">
-            <button type="button" class="arrow-btn" onclick="scrollCarousel(-1)" aria-label="Anterior">&#8592;</button>
-            <button type="button" class="arrow-btn" onclick="scrollCarousel(1)" aria-label="Siguiente">&#8594;</button>
+            <button type="button" class="arrow-btn" onclick="manualScroll(-1)" aria-label="Anterior">&#8592;</button>
+            <button type="button" class="arrow-btn" onclick="manualScroll(1)" aria-label="Siguiente">&#8594;</button>
           </div>
         </div>
       </div>
@@ -469,12 +431,41 @@
   </footer>
 
   <script>
-    function scrollCarousel(direction) {
-      const track = document.getElementById('videoTrack');
-      if (!track) return;
+    const track = document.getElementById('videoTrack');
+    const wrapper = document.getElementById('carouselWrapper');
+    let isPaused = false;
+    const speed = 0.6; // Velocidad del paneo continuo
+
+    // Paneo continuo automático
+    function autoScroll() {
+      if (!isPaused && track) {
+        track.scrollLeft += speed;
+        // Si llega al final del contenido, reinicia suavemente al inicio
+        if (track.scrollLeft >= (track.scrollWidth - track.clientWidth - 1)) {
+          track.scrollLeft = 0;
+        }
+      }
+      requestAnimationFrame(autoScroll);
+    }
+
+    // Iniciar paneo
+    requestAnimationFrame(autoScroll);
+
+    // Pausar paneo al interactuar o pasar el cursor
+    wrapper.addEventListener('mouseenter', () => { isPaused = true; });
+    wrapper.addEventListener('mouseleave', () => { isPaused = false; });
+    wrapper.addEventListener('touchstart', () => { isPaused = true; }, { passive: true });
+    wrapper.addEventListener('touchend', () => {
+      setTimeout(() => { isPaused = false; }, 2000);
+    });
+
+    // Control manual con las flechas
+    function manualScroll(direction) {
+      isPaused = true;
       const card = track.querySelector('.video-card');
       const step = card ? card.offsetWidth + 28 : 340;
       track.scrollBy({ left: direction * step, behavior: 'smooth' });
+      setTimeout(() => { isPaused = false; }, 3000);
     }
   </script>
 </body>
