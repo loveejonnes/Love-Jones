@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Love Jones — Taller Editorial</title>
+  <title>Love Jones — Taller Editorial Avanzado</title>
   
   <link rel="icon" type="image/jpeg" href="LoveJones pic1.jpeg">
 
@@ -37,27 +37,52 @@
       position: relative;
     }
 
-    /* Barra de Herramientas Superior */
+    /* Barra Superior Editorial */
     .editor-toolbar {
       position: sticky;
       top: 0;
-      background-color: rgba(13, 12, 11, 0.95);
-      backdrop-filter: blur(8px);
+      background-color: rgba(13, 12, 11, 0.96);
+      backdrop-filter: blur(10px);
       border-bottom: 1px dashed var(--border-color);
       z-index: 1000;
-      padding: 0.9rem 1.8rem;
+      padding: 0.8rem 1.6rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .toolbar-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      gap: 1rem;
+      gap: 0.8rem;
     }
 
-    .toolbar-left, .toolbar-right {
+    .toolbar-group {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.35rem;
       flex-wrap: wrap;
+    }
+
+    .metrics-bar {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+    }
+
+    .metrics-bar span b {
+      color: var(--text-main);
+    }
+
+    .status-save {
+      color: var(--accent-color);
+      font-weight: 700;
     }
 
     .tool-btn {
@@ -65,11 +90,11 @@
       border: 1px solid var(--border-color);
       color: var(--text-main);
       font-family: var(--font-mono);
-      font-size: 0.75rem;
-      padding: 0.45rem 0.75rem;
+      font-size: 0.73rem;
+      padding: 0.4rem 0.65rem;
       cursor: pointer;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.06em;
       transition: all 0.2s ease;
     }
 
@@ -78,11 +103,17 @@
       color: #fff;
     }
 
+    .tool-btn.btn-accent {
+      border-color: var(--accent-color);
+      color: #e6a89f;
+    }
+
     .btn-export {
       background: var(--accent-color);
       border-color: var(--accent-color);
       color: #fff;
       font-weight: 700;
+      padding: 0.45rem 0.9rem;
     }
 
     .btn-export:hover {
@@ -90,13 +121,25 @@
       border-color: var(--accent-hover);
     }
 
-    /* Hoja Editorial de Trabajo */
+    .btn-clear {
+      color: #665f54;
+      border: none;
+      background: transparent;
+      text-decoration: underline;
+      cursor: pointer;
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+    }
+
+    .btn-clear:hover { color: var(--accent-hover); }
+
+    /* Mesa de redacción */
     main {
       flex: 1;
       max-width: 760px;
       width: 100%;
       margin: 0 auto;
-      padding: 4.5rem 1.8rem 8rem 1.8rem;
+      padding: 4rem 1.8rem 8rem 1.8rem;
     }
 
     .doc-slug-input {
@@ -108,7 +151,7 @@
       border-bottom: 1px dashed var(--border-color);
       width: 100%;
       padding: 0.4rem 0;
-      margin-bottom: 2rem;
+      margin-bottom: 1.8rem;
       outline: none;
     }
 
@@ -116,7 +159,7 @@
       display: grid;
       grid-template-columns: 100px 1fr;
       gap: 1rem;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.2rem;
     }
 
     .meta-input {
@@ -150,21 +193,21 @@
       font-weight: 700;
       letter-spacing: 0.05em;
       color: var(--text-main);
-      padding: 0.6rem 0 1.4rem 0;
+      padding: 0.5rem 0 1.2rem 0;
       margin-bottom: 2.8rem;
       outline: none;
       text-transform: uppercase;
       line-height: 1.35;
     }
 
-    /* Lienzo de Escritura con Formato */
+    /* Lienzo de lectura */
     #editorialCanvas {
       outline: none;
       font-family: var(--font-serif);
       font-size: 1.15rem;
       line-height: 2;
       color: #dfd7c8;
-      min-height: 380px;
+      min-height: 420px;
     }
 
     #editorialCanvas p {
@@ -181,6 +224,15 @@
       margin: 3.2rem 0 1.2rem 0;
     }
 
+    #editorialCanvas h3 {
+      font-family: var(--font-mono);
+      font-size: 1.05rem;
+      color: var(--accent-hover);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin: 2.4rem 0 1rem 0;
+    }
+
     #editorialCanvas blockquote {
       border-left: 2px solid var(--accent-color);
       padding-left: 1.4rem;
@@ -195,6 +247,67 @@
       margin: 3.5rem 0;
     }
 
+    #editorialCanvas ul, #editorialCanvas ol {
+      margin-bottom: 2rem;
+      padding-left: 1.8rem;
+    }
+
+    #editorialCanvas li {
+      margin-bottom: 0.5rem;
+    }
+
+    #editorialCanvas a {
+      color: var(--text-main);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    #editorialCanvas .highlight-text {
+      background-color: rgba(158, 53, 39, 0.22);
+      border-bottom: 1px solid var(--accent-color);
+      padding: 0.1rem 0.3rem;
+    }
+
+    .footnote-ref {
+      color: var(--accent-color);
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 0.75rem;
+      vertical-align: super;
+      text-decoration: none;
+      cursor: pointer;
+      margin: 0 0.2rem;
+    }
+
+    /* Sección de Notas al Pie */
+    .footnotes-section {
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px dashed var(--border-color);
+    }
+
+    .footnotes-title {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-color);
+      margin-bottom: 1.2rem;
+    }
+
+    #footnotesList {
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      padding-left: 1.4rem;
+      outline: none;
+    }
+
+    #footnotesList li {
+      margin-bottom: 0.6rem;
+    }
+
     @media (max-width: 768px) {
       main { padding: 2.5rem 1.4rem; }
       .meta-inputs { grid-template-columns: 1fr; }
@@ -205,52 +318,202 @@
 </head>
 <body>
 
-  <!-- Barra Editorial -->
+  <!-- Barra de Herramientas -->
   <div class="editor-toolbar">
-    <div class="toolbar-left">
-      <button class="tool-btn" onclick="formatDoc('bold')" title="Negrita"><b>B</b></button>
-      <button class="tool-btn" onclick="formatDoc('italic')" title="Cursiva"><i>I</i></button>
-      <button class="tool-btn" onclick="formatDoc('formatBlock', '<h2>')">Subtítulo [H2]</button>
-      <button class="tool-btn" onclick="formatDoc('formatBlock', '<p>')">Párrafo</button>
-      <button class="tool-btn" onclick="formatDoc('formatBlock', '<blockquote>')">Cita</button>
-      <button class="tool-btn" onclick="formatDoc('insertHorizontalRule')">Línea &bull;</button>
+    <div class="toolbar-row">
+      <div class="toolbar-group">
+        <button class="tool-btn" onclick="exec('undo')" title="Deshacer (Ctrl+Z)">&larr;</button>
+        <button class="tool-btn" onclick="exec('redo')" title="Rehacer (Ctrl+Y)">&rarr;</button>
+        <button class="tool-btn" onclick="exec('bold')"><b>B</b></button>
+        <button class="tool-btn" onclick="exec('italic')"><i>I</i></button>
+        <button class="tool-btn" onclick="exec('formatBlock', '<h2>')">H2</button>
+        <button class="tool-btn" onclick="exec('formatBlock', '<h3>')">H3</button>
+        <button class="tool-btn" onclick="exec('formatBlock', '<p>')">P</button>
+        <button class="tool-btn" onclick="exec('formatBlock', '<blockquote>')">Cita</button>
+        <button class="tool-btn" onclick="exec('insertUnorderedList')">&bull; Lista</button>
+        <button class="tool-btn" onclick="exec('insertOrderedList')">1. Lista</button>
+        <button class="tool-btn" onclick="applyHighlight()">Resaltar</button>
+        <button class="tool-btn" onclick="insertLink()">Enlace</button>
+        <button class="tool-btn btn-accent" onclick="insertFootnote()">[+ NOTA]</button>
+        <button class="tool-btn" onclick="exec('insertHorizontalRule')">Línea &bull;</button>
+      </div>
+
+      <div class="toolbar-group">
+        <button class="tool-btn btn-export" onclick="exportHtmlFile()">[EXPORTAR ENSAYO .HTML]</button>
+      </div>
     </div>
 
-    <div class="toolbar-right">
-      <button class="tool-btn btn-export" onclick="exportHtmlFile()">[EXPORTAR ENSAYO .HTML]</button>
+    <div class="toolbar-row">
+      <div class="metrics-bar">
+        <span>Palabras: <b id="wordCount">0</b></span>
+        <span>Lectura estimada: <b id="readTime">0 min</b></span>
+        <span class="status-save" id="saveIndicator">Guardado en caché</span>
+      </div>
+      <button class="btn-clear" onclick="resetCanvas()">Reiniciar lienzo en blanco</button>
     </div>
   </div>
 
   <main>
-    <input type="text" id="docSlug" class="doc-slug-input" value="poetica-del-sample" placeholder="nombre-del-archivo (ej: poetica-del-sample)">
+    <input type="text" id="docSlug" class="doc-slug-input" placeholder="nombre-archivo (ej: poetica-del-sample)">
 
     <div class="meta-inputs">
-      <input type="text" id="docId" class="meta-input" value="[TXT.01]">
-      <input type="text" id="docMeta" class="meta-input" value="BOGOTÁ // ENSAYO MONOGRÁFICO // 2026">
+      <input type="text" id="docId" class="meta-input" placeholder="[TXT.01]">
+      <input type="text" id="docMeta" class="meta-input" placeholder="BOGOTÁ // ENSAYO MONOGRÁFICO // 2026">
     </div>
 
-    <input type="text" id="docTitle" class="title-input" value="LA POÉTICA DEL SAMPLE Y EL MINIMALISMO EN EL RAP">
+    <input type="text" id="docTitle" class="title-input" placeholder="TÍTULO COMPLETO DEL ENSAYO">
 
-    <!-- Hoja de redacción visual -->
+    <!-- Hoja de Redacción -->
     <div id="editorialCanvas" contenteditable="true" spellcheck="false">
-      <p>Escribe aquí tu texto con tranquilidad. Puedes pegar párrafos completos, seleccionar una línea y pulsar los botones de la barra superior para convertirla en subtítulo, cita en bloque o agregar separadores técnicos.</p>
-      <blockquote>«El recorte de una muestra de vinilo no es un plagio: es una cita bibliográfica ejecutada con una cuchilla analógica».</blockquote>
-      <p>Continúa desarrollando tus argumentos de campo, hipótesis y fuentes documentales...</p>
+      <p>Comienza a escribir o pega aquí el contenido de tu investigación...</p>
+    </div>
+
+    <!-- Sección de Notas al Pie -->
+    <div class="footnotes-section" id="footnotesSection" style="display: none;">
+      <div class="footnotes-title">Aparato Crítico &bull; Referencias</div>
+      <ol id="footnotesList" contenteditable="true" spellcheck="false">
+      </ol>
     </div>
   </main>
 
   <script>
-    function formatDoc(cmd, val = null) {
+    const canvas = document.getElementById('editorialCanvas');
+    const fList = document.getElementById('footnotesList');
+    const fSec = document.getElementById('footnotesSection');
+    const slugInput = document.getElementById('docSlug');
+    const idInput = document.getElementById('docId');
+    const metaInput = document.getElementById('docMeta');
+    const titleInput = document.getElementById('docTitle');
+    const saveInd = document.getElementById('saveIndicator');
+
+    let footnoteIndex = 0;
+
+    function exec(cmd, val = null) {
       document.execCommand(cmd, false, val);
-      document.getElementById('editorialCanvas').focus();
+      canvas.focus();
+      triggerAutoSave();
     }
 
+    function applyHighlight() {
+      const selection = window.getSelection();
+      if (!selection.rangeCount || selection.isCollapsed) return;
+      const range = selection.getRangeAt(0);
+      const span = document.createElement('span');
+      span.className = 'highlight-text';
+      span.appendChild(range.extractContents());
+      range.insertNode(span);
+      triggerAutoSave();
+    }
+
+    function insertLink() {
+      const url = prompt('Introduce la dirección web (URL) para el enlace:');
+      if (url) exec('createLink', url);
+    }
+
+    function insertFootnote() {
+      footnoteIndex++;
+      const sup = document.createElement('a');
+      sup.className = 'footnote-ref';
+      sup.href = '#fn-' + footnoteIndex;
+      sup.id = 'ref-' + footnoteIndex;
+      sup.textContent = '[' + footnoteIndex + ']';
+
+      const sel = window.getSelection();
+      if (sel.rangeCount) {
+        const range = sel.getRangeAt(0);
+        range.collapse(false);
+        range.insertNode(sup);
+        range.setStartAfter(sup);
+        sel.removeAllRanges();
+        sel.addRange(range);
+      }
+
+      fSec.style.display = 'block';
+      const li = document.createElement('li');
+      li.id = 'fn-' + footnoteIndex;
+      li.innerHTML = 'Referencia documental o bibliográfica [' + footnoteIndex + ']... <a href="#ref-' + footnoteIndex + '">&uarr;</a>';
+      fList.appendChild(li);
+
+      triggerAutoSave();
+    }
+
+    function updateMetrics() {
+      const text = canvas.innerText || '';
+      const words = text.trim() ? text.trim().split(/\s+/).length : 0;
+      document.getElementById('wordCount').textContent = words;
+      document.getElementById('readTime').textContent = Math.ceil(words / 200) + ' min';
+    }
+
+    function triggerAutoSave() {
+      updateMetrics();
+      const draft = {
+        slug: slugInput.value,
+        id: idInput.value,
+        meta: metaInput.value,
+        title: titleInput.value,
+        body: canvas.innerHTML,
+        footnotes: fList.innerHTML,
+        fnCount: footnoteIndex,
+        hasFn: fSec.style.display !== 'none'
+      };
+      localStorage.setItem('lj_editor_draft', JSON.stringify(draft));
+      saveInd.textContent = 'Guardado';
+      setTimeout(() => { saveInd.textContent = 'Guardado en caché'; }, 1000);
+    }
+
+    function loadDraft() {
+      const raw = localStorage.getItem('lj_editor_draft');
+      if (raw) {
+        try {
+          const draft = JSON.parse(raw);
+          slugInput.value = draft.slug || '';
+          idInput.value = draft.id || '';
+          metaInput.value = draft.meta || '';
+          titleInput.value = draft.title || '';
+          if (draft.body) canvas.innerHTML = draft.body;
+          if (draft.footnotes) fList.innerHTML = draft.footnotes;
+          if (draft.hasFn) fSec.style.display = 'block';
+          footnoteIndex = draft.fnCount || 0;
+        } catch(e) {}
+      } else {
+        slugInput.value = 'poetica-del-sample';
+        idInput.value = '[TXT.01]';
+        metaInput.value = 'BOGOTÁ // ENSAYO MONOGRÁFICO // 2026';
+        titleInput.value = 'LA POÉTICA DEL SAMPLE Y EL MINIMALISMO EN EL RAP';
+      }
+      updateMetrics();
+    }
+
+    function resetCanvas() {
+      if (confirm('¿Deseas reiniciar la mesa de trabajo y vaciar el borrador actual?')) {
+        localStorage.removeItem('lj_editor_draft');
+        location.reload();
+      }
+    }
+
+    canvas.addEventListener('input', triggerAutoSave);
+    fList.addEventListener('input', triggerAutoSave);
+    slugInput.addEventListener('input', triggerAutoSave);
+    idInput.addEventListener('input', triggerAutoSave);
+    metaInput.addEventListener('input', triggerAutoSave);
+    titleInput.addEventListener('input', triggerAutoSave);
+
+    loadDraft();
+
     function exportHtmlFile() {
-      const slug = (document.getElementById('docSlug').value || 'ensayo').trim().toLowerCase().replace(/\s+/g, '-');
-      const docId = document.getElementById('docId').value.trim();
-      const meta = document.getElementById('docMeta').value.trim();
-      const title = document.getElementById('docTitle').value.trim();
-      const content = document.getElementById('editorialCanvas').innerHTML;
+      const slug = (slugInput.value || 'ensayo').trim().toLowerCase().replace(/\s+/g, '-');
+      const docId = idInput.value.trim();
+      const meta = metaInput.value.trim();
+      const title = titleInput.value.trim();
+      const content = canvas.innerHTML;
+      const fnVisible = fSec.style.display !== 'none';
+      const fnHtml = fnVisible ? `
+      <div class="footnotes-section">
+        <div class="footnotes-title">Aparato Crítico &bull; Referencias</div>
+        <ol class="footnotes-list">
+          ${fList.innerHTML}
+        </ol>
+      </div>` : '';
 
       const template = `<!DOCTYPE html>
 <html lang="es">
@@ -368,6 +631,14 @@
       letter-spacing: 0.08em;
       margin: 3.2rem 0 1.2rem 0;
     }
+    .article-body h3 {
+      font-family: var(--font-mono);
+      font-size: 1.05rem;
+      color: var(--accent-hover);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin: 2.4rem 0 1rem 0;
+    }
     .article-body blockquote {
       border-left: 2px solid var(--accent-color);
       padding-left: 1.4rem;
@@ -375,6 +646,52 @@
       color: var(--text-muted);
       font-style: italic;
     }
+    .article-body ul, .article-body ol {
+      margin-bottom: 2rem;
+      padding-left: 1.8rem;
+      color: #dfd7c8;
+    }
+    .article-body li { margin-bottom: 0.5rem; }
+    .article-body a {
+      color: var(--text-main);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .article-body .highlight-text {
+      background-color: rgba(158, 53, 39, 0.22);
+      border-bottom: 1px solid var(--accent-color);
+      padding: 0.1rem 0.3rem;
+    }
+    .footnote-ref {
+      color: var(--accent-color);
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 0.75rem;
+      vertical-align: super;
+      text-decoration: none;
+      margin: 0 0.2rem;
+    }
+    .footnotes-section {
+      margin-top: 4.5rem;
+      padding-top: 2rem;
+      border-top: 1px dashed var(--border-color);
+    }
+    .footnotes-title {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-color);
+      margin-bottom: 1.2rem;
+    }
+    .footnotes-list {
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      padding-left: 1.4rem;
+    }
+    .footnotes-list li { margin-bottom: 0.6rem; }
     .article-body hr {
       border: none;
       border-top: 1px dashed var(--border-color);
@@ -419,6 +736,7 @@
     <article class="article-body">
       \${content}
     </article>
+    \${fnHtml}
   </main>
   <footer>
     <div>&copy; Bogotá, Colombia.</div>
