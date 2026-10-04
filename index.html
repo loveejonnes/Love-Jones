@@ -451,7 +451,7 @@
     }
     .album-item:hover .essay-title { color: #ffffff; }
 
-    /* FOOTER VISUAL CON CONTADOR ANALÓGICO */
+    /* FOOTER CON CONTADOR ANALÓGICO */
     footer {
       max-width: 1040px;
       width: 100%;
@@ -467,7 +467,7 @@
 
     .footer-counter-row {
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-start;
       align-items: center;
       flex-wrap: wrap;
       gap: 1.5rem;
@@ -475,7 +475,6 @@
       border-bottom: 1px dashed rgba(43, 38, 34, 0.6);
     }
 
-    /* Odómetro numérico */
     .counter-display-wrap {
       display: flex;
       align-items: center;
@@ -548,7 +547,6 @@
       text-transform: uppercase;
     }
 
-    /* Créditos de base */
     .footer-base-row {
       display: flex;
       justify-content: space-between;
@@ -559,14 +557,8 @@
       color: #6d665b;
     }
 
-    .footer-base-row .city-ref {
-      color: var(--text-muted);
-    }
-
-    .footer-base-row .brand-ref {
-      color: var(--text-main);
-      font-weight: 700;
-    }
+    .footer-base-row .city-ref { color: var(--text-muted); }
+    .footer-base-row .brand-ref { color: var(--text-main); font-weight: 700; }
 
     @media (max-width: 820px) {
       header { padding: 1.8rem 1.4rem; }
@@ -585,7 +577,7 @@
       .floating-companion { width: 54px; height: 62px; }
       
       footer { padding: 2.5rem 1.4rem; gap: 1.8rem; }
-      .footer-counter-row { flex-direction: column; align-items: center; text-align: center; }
+      .footer-counter-row { justify-content: center; }
       .counter-display-wrap { flex-direction: column; gap: 0.6rem; }
       .counter-status-pill { justify-content: center; }
       .footer-base-row { flex-direction: column; gap: 0.6rem; text-align: center; }
@@ -819,23 +811,18 @@
   <footer>
     <div class="footer-counter-row">
       <div class="counter-display-wrap">
-        <!-- Odómetro Analógico -->
         <div class="counter-digits" id="odometerBox">
-          <span class="digit-box">0</span>
-          <span class="digit-box">0</span>
-          <span class="digit-box">1</span>
-          <span class="digit-box">2</span>
-          <span class="digit-box">5</span>
-          <span class="digit-box">0</span>
+          <span class="digit-box">-</span>
+          <span class="digit-box">-</span>
+          <span class="digit-box">-</span>
+          <span class="digit-box">-</span>
+          <span class="digit-box">-</span>
+          <span class="digit-box">-</span>
         </div>
         <div class="counter-label-group">
           <div class="counter-status-pill"><span class="live-dot"></span> EN LÍNEA</div>
-          <div class="counter-sub-caption">VISITAS AL ARCHIVO</div>
+          <div class="counter-sub-caption">VISITANTES</div>
         </div>
-      </div>
-
-      <div style="font-family: var(--font-mono); font-size: 0.72rem; color: #5c554b; letter-spacing: 0.12em; text-transform: uppercase;">
-        TELEMETRÍA DE CONSULTA PÚBLICA
       </div>
     </div>
 
@@ -863,12 +850,15 @@
         .then(data => {
           if (data && data.count) {
             renderDigits(data.count);
+          } else {
+            renderDigits(1);
           }
         })
-        .catch(() => {});
+        .catch(() => {
+          renderDigits(1);
+        });
 
       function renderDigits(num) {
-        // Asegura 6 dígitos visuales tipo odómetro (ej: 001250)
         const str = String(num).padStart(6, '0');
         odo.innerHTML = '';
         for (let ch of str) {
