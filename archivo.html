@@ -267,21 +267,72 @@
       transform: translateX(4px);
     }
 
+    /* Pie de página con Telemetría */
     footer {
       max-width: 1040px;
       width: 100%;
       margin: 0 auto;
-      padding: 2.5rem;
+      padding: 3rem 2.5rem 3.5rem 2.5rem;
       border-top: 1px dashed var(--border-color);
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      font-family: var(--font-mono);
-      font-size: 0.78rem;
-      letter-spacing: 0.1em;
-      color: #5c554b;
+      align-items: flex-end;
+      gap: 2rem;
       position: relative;
       z-index: 20;
+    }
+
+    .telemetry-box {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .telemetry-badge {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      color: var(--accent-color);
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .telemetry-data {
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+    }
+
+    .telemetry-number {
+      color: var(--text-main);
+      font-weight: 700;
+    }
+
+    .telemetry-divider {
+      margin: 0 0.4rem;
+      color: var(--border-color);
+    }
+
+    .status-live {
+      color: #5bb35b;
+      font-weight: 700;
+    }
+
+    .footer-brand {
+      text-align: right;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: #6d665b;
+      letter-spacing: 0.08em;
+      line-height: 1.6;
+    }
+
+    .footer-tag {
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      color: var(--border-color);
+      text-transform: uppercase;
     }
 
     @media (max-width: 820px) {
@@ -296,7 +347,15 @@
       }
       .archive-action { margin-top: 0.4rem; }
       .floating-companion { width: 54px; height: 62px; }
-      footer { flex-direction: column; gap: 0.6rem; text-align: center; padding: 2rem 1.4rem; }
+      footer {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 1.5rem;
+        padding: 2.5rem 1.4rem;
+      }
+      .footer-brand { text-align: center; }
+      .telemetry-divider { display: inline-block; }
     }
   </style>
 </head>
@@ -397,9 +456,24 @@
     </ul>
   </main>
 
+  <!-- Pie de página con Telemetría Técnica -->
   <footer>
-    <div>&copy; Bogotá, Colombia.</div>
-    <div>Love Jones</div>
+    <div class="footer-meta">
+      <div class="telemetry-box">
+        <span class="telemetry-badge">[TELEMETRÍA // NODO REGISTRADO]</span>
+        <div class="telemetry-data">
+          CONSULTAS AL ARCHIVO: <span id="telemetryCounter" class="telemetry-number">---</span>
+          <span class="telemetry-divider">&bull;</span>
+          ESTADO: <span class="status-live">ACTIVO</span>
+          <span class="telemetry-divider">&bull;</span>
+          BOGOTÁ, COL.
+        </div>
+      </div>
+    </div>
+    <div class="footer-brand">
+      <div>&copy; 2026 Love Jones</div>
+      <div class="footer-tag">ESTUDIOS & INVESTIGACIÓN INDEPENDIENTE</div>
+    </div>
   </footer>
 
   <script>
@@ -408,6 +482,27 @@
       window.history.replaceState(null, '', cleanPath + window.location.search + window.location.hash);
     }
 
+    // Telemetría Pública
+    (function initTelemetry() {
+      const counterEl = document.getElementById('telemetryCounter');
+      if (!counterEl) return;
+      const API_URL = 'https://api.counterapi.dev/v1/lovejones_archive/visits/up';
+
+      fetch(API_URL)
+        .then(response => response.json())
+        .then(data => {
+          if (data && data.count) {
+            counterEl.textContent = Number(data.count).toLocaleString('es-CO');
+          } else {
+            counterEl.textContent = 'REGISTRADO';
+          }
+        })
+        .catch(() => {
+          counterEl.textContent = 'EN LÍNEA';
+        });
+    })();
+
+    // Cubo Cinemático
     const companion = document.getElementById('companionBadge');
     const companionInner = document.getElementById('companionInner');
 
