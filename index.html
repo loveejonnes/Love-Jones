@@ -34,7 +34,7 @@
       padding: 0;
     }
 
-    /* Cursor estándar restaurado */
+    /* Cursor estándar */
     html, body {
       cursor: default;
     }
@@ -55,7 +55,7 @@
       position: relative;
     }
 
-    /* Grano de película de fondo */
+    /* Grano analógico de fondo */
     body::before {
       content: "";
       position: fixed;
@@ -412,12 +412,12 @@
     .album-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 2rem;
+      gap: 2.4rem 2rem;
     }
 
     .album-item {
-      display: block;
-      position: relative;
+      display: flex;
+      flex-direction: column;
       border-radius: 3px;
       overflow: hidden;
       border: 1px dashed var(--border-color);
@@ -482,6 +482,31 @@
 
     .album-item:hover .album-overlay {
       opacity: 1;
+    }
+
+    /* Subtítulos / Títulos de cada ensayo debajo de la imagen */
+    .essay-caption {
+      padding: 1.1rem 1.2rem;
+      border-top: 1px dashed var(--border-color);
+      background-color: #100f0e;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .essay-title {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-main);
+      line-height: 1.4;
+      transition: color 0.2s ease;
+    }
+
+    .album-item:hover .essay-title {
+      color: #ffffff;
     }
 
     /* Pie de página */
@@ -554,12 +579,11 @@
 </head>
 <body>
 
-  <!-- Cubo Holográfico con Evasión Dinámica (Cyber Glow Light & LJ Definido) -->
+  <!-- Cubo Holográfico Evasivo -->
   <div class="floating-companion" id="companionBadge">
     <div class="companion-inner">
       <svg viewBox="0 0 120 135" width="100%" height="100%">
         <defs>
-          <!-- Filtro Cyber Glow Light -->
           <filter id="goldCyberGlow" x="-30%" y="-30%" width="160%" height="160%">
             <feGaussianBlur stdDeviation="2.2" result="glow" />
             <feMerge>
@@ -568,7 +592,6 @@
             </feMerge>
           </filter>
 
-          <!-- Gradiente Oro Cyberpunk -->
           <linearGradient id="cyberGoldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stop-color="#ffffff" />
             <stop offset="25%" stop-color="#ffe680" />
@@ -576,32 +599,27 @@
             <stop offset="100%" stop-color="#997825" />
           </linearGradient>
 
-          <!-- Gradiente de profundidad interna -->
           <linearGradient id="cyberInnerGrad" x1="0%" y1="100%" x2="100%" y2="0%">
             <stop offset="0%" stop-color="#59430c" />
             <stop offset="100%" stop-color="#c5a028" />
           </linearGradient>
         </defs>
 
-        <!-- Aristas internas de la proyección -->
         <g stroke="url(#cyberInnerGrad)" stroke-width="1.2" stroke-dasharray="2.5 2" fill="none">
           <line x1="60" y1="82" x2="60" y2="52" />
           <line x1="28" y1="34" x2="60" y2="52" />
           <line x1="92" y1="34" x2="60" y2="52" />
         </g>
 
-        <!-- Aristas exteriores del Cubo -->
         <polygon points="60,8 92,26 92,68 60,86 28,68 28,26" 
                  stroke="url(#cyberGoldGrad)" stroke-width="1.8" fill="none" filter="url(#goldCyberGlow)" />
 
-        <!-- Aristas que convergen en el centro -->
         <g stroke="url(#cyberGoldGrad)" stroke-width="1.4" fill="none">
           <line x1="60" y1="46" x2="60" y2="86" />
           <line x1="60" y1="46" x2="28" y2="26" />
           <line x1="60" y1="46" x2="92" y2="26" />
         </g>
 
-        <!-- Nodos de luz en vértices -->
         <circle cx="60" cy="8" r="2.2" fill="#ffffff" filter="url(#goldCyberGlow)" />
         <circle cx="92" cy="26" r="2" fill="#ffe680" />
         <circle cx="92" cy="68" r="2" fill="#ffe680" />
@@ -609,21 +627,15 @@
         <circle cx="28" cy="68" r="2" fill="#ffe680" />
         <circle cx="28" cy="26" r="2" fill="#ffe680" />
 
-        <!-- Monograma interior LJ estilizado y definido -->
         <g font-family="'Space Mono', monospace" font-size="21" font-weight="700" 
            fill="url(#cyberGoldGrad)" filter="url(#goldCyberGlow)" letter-spacing="1">
           <text x="60" y="53" text-anchor="middle" dominant-baseline="central">LJ</text>
         </g>
 
-        <!-- Inscripción inferior con L y J resaltadas -->
         <g font-family="'Space Mono', monospace" font-size="7.5" font-weight="700" letter-spacing="2">
-          <!-- L -->
           <text x="18" y="112" fill="#ffffff" filter="url(#goldCyberGlow)">L</text>
-          <!-- ove -->
           <text x="25" y="112" fill="#d4af37" font-weight="400">OVE</text>
-          <!-- J -->
           <text x="64" y="112" fill="#ffffff" filter="url(#goldCyberGlow)">J</text>
-          <!-- ones -->
           <text x="71" y="112" fill="#d4af37" font-weight="400">ONES</text>
         </g>
       </svg>
@@ -736,57 +748,81 @@
       </p>
 
       <div class="album-grid">
+        <!-- Foto 1: JAY-Z -->
         <a class="album-item" href="https://www.instagram.com/p/DV49k9hjO30/?utm_source=ig_web_copy_link&stkn=MzRlODBiNWFlZA==" target="_blank" rel="noopener noreferrer">
           <div class="album-item-frame">
-            <img src="./1.jpg" alt="Roc Marciano - Love Jones">
+            <img src="./1.jpg" alt="1. JAY-Z: IN MY LIFETIME">
             <div class="album-overlay">
               <span>Leer &rarr;</span>
             </div>
           </div>
+          <div class="essay-caption">
+            <div class="essay-title">1. JAY-Z: IN MY LIFETIME</div>
+          </div>
         </a>
 
+        <!-- Foto 2: ERIC B & RAKIM -->
         <a class="album-item" href="https://www.instagram.com/p/Dd8f-DJlr5V/?utm_source=ig_web_copy_link&stkn=MzRlODBiNWFlZA==" target="_blank" rel="noopener noreferrer">
           <div class="album-item-frame">
-            <img src="./2.jpg" alt="Jay-Z - Love Jones">
+            <img src="./2.jpg" alt="2. ERIC B & RAKIM: PAID IN FULL">
             <div class="album-overlay">
               <span>Leer &rarr;</span>
             </div>
           </div>
+          <div class="essay-caption">
+            <div class="essay-title">2. ERIC B & RAKIM: PAID IN FULL</div>
+          </div>
         </a>
 
+        <!-- Foto 3: DA BRAT -->
         <a class="album-item" href="https://www.instagram.com/p/DSa36b_AQaV/?utm_source=ig_web_copy_link&stkn=MzRlODBiNWFlZA==" target="_blank" rel="noopener noreferrer">
           <div class="album-item-frame">
-            <img src="./3.jpg" alt="Mach-Hommy - Love Jones">
+            <img src="./3.jpg" alt="3. DA BRAT: FUNKDAFIED: EL DISCO FEMENINO DEL G-FUNK">
             <div class="album-overlay">
               <span>Leer &rarr;</span>
             </div>
           </div>
+          <div class="essay-caption">
+            <div class="essay-title">3. DA BRAT: FUNKDAFIED: EL DISCO FEMENINO DEL G-FUNK</div>
+          </div>
         </a>
 
+        <!-- Foto 4: WESTSIDE GUNN -->
         <a class="album-item" href="https://www.instagram.com/p/DbXANhqDH0F/?utm_source=ig_web_copy_link&stkn=MzRlODBiNWFlZA==" target="_blank" rel="noopener noreferrer">
           <div class="album-item-frame">
-            <img src="./4.jpg" alt="Da Brat - Love Jones">
+            <img src="./4.jpg" alt="4. WESTSIDE GUNN: LA ESTÉTICA DE LA VIOLENCIA">
             <div class="album-overlay">
               <span>Leer &rarr;</span>
             </div>
           </div>
+          <div class="essay-caption">
+            <div class="essay-title">4. WESTSIDE GUNN: LA ESTÉTICA DE LA VIOLENCIA</div>
+          </div>
         </a>
 
+        <!-- Foto 5: DOOM VS. GHOSTFACE -->
         <a class="album-item" href="https://www.instagram.com/p/DW2o6MJjP29/?utm_source=ig_web_copy_link&stkn=MzRlODBiNWFlZA==" target="_blank" rel="noopener noreferrer">
           <div class="album-item-frame">
-            <img src="./5.jpg" alt="Westside Gunn - Love Jones">
+            <img src="./5.jpg" alt="5. DOOM VS. GHOSTFACE: EL DISCO QUE NUNCA SALIÓ">
             <div class="album-overlay">
               <span>Leer &rarr;</span>
             </div>
           </div>
+          <div class="essay-caption">
+            <div class="essay-title">5. DOOM VS. GHOSTFACE: EL DISCO QUE NUNCA SALIÓ</div>
+          </div>
         </a>
 
+        <!-- Foto 6: MACH-HOMMY -->
         <a class="album-item" href="https://www.instagram.com/p/DVipyx_jv64/?utm_source=ig_web_copy_link&stkn=MzRlODBiNWFlZA==" target="_blank" rel="noopener noreferrer">
           <div class="album-item-frame">
-            <img src="./6.jpg" alt="DOOM vs Ghostface - Love Jones">
+            <img src="./6.jpg" alt="6. MACH-HOMMY: UNO DE LOS RAPEROS MÁS RAROS DE NUESTRO TIEMPO">
             <div class="album-overlay">
               <span>Leer &rarr;</span>
             </div>
+          </div>
+          <div class="essay-caption">
+            <div class="essay-title">6. MACH-HOMMY: UNO DE LOS RAPEROS MÁS RAROS DE NUESTRO TIEMPO</div>
           </div>
         </a>
       </div>
@@ -838,7 +874,7 @@
       setTimeout(() => { isPaused = false; }, 3000);
     }
 
-    // Física de Evasión (El cubo evita ser atrapado)
+    // Física de Evasión del Cubo
     const companion = document.getElementById('companionBadge');
     let evadeX = 0;
     let evadeY = 0;
@@ -855,26 +891,20 @@
       const distY = e.clientY - compCenterY;
       const distance = Math.hypot(distX, distY);
 
-      // Radio de alerta (160px)
       const alertRadius = 160;
 
       if (distance < alertRadius && distance > 0) {
-        // Fuerza de repulsión inversamente proporcional
         const force = (alertRadius - distance) / alertRadius;
         const angle = Math.atan2(distY, distX);
-        
-        // Empuja en dirección contraria
         evadeX = -Math.cos(angle) * (force * 110);
         evadeY = -Math.sin(angle) * (force * 110);
       } else {
-        // Regresa gradualmente a su posición base
         evadeX *= 0.88;
         evadeY *= 0.88;
       }
     });
 
     function renderEvasion() {
-      // Amortiguación continua (lerp)
       curX += (evadeX - curX) * 0.12;
       curY += (evadeY - curY) * 0.12;
 
