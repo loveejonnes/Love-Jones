@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contacto &bull; Love Jones</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="LoveJones pic1.jpeg">
+
+  <!-- Tipografías -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Lora:ital,wght@0,400;0,600;1,400&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-color: #111111;
+      --card-bg: #161413;
+      --accent-color: #9e3a2b;
+      --accent-hover: #b84534;
+      --text-main: #f4ecd8;
+      --text-muted: #b8b09f;
+      --border-color: #26211f;
+      --input-bg: #141211;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      font-family: 'Lora', Georgia, serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.8;
+    }
+
+    /* Encabezado */
+    header {
+      width: 100%;
+      padding: 2.8rem 2.5rem;
+      max-width: 1040px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .brand-logo {
+      font-family: 'Cinzel', serif;
+      font-size: 1.5rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-main);
+      text-decoration: none;
+      font-weight: 700;
+      transition: opacity 0.2s ease;
+    }
+
+    .brand-logo:hover {
+      opacity: 0.85;
+    }
+
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .nav-link {
+      font-family: 'Space Grotesk', sans-serif;
+      text-decoration: none;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      padding-bottom: 4px;
+      border-bottom: 1.5px solid transparent;
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      color: var(--text-main);
+      border-bottom-color: var(--accent-color);
+    }
+
+    /* Contenedor Principal */
+    main {
+      flex: 1;
+      max-width: 680px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 5.5rem 2rem;
+    }
+
+    .contact-header {
+      margin-bottom: 3.5rem;
+    }
+
+    .contact-tag {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--accent-color);
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    h1 {
+      font-family: 'Cinzel', serif;
+      font-size: 2.8rem;
+      letter-spacing: 0.06em;
+      color: var(--text-main);
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .contact-desc {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+    }
+
+    .contact-desc a {
+      color: var(--text-main);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: color 0.2s ease;
+    }
+
+    .contact-desc a:hover {
+      color: var(--accent-color);
+    }
+
+    /* Formulario */
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.88rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+    }
+
+    input, textarea {
+      width: 100%;
+      background-color: var(--input-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      padding: 0.95rem 1.1rem;
+      color: var(--text-main);
+      font-family: 'Lora', Georgia, serif;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    input:focus, textarea:focus {
+      border-color: var(--accent-color);
+      box-shadow: 0 0 10px rgba(158, 58, 43, 0.2);
+    }
+
+    textarea {
+      min-height: 160px;
+      resize: vertical;
+    }
+
+    .btn-submit {
+      align-self: flex-start;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-main);
+      background-color: var(--accent-color);
+      border: 1px solid var(--accent-color);
+      padding: 0.9rem 2.2rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.2s ease, transform 0.15s ease;
+    }
+
+    .btn-submit:hover {
+      background-color: var(--accent-hover);
+      border-color: var(--accent-hover);
+      transform: translateY(-2px);
+    }
+
+    /* Pie de página */
+    footer {
+      max-width: 1040px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 2.5rem;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.85rem;
+      color: #6d665b;
+    }
+
+    @media (max-width: 768px) {
+      main {
+        padding: 3.5rem 1.5rem;
+      }
+      h1 {
+        font-size: 2.2rem;
+      }
+      .btn-submit {
+        width: 100%;
+      }
+      footer {
+        flex-direction: column;
+        gap: 0.8rem;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Encabezado -->
+  <header>
+    <a href="./" class="brand-logo">Love Jones</a>
+    <nav class="header-nav">
+      <a class="nav-link" href="https://substack.com/@loveejonnes" target="_blank" rel="noopener noreferrer">DROPGEMS</a>
+      <a class="nav-link active" href="contacto.html">CONTACTO</a>
+    </nav>
+  </header>
+
+  <!-- Contenido Central -->
+  <main>
+    <div class="contact-header">
+      <div class="contact-tag">Correspondencia</div>
+      <h1>Contacto</h1>
+      <p class="contact-desc">
+        Para consultas, colaboraciones o propuestas editoriales, escribe mediante este formulario o directamente a <a href="mailto:loveejonnes1@gmail.com">loveejonnes1@gmail.com</a>.
+      </p>
+    </div>
+
+    <!-- Formulario conectado a FormSubmit -->
+    <form class="contact-form" action="https://formsubmit.co/loveejonnes1@gmail.com" method="POST">
+      <!-- Configuración anti-spam y redirección automática -->
+      <input type="hidden" name="_subject" value="Nuevo mensaje desde la web Love Jones">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_template" value="table">
+      <input type="text" name="_honey" style="display:none">
+
+      <div class="form-group">
+        <label for="name">Nombre</label>
+        <input type="text" id="name" name="name" required placeholder="Tu nombre o seudónimo">
+      </div>
+
+      <div class="form-group">
+        <label for="email">Correo electrónico</label>
+        <input type="email" id="email" name="email" required placeholder="tu-correo@ejemplo.com">
+      </div>
+
+      <div class="form-group">
+        <label for="affair">Asunto</label>
+        <input type="text" id="affair" name="affair" placeholder="Motivo del mensaje">
+      </div>
+
+      <div class="form-group">
+        <label for="message">Mensaje</label>
+        <textarea id="message" name="message" required placeholder="Escribe aquí tu mensaje..."></textarea>
+      </div>
+
+      <button type="submit" class="btn-submit">Enviar mensaje</button>
+    </form>
+  </main>
+
+  <!-- Pie de página -->
+  <footer>
+    <div>&copy; Bogotá, Colombia.</div>
+    <div>Love Jones</div>
+  </footer>
+
+</body>
+</html>
