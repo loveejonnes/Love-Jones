@@ -69,10 +69,8 @@
     /* Cubo Cinemático Dinámico con Rebote Libre */
     .floating-companion {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 74px;
-      height: 85px;
+      top: 0; left: 0;
+      width: 74px; height: 85px;
       z-index: 500;
       pointer-events: auto;
       cursor: grab;
@@ -90,8 +88,7 @@
     }
 
     .companion-inner {
-      width: 100%;
-      height: 100%;
+      width: 100%; height: 100%;
       transform-origin: center;
       transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
@@ -259,14 +256,50 @@
     .footer-city { color: var(--text-muted); }
     .footer-brand { color: var(--text-main); font-weight: 700; }
 
+    /* ========================================================
+       OPTIMIZACIÓN COMPLETA PARA DISPOSITIVOS MÓVILES
+       ======================================================== */
     @media (max-width: 820px) {
-      header { padding: 1.8rem 1.4rem; }
-      main { padding: 3.5rem 1.4rem; }
-      .terminal-card { padding: 2.2rem 1.6rem; }
-      .terminal-title { font-size: 1.2rem; }
-      .terminal-text { font-size: 0.95rem; }
-      .floating-companion { width: 54px; height: 62px; }
-      footer { flex-direction: column; gap: 0.6rem; text-align: center; padding: 2rem 1.4rem; }
+      header {
+        padding: 1.6rem 1.4rem;
+      }
+      .brand-logo {
+        font-size: 1.05rem;
+      }
+      .header-nav {
+        gap: 1.2rem;
+      }
+      .nav-link {
+        font-size: 0.75rem;
+        letter-spacing: 0.08em;
+      }
+      main {
+        padding: 3.5rem 1.4rem;
+      }
+      .terminal-card {
+        padding: 2.2rem 1.5rem;
+      }
+      .terminal-title {
+        font-size: 1.15rem;
+      }
+      .terminal-text {
+        font-size: 0.94rem;
+        line-height: 1.75;
+      }
+      .terminal-log {
+        padding: 1rem 1.2rem;
+        font-size: 0.72rem;
+      }
+      .floating-companion {
+        width: 54px;
+        height: 62px;
+      }
+      footer {
+        flex-direction: column;
+        gap: 0.6rem;
+        text-align: center;
+        padding: 2rem 1.4rem;
+      }
     }
   </style>
 </head>
