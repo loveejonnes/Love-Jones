@@ -5,27 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Love Jones</title>
 
-  <!-- Favicon -->
+  <!-- Favicon (Icono en la pestaña del navegador) -->
   <link rel="icon" type="image/jpeg" href="LoveJones pic1.jpeg">
 
-  <!-- Tipografías -->
+  <!-- Tipografías de Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Lora:ital,wght@0,400;0,600;1,400&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --bg-color: #0d0c0b;
-      --card-bg: #121110;
-      --accent-color: #9e3527;
-      --accent-hover: #b83f30;
-      --text-main: #dfd7c8;
-      --text-muted: #8c8476;
-      --border-color: #2b2622;
-      --gold-bright: #ffe680;
-      --gold-cyber: #d4af37;
-      --font-mono: 'Space Mono', 'Courier Prime', monospace;
-      --font-serif: 'Lora', Georgia, serif;
+      --bg-color: #111111;
+      --card-bg: #161413;
+      --accent-color: #9e3a2b;
+      --accent-hover: #b84534;
+      --text-main: #f4ecd8;
+      --text-muted: #b8b09f;
+      --border-color: #26211f;
     }
 
     * {
@@ -34,88 +30,32 @@
       padding: 0;
     }
 
-    /* Cursor estándar */
-    html, body {
-      cursor: default;
-    }
-
-    a, button {
-      cursor: pointer;
-    }
-
     body {
       background-color: var(--bg-color);
       color: var(--text-main);
-      font-family: var(--font-serif);
+      font-family: 'Lora', Georgia, serif;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       line-height: 1.85;
-      -webkit-font-smoothing: antialiased;
-      position: relative;
-    }
-
-    /* Grano analógico de fondo */
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 9999;
-      opacity: 0.045;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-    }
-
-    /* Cubo Holográfico Evasivo (Tamaño reducido y más sutil) */
-    .floating-companion {
-      position: fixed;
-      bottom: 1.8rem;
-      right: 1.8rem;
-      width: 74px;
-      height: 85px;
-      z-index: 999;
-      pointer-events: auto;
-      will-change: transform;
-      transition: filter 0.3s ease;
-      filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.3));
-    }
-
-    .companion-inner {
-      width: 100%;
-      height: 100%;
-      animation: cyberPulse 4s ease-in-out infinite;
-    }
-
-    @keyframes cyberPulse {
-      0%, 100% {
-        transform: translateY(0px) rotate(0deg);
-        filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.35));
-      }
-      50% {
-        transform: translateY(-4px) rotate(1deg);
-        filter: drop-shadow(0 0 12px rgba(255, 230, 128, 0.65));
-      }
     }
 
     /* Encabezado */
     header {
       width: 100%;
-      padding: 2.6rem 2.5rem;
+      padding: 2.8rem 2.5rem;
       max-width: 1040px;
       margin: 0 auto;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1px dashed var(--border-color);
+      border-bottom: 1px solid var(--border-color);
     }
 
     .brand-logo {
-      font-family: var(--font-mono);
-      font-size: 1.25rem;
-      letter-spacing: 0.14em;
+      font-family: 'Cinzel', serif;
+      font-size: 1.5rem;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--text-main);
       text-decoration: none;
@@ -130,17 +70,18 @@
     .header-nav {
       display: flex;
       align-items: center;
-      gap: 2.2rem;
+      gap: 2rem;
     }
 
     .nav-link {
-      font-family: var(--font-mono);
+      font-family: 'Space Grotesk', sans-serif;
       text-decoration: none;
       color: var(--text-muted);
-      font-size: 0.82rem;
-      letter-spacing: 0.12em;
+      font-size: 0.95rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
       padding-bottom: 4px;
-      border-bottom: 1px dashed transparent;
+      border-bottom: 1.5px solid transparent;
       transition: color 0.2s ease, border-color 0.2s ease;
     }
 
@@ -155,17 +96,17 @@
       max-width: 1040px;
       width: 100%;
       margin: 0 auto;
-      padding: 5rem 2.5rem;
+      padding: 5.5rem 2.5rem;
     }
 
-    /* Sección Principal */
+    /* Portada Principal */
     .hero-section {
       display: grid;
-      grid-template-columns: 320px 1fr;
+      grid-template-columns: 340px 1fr;
       gap: 5rem;
       align-items: center;
-      padding-bottom: 5rem;
-      border-bottom: 1px dashed var(--border-color);
+      padding-bottom: 5.5rem;
+      border-bottom: 1px solid var(--border-color);
     }
 
     .profile-container {
@@ -174,13 +115,13 @@
     }
 
     .profile-img-wrap {
-      width: 280px;
-      height: 280px;
+      width: 300px;
+      height: 300px;
       border-radius: 50%;
-      border: 1px dashed var(--border-color);
-      box-shadow: 0 0 35px rgba(0, 0, 0, 0.6);
+      border: 3px solid var(--accent-color);
+      box-shadow: 0 0 35px rgba(158, 58, 43, 0.25);
       overflow: hidden;
-      background-color: #080808;
+      background-color: #0d0d0d;
     }
 
     .profile-img-wrap img {
@@ -188,77 +129,68 @@
       height: 100%;
       object-fit: cover;
       display: block;
-      filter: contrast(1.05) brightness(0.95);
     }
 
     .bio-content h1 {
-      font-family: var(--font-mono);
-      font-size: 2.3rem;
+      font-family: 'Cinzel', serif;
+      font-size: 3.2rem;
       font-weight: 700;
       letter-spacing: 0.08em;
-      margin-bottom: 1.8rem;
+      margin-bottom: 2.2rem;
       color: var(--text-main);
-      line-height: 1.2;
+      line-height: 1.15;
     }
 
     .bio-text {
       color: var(--text-muted);
-      font-size: 1.05rem;
-      margin-bottom: 2.4rem;
+      font-size: 1.12rem;
+      margin-bottom: 2.5rem;
     }
 
-    /* Redes Sociales */
     .social-links {
       display: flex;
       align-items: center;
-      gap: 1.6rem;
+      gap: 1.2rem;
     }
 
     .social-icon-btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background-color: #1a1716;
+      border: 1px solid var(--border-color);
       color: var(--text-muted);
       text-decoration: none;
-      transition: color 0.2s ease, transform 0.15s ease;
-      background: transparent;
-      border: none;
-      padding: 0;
+      transition: color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
     }
 
     .social-icon-btn svg {
-      width: 18px;
-      height: 18px;
+      width: 20px;
+      height: 20px;
       fill: currentColor;
     }
 
     .social-icon-btn:hover {
       color: var(--text-main);
-      transform: translateY(-1.5px);
+      border-color: var(--accent-color);
+      transform: translateY(-2px);
     }
 
-    .section-title {
-      font-family: var(--font-mono);
-      font-size: 1.15rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--text-main);
-      margin-bottom: 1.2rem;
-      font-weight: 700;
-    }
-
-    /* Sección Curador Musical */
+    /* Sección YouTube */
     .youtube-section {
-      padding-top: 5rem;
-      padding-bottom: 5rem;
-      border-bottom: 1px dashed var(--border-color);
+      padding-top: 5.5rem;
+      padding-bottom: 5.5rem;
+      border-bottom: 1px solid var(--border-color);
     }
 
     .youtube-bio {
       color: var(--text-muted);
-      font-size: 1.05rem;
+      font-size: 1.1rem;
       max-width: 900px;
-      margin-bottom: 3rem;
+      margin-bottom: 3.5rem;
     }
 
     .carousel-container {
@@ -285,10 +217,10 @@
       flex: 0 0 calc(50% - 0.9rem);
       min-width: 320px;
       background-color: var(--card-bg);
-      border: 1px dashed var(--border-color);
-      border-radius: 3px;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
       overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
     }
 
     .video-card-frame {
@@ -311,202 +243,197 @@
       display: flex;
       justify-content: flex-end;
       align-items: center;
-      gap: 1.4rem;
+      gap: 1.2rem;
       margin-top: 1.8rem;
     }
 
     .btn-visit-channel {
-      font-family: var(--font-mono);
-      font-size: 0.78rem;
-      font-weight: 700;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       text-decoration: none;
       color: var(--text-main);
-      background-color: var(--card-bg);
-      border: 1px dashed var(--border-color);
-      padding: 0.65rem 1.3rem;
-      border-radius: 3px;
-      transition: border-color 0.2s ease, background-color 0.2s ease;
+      background-color: transparent;
+      border: 1px solid var(--accent-color);
+      padding: 0.65rem 1.4rem;
+      border-radius: 20px;
+      transition: background-color 0.2s ease, color 0.2s ease;
       display: inline-flex;
       align-items: center;
-      gap: 0.7rem;
     }
 
     .btn-visit-channel:hover {
-      border-color: var(--accent-color);
-      background-color: #171513;
-    }
-
-    .yt-icon-badge {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 22px;
-      height: 16px;
-      background: #ff0000;
-      border-radius: 4px;
-      position: relative;
-      box-shadow: 0 1px 4px rgba(255, 0, 0, 0.35);
-    }
-
-    .yt-icon-badge::after {
-      content: '';
-      position: absolute;
-      left: 8px;
-      border-style: solid;
-      border-width: 3.5px 0 3.5px 6.5px;
-      border-color: transparent transparent transparent #ffffff;
+      background-color: var(--accent-color);
+      color: #ffffff;
     }
 
     .carousel-arrows {
       display: flex;
-      gap: 0.7rem;
+      gap: 0.8rem;
     }
 
     .arrow-btn {
-      background: var(--card-bg);
-      border: 1px dashed var(--border-color);
+      background: #1a1716;
+      border: 1px solid var(--border-color);
       color: var(--text-main);
-      width: 38px;
-      height: 38px;
-      border-radius: 3px;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      font-family: var(--font-mono);
-      font-size: 1.05rem;
+      cursor: pointer;
+      font-size: 1.2rem;
       transition: border-color 0.2s, background-color 0.2s;
     }
 
     .arrow-btn:hover {
       border-color: var(--accent-color);
-      background-color: #171513;
+      background-color: #241e1c;
     }
 
-    /* Sección Tha Digger aka Hustler Researcher */
-    .researcher-section {
-      padding-top: 5rem;
-      padding-bottom: 5rem;
-      border-bottom: 1px dashed var(--border-color);
-    }
-
-    .researcher-text {
-      color: var(--text-muted);
-      font-size: 1.05rem;
-      max-width: 900px;
-    }
-
-    /* Sección Algunos Ensayos */
-    .essays-section {
-      padding-top: 5rem;
-    }
-
-    .essays-bio {
-      color: var(--text-muted);
-      font-size: 1.05rem;
-      max-width: 900px;
-      margin-bottom: 3rem;
-    }
-
-    .album-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 2.4rem 2rem;
-    }
-
-    .album-item {
+    /* Sección Post de Instagram */
+    .instagram-section {
+      padding-top: 5.5rem;
       display: flex;
       flex-direction: column;
-      border-radius: 3px;
-      overflow: hidden;
-      border: 1px dashed var(--border-color);
-      background-color: var(--card-bg);
-      text-decoration: none;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-      transition: border-color 0.3s ease, transform 0.25s ease;
+      align-items: center;
     }
 
-    .album-item-frame {
+    .instagram-post-card {
       width: 100%;
-      aspect-ratio: 4 / 5;
+      max-width: 520px;
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
       overflow: hidden;
-      background-color: #080808;
-      position: relative;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.45);
+      transition: border-color 0.25s ease, transform 0.25s ease;
     }
 
-    .album-item img {
+    .instagram-post-card:hover {
+      border-color: var(--accent-color);
+      transform: translateY(-3px);
+    }
+
+    /* Encabezado del post */
+    .post-header {
+      padding: 1.1rem 1.4rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border-color);
+      background-color: #131110;
+    }
+
+    .post-author {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      text-decoration: none;
+    }
+
+    .post-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: 1.5px solid var(--accent-color);
+      overflow: hidden;
+    }
+
+    .post-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .post-author-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .post-ig-icon svg {
+      width: 18px;
+      height: 18px;
+      fill: var(--text-muted);
+    }
+
+    /* Enlace de la imagen del post */
+    .post-image-link {
+      display: block;
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      background-color: #0a0a0a;
+      text-decoration: none;
+    }
+
+    .post-image-link img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
-      filter: grayscale(100%) contrast(0.92) brightness(0.88);
-      transition: filter 0.45s ease, transform 0.45s ease;
+      transition: transform 0.4s ease, filter 0.4s ease;
     }
 
-    .album-item:hover img {
-      filter: grayscale(0%) contrast(1.05) brightness(1);
-      transform: scale(1.025);
-    }
-
-    .album-overlay {
+    .post-image-overlay {
       position: absolute;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(13, 12, 11, 0.5);
+      background: rgba(17, 17, 17, 0.45);
       display: flex;
       align-items: center;
       justify-content: center;
       opacity: 0;
-      transition: opacity 0.25s ease;
+      transition: opacity 0.3s ease;
     }
 
-    .album-overlay span {
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.14em;
+    .post-image-overlay span {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       color: #ffffff;
       background-color: var(--accent-color);
-      padding: 0.5rem 1rem;
-      border-radius: 2px;
+      padding: 0.6rem 1.2rem;
+      border-radius: 20px;
     }
 
-    .album-item:hover {
-      border-color: var(--accent-color);
-      transform: translateY(-2px);
+    .post-image-link:hover img {
+      transform: scale(1.03);
     }
 
-    .album-item:hover .album-overlay {
+    .post-image-link:hover .post-image-overlay {
       opacity: 1;
     }
 
-    /* Subtítulos / Títulos limpios sin numeración */
-    .essay-caption {
-      padding: 1.1rem 1.2rem;
-      border-top: 1px dashed var(--border-color);
-      background-color: #100f0e;
+    /* Pie del post */
+    .post-footer {
+      padding: 1rem 1.4rem;
       display: flex;
-      flex-direction: column;
-      gap: 0.35rem;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--border-color);
     }
 
-    .essay-title {
-      font-family: var(--font-mono);
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--text-main);
-      line-height: 1.4;
+    .post-footer a {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      text-decoration: none;
       transition: color 0.2s ease;
     }
 
-    .album-item:hover .essay-title {
-      color: #ffffff;
+    .post-footer a:hover {
+      color: var(--accent-color);
     }
 
     /* Pie de página */
@@ -515,16 +442,16 @@
       width: 100%;
       margin: 0 auto;
       padding: 2.5rem;
-      border-top: 1px dashed var(--border-color);
+      border-top: 1px solid var(--border-color);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-family: var(--font-mono);
-      font-size: 0.78rem;
-      letter-spacing: 0.1em;
-      color: #5c554b;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.85rem;
+      color: #6d665b;
     }
 
+    /* Ajustes Móvil */
     @media (max-width: 820px) {
       .hero-section {
         grid-template-columns: 1fr;
@@ -538,7 +465,7 @@
       }
 
       .bio-content h1 {
-        font-size: 2rem;
+        font-size: 2.4rem;
         margin-bottom: 1.5rem;
       }
 
@@ -546,10 +473,10 @@
         justify-content: center;
       }
 
-      .youtube-section,
-      .researcher-section,
-      .essays-section {
+      .youtube-section {
         padding-top: 3.5rem;
+        padding-bottom: 3.5rem;
+        text-align: center;
       }
 
       .video-card {
@@ -562,11 +489,8 @@
         flex-wrap: wrap;
       }
 
-      .floating-companion {
-        bottom: 1.2rem;
-        right: 1.2rem;
-        width: 62px;
-        height: 72px;
+      .instagram-section {
+        padding-top: 3.5rem;
       }
 
       footer {
@@ -579,72 +503,9 @@
 </head>
 <body>
 
-  <!-- Cubo Holográfico Evasivo (Más pequeño y proporcionado) -->
-  <div class="floating-companion" id="companionBadge">
-    <div class="companion-inner">
-      <svg viewBox="0 0 120 135" width="100%" height="100%">
-        <defs>
-          <filter id="goldCyberGlow" x="-30%" y="-30%" width="160%" height="160%">
-            <feGaussianBlur stdDeviation="2" result="glow" />
-            <feMerge>
-              <feMergeNode in="glow" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
-
-          <linearGradient id="cyberGoldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#ffffff" />
-            <stop offset="25%" stop-color="#ffe680" />
-            <stop offset="65%" stop-color="#d4af37" />
-            <stop offset="100%" stop-color="#997825" />
-          </linearGradient>
-
-          <linearGradient id="cyberInnerGrad" x1="0%" y1="100%" x2="100%" y2="0%">
-            <stop offset="0%" stop-color="#59430c" />
-            <stop offset="100%" stop-color="#c5a028" />
-          </linearGradient>
-        </defs>
-
-        <g stroke="url(#cyberInnerGrad)" stroke-width="1.2" stroke-dasharray="2.5 2" fill="none">
-          <line x1="60" y1="82" x2="60" y2="52" />
-          <line x1="28" y1="34" x2="60" y2="52" />
-          <line x1="92" y1="34" x2="60" y2="52" />
-        </g>
-
-        <polygon points="60,8 92,26 92,68 60,86 28,68 28,26" 
-                 stroke="url(#cyberGoldGrad)" stroke-width="1.8" fill="none" filter="url(#goldCyberGlow)" />
-
-        <g stroke="url(#cyberGoldGrad)" stroke-width="1.4" fill="none">
-          <line x1="60" y1="46" x2="60" y2="86" />
-          <line x1="60" y1="46" x2="28" y2="26" />
-          <line x1="60" y1="46" x2="92" y2="26" />
-        </g>
-
-        <circle cx="60" cy="8" r="2.2" fill="#ffffff" filter="url(#goldCyberGlow)" />
-        <circle cx="92" cy="26" r="2" fill="#ffe680" />
-        <circle cx="92" cy="68" r="2" fill="#ffe680" />
-        <circle cx="60" cy="86" r="2.2" fill="#ffffff" filter="url(#goldCyberGlow)" />
-        <circle cx="28" cy="68" r="2" fill="#ffe680" />
-        <circle cx="28" cy="26" r="2" fill="#ffe680" />
-
-        <g font-family="'Space Mono', monospace" font-size="21" font-weight="700" 
-           fill="url(#cyberGoldGrad)" filter="url(#goldCyberGlow)" letter-spacing="1">
-          <text x="60" y="53" text-anchor="middle" dominant-baseline="central">LJ</text>
-        </g>
-
-        <g font-family="'Space Mono', monospace" font-size="7.5" font-weight="700" letter-spacing="2">
-          <text x="18" y="112" fill="#ffffff" filter="url(#goldCyberGlow)">L</text>
-          <text x="25" y="112" fill="#d4af37" font-weight="400">OVE</text>
-          <text x="64" y="112" fill="#ffffff" filter="url(#goldCyberGlow)">J</text>
-          <text x="71" y="112" fill="#d4af37" font-weight="400">ONES</text>
-        </g>
-      </svg>
-    </div>
-  </div>
-
   <!-- Encabezado -->
   <header>
-    <a href="./" class="brand-logo">Love Jones</a>
+    <a href="index.html" class="brand-logo">Love Jones</a>
     <nav class="header-nav">
       <a class="nav-link" href="https://substack.com/@loveejonnes" target="_blank" rel="noopener noreferrer">DROPGEMS</a>
       <a class="nav-link" href="contacto.html">CONTACTO</a>
@@ -653,6 +514,7 @@
 
   <!-- Contenido Central -->
   <main>
+    <!-- Portada Principal -->
     <section class="hero-section">
       <div class="profile-container">
         <div class="profile-img-wrap">
@@ -661,24 +523,27 @@
       </div>
 
       <div class="bio-content">
-        <h1>Love Jones</h1>
+        <h1>&nbsp;</h1>
         <div class="bio-text">
           <p>Love Jones es el aka de un escritor e investigador independiente de la ciudad de Bogotá, Colombia. Su paso por universidades como la Universidad Autónoma de Colombia y la Universidad de La Salle le dieron las bases para seguir formándose de manera independiente como escritor e investigador. Dentro de lo que podemos saber, actualmente se encuentra trabajando en un libro recopilatorio de ensayos sobre la cultura Hip-Hop.</p>
         </div>
 
         <div class="social-links">
+          <!-- YouTube -->
           <a class="social-icon-btn" href="https://www.youtube.com/@LoveeJonnes" target="_blank" rel="noopener noreferrer" aria-label="Canal de YouTube">
             <svg viewBox="0 0 24 24">
               <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
             </svg>
           </a>
 
+          <!-- Instagram -->
           <a class="social-icon-btn" href="https://www.instagram.com/loveejonnes/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
             <svg viewBox="0 0 24 24">
               <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
             </svg>
           </a>
 
+          <!-- Facebook -->
           <a class="social-icon-btn" href="https://www.facebook.com/profile.php?id=61555913747279" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
             <svg viewBox="0 0 24 24">
               <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/>
@@ -688,30 +553,33 @@
       </div>
     </section>
 
-    <!-- Sección Curador Musical -->
+    <!-- Sección de Divulgación de Hip-Hop (YouTube) -->
     <section class="youtube-section">
-      <div class="section-title">Curador Musical</div>
       <p class="youtube-bio">
-        En el 2016 crea un canal de YouTube de divulgación de la música Hip-Hop obteniendo como respuesta feedback de más de 50.000 personas, además de haber adquirido un conocimiento más profundo sobre la cultura Hip-Hop participando en la promoción y divulgación de varios proyectos musicales. Su curaduría musical se basa en la recopilación de información que permita un entendimiento musical y cultural más accesible para todos.
+        En el 2016 crea un canal de YouTube de divulgación de la música Hip-Hop obteniendo como respuesta el feedback de más de 50.000 personas curiosas, además de haber adquirido un conocimiento más profundo sobre la cultura Hip-Hop participando directamente en la promoción y divulgación de proyectos musicales de artistas provenientes de países como Colombia, Argentina, México, Reino Unido, entre otros.
       </p>
 
       <div class="carousel-container" id="carouselWrapper">
         <div class="carousel-track" id="videoTrack">
+          <!-- Video 1 -->
           <div class="video-card">
             <div class="video-card-frame">
               <iframe src="https://www.youtube-nocookie.com/embed/h0mO4AVF5fo" title="Video 1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
           </div>
+          <!-- Video 2 -->
           <div class="video-card">
             <div class="video-card-frame">
               <iframe src="https://www.youtube-nocookie.com/embed/B8b3iZbdeRI" title="Video 2" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
           </div>
+          <!-- Video 3 -->
           <div class="video-card">
             <div class="video-card-frame">
               <iframe src="https://www.youtube-nocookie.com/embed/iMNGuvyUDgU" title="Video 3" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
             </div>
           </div>
+          <!-- Video 4 -->
           <div class="video-card">
             <div class="video-card-frame">
               <iframe src="https://www.youtube-nocookie.com/embed/AjlUC94zqmY" title="Video 4" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
@@ -721,7 +589,6 @@
 
         <div class="carousel-controls">
           <a class="btn-visit-channel" href="https://youtube.com/@loveejonnes?si=oOUMfSjxuuaMcoFe" target="_blank" rel="noopener noreferrer">
-            <span class="yt-icon-badge"></span>
             Visitar canal
           </a>
           <div class="carousel-arrows">
@@ -732,99 +599,35 @@
       </div>
     </section>
 
-    <!-- Sección Tha Digger aka Hustler Researcher -->
-    <section class="researcher-section">
-      <div class="section-title">THA DIGGER AKA HUSTLER RESEARCHER</div>
-      <p class="researcher-text">
-        Su lógica de trabajo está basada en una autonomía de pensamiento crítico y objetivo. Para ello financia sus propias investigaciones que le permitan moverse libremente. Sin desmarcarse de la investigación objetiva (una especie de método científico) integra sus investigaciones con experiencias personales, dándole así al producto su marca personal.
-      </p>
-    </section>
-
-    <!-- Sección Algunos Ensayos (Sin numeración en los títulos) -->
-    <section class="essays-section">
-      <div class="section-title">Algunos Ensayos</div>
-      <p class="essays-bio">
-        Sus ensayos adaptados para Instagram representan una pequeña parte de su línea investigativa.
-      </p>
-
-      <div class="album-grid">
-        <!-- Foto 1: JAY-Z -->
-        <a class="album-item" href="https://www.instagram.com/p/DV49k9hjO30/?utm_source=ig_web_copy_link&stkn=MzRlODBiNWFlZA==" target="_blank" rel="noopener noreferrer">
-          <div class="album-item-frame">
-            <img src="./1.jpg" alt="JAY-Z: IN MY LIFETIME">
-            <div class="album-overlay">
-              <span>Leer &rarr;</span>
+    <!-- Sección Exhibición de Post de Instagram -->
+    <section class="instagram-section">
+      <div class="instagram-post-card">
+        <div class="post-header">
+          <a class="post-author" href="https://www.instagram.com/loveejonnes/" target="_blank" rel="noopener noreferrer">
+            <div class="post-avatar">
+              <img src="LoveJones pic1.jpeg" alt="Love Jones">
             </div>
+            <span class="post-author-name">loveejonnes</span>
+          </a>
+          <div class="post-ig-icon">
+            <svg viewBox="0 0 24 24">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
           </div>
-          <div class="essay-caption">
-            <div class="essay-title">JAY-Z: IN MY LIFETIME</div>
+        </div>
+
+        <a class="post-image-link" href="https://www.instagram.com/loveejonnes/" target="_blank" rel="noopener noreferrer">
+          <img src="post-instagram.jpg" alt="Publicación de Love Jones en Instagram">
+          <div class="post-image-overlay">
+            <span>Ver publicación &rarr;</span>
           </div>
         </a>
 
-        <!-- Foto 2: ERIC B & RAKIM -->
-        <a class="album-item" href="https://www.instagram.com/p/Dd8f-DJlr5V/?utm_source=ig_web_copy_link&stkn=MzRlODBiNWFlZA==" target="_blank" rel="noopener noreferrer">
-          <div class="album-item-frame">
-            <img src="./2.jpg" alt="ERIC B & RAKIM: PAID IN FULL">
-            <div class="album-overlay">
-              <span>Leer &rarr;</span>
-            </div>
-          </div>
-          <div class="essay-caption">
-            <div class="essay-title">ERIC B & RAKIM: PAID IN FULL</div>
-          </div>
-        </a>
-
-        <!-- Foto 3: DA BRAT -->
-        <a class="album-item" href="https://www.instagram.com/p/DSa36b_AQaV/?utm_source=ig_web_copy_link&stkn=MzRlODBiNWFlZA==" target="_blank" rel="noopener noreferrer">
-          <div class="album-item-frame">
-            <img src="./3.jpg" alt="DA BRAT: FUNKDAFIED: EL DISCO FEMENINO DEL G-FUNK">
-            <div class="album-overlay">
-              <span>Leer &rarr;</span>
-            </div>
-          </div>
-          <div class="essay-caption">
-            <div class="essay-title">DA BRAT: FUNKDAFIED: EL DISCO FEMENINO DEL G-FUNK</div>
-          </div>
-        </a>
-
-        <!-- Foto 4: WESTSIDE GUNN -->
-        <a class="album-item" href="https://www.instagram.com/p/DbXANhqDH0F/?utm_source=ig_web_copy_link&stkn=MzRlODBiNWFlZA==" target="_blank" rel="noopener noreferrer">
-          <div class="album-item-frame">
-            <img src="./4.jpg" alt="WESTSIDE GUNN: LA ESTÉTICA DE LA VIOLENCIA">
-            <div class="album-overlay">
-              <span>Leer &rarr;</span>
-            </div>
-          </div>
-          <div class="essay-caption">
-            <div class="essay-title">WESTSIDE GUNN: LA ESTÉTICA DE LA VIOLENCIA</div>
-          </div>
-        </a>
-
-        <!-- Foto 5: DOOM VS. GHOSTFACE -->
-        <a class="album-item" href="https://www.instagram.com/p/DW2o6MJjP29/?utm_source=ig_web_copy_link&stkn=MzRlODBiNWFlZA==" target="_blank" rel="noopener noreferrer">
-          <div class="album-item-frame">
-            <img src="./5.jpg" alt="DOOM VS. GHOSTFACE: EL DISCO QUE NUNCA SALIÓ">
-            <div class="album-overlay">
-              <span>Leer &rarr;</span>
-            </div>
-          </div>
-          <div class="essay-caption">
-            <div class="essay-title">DOOM VS. GHOSTFACE: EL DISCO QUE NUNCA SALIÓ</div>
-          </div>
-        </a>
-
-        <!-- Foto 6: MACH-HOMMY -->
-        <a class="album-item" href="https://www.instagram.com/p/DVipyx_jv64/?utm_source=ig_web_copy_link&stkn=MzRlODBiNWFlZA==" target="_blank" rel="noopener noreferrer">
-          <div class="album-item-frame">
-            <img src="./6.jpg" alt="MACH-HOMMY: UNO DE LOS RAPEROS MÁS RAROS DE NUESTRO TIEMPO">
-            <div class="album-overlay">
-              <span>Leer &rarr;</span>
-            </div>
-          </div>
-          <div class="essay-caption">
-            <div class="essay-title">MACH-HOMMY: UNO DE LOS RAPEROS MÁS RAROS DE NUESTRO TIEMPO</div>
-          </div>
-        </a>
+        <div class="post-footer">
+          <a href="https://www.instagram.com/loveejonnes/" target="_blank" rel="noopener noreferrer">
+            Seguir en Instagram &rarr;
+          </a>
+        </div>
       </div>
     </section>
   </main>
@@ -836,16 +639,10 @@
   </footer>
 
   <script>
-    if (window.location.pathname.endsWith('/index.html')) {
-      const cleanPath = window.location.pathname.replace('/index.html', '/');
-      window.history.replaceState(null, '', cleanPath + window.location.search + window.location.hash);
-    }
-
-    // Carrusel de Videos
     const track = document.getElementById('videoTrack');
     const wrapper = document.getElementById('carouselWrapper');
     let isPaused = false;
-    const speed = 0.55;
+    const speed = 0.6;
 
     function autoScroll() {
       if (!isPaused && track) {
@@ -873,48 +670,6 @@
       track.scrollBy({ left: direction * step, behavior: 'smooth' });
       setTimeout(() => { isPaused = false; }, 3000);
     }
-
-    // Física de Evasión del Cubo
-    const companion = document.getElementById('companionBadge');
-    let evadeX = 0;
-    let evadeY = 0;
-    let curX = 0;
-    let curY = 0;
-
-    window.addEventListener('mousemove', (e) => {
-      if (!companion) return;
-      const rect = companion.getBoundingClientRect();
-      const compCenterX = rect.left + rect.width / 2;
-      const compCenterY = rect.top + rect.height / 2;
-
-      const distX = e.clientX - compCenterX;
-      const distY = e.clientY - compCenterY;
-      const distance = Math.hypot(distX, distY);
-
-      const alertRadius = 140;
-
-      if (distance < alertRadius && distance > 0) {
-        const force = (alertRadius - distance) / alertRadius;
-        const angle = Math.atan2(distY, distX);
-        evadeX = -Math.cos(angle) * (force * 95);
-        evadeY = -Math.sin(angle) * (force * 95);
-      } else {
-        evadeX *= 0.88;
-        evadeY *= 0.88;
-      }
-    });
-
-    function renderEvasion() {
-      curX += (evadeX - curX) * 0.12;
-      curY += (evadeY - curY) * 0.12;
-
-      if (companion) {
-        companion.style.transform = `translate3d(${curX.toFixed(2)}px, ${curY.toFixed(2)}px, 0)`;
-      }
-      requestAnimationFrame(renderEvasion);
-    }
-
-    requestAnimationFrame(renderEvasion);
   </script>
 </body>
 </html>
