@@ -69,18 +69,18 @@
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
     }
 
-    /* Cubo Holográfico Evasivo (Cyber Glow Gold) */
+    /* Cubo Holográfico Evasivo (Tamaño reducido y más sutil) */
     .floating-companion {
       position: fixed;
-      bottom: 2.2rem;
-      right: 2.2rem;
-      width: 96px;
-      height: 110px;
+      bottom: 1.8rem;
+      right: 1.8rem;
+      width: 74px;
+      height: 85px;
       z-index: 999;
       pointer-events: auto;
       will-change: transform;
       transition: filter 0.3s ease;
-      filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.35));
+      filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.3));
     }
 
     .companion-inner {
@@ -92,11 +92,11 @@
     @keyframes cyberPulse {
       0%, 100% {
         transform: translateY(0px) rotate(0deg);
-        filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.4));
+        filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.35));
       }
       50% {
-        transform: translateY(-5px) rotate(1deg);
-        filter: drop-shadow(0 0 16px rgba(255, 230, 128, 0.75));
+        transform: translateY(-4px) rotate(1deg);
+        filter: drop-shadow(0 0 12px rgba(255, 230, 128, 0.65));
       }
     }
 
@@ -484,7 +484,7 @@
       opacity: 1;
     }
 
-    /* Subtítulos / Títulos de cada ensayo debajo de la imagen */
+    /* Subtítulos / Títulos limpios sin numeración */
     .essay-caption {
       padding: 1.1rem 1.2rem;
       border-top: 1px dashed var(--border-color);
@@ -563,10 +563,10 @@
       }
 
       .floating-companion {
-        bottom: 1.5rem;
-        right: 1.5rem;
-        width: 76px;
-        height: 90px;
+        bottom: 1.2rem;
+        right: 1.2rem;
+        width: 62px;
+        height: 72px;
       }
 
       footer {
@@ -579,13 +579,13 @@
 </head>
 <body>
 
-  <!-- Cubo Holográfico Evasivo -->
+  <!-- Cubo Holográfico Evasivo (Más pequeño y proporcionado) -->
   <div class="floating-companion" id="companionBadge">
     <div class="companion-inner">
       <svg viewBox="0 0 120 135" width="100%" height="100%">
         <defs>
           <filter id="goldCyberGlow" x="-30%" y="-30%" width="160%" height="160%">
-            <feGaussianBlur stdDeviation="2.2" result="glow" />
+            <feGaussianBlur stdDeviation="2" result="glow" />
             <feMerge>
               <feMergeNode in="glow" />
               <feMergeNode in="SourceGraphic" />
@@ -740,7 +740,7 @@
       </p>
     </section>
 
-    <!-- Sección Algunos Ensayos -->
+    <!-- Sección Algunos Ensayos (Sin numeración en los títulos) -->
     <section class="essays-section">
       <div class="section-title">Algunos Ensayos</div>
       <p class="essays-bio">
@@ -751,78 +751,78 @@
         <!-- Foto 1: JAY-Z -->
         <a class="album-item" href="https://www.instagram.com/p/DV49k9hjO30/?utm_source=ig_web_copy_link&stkn=MzRlODBiNWFlZA==" target="_blank" rel="noopener noreferrer">
           <div class="album-item-frame">
-            <img src="./1.jpg" alt="1. JAY-Z: IN MY LIFETIME">
+            <img src="./1.jpg" alt="JAY-Z: IN MY LIFETIME">
             <div class="album-overlay">
               <span>Leer &rarr;</span>
             </div>
           </div>
           <div class="essay-caption">
-            <div class="essay-title">1. JAY-Z: IN MY LIFETIME</div>
+            <div class="essay-title">JAY-Z: IN MY LIFETIME</div>
           </div>
         </a>
 
         <!-- Foto 2: ERIC B & RAKIM -->
         <a class="album-item" href="https://www.instagram.com/p/Dd8f-DJlr5V/?utm_source=ig_web_copy_link&stkn=MzRlODBiNWFlZA==" target="_blank" rel="noopener noreferrer">
           <div class="album-item-frame">
-            <img src="./2.jpg" alt="2. ERIC B & RAKIM: PAID IN FULL">
+            <img src="./2.jpg" alt="ERIC B & RAKIM: PAID IN FULL">
             <div class="album-overlay">
               <span>Leer &rarr;</span>
             </div>
           </div>
           <div class="essay-caption">
-            <div class="essay-title">2. ERIC B & RAKIM: PAID IN FULL</div>
+            <div class="essay-title">ERIC B & RAKIM: PAID IN FULL</div>
           </div>
         </a>
 
         <!-- Foto 3: DA BRAT -->
         <a class="album-item" href="https://www.instagram.com/p/DSa36b_AQaV/?utm_source=ig_web_copy_link&stkn=MzRlODBiNWFlZA==" target="_blank" rel="noopener noreferrer">
           <div class="album-item-frame">
-            <img src="./3.jpg" alt="3. DA BRAT: FUNKDAFIED: EL DISCO FEMENINO DEL G-FUNK">
+            <img src="./3.jpg" alt="DA BRAT: FUNKDAFIED: EL DISCO FEMENINO DEL G-FUNK">
             <div class="album-overlay">
               <span>Leer &rarr;</span>
             </div>
           </div>
           <div class="essay-caption">
-            <div class="essay-title">3. DA BRAT: FUNKDAFIED: EL DISCO FEMENINO DEL G-FUNK</div>
+            <div class="essay-title">DA BRAT: FUNKDAFIED: EL DISCO FEMENINO DEL G-FUNK</div>
           </div>
         </a>
 
         <!-- Foto 4: WESTSIDE GUNN -->
         <a class="album-item" href="https://www.instagram.com/p/DbXANhqDH0F/?utm_source=ig_web_copy_link&stkn=MzRlODBiNWFlZA==" target="_blank" rel="noopener noreferrer">
           <div class="album-item-frame">
-            <img src="./4.jpg" alt="4. WESTSIDE GUNN: LA ESTÉTICA DE LA VIOLENCIA">
+            <img src="./4.jpg" alt="WESTSIDE GUNN: LA ESTÉTICA DE LA VIOLENCIA">
             <div class="album-overlay">
               <span>Leer &rarr;</span>
             </div>
           </div>
           <div class="essay-caption">
-            <div class="essay-title">4. WESTSIDE GUNN: LA ESTÉTICA DE LA VIOLENCIA</div>
+            <div class="essay-title">WESTSIDE GUNN: LA ESTÉTICA DE LA VIOLENCIA</div>
           </div>
         </a>
 
         <!-- Foto 5: DOOM VS. GHOSTFACE -->
         <a class="album-item" href="https://www.instagram.com/p/DW2o6MJjP29/?utm_source=ig_web_copy_link&stkn=MzRlODBiNWFlZA==" target="_blank" rel="noopener noreferrer">
           <div class="album-item-frame">
-            <img src="./5.jpg" alt="5. DOOM VS. GHOSTFACE: EL DISCO QUE NUNCA SALIÓ">
+            <img src="./5.jpg" alt="DOOM VS. GHOSTFACE: EL DISCO QUE NUNCA SALIÓ">
             <div class="album-overlay">
               <span>Leer &rarr;</span>
             </div>
           </div>
           <div class="essay-caption">
-            <div class="essay-title">5. DOOM VS. GHOSTFACE: EL DISCO QUE NUNCA SALIÓ</div>
+            <div class="essay-title">DOOM VS. GHOSTFACE: EL DISCO QUE NUNCA SALIÓ</div>
           </div>
         </a>
 
         <!-- Foto 6: MACH-HOMMY -->
         <a class="album-item" href="https://www.instagram.com/p/DVipyx_jv64/?utm_source=ig_web_copy_link&stkn=MzRlODBiNWFlZA==" target="_blank" rel="noopener noreferrer">
           <div class="album-item-frame">
-            <img src="./6.jpg" alt="6. MACH-HOMMY: UNO DE LOS RAPEROS MÁS RAROS DE NUESTRO TIEMPO">
+            <img src="./6.jpg" alt="MACH-HOMMY: UNO DE LOS RAPEROS MÁS RAROS DE NUESTRO TIEMPO">
             <div class="album-overlay">
               <span>Leer &rarr;</span>
             </div>
           </div>
           <div class="essay-caption">
-            <div class="essay-title">6. MACH-HOMMY: UNO DE LOS RAPEROS MÁS RAROS DE NUESTRO TIEMPO</div>
+            <div class="essay-title">MACH-HOMMY: UNO DE LOS RAPEROS MÁS RAROS DE NUESTRO TIEMPO</div>
           </div>
         </a>
       </div>
@@ -891,13 +891,13 @@
       const distY = e.clientY - compCenterY;
       const distance = Math.hypot(distX, distY);
 
-      const alertRadius = 160;
+      const alertRadius = 140;
 
       if (distance < alertRadius && distance > 0) {
         const force = (alertRadius - distance) / alertRadius;
         const angle = Math.atan2(distY, distX);
-        evadeX = -Math.cos(angle) * (force * 110);
-        evadeY = -Math.sin(angle) * (force * 110);
+        evadeX = -Math.cos(angle) * (force * 95);
+        evadeY = -Math.sin(angle) * (force * 95);
       } else {
         evadeX *= 0.88;
         evadeY *= 0.88;
