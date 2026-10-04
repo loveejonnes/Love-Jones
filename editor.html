@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Love Jones — Taller Editorial &bull; Suite Académica</title>
+  <title>Love Jones — Taller Editorial Monográfico</title>
   
   <link rel="icon" type="image/jpeg" href="LoveJones pic1.jpeg">
 
@@ -90,759 +90,7 @@
       text-transform: uppercase;
       letter-spacing: 0.06em;
       transition: all 0.2s ease;
-    }
-
-    .tool-btn:hover {
-      border-color: var(--accent-color);
-      color: #fff;
-    }
-
-    .tool-btn.btn-accent {
-      border-color: var(--accent-color);
-      color: #e6a89f;
-      font-weight: 700;
-    }
-
-    .btn-export {
-      background: var(--accent-color);
-      border-color: var(--accent-color);
-      color: #fff;
-      font-weight: 700;
-      padding: 0.45rem 0.9rem;
-    }
-
-    .btn-export:hover {
-      background: var(--accent-hover);
-      border-color: var(--accent-hover);
-    }
-
-    .btn-clear {
-      color: #665f54;
-      border: none;
-      background: transparent;
-      text-decoration: underline;
-      cursor: pointer;
-      font-family: var(--font-mono);
-      font-size: 0.68rem;
-    }
-
-    .btn-clear:hover { color: var(--accent-hover); }
-
-    /* Estructura con Índice Lateral */
-    .workspace-wrapper {
-      display: flex;
-      max-width: 1140px;
-      width: 100%;
-      margin: 0 auto;
-      padding: 4rem 1.8rem 8rem 1.8rem;
-      gap: 3.5rem;
-      position: relative;
-    }
-
-    .toc-sidebar {
-      width: 220px;
-      position: sticky;
-      top: 6rem;
-      height: fit-content;
-      font-family: var(--font-mono);
-      font-size: 0.74rem;
-      border-right: 1px dashed var(--border-color);
-      padding-right: 1.4rem;
-    }
-
-    .toc-title {
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent-color);
-      margin-bottom: 1rem;
-      padding-bottom: 0.4rem;
-      border-bottom: 1px dashed var(--border-color);
-    }
-
-    .toc-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-    }
-
-    .toc-list li a {
-      color: var(--text-muted);
-      text-decoration: none;
-      display: block;
-      line-height: 1.4;
-      transition: color 0.2s ease;
-    }
-
-    .toc-list li a:hover { color: var(--text-main); }
-    .toc-list li.toc-h3 { padding-left: 0.8rem; }
-
-    main {
-      flex: 1;
-      max-width: 760px;
-      width: 100%;
-    }
-
-    .doc-slug-input {
-      font-family: var(--font-mono);
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      background: transparent;
-      border: none;
-      border-bottom: 1px dashed var(--border-color);
-      width: 100%;
-      padding: 0.4rem 0;
-      margin-bottom: 1.8rem;
-      outline: none;
-    }
-
-    .meta-inputs {
-      display: grid;
-      grid-template-columns: 100px 1fr;
-      gap: 1rem;
-      margin-bottom: 1.2rem;
-    }
-
-    .meta-input {
-      background: transparent;
-      border: none;
-      font-family: var(--font-mono);
-      font-size: 0.78rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      outline: none;
-    }
-
-    #docId {
-      color: var(--accent-color);
-      font-weight: 700;
-      border-bottom: 1px dashed var(--border-color);
-    }
-
-    #docMeta {
-      color: var(--text-muted);
-      border-bottom: 1px dashed var(--border-color);
-    }
-
-    .title-input {
-      width: 100%;
-      background: transparent;
-      border: none;
-      border-bottom: 1px dashed var(--border-color);
-      font-family: var(--font-mono);
-      font-size: 1.8rem;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      color: var(--text-main);
-      padding: 0.5rem 0 1.2rem 0;
-      margin-bottom: 2.8rem;
-      outline: none;
-      text-transform: uppercase;
-      line-height: 1.35;
-    }
-
-    /* Lienzo Editorial */
-    #editorialCanvas {
-      outline: none;
-      font-family: var(--font-serif);
-      font-size: 1.15rem;
-      line-height: 2;
-      color: #dfd7c8;
-      min-height: 420px;
-    }
-
-    #editorialCanvas p {
-      margin-bottom: 2rem;
-      text-align: justify;
-    }
-
-    #editorialCanvas h2 {
-      font-family: var(--font-mono);
-      font-size: 1.25rem;
-      color: var(--text-main);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin: 3.2rem 0 1.2rem 0;
-    }
-
-    #editorialCanvas h3 {
-      font-family: var(--font-mono);
-      font-size: 1.05rem;
-      color: var(--accent-hover);
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      margin: 2.4rem 0 1rem 0;
-    }
-
-    #editorialCanvas blockquote {
-      border-left: 2px solid var(--accent-color);
-      padding-left: 1.4rem;
-      margin: 2.5rem 0;
-      color: var(--text-muted);
-      font-style: italic;
-    }
-
-    #editorialCanvas hr {
-      border: none;
-      border-top: 1px dashed var(--border-color);
-      margin: 3.5rem 0;
-    }
-
-    #editorialCanvas ul, #editorialCanvas ol {
-      margin-bottom: 2rem;
-      padding-left: 1.8rem;
-    }
-
-    #editorialCanvas li { margin-bottom: 0.5rem; }
-
-    #editorialCanvas a {
-      color: var(--text-main);
-      text-decoration: underline;
-      text-underline-offset: 3px;
-    }
-
-    #editorialCanvas .highlight-text {
-      background-color: rgba(158, 53, 39, 0.22);
-      border-bottom: 1px solid var(--accent-color);
-      padding: 0.1rem 0.3rem;
-    }
-
-    /* Figuras Críticas y Láminas Documentales */
-    .editorial-figure {
-      margin: 3.5rem 0;
-      border: 1px dashed var(--border-color);
-      background-color: #11100f;
-      padding: 1.2rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.8rem;
-    }
-
-    .editorial-figure img {
-      width: 100%;
-      height: auto;
-      display: block;
-      cursor: zoom-in;
-      filter: contrast(1.02);
-      transition: filter 0.2s ease;
-    }
-
-    .editorial-figure img:hover { filter: contrast(1.08); }
-
-    .editorial-figcaption {
-      font-family: var(--font-mono);
-      font-size: 0.78rem;
-      line-height: 1.6;
-      color: var(--text-muted);
-      border-top: 1px dashed var(--border-color);
-      padding-top: 0.8rem;
-    }
-
-    .figure-tag {
-      color: var(--accent-color);
-      font-weight: 700;
-      margin-right: 0.4rem;
-    }
-
-    .figure-source {
-      display: block;
-      font-size: 0.7rem;
-      color: #6d665b;
-      margin-top: 0.3rem;
-      font-style: italic;
-    }
-
-    /* Botones de las notas en el texto */
-    .footnote-button, .ref-button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--accent-color);
-      font-family: var(--font-mono);
-      font-weight: 700;
-      font-size: 0.75rem;
-      vertical-align: super;
-      text-decoration: none;
-      cursor: pointer;
-      margin: 0 0.15rem;
-      background: rgba(158, 53, 39, 0.12);
-      padding: 0.1rem 0.35rem;
-      border-radius: 2px;
-      border: 1px dashed var(--border-color);
-    }
-
-    .ref-button {
-      color: #d4af37;
-      background: rgba(212, 175, 55, 0.1);
-    }
-
-    /* Secciones de Notas al Pie */
-    .footnotes-section {
-      margin-top: 4rem;
-      padding-top: 2rem;
-      border-top: 1px dashed var(--border-color);
-    }
-
-    .footnotes-title {
-      font-family: var(--font-mono);
-      font-size: 0.8rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent-color);
-      margin-bottom: 1.2rem;
-    }
-
-    #footnotesList, #citationsList {
-      font-family: var(--font-mono);
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      line-height: 1.7;
-      padding-left: 1.4rem;
-      outline: none;
-      margin-bottom: 2rem;
-    }
-
-    #footnotesList li, #citationsList li {
-      margin-bottom: 0.8rem;
-      padding-right: 1rem;
-    }
-
-    /* Modal / Lightbox de Imágenes */
-    .lightbox-modal {
-      display: none;
-      position: fixed;
-      z-index: 2000;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background-color: rgba(10, 9, 8, 0.94);
-      backdrop-filter: blur(8px);
-      justify-content: center;
-      align-items: center;
-      padding: 2rem;
-    }
-
-    .lightbox-modal.active { display: flex; }
-
-    .lightbox-content {
-      max-width: 90vw;
-      max-height: 85vh;
-      object-fit: contain;
-      border: 1px dashed var(--border-color);
-      box-shadow: 0 0 50px rgba(0, 0, 0, 0.9);
-    }
-
-    .lightbox-close {
-      position: absolute;
-      top: 1.8rem;
-      right: 2.2rem;
-      background: none;
-      border: none;
-      font-family: var(--font-mono);
-      font-size: 1.8rem;
-      color: var(--text-muted);
-      cursor: pointer;
-    }
-
-    .lightbox-close:hover { color: #fff; }
-
-    @media (max-width: 960px) {
-      .toc-sidebar { display: none; }
-      .workspace-wrapper { padding: 2.5rem 1.4rem; }
-      .meta-inputs { grid-template-columns: 1fr; }
-      .title-input { font-size: 1.35rem; }
-      #editorialCanvas p { text-align: left; }
-    }
-  </style>
-</head>
-<body>
-
-  <!-- Barra de Herramientas -->
-  <div class="editor-toolbar">
-    <div class="toolbar-row">
-      <div class="toolbar-group">
-        <button class="tool-btn" onclick="exec('undo')" title="Deshacer">&larr;</button>
-        <button class="tool-btn" onclick="exec('redo')" title="Rehacer">&rarr;</button>
-        <button class="tool-btn" onclick="exec('bold')"><b>B</b></button>
-        <button class="tool-btn" onclick="exec('italic')"><i>I</i></button>
-        <button class="tool-btn" onclick="exec('formatBlock', '<h2>')">H2</button>
-        <button class="tool-btn" onclick="exec('formatBlock', '<h3>')">H3</button>
-        <button class="tool-btn" onclick="exec('formatBlock', '<p>')">P</button>
-        <button class="tool-btn" onclick="exec('formatBlock', '<blockquote>')">Cita</button>
-        <button class="tool-btn" onclick="exec('insertUnorderedList')">&bull; Lista</button>
-        <button class="tool-btn" onclick="applyHighlight()">Resaltar</button>
-        <button class="tool-btn" onclick="insertLink()">Enlace</button>
-        <button class="tool-btn btn-accent" onclick="insertFigure()">[+ LÁMINA / FIGURA]</button>
-        <button class="tool-btn btn-accent" onclick="insertFootnote()">[+ NOTA FLOTANTE]</button>
-        <button class="tool-btn" onclick="insertCitation()">[+ CITA FUENTE]</button>
-      </div>
-
-      <div class="toolbar-group">
-        <button class="tool-btn btn-export" onclick="exportHtmlFile()">[EXPORTAR ENSAYO .HTML]</button>
-      </div>
-    </div>
-
-    <div class="toolbar-row">
-      <div class="metrics-bar">
-        <span>Palabras: <b id="wordCount">0</b></span>
-        <span>Lectura estimada: <b id="readTime">0 min</b></span>
-        <span class="status-save" id="saveIndicator">Guardado en caché</span>
-      </div>
-      <button class="btn-clear" onclick="resetCanvas()">Reiniciar lienzo en blanco</button>
-    </div>
-  </div>
-
-  <div class="workspace-wrapper">
-    <!-- Sumario / TOC Lateral -->
-    <aside class="toc-sidebar">
-      <div class="toc-title">Sumario</div>
-      <ul class="toc-list" id="tocPreview">
-        <li><em style="color:#5c554b;">(Agrega títulos H2 o H3)</em></li>
-      </ul>
-    </aside>
-
-    <main>
-      <input type="text" id="docSlug" class="doc-slug-input" placeholder="nombre-archivo (ej: poetica-del-sample)">
-
-      <div class="meta-inputs">
-        <input type="text" id="docId" class="meta-input" placeholder="[TXT.01]">
-        <input type="text" id="docMeta" class="meta-input" placeholder="BOGOTÁ // ENSAYO MONOGRÁFICO // 2026">
-      </div>
-
-      <input type="text" id="docTitle" class="title-input" placeholder="TÍTULO COMPLETO DEL ENSAYO">
-
-      <div id="editorialCanvas" contenteditable="true" spellcheck="false">
-        <p>Escribe aquí tu ensayo. Utiliza los botones superiores para insertar subtítulos H2/H3, láminas de archivo numeradas, citas directas o notas al pie flotantes.</p>
-      </div>
-
-      <!-- Notas Sustantivas -->
-      <div class="footnotes-section" id="footnotesSection" style="display: none;">
-        <div class="footnotes-title">Notas</div>
-        <ol id="footnotesList" contenteditable="true" spellcheck="false"></ol>
-      </div>
-
-      <!-- Fuentes Bibliográficas / Hemerográficas -->
-      <div class="footnotes-section" id="citationsSection" style="display: none;">
-        <div class="footnotes-title" style="color: #d4af37;">Fuentes & Citas Documentales</div>
-        <ol id="citationsList" contenteditable="true" spellcheck="false"></ol>
-      </div>
-    </main>
-  </div>
-
-  <!-- Lightbox Modal -->
-  <div class="lightbox-modal" id="lightboxModal" onclick="closeLightbox()">
-    <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
-    <img class="lightbox-content" id="lightboxImg" src="" alt="Lámina Ampliada">
-  </div>
-
-  <script>
-    const canvas = document.getElementById('editorialCanvas');
-    const fList = document.getElementById('footnotesList');
-    const fSec = document.getElementById('footnotesSection');
-    const cList = document.getElementById('citationsList');
-    const cSec = document.getElementById('citationsSection');
-    const slugInput = document.getElementById('docSlug');
-    const idInput = document.getElementById('docId');
-    const metaInput = document.getElementById('docMeta');
-    const titleInput = document.getElementById('docTitle');
-    const saveInd = document.getElementById('saveIndicator');
-    const tocEl = document.getElementById('tocPreview');
-
-    let footnoteIndex = 0;
-    let citationIndex = 0;
-    let figureIndex = 0;
-
-    function exec(cmd, val = null) {
-      document.execCommand(cmd, false, val);
-      canvas.focus();
-      triggerAutoSave();
-    }
-
-    function applyHighlight() {
-      const selection = window.getSelection();
-      if (!selection.rangeCount || selection.isCollapsed) return;
-      const range = selection.getRangeAt(0);
-      const span = document.createElement('span');
-      span.className = 'highlight-text';
-      span.appendChild(range.extractContents());
-      range.insertNode(span);
-      triggerAutoSave();
-    }
-
-    function insertLink() {
-      const url = prompt('Introduce la dirección web (URL):');
-      if (url) exec('createLink', url);
-    }
-
-    function insertFigure() {
-      const url = prompt('URL o ruta local de la imagen (ej: archivo-01.jpg):');
-      if (!url) return;
-      figureIndex++;
-      const figNum = String(figureIndex).padStart(2, '0');
-      
-      const figureHtml = `
-        <figure class="editorial-figure">
-          <img src="${url}" alt="Lámina ${figNum}" onclick="openLightbox(this.src)">
-          <figcaption class="editorial-figcaption" contenteditable="true">
-            <span class="figure-tag">[FIG. ${figNum}]</span> Descripción analítica o detalle de la lámina...
-            <span class="figure-source">FUENTE / ARCHIVO: Registro documental.</span>
-          </figcaption>
-        </figure><p></p>`;
-
-      exec('insertHTML', figureHtml);
-    }
-
-    function insertFootnote() {
-      footnoteIndex++;
-      const btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'footnote-button';
-      btn.setAttribute('data-fn', footnoteIndex);
-      btn.textContent = '[' + footnoteIndex + ']';
-
-      const sel = window.getSelection();
-      if (sel.rangeCount) {
-        const range = sel.getRangeAt(0);
-        range.collapse(false);
-        range.insertNode(btn);
-        range.setStartAfter(btn);
-        sel.removeAllRanges();
-        sel.addRange(range);
-      }
-
-      fSec.style.display = 'block';
-      const li = document.createElement('li');
-      li.id = 'fn-item-' + footnoteIndex;
-      li.setAttribute('data-fn-id', footnoteIndex);
-      li.innerHTML = 'Aclaración o nota teórica [' + footnoteIndex + ']...';
-      fList.appendChild(li);
-
-      triggerAutoSave();
-    }
-
-    function insertCitation() {
-      citationIndex++;
-      const btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'ref-button';
-      btn.setAttribute('data-ref', citationIndex);
-      btn.textContent = '[REF. ' + citationIndex + ']';
-
-      const sel = window.getSelection();
-      if (sel.rangeCount) {
-        const range = sel.getRangeAt(0);
-        range.collapse(false);
-        range.insertNode(btn);
-        range.setStartAfter(btn);
-        sel.removeAllRanges();
-        sel.addRange(range);
-      }
-
-      cSec.style.display = 'block';
-      const li = document.createElement('li');
-      li.id = 'ref-item-' + citationIndex;
-      li.setAttribute('data-ref-id', citationIndex);
-      li.innerHTML = 'Autor, A. (Año). <em>Título de la obra</em>. Editorial / Archivo [REF. ' + citationIndex + ']...';
-      cList.appendChild(li);
-
-      triggerAutoSave();
-    }
-
-    function updateTOC() {
-      const headers = canvas.querySelectorAll('h2, h3');
-      if (!headers.length) {
-        tocEl.innerHTML = '<li><em style="color:#5c554b;">(Agrega títulos H2 o H3)</em></li>';
-        return;
-      }
-      tocEl.innerHTML = '';
-      headers.forEach((h, i) => {
-        const id = 'sec-' + i;
-        h.id = id;
-        const li = document.createElement('li');
-        if (h.tagName === 'H3') li.className = 'toc-h3';
-        const a = document.createElement('a');
-        a.href = '#' + id;
-        a.textContent = h.textContent || '(Encabezado)';
-        li.appendChild(a);
-        tocEl.appendChild(li);
-      });
-    }
-
-    function updateMetrics() {
-      const text = canvas.innerText || '';
-      const words = text.trim() ? text.trim().split(/\s+/).length : 0;
-      document.getElementById('wordCount').textContent = words;
-      document.getElementById('readTime').textContent = Math.ceil(words / 200) + ' min';
-      updateTOC();
-    }
-
-    function triggerAutoSave() {
-      updateMetrics();
-      const draft = {
-        slug: slugInput.value,
-        id: idInput.value,
-        meta: metaInput.value,
-        title: titleInput.value,
-        body: canvas.innerHTML,
-        footnotes: fList.innerHTML,
-        citations: cList.innerHTML,
-        fnCount: footnoteIndex,
-        refCount: citationIndex,
-        figCount: figureIndex,
-        hasFn: fSec.style.display !== 'none',
-        hasRef: cSec.style.display !== 'none'
-      };
-      localStorage.setItem('lj_editor_pro_draft', JSON.stringify(draft));
-      saveInd.textContent = 'Guardado';
-      setTimeout(() => { saveInd.textContent = 'Guardado en caché'; }, 1000);
-    }
-
-    function loadDraft() {
-      const raw = localStorage.getItem('lj_editor_pro_draft');
-      if (raw) {
-        try {
-          const draft = JSON.parse(raw);
-          slugInput.value = draft.slug || '';
-          idInput.value = draft.id || '';
-          metaInput.value = draft.meta || '';
-          titleInput.value = draft.title || '';
-          if (draft.body) canvas.innerHTML = draft.body;
-          if (draft.footnotes) fList.innerHTML = draft.footnotes;
-          if (draft.citations) cList.innerHTML = draft.citations;
-          if (draft.hasFn) fSec.style.display = 'block';
-          if (draft.hasRef) cSec.style.display = 'block';
-          footnoteIndex = draft.fnCount || 0;
-          citationIndex = draft.refCount || 0;
-          figureIndex = draft.figCount || 0;
-        } catch(e) {}
-      } else {
-        slugInput.value = 'poetica-del-sample';
-        idInput.value = '[TXT.01]';
-        metaInput.value = 'BOGOTÁ // ENSAYO MONOGRÁFICO // 2026';
-        titleInput.value = 'LA POÉTICA DEL SAMPLE Y EL MINIMALISMO EN EL RAP';
-      }
-      updateMetrics();
-    }
-
-    function resetCanvas() {
-      if (confirm('¿Deseas reiniciar la mesa de trabajo y vaciar el borrador actual?')) {
-        localStorage.removeItem('lj_editor_pro_draft');
-        location.reload();
-      }
-    }
-
-    function openLightbox(src) {
-      document.getElementById('lightboxImg').src = src;
-      document.getElementById('lightboxModal').classList.add('active');
-    }
-
-    function closeLightbox() {
-      document.getElementById('lightboxModal').classList.remove('active');
-El código completo y actualizado para **`editor.html`** implementa las cuatro herramientas seleccionadas tanto en el entorno de redacción como en el archivo que se exporta:
-
-1. **Láminas de Archivo (`<figure>` y `<figcaption>`):** Inserta imágenes con numeración correlativa automática (`[FIG. 01]`), pie de foto descriptivo y fuente o crédito documental editable.
-2. **Visor de Imagen en Detalle (Lightbox):** Permite inspeccionar cualquier imagen a pantalla completa con fondo oscuro atenuado, cerrándose al hacer clic afuera o con la tecla `Esc`.
-3. **Aparato Crítico Mixto:** Incorpora botones diferenciados para **`[+ NOTA FLOTANTE]`** (aclaraciones que se abren en popover) y **`[+ CITA / FUENTE]`** (referencias bibliográficas o documentales directas).
-4. **Tabla de Contenidos Automática:** Genera un índice lateral interactivo anclado que detecta los encabezados `H2` y `H3` y se sincroniza con el desplazamiento de lectura.
-
----
-
-### Código completo para `editor.html`
-
-Abre **`editor.html`** en GitHub, haz clic en el icono del lápiz (*Edit this file*), borra todo su contenido y pega este bloque:
-
-```html
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Love Jones — Taller Editorial Monográfico</title>
-  
-  <link rel="icon" type="image/jpeg" href="LoveJones pic1.jpeg">
-
-  <!-- Tipografías -->
-  <link rel="preconnect" href="[https://fonts.googleapis.com](https://fonts.googleapis.com)">
-  <link rel="preconnect" href="[https://fonts.gstatic.com](https://fonts.gstatic.com)" crossorigin>
-  <link href="[https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap](https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap)" rel="stylesheet">
-
-  <style>
-    :root {
-      --bg-color: #0d0c0b;
-      --card-bg: #141312;
-      --accent-color: #9e3527;
-      --accent-hover: #b83f30;
-      --text-main: #dfd7c8;
-      --text-muted: #8c8476;
-      --border-color: #2b2622;
-      --font-mono: 'Space Mono', 'Courier Prime', monospace;
-      --font-serif: 'Lora', Georgia, serif;
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      background-color: var(--bg-color);
-      color: var(--text-main);
-      font-family: var(--font-serif);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      position: relative;
-    }
-
-    /* Barra Superior Editorial */
-    .editor-toolbar {
-      position: sticky;
-      top: 0;
-      background-color: rgba(13, 12, 11, 0.96);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px dashed var(--border-color);
-      z-index: 1000;
-      padding: 0.8rem 1.6rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-    }
-
-    .toolbar-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 0.8rem;
-    }
-
-    .toolbar-group {
-      display: flex;
-      align-items: center;
-      gap: 0.35rem;
-      flex-wrap: wrap;
-    }
-
-    .metrics-bar {
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      color: var(--text-muted);
-      letter-spacing: 0.08em;
-      display: flex;
-      align-items: center;
-      gap: 1.2rem;
-    }
-
-    .metrics-bar span b { color: var(--text-main); }
-    .status-save { color: var(--accent-color); font-weight: 700; }
-
-    .tool-btn {
-      background: var(--card-bg);
-      border: 1px solid var(--border-color);
-      color: var(--text-main);
-      font-family: var(--font-mono);
-      font-size: 0.73rem;
-      padding: 0.4rem 0.65rem;
-      cursor: pointer;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      transition: all 0.2s ease;
+      user-select: none;
     }
 
     .tool-btn:hover {
@@ -1133,29 +381,29 @@ Abre **`editor.html`** en GitHub, haz clic en el icono del lápiz (*Edit this fi
 </head>
 <body>
 
-  <!-- Barra de Herramientas -->
+  <!-- Barra de Herramientas (con mousedown preventDefault para retener selección) -->
   <div class="editor-toolbar">
     <div class="toolbar-row">
       <div class="toolbar-group">
-        <button class="tool-btn" onclick="exec('undo')" title="Deshacer">&larr;</button>
-        <button class="tool-btn" onclick="exec('redo')" title="Rehacer">&rarr;</button>
-        <button class="tool-btn" onclick="exec('bold')"><b>B</b></button>
-        <button class="tool-btn" onclick="exec('italic')"><i>I</i></button>
-        <button class="tool-btn" onclick="exec('formatBlock', '<h2>')">H2</button>
-        <button class="tool-btn" onclick="exec('formatBlock', '<h3>')">H3</button>
-        <button class="tool-btn" onclick="exec('formatBlock', '<p>')">P</button>
-        <button class="tool-btn" onclick="exec('formatBlock', '<blockquote>')">Cita</button>
-        <button class="tool-btn" onclick="exec('insertUnorderedList')">&bull; Lista</button>
-        <button class="tool-btn" onclick="applyHighlight()">Resaltar</button>
-        <button class="tool-btn" onclick="insertLink()">Enlace</button>
-        <button class="tool-btn btn-accent" onclick="insertPlate()">[+ LÁMINA / FIGURA]</button>
-        <button class="tool-btn btn-accent" onclick="insertFootnote()">[+ NOTA FLOTANTE]</button>
-        <button class="tool-btn" onclick="insertCitation()">[+ CITA / FUENTE]</button>
-        <button class="tool-btn" onclick="exec('insertHorizontalRule')">Línea &bull;</button>
+        <button class="tool-btn" type="button" onmousedown="event.preventDefault()" onclick="exec('undo')" title="Deshacer">&larr;</button>
+        <button class="tool-btn" type="button" onmousedown="event.preventDefault()" onclick="exec('redo')" title="Rehacer">&rarr;</button>
+        <button class="tool-btn" type="button" onmousedown="event.preventDefault()" onclick="exec('bold')"><b>B</b></button>
+        <button class="tool-btn" type="button" onmousedown="event.preventDefault()" onclick="exec('italic')"><i>I</i></button>
+        <button class="tool-btn" type="button" onmousedown="event.preventDefault()" onclick="applyBlock('H2')">H2</button>
+        <button class="tool-btn" type="button" onmousedown="event.preventDefault()" onclick="applyBlock('H3')">H3</button>
+        <button class="tool-btn" type="button" onmousedown="event.preventDefault()" onclick="applyBlock('P')">P</button>
+        <button class="tool-btn" type="button" onmousedown="event.preventDefault()" onclick="applyBlockquote()">Cita</button>
+        <button class="tool-btn" type="button" onmousedown="event.preventDefault()" onclick="exec('insertUnorderedList')">&bull; Lista</button>
+        <button class="tool-btn" type="button" onmousedown="event.preventDefault()" onclick="applyHighlight()">Resaltar</button>
+        <button class="tool-btn" type="button" onmousedown="event.preventDefault()" onclick="insertLink()">Enlace</button>
+        <button class="tool-btn btn-accent" type="button" onmousedown="event.preventDefault()" onclick="insertPlate()">[+ LÁMINA / FIGURA]</button>
+        <button class="tool-btn btn-accent" type="button" onmousedown="event.preventDefault()" onclick="insertFootnote()">[+ NOTA FLOTANTE]</button>
+        <button class="tool-btn" type="button" onmousedown="event.preventDefault()" onclick="insertCitation()">[+ CITA / FUENTE]</button>
+        <button class="tool-btn" type="button" onmousedown="event.preventDefault()" onclick="exec('insertHorizontalRule')">Línea &bull;</button>
       </div>
 
       <div class="toolbar-group">
-        <button class="tool-btn btn-export" onclick="exportHtmlFile()">[EXPORTAR ENSAYO .HTML]</button>
+        <button class="tool-btn btn-export" type="button" onclick="exportHtmlFile()">[EXPORTAR ENSAYO .HTML]</button>
       </div>
     </div>
 
@@ -1165,7 +413,7 @@ Abre **`editor.html`** en GitHub, haz clic en el icono del lápiz (*Edit this fi
         <span>Lectura estimada: <b id="readTime">0 min</b></span>
         <span class="status-save" id="saveIndicator">Guardado en caché</span>
       </div>
-      <button class="btn-clear" onclick="resetCanvas()">Reiniciar lienzo en blanco</button>
+      <button class="btn-clear" type="button" onclick="resetCanvas()">Reiniciar lienzo en blanco</button>
     </div>
   </div>
 
@@ -1184,13 +432,13 @@ Abre **`editor.html`** en GitHub, haz clic en el icono del lápiz (*Edit this fi
       <p>Comienza a redactar aquí. Utiliza los encabezados <b>H2</b> y <b>H3</b> para que el lector cuente con un índice lateral automático. Emplea <b>[+ LÁMINA / FIGURA]</b> para catalogar iconografía con visor ampliado, y añade aclaraciones teóricas con <b>[+ NOTA FLOTANTE]</b> o referencias bibliográficas con <b>[+ CITA / FUENTE]</b>.</p>
     </div>
 
-    <!-- Sección de Notas Flotantes (Editable) -->
+    <!-- Sección de Notas Flotantes -->
     <div class="footnotes-section" id="footnotesSection" style="display: none;">
       <div class="footnotes-title">Notas</div>
       <ol id="footnotesList" contenteditable="true" spellcheck="false"></ol>
     </div>
 
-    <!-- Sección de Citas Documentales (Editable) -->
+    <!-- Sección de Citas Documentales -->
     <div class="footnotes-section" id="citationsSection" style="display: none;">
       <div class="footnotes-title">Fuentes & Bibliografía</div>
       <ul id="citationsList" contenteditable="true" spellcheck="false"></ul>
@@ -1212,16 +460,82 @@ Abre **`editor.html`** en GitHub, haz clic en el icono del lápiz (*Edit this fi
     let footnoteIndex = 0;
     let plateIndex = 0;
 
+    // Guarda y restaura el rango de selección activo en el lienzo
+    function saveSelection() {
+      const sel = window.getSelection();
+      if (sel.rangeCount > 0) {
+        return sel.getRangeAt(0);
+      }
+      return null;
+    }
+
+    function restoreSelection(range) {
+      if (range) {
+        const sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+      }
+    }
+
     function exec(cmd, val = null) {
-      document.execCommand(cmd, false, val);
       canvas.focus();
+      document.execCommand(cmd, false, val);
+      triggerAutoSave();
+    }
+
+    function applyBlock(tagName) {
+      canvas.focus();
+      const sel = window.getSelection();
+      if (!sel.rangeCount) return;
+
+      let node = sel.anchorNode;
+      while (node && node !== canvas && !['P', 'H2', 'H3', 'BLOCKQUOTE', 'DIV'].includes(node.nodeName)) {
+        node = node.parentNode;
+      }
+
+      if (node && node !== canvas) {
+        const newEl = document.createElement(tagName.toLowerCase());
+        newEl.innerHTML = node.innerHTML;
+        node.parentNode.replaceChild(newEl, node);
+      } else {
+        document.execCommand('formatBlock', false, tagName);
+      }
+      triggerAutoSave();
+    }
+
+    function applyBlockquote() {
+      canvas.focus();
+      const sel = window.getSelection();
+      if (!sel.rangeCount) return;
+
+      let node = sel.anchorNode;
+      while (node && node !== canvas && !['P', 'H2', 'H3', 'BLOCKQUOTE', 'DIV'].includes(node.nodeName)) {
+        node = node.parentNode;
+      }
+
+      if (node && node.nodeName === 'BLOCKQUOTE') {
+        const p = document.createElement('p');
+        p.innerHTML = node.innerHTML;
+        node.parentNode.replaceChild(p, node);
+      } else if (node && node !== canvas) {
+        const bq = document.createElement('blockquote');
+        bq.innerHTML = node.innerHTML;
+        node.parentNode.replaceChild(bq, node);
+      } else {
+        const range = sel.getRangeAt(0);
+        const bq = document.createElement('blockquote');
+        bq.appendChild(range.extractContents());
+        if (!bq.textContent.trim()) bq.textContent = 'Texto citado...';
+        range.insertNode(bq);
+      }
       triggerAutoSave();
     }
 
     function applyHighlight() {
-      const selection = window.getSelection();
-      if (!selection.rangeCount || selection.isCollapsed) return;
-      const range = selection.getRangeAt(0);
+      canvas.focus();
+      const sel = window.getSelection();
+      if (!sel.rangeCount || sel.isCollapsed) return;
+      const range = sel.getRangeAt(0);
       const span = document.createElement('span');
       span.className = 'highlight-text';
       span.appendChild(range.extractContents());
@@ -1230,25 +544,54 @@ Abre **`editor.html`** en GitHub, haz clic en el icono del lápiz (*Edit this fi
     }
 
     function insertLink() {
-      const url = prompt('Introduce la URL:');
-      if (url) exec('createLink', url);
+      const savedRange = saveSelection();
+      const url = prompt('Introduce la dirección web (URL):');
+      if (!url) return;
+
+      restoreSelection(savedRange);
+      canvas.focus();
+
+      const sel = window.getSelection();
+      if (sel.rangeCount > 0 && !sel.isCollapsed) {
+        const range = sel.getRangeAt(0);
+        const a = document.createElement('a');
+        a.href = url;
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
+        a.appendChild(range.extractContents());
+        range.insertNode(a);
+      } else if (sel.rangeCount > 0) {
+        const range = sel.getRangeAt(0);
+        const a = document.createElement('a');
+        a.href = url;
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
+        a.textContent = url;
+        range.insertNode(a);
+      }
+      triggerAutoSave();
     }
 
     function insertPlate() {
-      const url = prompt('URL de la imagen o archivo (ej: 1.jpg o https://...):');
+      const savedRange = saveSelection();
+      const url = prompt('URL o nombre de la imagen (ej: 1.jpg o https://...):');
       if (!url) return;
+
+      restoreSelection(savedRange);
+      canvas.focus();
+
       plateIndex++;
       const fig = document.createElement('figure');
       fig.className = 'editorial-plate';
       fig.setAttribute('contenteditable', 'false');
 
       fig.innerHTML = `
-        <div class="plate-img-wrap" onclick="openLightbox('${url}')">
+        <div class="plate-img-wrap">
           <img src="${url}" alt="Lámina ${plateIndex}">
         </div>
         <figcaption class="plate-caption" contenteditable="true">
           <span class="plate-number">[FIG. ${String(plateIndex).padStart(2, '0')}]</span>
-          Escribe aquí la descripción de la pieza visual o carátula analizada...
+          Descripción de la pieza visual o registro analizado...
           <span class="plate-source">FUENTE / ARCHIVO: Especifica aquí la procedencia documental</span>
         </figcaption>
       `;
@@ -1256,13 +599,17 @@ Abre **`editor.html`** en GitHub, haz clic en el icono del lápiz (*Edit this fi
       const sel = window.getSelection();
       if (sel.rangeCount) {
         const range = sel.getRangeAt(0);
+        range.collapse(false);
         range.insertNode(fig);
         range.setStartAfter(fig);
+      } else {
+        canvas.appendChild(fig);
       }
       triggerAutoSave();
     }
 
     function insertFootnote() {
+      canvas.focus();
       footnoteIndex++;
       const btn = document.createElement('button');
       btn.type = 'button';
@@ -1274,8 +621,11 @@ Abre **`editor.html`** en GitHub, haz clic en el icono del lápiz (*Edit this fi
       const sel = window.getSelection();
       if (sel.rangeCount) {
         const range = sel.getRangeAt(0);
+        range.collapse(false);
         range.insertNode(btn);
         range.setStartAfter(btn);
+      } else {
+        canvas.appendChild(btn);
       }
 
       fSec.style.display = 'block';
@@ -1289,8 +639,12 @@ Abre **`editor.html`** en GitHub, haz clic en el icono del lápiz (*Edit this fi
     }
 
     function insertCitation() {
-      const refText = prompt('Referencia bibliográfica rápida (ej: Rose, T., 1994, p. 42):');
+      const savedRange = saveSelection();
+      const refText = prompt('Referencia bibliográfica (ej: Rose, T., 1994, p. 42):');
       if (!refText) return;
+
+      restoreSelection(savedRange);
+      canvas.focus();
 
       const span = document.createElement('span');
       span.className = 'citation-tag';
@@ -1300,8 +654,11 @@ Abre **`editor.html`** en GitHub, haz clic en el icono del lápiz (*Edit this fi
       const sel = window.getSelection();
       if (sel.rangeCount) {
         const range = sel.getRangeAt(0);
+        range.collapse(false);
         range.insertNode(span);
         range.setStartAfter(span);
+      } else {
+        canvas.appendChild(span);
       }
 
       cSec.style.display = 'block';
@@ -1393,14 +750,14 @@ Abre **`editor.html`** en GitHub, haz clic en el icono del lápiz (*Edit this fi
       const fnHtml = fnVisible ? `
       <div class="footnotes-section">
         <div class="footnotes-title">Notas</div>
-        <ol class="footnotes-list">${fList.innerHTML}</ol>
+        <ol class="footnotes-list">\${fList.innerHTML}</ol>
       </div>` : '';
 
       const ciVisible = cSec.style.display !== 'none';
       const ciHtml = ciVisible ? `
       <div class="footnotes-section">
         <div class="footnotes-title">Fuentes & Bibliografía</div>
-        <ul class="citations-list">${cList.innerHTML}</ul>
+        <ul class="citations-list">\${cList.innerHTML}</ul>
       </div>` : '';
 
       const template = `<!DOCTYPE html>
@@ -1410,9 +767,9 @@ Abre **`editor.html`** en GitHub, haz clic en el icono del lápiz (*Edit this fi
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Love Jones — \${title}</title>
   <link rel="icon" type="image/jpeg" href="LoveJones pic1.jpeg">
-  <link rel="preconnect" href="[https://fonts.googleapis.com](https://fonts.googleapis.com)">
-  <link rel="preconnect" href="[https://fonts.gstatic.com](https://fonts.gstatic.com)" crossorigin>
-  <link href="[https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap](https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap)" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg-color: #0d0c0b;
@@ -1470,7 +827,6 @@ Abre **`editor.html`** en GitHub, haz clic en el icono del lápiz (*Edit this fi
       border-bottom-color: var(--accent-color);
     }
 
-    /* Layout con Índice Lateral */
     .article-layout {
       max-width: 1100px;
       width: 100%;
@@ -1482,7 +838,6 @@ Abre **`editor.html`** en GitHub, haz clic en el icono del lápiz (*Edit this fi
       position: relative;
     }
 
-    /* Índice Lateral (TOC) */
     .toc-sidebar {
       position: sticky;
       top: 3rem;
@@ -1588,7 +943,6 @@ Abre **`editor.html`** en GitHub, haz clic en el icono del lápiz (*Edit this fi
       padding: 0.1rem 0.3rem;
     }
 
-    /* Láminas de Archivo */
     .editorial-plate {
       margin: 3.5rem 0;
       border: 1px dashed var(--border-color);
@@ -1628,7 +982,6 @@ Abre **`editor.html`** en GitHub, haz clic en el icono del lápiz (*Edit this fi
       font-size: 0.72rem;
     }
 
-    /* Citas en Texto */
     .citation-tag {
       font-family: var(--font-mono);
       font-size: 0.78rem;
@@ -1639,7 +992,6 @@ Abre **`editor.html`** en GitHub, haz clic en el icono del lápiz (*Edit this fi
       margin: 0 0.2rem;
     }
 
-    /* Botón Nota Flotante */
     .footnote-button {
       display: inline-flex;
       align-items: center;
@@ -1664,7 +1016,6 @@ Abre **`editor.html`** en GitHub, haz clic en el icono del lápiz (*Edit this fi
       border-color: var(--accent-hover);
     }
 
-    /* Tarjeta Flotante */
     .footnote-popover {
       position: absolute;
       z-index: 1000;
@@ -1706,7 +1057,6 @@ Abre **`editor.html`** en GitHub, haz clic en el icono del lápiz (*Edit this fi
       font-size: 0.85rem;
     }
 
-    /* Visor Modal / Lightbox */
     .lightbox-modal {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
@@ -1726,7 +1076,6 @@ Abre **`editor.html`** en GitHub, haz clic en el icono del lápiz (*Edit this fi
       border: 1px dashed var(--border-color);
     }
 
-    /* Sección de Notas & Bibliografía */
     .footnotes-section {
       margin-top: 4.5rem;
       padding-top: 2rem;
@@ -1776,14 +1125,13 @@ Abre **`editor.html`** en GitHub, haz clic en el icono del lápiz (*Edit this fi
   <header>
     <a href="./" class="brand-logo">Love Jones</a>
     <nav class="header-nav">
-      <a class="nav-link" href="[https://substack.com/@loveejonnes](https://substack.com/@loveejonnes)" target="_blank" rel="noopener noreferrer">DROPGEMS</a>
+      <a class="nav-link" href="https://substack.com/@loveejonnes" target="_blank" rel="noopener noreferrer">DROPGEMS</a>
       <a class="nav-link active" href="archivo.html?v=3">ARCHIVO</a>
       <a class="nav-link" href="contacto.html">CONTACTO</a>
     </nav>
   </header>
 
   <div class="article-layout">
-    <!-- Índice Lateral Automático -->
     <aside class="toc-sidebar">
       <div class="toc-title">Índice</div>
       <ul class="toc-list" id="tocContainer"></ul>
@@ -1801,7 +1149,6 @@ Abre **`editor.html`** en GitHub, haz clic en el icono del lápiz (*Edit this fi
     </main>
   </div>
 
-  <!-- Popover de Notas -->
   <div id="activePopover" class="footnote-popover">
     <div class="popover-header">
       <span id="popoverLabel">NOTA</span>
@@ -1810,7 +1157,6 @@ Abre **`editor.html`** en GitHub, haz clic en el icono del lápiz (*Edit this fi
     <div id="popoverContent"></div>
   </div>
 
-  <!-- Lightbox Modal de Imágenes -->
   <div id="lightboxModal" class="lightbox-modal" onclick="closeLightbox()">
     <img id="lightboxImg" src="" alt="Ampliación">
   </div>
@@ -1826,7 +1172,6 @@ Abre **`editor.html`** en GitHub, haz clic en el icono del lápiz (*Edit this fi
       window.history.replaceState(null, '', clean + window.location.search + window.location.hash);
     }
 
-    // Generador de Índice (TOC)
     const tocList = document.getElementById('tocContainer');
     const headings = document.querySelectorAll('.article-body h2, .article-body h3');
     headings.forEach((h, idx) => {
@@ -1838,7 +1183,6 @@ Abre **`editor.html`** en GitHub, haz clic en el icono del lápiz (*Edit this fi
       tocList.appendChild(li);
     });
 
-    // Lightbox
     const lbModal = document.getElementById('lightboxModal');
     const lbImg = document.getElementById('lightboxImg');
     document.querySelectorAll('.plate-img-wrap img').forEach(img => {
@@ -1850,7 +1194,6 @@ Abre **`editor.html`** en GitHub, haz clic en el icono del lápiz (*Edit this fi
     function closeLightbox() { lbModal.style.display = 'none'; }
     window.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
 
-    // Popover de Notas Flotantes
     const popover = document.getElementById('activePopover');
     const popContent = document.getElementById('popoverContent');
     const popLabel = document.getElementById('popoverLabel');
