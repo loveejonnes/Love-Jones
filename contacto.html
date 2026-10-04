@@ -8,7 +8,7 @@
   <!-- Favicon -->
   <link rel="icon" type="image/jpeg" href="LoveJones pic1.jpeg">
 
-  <!-- Tipografías: Monoespaciada técnica + Romana de lectura -->
+  <!-- Tipografías -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
@@ -27,19 +27,9 @@
       --font-serif: 'Lora', Georgia, serif;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html, body {
-      cursor: default;
-    }
-
-    a, button {
-      cursor: pointer;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { cursor: default; }
+    a, button { cursor: pointer; }
 
     body {
       background-color: var(--bg-color);
@@ -51,54 +41,47 @@
       line-height: 1.85;
       -webkit-font-smoothing: antialiased;
       position: relative;
+      overflow-x: hidden;
     }
 
-    /* Grano analógico de fondo */
     body::before {
       content: "";
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0; width: 100%; height: 100%;
       pointer-events: none;
       z-index: 9999;
       opacity: 0.045;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
     }
 
-    /* Cubo Holográfico Evasivo */
+    /* Cubo Cinemático Dinámico con Rebote Libre */
     .floating-companion {
       position: fixed;
-      bottom: 1.8rem;
-      right: 1.8rem;
+      top: 0;
+      left: 0;
       width: 74px;
       height: 85px;
-      z-index: 999;
+      z-index: 500;
       pointer-events: auto;
+      cursor: grab;
+      user-select: none;
       will-change: transform;
-      transition: filter 0.3s ease;
-      filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.3));
+      filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.35));
+      transition: filter 0.25s ease;
+    }
+
+    .floating-companion:active {
+      cursor: grabbing;
+      filter: drop-shadow(0 0 22px rgba(255, 230, 128, 0.9));
     }
 
     .companion-inner {
       width: 100%;
       height: 100%;
-      animation: cyberPulse 4s ease-in-out infinite;
+      transform-origin: center;
+      transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
 
-    @keyframes cyberPulse {
-      0%, 100% {
-        transform: translateY(0px) rotate(0deg);
-        filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.35));
-      }
-      50% {
-        transform: translateY(-4px) rotate(1deg);
-        filter: drop-shadow(0 0 12px rgba(255, 230, 128, 0.65));
-      }
-    }
-
-    /* Encabezado */
     header {
       width: 100%;
       padding: 2.6rem 2.5rem;
@@ -108,6 +91,8 @@
       justify-content: space-between;
       align-items: center;
       border-bottom: 1px dashed var(--border-color);
+      position: relative;
+      z-index: 20;
     }
 
     .brand-logo {
@@ -121,15 +106,9 @@
       transition: opacity 0.2s ease;
     }
 
-    .brand-logo:hover {
-      opacity: 0.85;
-    }
+    .brand-logo:hover { opacity: 0.85; }
 
-    .header-nav {
-      display: flex;
-      align-items: center;
-      gap: 2.2rem;
-    }
+    .header-nav { display: flex; align-items: center; gap: 2.2rem; }
 
     .nav-link {
       font-family: var(--font-mono);
@@ -142,24 +121,22 @@
       transition: color 0.2s ease, border-color 0.2s ease;
     }
 
-    .nav-link:hover,
-    .nav-link.active {
+    .nav-link:hover, .nav-link.active {
       color: var(--text-main);
       border-bottom-color: var(--accent-color);
     }
 
-    /* Contenedor Principal */
     main {
       flex: 1;
       max-width: 680px;
       width: 100%;
       margin: 0 auto;
       padding: 5rem 2rem;
+      position: relative;
+      z-index: 10;
     }
 
-    .contact-header {
-      margin-bottom: 3.5rem;
-    }
+    .contact-header { margin-bottom: 3.5rem; }
 
     h1 {
       font-family: var(--font-mono);
@@ -183,11 +160,8 @@
       transition: color 0.2s ease;
     }
 
-    .contact-desc a:hover {
-      color: var(--accent-color);
-    }
+    .contact-desc a:hover { color: var(--accent-color); }
 
-    /* Formulario */
     .contact-form {
       display: flex;
       flex-direction: column;
@@ -226,10 +200,7 @@
       box-shadow: 0 0 10px rgba(158, 53, 39, 0.25);
     }
 
-    textarea {
-      min-height: 160px;
-      resize: vertical;
-    }
+    textarea { min-height: 160px; resize: vertical; }
 
     .btn-submit {
       align-self: flex-start;
@@ -253,7 +224,6 @@
       transform: translateY(-2px);
     }
 
-    /* Pie de página */
     footer {
       max-width: 1040px;
       width: 100%;
@@ -267,52 +237,31 @@
       font-size: 0.78rem;
       letter-spacing: 0.1em;
       color: #5c554b;
+      position: relative;
+      z-index: 20;
     }
 
     @media (max-width: 820px) {
-      header {
-        padding: 1.8rem 1.4rem;
-      }
-      .brand-logo {
-        font-size: 1.1rem;
-      }
-      .header-nav {
-        gap: 1.4rem;
-      }
-      main {
-        padding: 3.2rem 1.4rem;
-      }
-      h1 {
-        font-size: 1.8rem;
-      }
-      .btn-submit {
-        width: 100%;
-      }
-      .floating-companion {
-        bottom: 1rem;
-        right: 1rem;
-        width: 52px;
-        height: 60px;
-        pointer-events: none;
-      }
-      footer {
-        flex-direction: column;
-        gap: 0.6rem;
-        text-align: center;
-        padding: 2rem 1.4rem;
-      }
+      header { padding: 1.8rem 1.4rem; }
+      .brand-logo { font-size: 1.1rem; }
+      .header-nav { gap: 1.4rem; }
+      main { padding: 3.2rem 1.4rem; }
+      h1 { font-size: 1.8rem; }
+      .btn-submit { width: 100%; }
+      .floating-companion { width: 55px; height: 63px; }
+      footer { flex-direction: column; gap: 0.6rem; text-align: center; padding: 2rem 1.4rem; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Cubo Holográfico Evasivo -->
-  <div class="floating-companion" id="companionBadge">
-    <div class="companion-inner">
+  <!-- Cubo Cinemático Dinámico con Rebote Libre -->
+  <div class="floating-companion" id="companionBadge" title="Love Jones — Presiona o persigue">
+    <div class="companion-inner" id="companionInner">
       <svg viewBox="0 0 120 135" width="100%" height="100%">
         <defs>
           <filter id="goldCyberGlow" x="-30%" y="-30%" width="160%" height="160%">
-            <feGaussianBlur stdDeviation="2" result="glow" />
+            <feGaussianBlur stdDeviation="2.2" result="glow" />
             <feMerge>
               <feMergeNode in="glow" />
               <feMergeNode in="SourceGraphic" />
@@ -369,17 +318,15 @@
     </div>
   </div>
 
-  <!-- Encabezado con ARCHIVO en el centro -->
   <header>
     <a href="./" class="brand-logo">Love Jones</a>
     <nav class="header-nav">
       <a class="nav-link" href="https://substack.com/@loveejonnes" target="_blank" rel="noopener noreferrer">DROPGEMS</a>
-      <a class="nav-link" href="archivo.html">ARCHIVO</a>
+      <a class="nav-link" href="archivo.html?v=2">ARCHIVO</a>
       <a class="nav-link active" href="contacto.html">CONTACTO</a>
     </nav>
   </header>
 
-  <!-- Contenido Central -->
   <main>
     <div class="contact-header">
       <h1>Contacto</h1>
@@ -396,42 +343,23 @@
 
       <div class="form-group">
         <label for="email">Correo electrónico</label>
-        <input 
-          type="email" 
-          id="email" 
-          name="email" 
-          autocomplete="email" 
-          required 
-          placeholder="tu-correo@ejemplo.com"
-        >
+        <input type="email" id="email" name="email" autocomplete="email" required placeholder="tu-correo@ejemplo.com">
       </div>
 
       <div class="form-group">
         <label for="affair">Asunto</label>
-        <input 
-          type="text" 
-          id="affair" 
-          name="affair" 
-          required 
-          placeholder="Motivo del mensaje"
-        >
+        <input type="text" id="affair" name="affair" required placeholder="Motivo del mensaje">
       </div>
 
       <div class="form-group">
         <label for="message">Mensaje</label>
-        <textarea 
-          id="message" 
-          name="message" 
-          required 
-          placeholder="Escribe aquí tu mensaje..."
-        ></textarea>
+        <textarea id="message" name="message" required placeholder="Escribe aquí tu mensaje..."></textarea>
       </div>
 
       <button type="submit" class="btn-submit">Enviar mensaje</button>
     </form>
   </main>
 
-  <!-- Pie de página -->
   <footer>
     <div>&copy; Bogotá, Colombia.</div>
     <div>Love Jones</div>
@@ -443,47 +371,87 @@
       window.history.replaceState(null, '', cleanPath + window.location.search + window.location.hash);
     }
 
-    // Evasión del Cubo
+    // FÍSICA DE REBOTE LIBRE
     const companion = document.getElementById('companionBadge');
-    let evadeX = 0;
-    let evadeY = 0;
-    let curX = 0;
-    let curY = 0;
+    const companionInner = document.getElementById('companionInner');
+
+    let posX = window.innerWidth - 110;
+    let posY = window.innerHeight - 130;
+    let velX = (Math.random() > 0.5 ? 1 : -1) * 1.4;
+    let velY = (Math.random() > 0.5 ? 1 : -1) * 1.2;
+
+    const baseSpeed = 1.35;
+    let mouseX = -9999, mouseY = -9999;
 
     window.addEventListener('mousemove', (e) => {
-      if (!companion) return;
-      const rect = companion.getBoundingClientRect();
-      const compCenterX = rect.left + rect.width / 2;
-      const compCenterY = rect.top + rect.height / 2;
-
-      const distX = e.clientX - compCenterX;
-      const distY = e.clientY - compCenterY;
-      const distance = Math.hypot(distX, distY);
-
-      const alertRadius = 140;
-
-      if (distance < alertRadius && distance > 0) {
-        const force = (alertRadius - distance) / alertRadius;
-        const angle = Math.atan2(distY, distX);
-        evadeX = -Math.cos(angle) * (force * 95);
-        evadeY = -Math.sin(angle) * (force * 95);
-      } else {
-        evadeX *= 0.88;
-        evadeY *= 0.88;
-      }
+      mouseX = e.clientX;
+      mouseY = e.clientY;
     });
 
-    function renderEvasion() {
-      curX += (evadeX - curX) * 0.12;
-      curY += (evadeY - curY) * 0.12;
+    companion.addEventListener('click', (e) => {
+      e.stopPropagation();
+      companionInner.style.transform = 'scale(0.72) rotate(15deg)';
+      setTimeout(() => { companionInner.style.transform = 'scale(1) rotate(0deg)'; }, 350);
 
-      if (companion) {
-        companion.style.transform = `translate3d(${curX.toFixed(2)}px, ${curY.toFixed(2)}px, 0)`;
+      const launchAngle = Math.random() * Math.PI * 2;
+      const launchForce = 14 + Math.random() * 8;
+      velX = Math.cos(launchAngle) * launchForce;
+      velY = Math.sin(launchAngle) * launchForce;
+    });
+
+    function updatePhysics() {
+      if (!companion) return;
+
+      const compW = companion.offsetWidth || 74;
+      const compH = companion.offsetHeight || 85;
+      const maxX = window.innerWidth - compW;
+      const maxY = window.innerHeight - compH;
+
+      const centerX = posX + compW / 2;
+      const centerY = posY + compH / 2;
+      const distX = mouseX - centerX;
+      const distY = mouseY - centerY;
+      const dist = Math.hypot(distX, distY);
+      const repulseRadius = 140;
+
+      if (dist < repulseRadius && dist > 0) {
+        const force = ((repulseRadius - dist) / repulseRadius) * 2.8;
+        const angle = Math.atan2(distY, distX);
+        velX -= Math.cos(angle) * force;
+        velY -= Math.sin(angle) * force;
       }
-      requestAnimationFrame(renderEvasion);
+
+      const curSpeed = Math.hypot(velX, velY);
+      if (curSpeed > baseSpeed) {
+        velX *= 0.965;
+        velY *= 0.965;
+      } else if (curSpeed < 0.6) {
+        velX = (Math.random() - 0.5) * baseSpeed;
+        velY = (Math.random() - 0.5) * baseSpeed;
+      }
+
+      posX += velX;
+      posY += velY;
+
+      if (posX <= 0) { posX = 0; velX = -velX * 0.95; }
+      else if (posX >= maxX) { posX = maxX; velX = -velX * 0.95; }
+
+      if (posY <= 0) { posY = 0; velY = -velY * 0.95; }
+      else if (posY >= maxY) { posY = maxY; velY = -velY * 0.95; }
+
+      companion.style.transform = `translate3d(${posX.toFixed(2)}px, ${posY.toFixed(2)}px, 0)`;
+
+      requestAnimationFrame(updatePhysics);
     }
 
-    requestAnimationFrame(renderEvasion);
+    requestAnimationFrame(updatePhysics);
+
+    window.addEventListener('resize', () => {
+      const compW = companion.offsetWidth || 74;
+      const compH = companion.offsetHeight || 85;
+      posX = Math.min(posX, window.innerWidth - compW);
+      posY = Math.min(posY, window.innerHeight - compH);
+    });
   </script>
 </body>
 </html>
