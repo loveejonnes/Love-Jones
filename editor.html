@@ -261,7 +261,7 @@
       padding: 0.1rem 0.3rem;
     }
 
-    /* Estilo del Botón de la Nota en el Texto */
+    /* Botón de nota en el texto */
     .footnote-button {
       display: inline-flex;
       align-items: center;
@@ -280,7 +280,7 @@
       border: 1px dashed var(--border-color);
     }
 
-    /* Editor de Notas al Pie */
+    /* Sección de Notas */
     .footnotes-section {
       margin-top: 4rem;
       padding-top: 2rem;
@@ -372,7 +372,7 @@
 
     <!-- Registro de Notas al Pie (Editable) -->
     <div class="footnotes-section" id="footnotesSection" style="display: none;">
-      <div class="footnotes-title">Aparato Crítico &bull; Referencias (Edita aquí el contenido de cada nota)</div>
+      <div class="footnotes-title">Notas</div>
       <ol id="footnotesList" contenteditable="true" spellcheck="false">
       </ol>
     </div>
@@ -434,7 +434,7 @@
       const li = document.createElement('li');
       li.id = 'fn-item-' + footnoteIndex;
       li.setAttribute('data-fn-id', footnoteIndex);
-      li.innerHTML = 'Escribe aquí la referencia documental o bibliográfica [' + footnoteIndex + ']...';
+      li.innerHTML = 'Escribe aquí la nota [' + footnoteIndex + ']...';
       fList.appendChild(li);
 
       triggerAutoSave();
@@ -512,7 +512,7 @@
       const fnVisible = fSec.style.display !== 'none';
       const fnHtml = fnVisible ? `
       <div class="footnotes-section">
-        <div class="footnotes-title">Aparato Crítico &bull; Registro Completo</div>
+        <div class="footnotes-title">Notas</div>
         <ol class="footnotes-list">
           ${fList.innerHTML}
         </ol>
@@ -531,7 +531,7 @@
   <style>
     :root {
       --bg-color: #0d0c0b;
-      --card-bg: #141312;
+      --card-bg: #121110;
       --accent-color: #9e3527;
       --accent-hover: #b83f30;
       --text-main: #dfd7c8;
@@ -666,7 +666,6 @@
       padding: 0.1rem 0.3rem;
     }
     
-    /* Botón interactivo de la nota al pie */
     .footnote-button {
       display: inline-flex;
       align-items: center;
@@ -691,7 +690,6 @@
       border-color: var(--accent-hover);
     }
 
-    /* Tarjeta Flotante (Popup / Popover) */
     .footnote-popover {
       position: absolute;
       z-index: 1000;
@@ -802,7 +800,6 @@
     \${fnHtml}
   </main>
 
-  <!-- Tarjeta Flotante Inyectada Dinámicamente -->
   <div id="activePopover" class="footnote-popover">
     <div class="popover-header">
       <span id="popoverLabel">NOTA</span>
