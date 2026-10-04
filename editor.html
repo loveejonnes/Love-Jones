@@ -107,6 +107,19 @@
       font-weight: 700;
     }
 
+    .tool-btn.btn-toggle {
+      background: #171615;
+      border-color: #403831;
+      color: #d1b894;
+      font-weight: 700;
+    }
+
+    .tool-btn.btn-toggle.active {
+      background: var(--accent-color);
+      color: #ffffff;
+      border-color: var(--accent-hover);
+    }
+
     .tool-btn.btn-studio {
       background: #1e1917;
       border-color: #52312a;
@@ -212,12 +225,12 @@
       line-height: 1.35;
     }
 
-    /* Lienzo Editorial */
+    /* Lienzo Editorial (Modo Web Estándar) */
     #editorialCanvas {
       outline: none;
       font-family: var(--font-serif);
       font-size: 1.15rem;
-      line-height: 2;
+      line-height: 1.95;
       color: #dfd7c8;
       min-height: 420px;
     }
@@ -225,6 +238,38 @@
     #editorialCanvas p {
       margin-bottom: 2rem;
       text-align: justify;
+    }
+
+    /* MODO MAQUETACIÓN DE LIBRO IMPRESO */
+    #editorialCanvas.mode-book p {
+      margin-bottom: 0 !important;
+      text-indent: 2em;
+      text-align: justify;
+      hyphens: auto;
+    }
+
+    /* El primer párrafo de cada bloque o tras subtítulo no lleva sangría */
+    #editorialCanvas.mode-book > p:first-of-type,
+    #editorialCanvas.mode-book h2 + p,
+    #editorialCanvas.mode-book h3 + p,
+    #editorialCanvas.mode-book blockquote + p,
+    #editorialCanvas.mode-book hr + p,
+    #editorialCanvas.mode-book .editorial-plate + p {
+      text-indent: 0 !important;
+    }
+
+    /* Letra Capitular (Drop Cap) */
+    #editorialCanvas.mode-book.has-dropcap > p:first-of-type::first-letter,
+    #editorialCanvas.mode-book.has-dropcap h2 + p::first-letter {
+      float: left;
+      font-size: 3.5rem;
+      line-height: 0.8;
+      padding-top: 4px;
+      padding-right: 10px;
+      padding-bottom: 2px;
+      color: var(--accent-color);
+      font-family: var(--font-serif);
+      font-weight: 700;
     }
 
     #editorialCanvas h2 {
@@ -357,7 +402,7 @@
       color: #ffffff;
     }
 
-    /* Modal del Estudio de Maquetación Gráfica */
+    /* Modal del Estudio Gráfico */
     .studio-modal {
       display: none;
       position: fixed;
@@ -410,11 +455,7 @@
       font-family: var(--font-mono);
     }
 
-    .ctrl-group {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
+    .ctrl-group { display: flex; flex-direction: column; gap: 0.5rem; }
 
     .ctrl-label {
       font-size: 0.72rem;
@@ -436,11 +477,7 @@
 
     .ctrl-select:focus, .ctrl-input:focus { border-color: var(--accent-color); }
 
-    .ctrl-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.5rem;
-    }
+    .ctrl-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
 
     .studio-canvas-area {
       flex: 1;
@@ -450,7 +487,6 @@
       background: #080706;
       padding: 2rem;
       overflow: auto;
-      position: relative;
     }
 
     .canvas-wrapper {
@@ -482,7 +518,10 @@
         <button class="tool-btn" type="button" onmousedown="event.preventDefault()" onclick="insertLink()">Enlace</button>
         <button class="tool-btn btn-accent" type="button" onmousedown="event.preventDefault()" onclick="insertFootnote()">[+ NOTA]</button>
         <button class="tool-btn" type="button" onmousedown="event.preventDefault()" onclick="insertCitation()">[+ CITA]</button>
-        <!-- Disparador del Taller de Carátulas -->
+        <!-- Interruptores de Maquetación de Libro -->
+        <button class="tool-btn btn-toggle" id="bookModeBtn" type="button" onclick="toggleBookMode()">[MODO: ENSAYO WEB]</button>
+        <button class="tool-btn btn-toggle" id="dropcapBtn" type="button" style="display:none;" onclick="toggleDropcap()">[CAPITULAR: OFF]</button>
+        <!-- Disparador Suite Gráfica -->
         <button class="tool-btn btn-studio" type="button" onclick="openCoverStudio()">[+ MAQUETAR PORTADA / OBJETO]</button>
       </div>
 
@@ -512,7 +551,9 @@
     <input type="text" id="docTitle" class="title-input" placeholder="TÍTULO COMPLETO DEL ENSAYO">
 
     <div id="editorialCanvas" contenteditable="true" spellcheck="false">
-      <p>Comienza a redactar aquí. Puedes pulsar <b>[+ MAQUETAR PORTADA / OBJETO]</b> en cualquier momento para abrir el taller gráfico interactivo, diseñar la portada de un libro, un vinilo 12", un cassette o un CD, e incrustarlo directamente en el texto o descargarlo en alta resolución.</p>
+      <p>Este es el primer párrafo de tu ensayo. En la maquetación clásica de libros no lleva sangría para abrir limpiamente el capítulo.</p>
+      <p>A partir del segundo párrafo continuo, si activas el interruptor <b>[MODO: LIBRO / IMPRENTA]</b> en la barra superior, el editor elimina los saltos vacíos y aplica la sangría de primera línea reglamentaria de Pages o InDesign.</p>
+      <p>También puedes pulsar <b>[CAPITULAR: ON]</b> para agrandar la primera letra inicial con jerarquía editorial.</p>
     </div>
 
     <div class="footnotes-section" id="footnotesSection" style="display: none; margin-top:4rem; padding-top:2rem; border-top:1px dashed var(--border-color);">
@@ -526,7 +567,7 @@
     </div>
   </main>
 
-  <!-- MODAL ESTUDIO DE DISEÑO GRÁFICO (Pages/Illustrator Canvas) -->
+  <!-- MODAL SUITE GRÁFICA -->
   <div class="studio-modal" id="coverStudioModal">
     <div class="studio-header">
       <div class="studio-title">
@@ -540,7 +581,6 @@
     </div>
 
     <div class="studio-body">
-      <!-- Barra lateral de herramientas de diseño -->
       <aside class="studio-controls">
         <div class="ctrl-group">
           <label class="ctrl-label">1. Soporte Físico / Proporción</label>
@@ -585,12 +625,11 @@
         </div>
 
         <div class="ctrl-group" style="margin-top:auto;">
-          <label class="ctrl-label">Control de Capa Seleccionada</label>
+          <label class="ctrl-label">Control de Capa</label>
           <button class="tool-btn" style="color:var(--accent-hover); border-color:#522;" onclick="removeSelectedObject()">ELIMINAR CAPA ACTIVA</button>
         </div>
       </aside>
 
-      <!-- Lienzo Interactivo -->
       <div class="studio-canvas-area">
         <div class="canvas-wrapper">
           <canvas id="designCanvas"></canvas>
@@ -600,7 +639,6 @@
   </div>
 
   <script>
-    // Variables del Procesador Editorial
     const canvas = document.getElementById('editorialCanvas');
     const fList = document.getElementById('footnotesList');
     const fSec = document.getElementById('footnotesSection');
@@ -611,9 +649,43 @@
     const metaInput = document.getElementById('docMeta');
     const titleInput = document.getElementById('docTitle');
     const saveInd = document.getElementById('saveIndicator');
+    const bookModeBtn = document.getElementById('bookModeBtn');
+    const dropcapBtn = document.getElementById('dropcapBtn');
 
+    let isBookMode = false;
+    let isDropcap = false;
     let footnoteIndex = 0;
     let figureIndex = 0;
+
+    function toggleBookMode() {
+      isBookMode = !isBookMode;
+      if (isBookMode) {
+        canvas.classList.add('mode-book');
+        bookModeBtn.textContent = '[MODO: LIBRO / IMPRENTA]';
+        bookModeBtn.classList.add('active');
+        dropcapBtn.style.display = 'inline-block';
+      } else {
+        canvas.classList.remove('mode-book');
+        bookModeBtn.textContent = '[MODO: ENSAYO WEB]';
+        bookModeBtn.classList.remove('active');
+        dropcapBtn.style.display = 'none';
+      }
+      triggerAutoSave();
+    }
+
+    function toggleDropcap() {
+      isDropcap = !isDropcap;
+      if (isDropcap) {
+        canvas.classList.add('has-dropcap');
+        dropcapBtn.textContent = '[CAPITULAR: ON]';
+        dropcapBtn.classList.add('active');
+      } else {
+        canvas.classList.remove('has-dropcap');
+        dropcapBtn.textContent = '[CAPITULAR: OFF]';
+        dropcapBtn.classList.remove('active');
+      }
+      triggerAutoSave();
+    }
 
     function saveSelection() {
       const sel = window.getSelection();
@@ -779,16 +851,18 @@
         citations: cList.innerHTML,
         fnCount: footnoteIndex,
         figCount: figureIndex,
+        isBook: isBookMode,
+        isDrop: isDropcap,
         hasFn: fSec.style.display !== 'none',
         hasCi: cSec.style.display !== 'none'
       };
-      localStorage.setItem('lj_editor_v3_draft', JSON.stringify(draft));
+      localStorage.setItem('lj_editor_v4_draft', JSON.stringify(draft));
       saveInd.textContent = 'Guardado';
       setTimeout(() => { saveInd.textContent = 'Guardado en caché'; }, 1000);
     }
 
     function loadDraft() {
-      const raw = localStorage.getItem('lj_editor_v3_draft');
+      const raw = localStorage.getItem('lj_editor_v4_draft');
       if (raw) {
         try {
           const draft = JSON.parse(raw);
@@ -803,6 +877,8 @@
           if (draft.hasCi) cSec.style.display = 'block';
           footnoteIndex = draft.fnCount || 0;
           figureIndex = draft.figCount || 0;
+          if (draft.isBook) toggleBookMode();
+          if (draft.isDrop) toggleDropcap();
         } catch(e) {}
       } else {
         slugInput.value = 'poetica-del-sample';
@@ -815,7 +891,7 @@
 
     function resetCanvas() {
       if (confirm('¿Deseas reiniciar la mesa de trabajo y vaciar el borrador actual?')) {
-        localStorage.removeItem('lj_editor_v3_draft');
+        localStorage.removeItem('lj_editor_v4_draft');
         location.reload();
       }
     }
@@ -831,7 +907,7 @@
     loadDraft();
 
     // ==========================================
-    // SUITE GRÁFICA / MOTOR FABRIC.JS (VÍA B)
+    // SUITE GRÁFICA / MOTOR FABRIC.JS
     // ==========================================
     let fCanvas = null;
 
@@ -844,7 +920,6 @@
         preserveObjectStacking: true
       });
 
-      // Borde inicial de guía
       const rect = new fabric.Rect({
         left: 20, top: 20, width: 510, height: 510,
         fill: 'transparent',
@@ -854,7 +929,6 @@
       });
       fCanvas.add(rect);
 
-      // Título tipográfico por defecto
       const heading = new fabric.IText('LOVE JONES', {
         left: 40, top: 50,
         fontFamily: "'Space Mono', monospace",
@@ -879,9 +953,9 @@
       if (!fCanvas) return;
       let w = 550, h = 550;
       if (format === 'cassette') {
-        w = 380; h = 580; // Proporción alargada de cinta J-Card
+        w = 380; h = 580;
       } else if (format === 'book') {
-        w = 420; h = 590; // Proporción editorial A5 / 6x9
+        w = 420; h = 590;
       }
       fCanvas.setWidth(w);
       fCanvas.setHeight(h);
@@ -964,10 +1038,10 @@
       const figureHtml = `
         <figure class="editorial-plate" contenteditable="false">
           <div class="plate-img-wrap">
-            <img src="${dataURL}" alt="Carátula / Portada [FIG. ${figNum}]">
+            <img src="${dataURL}" alt="Carátula / Portada [OBJ. ${figNum}]">
           </div>
           <figcaption class="plate-caption" contenteditable="true">
-            <span class="plate-number">[OBJ. ${figNum}]</span> Maquetación de portada / artefacto sonoro diseñado en el taller.
+            <span class="plate-number">[OBJ. ${figNum}]</span> Maquetación de portada / artefacto diseñado en el taller.
             <span class="plate-source">ARCHIVO VISUAL // LOVE JONES</span>
           </figcaption>
         </figure><p></p>`;
@@ -978,7 +1052,7 @@
       triggerAutoSave();
     }
 
-    // Exportación final
+    // Exportación Final
     function exportHtmlFile() {
       const slug = (slugInput.value || 'ensayo').trim().toLowerCase().replace(/\s+/g, '-');
       const docId = idInput.value.trim();
@@ -999,6 +1073,8 @@
         <div style="font-family:var(--font-mono); font-size:0.8rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent-color); margin-bottom:1.2rem;">Fuentes & Bibliografía</div>
         <ul style="font-family:var(--font-mono); font-size:0.82rem; color:var(--text-muted); line-height:1.7; padding-left:1.4rem;">\${cList.innerHTML}</ul>
       </div>` : '';
+
+      const articleClasses = (isBookMode ? 'mode-book' : '') + (isDropcap ? ' has-dropcap' : '');
 
       const template = `<!DOCTYPE html>
 <html lang="es">
@@ -1093,6 +1169,35 @@
       padding-bottom: 1.8rem;
     }
     .article-body p { font-size: 1.15rem; margin-bottom: 2rem; color: #dfd7c8; text-align: justify; }
+
+    /* ESTILOS DE LIBRO IMPRESO */
+    .article-body.mode-book p {
+      margin-bottom: 0 !important;
+      text-indent: 2em;
+      text-align: justify;
+      hyphens: auto;
+    }
+    .article-body.mode-book > p:first-of-type,
+    .article-body.mode-book h2 + p,
+    .article-body.mode-book h3 + p,
+    .article-body.mode-book blockquote + p,
+    .article-body.mode-book hr + p,
+    .article-body.mode-book .editorial-plate + p {
+      text-indent: 0 !important;
+    }
+    .article-body.mode-book.has-dropcap > p:first-of-type::first-letter,
+    .article-body.mode-book.has-dropcap h2 + p::first-letter {
+      float: left;
+      font-size: 3.5rem;
+      line-height: 0.8;
+      padding-top: 4px;
+      padding-right: 10px;
+      padding-bottom: 2px;
+      color: var(--accent-color);
+      font-family: var(--font-serif);
+      font-weight: 700;
+    }
+
     .article-body h2 {
       font-family: var(--font-mono);
       font-size: 1.25rem;
@@ -1154,7 +1259,7 @@
     <a href="archivo.html" class="back-link">&larr; Volver al archivo</a>
     <div class="doc-meta">\${docId} &bull; \${meta}</div>
     <h1 class="article-title">\${title}</h1>
-    <article class="article-body">
+    <article class="article-body \${articleClasses}">
       \${content}
     </article>
     \${fnHtml}
