@@ -62,6 +62,7 @@
       -webkit-font-smoothing: antialiased;
       position: relative;
       overflow-x: hidden;
+      width: 100%;
     }
 
     body::before {
@@ -472,22 +473,97 @@
     .footer-city { color: var(--text-muted); }
     .footer-brand { color: var(--text-main); font-weight: 700; }
 
+    /* ========================================================
+       OPTIMIZACIÓN COMPLETA PARA DISPOSITIVOS MÓVILES
+       ======================================================== */
     @media (max-width: 820px) {
-      header { padding: 1.8rem 1.4rem; }
-      .brand-logo { font-size: 1.1rem; }
-      .header-nav { gap: 1.4rem; }
-      main { padding: 3.2rem 1.4rem; }
-      .hero-section { grid-template-columns: 1fr; text-align: center; gap: 2.2rem; padding-bottom: 3.5rem; }
-      .profile-container { order: -1; }
-      .profile-img-wrap { width: 190px; height: 190px; margin: 0 auto; }
-      .bio-content h1 { font-size: 1.75rem; margin-bottom: 1.2rem; }
-      .bio-text { font-size: 0.98rem; }
-      .social-links { justify-content: center; }
-      .video-card { flex: 0 0 92%; min-width: 270px; }
-      .carousel-controls { justify-content: center; flex-wrap: wrap; }
-      .album-grid { grid-template-columns: repeat(2, 1fr); gap: 1.2rem; }
-      .floating-companion { width: 54px; height: 62px; }
-      footer { flex-direction: column; gap: 0.6rem; text-align: center; padding: 2rem 1.4rem; }
+      header {
+        padding: 1.6rem 1.4rem;
+      }
+      .brand-logo {
+        font-size: 1.05rem;
+      }
+      .header-nav {
+        gap: 1.2rem;
+      }
+      .nav-link {
+        font-size: 0.75rem;
+        letter-spacing: 0.08em;
+      }
+      main {
+        padding: 3rem 1.4rem;
+      }
+      .hero-section {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 2.2rem;
+        padding-bottom: 3.5rem;
+      }
+      .profile-container {
+        order: -1;
+      }
+      .profile-img-wrap {
+        width: 180px;
+        height: 180px;
+        margin: 0 auto;
+      }
+      .bio-content h1 {
+        font-size: 1.7rem;
+        margin-bottom: 1.1rem;
+      }
+      .bio-text {
+        font-size: 0.95rem;
+        line-height: 1.75;
+      }
+      .social-links {
+        justify-content: center;
+        gap: 1.4rem;
+      }
+      .youtube-section,
+      .researcher-section,
+      .essays-section {
+        padding-top: 3.5rem;
+        padding-bottom: 3.5rem;
+      }
+      .section-title {
+        font-size: 1rem;
+      }
+      .youtube-bio,
+      .researcher-text,
+      .essays-bio {
+        font-size: 0.94rem;
+        line-height: 1.75;
+      }
+      .video-card {
+        flex: 0 0 90%;
+        min-width: 260px;
+      }
+      .carousel-controls {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+      .album-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.1rem;
+      }
+      .essay-caption {
+        padding: 0.75rem;
+      }
+      .essay-title {
+        font-size: 0.68rem;
+        letter-spacing: 0.04em;
+      }
+      .floating-companion {
+        width: 54px;
+        height: 62px;
+      }
+      footer {
+        flex-direction: column;
+        gap: 0.6rem;
+        text-align: center;
+        padding: 2rem 1.4rem;
+      }
     }
   </style>
 </head>
@@ -556,7 +632,6 @@
     </div>
   </div>
 
-  <!-- Encabezado con versión explícita anti-caché -->
   <header>
     <a href="./" class="brand-logo">Love Jones</a>
     <nav class="header-nav">
@@ -566,7 +641,6 @@
     </nav>
   </header>
 
-  <!-- Contenido Central -->
   <main>
     <section class="hero-section">
       <div class="profile-container">
@@ -714,7 +788,6 @@
     </section>
   </main>
 
-  <!-- Pie de página sobrio -->
   <footer>
     <div class="footer-city">&copy; Bogotá, Colombia.</div>
     <div class="footer-brand">Love Jones</div>
