@@ -8,7 +8,7 @@
   <!-- Favicon -->
   <link rel="icon" type="image/jpeg" href="LoveJones pic1.jpeg">
 
-  <!-- Tipografías: Monoespaciada técnica para metadatos + Romana sobria de lectura -->
+  <!-- Tipografías: Monoespaciada técnica + Romana sobria de lectura -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
@@ -32,6 +32,11 @@
       padding: 0;
     }
 
+    /* Cursor general: cruz de mira milimétrica de archivo */
+    html, body, a, button, input, textarea {
+      cursor: crosshair;
+    }
+
     body {
       background-color: var(--bg-color);
       color: var(--text-main);
@@ -41,6 +46,21 @@
       flex-direction: column;
       line-height: 1.85;
       -webkit-font-smoothing: antialiased;
+      position: relative;
+    }
+
+    /* Punto 1: Textura analógica de grano/papel carbón */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.045;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
     }
 
     /* Encabezado */
@@ -180,7 +200,7 @@
       transform: translateY(-1.5px);
     }
 
-    /* Estructura común para títulos de sección editorial */
+    /* Estructura común para títulos de sección */
     .section-title {
       font-family: var(--font-mono);
       font-size: 1.15rem;
@@ -318,7 +338,7 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      cursor: pointer;
+      cursor: crosshair;
       font-family: var(--font-mono);
       font-size: 1.05rem;
       transition: border-color 0.2s, background-color 0.2s;
@@ -342,7 +362,7 @@
       max-width: 900px;
     }
 
-    /* Sección Algunos Ensayos (Instagram Grid) */
+    /* Sección Algunos Ensayos */
     .essays-section {
       padding-top: 5rem;
     }
@@ -369,7 +389,7 @@
       background-color: var(--card-bg);
       text-decoration: none;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-      transition: border-color 0.25s ease, transform 0.25s ease;
+      transition: border-color 0.3s ease, transform 0.25s ease;
     }
 
     .album-item-frame {
@@ -380,13 +400,20 @@
       position: relative;
     }
 
+    /* Punto 4b: Desaturación en escala de grises inicial */
     .album-item img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
-      transition: transform 0.4s ease, filter 0.3s ease;
-      filter: contrast(1.02);
+      filter: grayscale(100%) contrast(0.92) brightness(0.88);
+      transition: filter 0.45s ease, transform 0.45s ease;
+    }
+
+    /* Recuperación del color original y contraste al interactuar */
+    .album-item:hover img {
+      filter: grayscale(0%) contrast(1.05) brightness(1);
+      transform: scale(1.025);
     }
 
     .album-overlay {
@@ -395,7 +422,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(13, 12, 11, 0.7);
+      background: rgba(13, 12, 11, 0.5);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -418,10 +445,6 @@
     .album-item:hover {
       border-color: var(--accent-color);
       transform: translateY(-2px);
-    }
-
-    .album-item:hover img {
-      transform: scale(1.025);
     }
 
     .album-item:hover .album-overlay {
@@ -517,7 +540,7 @@
           <p>Love Jones es el aka de un escritor e investigador independiente de la ciudad de Bogotá, Colombia. Su paso por universidades como la Universidad Autónoma de Colombia y la Universidad de La Salle le dieron las bases para seguir formándose de manera independiente como escritor e investigador. Dentro de lo que podemos saber, actualmente se encuentra trabajando en un libro recopilatorio de ensayos sobre la cultura Hip-Hop.</p>
         </div>
 
-        <!-- Redes Sociales: Glifos limpios -->
+        <!-- Redes Sociales -->
         <div class="social-links">
           <!-- YouTube -->
           <a class="social-icon-btn" href="https://www.youtube.com/@LoveeJonnes" target="_blank" rel="noopener noreferrer" aria-label="Canal de YouTube">
