@@ -3,28 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contacto &bull; Love Jones</title>
+  <title>Love Jones</title>
 
   <!-- Favicon -->
   <link rel="icon" type="image/jpeg" href="LoveJones pic1.jpeg">
 
-  <!-- Tipografías: Monoespaciada técnica + Romana de lectura -->
+  <!-- Tipografías -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Lora:ital,wght@0,400;0,600;1,400&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --bg-color: #0d0c0b;
-      --card-bg: #121110;
-      --accent-color: #9e3527;
-      --accent-hover: #b83f30;
-      --text-main: #dfd7c8;
-      --text-muted: #8c8476;
-      --border-color: #2b2622;
-      --input-bg: #100f0e;
-      --font-mono: 'Space Mono', 'Courier Prime', monospace;
-      --font-serif: 'Lora', Georgia, serif;
+      --bg-color: #111111;
+      --card-bg: #161413;
+      --accent-color: #9e3a2b;
+      --accent-hover: #b84534;
+      --text-main: #f4ecd8;
+      --text-muted: #b8b09f;
+      --border-color: #26211f;
+      --input-bg: #141211;
     }
 
     * {
@@ -33,87 +31,32 @@
       padding: 0;
     }
 
-    html, body {
-      cursor: default;
-    }
-
-    a, button {
-      cursor: pointer;
-    }
-
     body {
       background-color: var(--bg-color);
       color: var(--text-main);
-      font-family: var(--font-serif);
+      font-family: 'Lora', Georgia, serif;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       line-height: 1.85;
-      -webkit-font-smoothing: antialiased;
-      position: relative;
-    }
-
-    /* Grano analógico de fondo */
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 9999;
-      opacity: 0.045;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-    }
-
-    /* Cubo Holográfico Evasivo */
-    .floating-companion {
-      position: fixed;
-      bottom: 1.8rem;
-      right: 1.8rem;
-      width: 74px;
-      height: 85px;
-      z-index: 999;
-      pointer-events: auto;
-      will-change: transform;
-      transition: filter 0.3s ease;
-      filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.3));
-    }
-
-    .companion-inner {
-      width: 100%;
-      height: 100%;
-      animation: cyberPulse 4s ease-in-out infinite;
-    }
-
-    @keyframes cyberPulse {
-      0%, 100% {
-        transform: translateY(0px) rotate(0deg);
-        filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.35));
-      }
-      50% {
-        transform: translateY(-4px) rotate(1deg);
-        filter: drop-shadow(0 0 12px rgba(255, 230, 128, 0.65));
-      }
     }
 
     /* Encabezado */
     header {
       width: 100%;
-      padding: 2.6rem 2.5rem;
+      padding: 2.8rem 2.5rem;
       max-width: 1040px;
       margin: 0 auto;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1px dashed var(--border-color);
+      border-bottom: 1px solid var(--border-color);
     }
 
     .brand-logo {
-      font-family: var(--font-mono);
-      font-size: 1.25rem;
-      letter-spacing: 0.14em;
+      font-family: 'Cinzel', serif;
+      font-size: 1.5rem;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--text-main);
       text-decoration: none;
@@ -128,17 +71,18 @@
     .header-nav {
       display: flex;
       align-items: center;
-      gap: 2.2rem;
+      gap: 2rem;
     }
 
     .nav-link {
-      font-family: var(--font-mono);
+      font-family: 'Space Grotesk', sans-serif;
       text-decoration: none;
       color: var(--text-muted);
-      font-size: 0.82rem;
-      letter-spacing: 0.12em;
+      font-size: 0.95rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
       padding-bottom: 4px;
-      border-bottom: 1px dashed transparent;
+      border-bottom: 1.5px solid transparent;
       transition: color 0.2s ease, border-color 0.2s ease;
     }
 
@@ -154,7 +98,7 @@
       max-width: 680px;
       width: 100%;
       margin: 0 auto;
-      padding: 5rem 2rem;
+      padding: 5.5rem 2rem;
     }
 
     .contact-header {
@@ -162,25 +106,23 @@
     }
 
     h1 {
-      font-family: var(--font-mono);
-      font-size: 2.3rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+      font-family: 'Cinzel', serif;
+      font-size: 2.8rem;
+      letter-spacing: 0.06em;
       color: var(--text-main);
-      margin-bottom: 1.5rem;
-      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 1.2rem;
     }
 
     .contact-desc {
       color: var(--text-muted);
       font-size: 1.05rem;
-      line-height: 1.8;
     }
 
     .contact-desc a {
       color: var(--text-main);
       text-decoration: underline;
-      text-underline-offset: 4px;
+      text-underline-offset: 3px;
       transition: color 0.2s ease;
     }
 
@@ -192,39 +134,39 @@
     .contact-form {
       display: flex;
       flex-direction: column;
-      gap: 2rem;
+      gap: 1.8rem;
     }
 
     .form-group {
       display: flex;
       flex-direction: column;
-      gap: 0.6rem;
+      gap: 0.5rem;
     }
 
     label {
-      font-family: var(--font-mono);
-      font-size: 0.78rem;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.85rem;
       text-transform: uppercase;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.1em;
       color: var(--text-muted);
     }
 
     input, textarea {
       width: 100%;
       background-color: var(--input-bg);
-      border: 1px dashed var(--border-color);
-      border-radius: 3px;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
       padding: 0.95rem 1.1rem;
       color: var(--text-main);
-      font-family: var(--font-serif);
+      font-family: 'Lora', Georgia, serif;
       font-size: 1rem;
       outline: none;
-      transition: border-color 0.2s ease, background-color 0.2s ease;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
     }
 
     input:focus, textarea:focus {
       border-color: var(--accent-color);
-      background-color: #141211;
+      box-shadow: 0 0 10px rgba(158, 58, 43, 0.25);
     }
 
     textarea {
@@ -234,23 +176,23 @@
 
     .btn-submit {
       align-self: flex-start;
-      font-family: var(--font-mono);
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.14em;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--text-main);
-      background-color: var(--card-bg);
-      border: 1px dashed var(--accent-color);
-      padding: 0.85rem 2rem;
-      border-radius: 3px;
+      background-color: var(--accent-color);
+      border: 1px solid var(--accent-color);
+      padding: 0.9rem 2.2rem;
+      border-radius: 4px;
       cursor: pointer;
-      transition: background-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+      transition: background-color 0.2s ease, transform 0.15s ease;
     }
 
     .btn-submit:hover {
-      background-color: var(--accent-color);
-      color: #ffffff;
+      background-color: var(--accent-hover);
+      border-color: var(--accent-hover);
       transform: translateY(-2px);
     }
 
@@ -260,14 +202,13 @@
       width: 100%;
       margin: 0 auto;
       padding: 2.5rem;
-      border-top: 1px dashed var(--border-color);
+      border-top: 1px solid var(--border-color);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-family: var(--font-mono);
-      font-size: 0.78rem;
-      letter-spacing: 0.1em;
-      color: #5c554b;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.85rem;
+      color: #6d665b;
     }
 
     @media (max-width: 768px) {
@@ -275,16 +216,10 @@
         padding: 3.5rem 1.5rem;
       }
       h1 {
-        font-size: 1.9rem;
+        font-size: 2.2rem;
       }
       .btn-submit {
         width: 100%;
-      }
-      .floating-companion {
-        bottom: 1.2rem;
-        right: 1.2rem;
-        width: 62px;
-        height: 72px;
       }
       footer {
         flex-direction: column;
@@ -296,74 +231,12 @@
 </head>
 <body>
 
-  <!-- Cubo Holográfico Evasivo -->
-  <div class="floating-companion" id="companionBadge">
-    <div class="companion-inner">
-      <svg viewBox="0 0 120 135" width="100%" height="100%">
-        <defs>
-          <filter id="goldCyberGlow" x="-30%" y="-30%" width="160%" height="160%">
-            <feGaussianBlur stdDeviation="2" result="glow" />
-            <feMerge>
-              <feMergeNode in="glow" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
-
-          <linearGradient id="cyberGoldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#ffffff" />
-            <stop offset="25%" stop-color="#ffe680" />
-            <stop offset="65%" stop-color="#d4af37" />
-            <stop offset="100%" stop-color="#997825" />
-          </linearGradient>
-
-          <linearGradient id="cyberInnerGrad" x1="0%" y1="100%" x2="100%" y2="0%">
-            <stop offset="0%" stop-color="#59430c" />
-            <stop offset="100%" stop-color="#c5a028" />
-          </linearGradient>
-        </defs>
-
-        <g stroke="url(#cyberInnerGrad)" stroke-width="1.2" stroke-dasharray="2.5 2" fill="none">
-          <line x1="60" y1="82" x2="60" y2="52" />
-          <line x1="28" y1="34" x2="60" y2="52" />
-          <line x1="92" y1="34" x2="60" y2="52" />
-        </g>
-
-        <polygon points="60,8 92,26 92,68 60,86 28,68 28,26" 
-                 stroke="url(#cyberGoldGrad)" stroke-width="1.8" fill="none" filter="url(#goldCyberGlow)" />
-
-        <g stroke="url(#cyberGoldGrad)" stroke-width="1.4" fill="none">
-          <line x1="60" y1="46" x2="60" y2="86" />
-          <line x1="60" y1="46" x2="28" y2="26" />
-          <line x1="60" y1="46" x2="92" y2="26" />
-        </g>
-
-        <circle cx="60" cy="8" r="2.2" fill="#ffffff" filter="url(#goldCyberGlow)" />
-        <circle cx="92" cy="26" r="2" fill="#ffe680" />
-        <circle cx="92" cy="68" r="2" fill="#ffe680" />
-        <circle cx="60" cy="86" r="2.2" fill="#ffffff" filter="url(#goldCyberGlow)" />
-        <circle cx="28" cy="68" r="2" fill="#ffe680" />
-        <circle cx="28" cy="26" r="2" fill="#ffe680" />
-
-        <g font-family="'Space Mono', monospace" font-size="21" font-weight="700" 
-           fill="url(#cyberGoldGrad)" filter="url(#goldCyberGlow)" letter-spacing="1">
-          <text x="60" y="53" text-anchor="middle" dominant-baseline="central">LJ</text>
-        </g>
-
-        <g font-family="'Space Mono', monospace" font-size="7.5" font-weight="700" letter-spacing="2">
-          <text x="18" y="112" fill="#ffffff" filter="url(#goldCyberGlow)">L</text>
-          <text x="25" y="112" fill="#d4af37" font-weight="400">OVE</text>
-          <text x="64" y="112" fill="#ffffff" filter="url(#goldCyberGlow)">J</text>
-          <text x="71" y="112" fill="#d4af37" font-weight="400">ONES</text>
-        </g>
-      </svg>
-    </div>
-  </div>
-
-  <!-- Encabezado -->
+  <!-- Encabezado con ARCHIVO centrado -->
   <header>
     <a href="./" class="brand-logo">Love Jones</a>
     <nav class="header-nav">
       <a class="nav-link" href="https://substack.com/@loveejonnes" target="_blank" rel="noopener noreferrer">DROPGEMS</a>
+      <a class="nav-link" href="archivo.html">ARCHIVO</a>
       <a class="nav-link active" href="contacto.html">CONTACTO</a>
     </nav>
   </header>
@@ -373,11 +246,11 @@
     <div class="contact-header">
       <h1>Contacto</h1>
       <p class="contact-desc">
-        Para consultas, colaboraciones, propuestas editoriales, promoción o divulgación de música escribe mediante este formulario o directamente a <a href="mailto:loveejonnes1@gmail.com">loveejonnes1@gmail.com</a>[cite: 1].
+        Para consultas, colaboraciones, propuestas editoriales, promoción o divulgación de música escribe mediante este formulario o directamente a <a href="mailto:loveejonnes1@gmail.com">loveejonnes1@gmail.com</a>.
       </p>
     </div>
 
-    <!-- Formulario conectado a FormSubmit -->
+    <!-- Formulario simplificado -->
     <form class="contact-form" action="https://formsubmit.co/loveejonnes1@gmail.com" method="POST">
       <input type="hidden" name="_subject" value="Nuevo mensaje desde la web Love Jones">
       <input type="hidden" name="_captcha" value="false">
@@ -404,7 +277,7 @@
           type="text" 
           id="affair" 
           name="affair" 
-          required 
+          required
           placeholder="Motivo del mensaje"
         >
       </div>
@@ -431,53 +304,10 @@
   </footer>
 
   <script>
-    // Limpia 'contacto.html' de la barra de direcciones en tiempo real
     if (window.location.pathname.endsWith('/contacto.html')) {
       const cleanPath = window.location.pathname.replace('/contacto.html', '/contacto');
       window.history.replaceState(null, '', cleanPath + window.location.search + window.location.hash);
     }
-
-    // Evasión del Cubo
-    const companion = document.getElementById('companionBadge');
-    let evadeX = 0;
-    let evadeY = 0;
-    let curX = 0;
-    let curY = 0;
-
-    window.addEventListener('mousemove', (e) => {
-      if (!companion) return;
-      const rect = companion.getBoundingClientRect();
-      const compCenterX = rect.left + rect.width / 2;
-      const compCenterY = rect.top + rect.height / 2;
-
-      const distX = e.clientX - compCenterX;
-      const distY = e.clientY - compCenterY;
-      const distance = Math.hypot(distX, distY);
-
-      const alertRadius = 140;
-
-      if (distance < alertRadius && distance > 0) {
-        const force = (alertRadius - distance) / alertRadius;
-        const angle = Math.atan2(distY, distX);
-        evadeX = -Math.cos(angle) * (force * 95);
-        evadeY = -Math.sin(angle) * (force * 95);
-      } else {
-        evadeX *= 0.88;
-        evadeY *= 0.88;
-      }
-    });
-
-    function renderEvasion() {
-      curX += (evadeX - curX) * 0.12;
-      curY += (evadeY - curY) * 0.12;
-
-      if (companion) {
-        companion.style.transform = `translate3d(${curX.toFixed(2)}px, ${curY.toFixed(2)}px, 0)`;
-      }
-      requestAnimationFrame(renderEvasion);
-    }
-
-    requestAnimationFrame(renderEvasion);
   </script>
 </body>
 </html>
