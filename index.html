@@ -8,20 +8,22 @@
   <!-- Favicon (Icono en la pestaña del navegador) -->
   <link rel="icon" type="image/jpeg" href="LoveJones pic1.jpeg">
 
-  <!-- Tipografías de Google Fonts -->
+  <!-- Tipografías: Monoespaciadas para atmósfera de informe + Romana de lectura -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Lora:ital,wght@0,400;0,600;1,400&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,600;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --bg-color: #111111;
-      --card-bg: #161413;
-      --accent-color: #9e3a2b;
-      --accent-hover: #b84534;
-      --text-main: #f4ecd8;
-      --text-muted: #b8b09f;
-      --border-color: #26211f;
+      --bg-color: #0f0e0d;
+      --card-bg: #141312;
+      --accent-color: #a63426;
+      --accent-hover: #c44232;
+      --text-main: #e2dacb;
+      --text-muted: #9c9485;
+      --border-color: #38322c;
+      --font-mono: 'Space Mono', 'Courier Prime', monospace;
+      --font-serif: 'Lora', Georgia, serif;
     }
 
     * {
@@ -33,29 +35,29 @@
     body {
       background-color: var(--bg-color);
       color: var(--text-main);
-      font-family: 'Lora', Georgia, serif;
+      font-family: var(--font-serif);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       line-height: 1.85;
     }
 
-    /* Encabezado */
+    /* Encabezado con borde punteado de expediente */
     header {
       width: 100%;
-      padding: 2.8rem 2.5rem;
+      padding: 2.5rem 2.5rem;
       max-width: 1040px;
       margin: 0 auto;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid var(--border-color);
+      border-bottom: 1px dashed var(--border-color);
     }
 
     .brand-logo {
-      font-family: 'Cinzel', serif;
-      font-size: 1.5rem;
-      letter-spacing: 0.18em;
+      font-family: var(--font-mono);
+      font-size: 1.35rem;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--text-main);
       text-decoration: none;
@@ -74,14 +76,13 @@
     }
 
     .nav-link {
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: var(--font-mono);
       text-decoration: none;
       color: var(--text-muted);
-      font-size: 0.95rem;
-      font-weight: 500;
-      letter-spacing: 0.08em;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
       padding-bottom: 4px;
-      border-bottom: 1.5px solid transparent;
+      border-bottom: 1px dashed transparent;
       transition: color 0.2s ease, border-color 0.2s ease;
     }
 
@@ -96,7 +97,7 @@
       max-width: 1040px;
       width: 100%;
       margin: 0 auto;
-      padding: 5.5rem 2.5rem;
+      padding: 5rem 2.5rem;
     }
 
     /* Portada Principal */
@@ -105,8 +106,8 @@
       grid-template-columns: 340px 1fr;
       gap: 5rem;
       align-items: center;
-      padding-bottom: 5.5rem;
-      border-bottom: 1px solid var(--border-color);
+      padding-bottom: 5rem;
+      border-bottom: 1px dashed var(--border-color);
     }
 
     .profile-container {
@@ -115,13 +116,13 @@
     }
 
     .profile-img-wrap {
-      width: 300px;
-      height: 300px;
+      width: 290px;
+      height: 290px;
       border-radius: 50%;
-      border: 3px solid var(--accent-color);
-      box-shadow: 0 0 35px rgba(158, 58, 43, 0.25);
+      border: 2px dashed var(--accent-color);
+      box-shadow: 0 0 30px rgba(166, 52, 38, 0.2);
       overflow: hidden;
-      background-color: #0d0d0d;
+      background-color: #080808;
     }
 
     .profile-img-wrap img {
@@ -132,19 +133,19 @@
     }
 
     .bio-content h1 {
-      font-family: 'Cinzel', serif;
-      font-size: 3.2rem;
+      font-family: var(--font-mono);
+      font-size: 2.5rem;
       font-weight: 700;
-      letter-spacing: 0.08em;
-      margin-bottom: 2.2rem;
+      letter-spacing: 0.06em;
+      margin-bottom: 1.8rem;
       color: var(--text-main);
-      line-height: 1.15;
+      line-height: 1.2;
     }
 
     .bio-text {
       color: var(--text-muted);
-      font-size: 1.12rem;
-      margin-bottom: 2.5rem;
+      font-size: 1.08rem;
+      margin-bottom: 2.2rem;
     }
 
     .social-links {
@@ -159,17 +160,17 @@
       justify-content: center;
       width: 44px;
       height: 44px;
-      border-radius: 50%;
-      background-color: #1a1716;
-      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      background-color: var(--card-bg);
+      border: 1px dashed var(--border-color);
       color: var(--text-muted);
       text-decoration: none;
       transition: color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
     }
 
     .social-icon-btn svg {
-      width: 20px;
-      height: 20px;
+      width: 19px;
+      height: 19px;
       fill: currentColor;
     }
 
@@ -181,14 +182,14 @@
 
     /* Sección YouTube */
     .youtube-section {
-      padding-top: 5.5rem;
-      padding-bottom: 5.5rem;
-      border-bottom: 1px solid var(--border-color);
+      padding-top: 5rem;
+      padding-bottom: 5rem;
+      border-bottom: 1px dashed var(--border-color);
     }
 
     .youtube-bio {
       color: var(--text-muted);
-      font-size: 1.1rem;
+      font-size: 1.08rem;
       max-width: 900px;
       margin-bottom: 3.5rem;
     }
@@ -217,10 +218,10 @@
       flex: 0 0 calc(50% - 0.9rem);
       min-width: 320px;
       background-color: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 8px;
+      border: 1px dashed var(--border-color);
+      border-radius: 4px;
       overflow: hidden;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45);
     }
 
     .video-card-frame {
@@ -248,17 +249,17 @@
     }
 
     .btn-visit-channel {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.82rem;
-      font-weight: 600;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 700;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       text-decoration: none;
       color: var(--text-main);
       background-color: transparent;
-      border: 1px solid var(--accent-color);
+      border: 1px dashed var(--accent-color);
       padding: 0.65rem 1.4rem;
-      border-radius: 20px;
+      border-radius: 3px;
       transition: background-color 0.2s ease, color 0.2s ease;
       display: inline-flex;
       align-items: center;
@@ -275,115 +276,102 @@
     }
 
     .arrow-btn {
-      background: #1a1716;
-      border: 1px solid var(--border-color);
+      background: var(--card-bg);
+      border: 1px dashed var(--border-color);
       color: var(--text-main);
       width: 42px;
       height: 42px;
-      border-radius: 50%;
+      border-radius: 4px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      font-size: 1.2rem;
+      font-family: var(--font-mono);
+      font-size: 1.1rem;
       transition: border-color 0.2s, background-color 0.2s;
     }
 
     .arrow-btn:hover {
       border-color: var(--accent-color);
-      background-color: #241e1c;
+      background-color: #1e1b19;
     }
 
-    /* Sección Instagram */
-    .instagram-section {
-      padding-top: 5.5rem;
+    /* Galería / Álbum Fotográfico */
+    .photo-album-section {
+      padding-top: 5rem;
     }
 
-    .instagram-card {
-      background-color: var(--card-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 8px;
-      padding: 3rem 2.5rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 2.5rem;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    .album-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
     }
 
-    .instagram-profile {
-      display: flex;
-      align-items: center;
-      gap: 1.8rem;
-    }
-
-    .instagram-avatar {
-      width: 78px;
-      height: 78px;
-      border-radius: 50%;
-      border: 2px solid var(--accent-color);
+    .album-item {
+      display: block;
+      position: relative;
+      border-radius: 4px;
       overflow: hidden;
-      flex-shrink: 0;
+      border: 1px dashed var(--border-color);
+      background-color: var(--card-bg);
+      text-decoration: none;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+      transition: border-color 0.25s ease, transform 0.25s ease;
     }
 
-    .instagram-avatar img {
+    .album-item-frame {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
+      background-color: #0d0d0d;
+      position: relative;
+    }
+
+    .album-item img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
     }
 
-    .instagram-meta h3 {
-      font-family: 'Cinzel', serif;
-      font-size: 1.45rem;
-      letter-spacing: 0.06em;
-      color: var(--text-main);
-      margin-bottom: 0.25rem;
+    .album-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(15, 14, 13, 0.65);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
     }
 
-    .instagram-handle {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.95rem;
-      color: var(--accent-color);
-      font-weight: 500;
-      margin-bottom: 0.5rem;
-    }
-
-    .instagram-desc {
-      font-family: 'Lora', Georgia, serif;
-      font-size: 0.98rem;
-      color: var(--text-muted);
-      max-width: 480px;
-    }
-
-    .btn-instagram {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.82rem;
-      font-weight: 600;
+    .album-overlay span {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      font-weight: 700;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      text-decoration: none;
-      color: var(--text-main);
-      background-color: transparent;
-      border: 1px solid var(--border-color);
-      padding: 0.8rem 1.6rem;
-      border-radius: 20px;
-      white-space: nowrap;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
-    }
-
-    .btn-instagram svg {
-      width: 16px;
-      height: 16px;
-      fill: currentColor;
-    }
-
-    .btn-instagram:hover {
-      background-color: #241e1c;
-      border-color: var(--accent-color);
       color: #ffffff;
+      background-color: var(--accent-color);
+      padding: 0.55rem 1.1rem;
+      border-radius: 3px;
+    }
+
+    .album-item:hover {
+      border-color: var(--accent-color);
+      transform: translateY(-3px);
+    }
+
+    .album-item:hover img {
+      transform: scale(1.03);
+    }
+
+    .album-item:hover .album-overlay {
+      opacity: 1;
     }
 
     /* Pie de página */
@@ -392,12 +380,13 @@
       width: 100%;
       margin: 0 auto;
       padding: 2.5rem;
-      border-top: 1px solid var(--border-color);
+      border-top: 1px dashed var(--border-color);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.85rem;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
       color: #6d665b;
     }
 
@@ -415,7 +404,7 @@
       }
 
       .bio-content h1 {
-        font-size: 2.4rem;
+        font-size: 2.1rem;
         margin-bottom: 1.5rem;
       }
 
@@ -439,19 +428,8 @@
         flex-wrap: wrap;
       }
 
-      .instagram-section {
+      .photo-album-section {
         padding-top: 3.5rem;
-      }
-
-      .instagram-card {
-        flex-direction: column;
-        text-align: center;
-        padding: 2.2rem 1.5rem;
-      }
-
-      .instagram-profile {
-        flex-direction: column;
-        gap: 1.2rem;
       }
 
       footer {
@@ -560,24 +538,67 @@
       </div>
     </section>
 
-    <!-- Sección de Exhibición de Instagram -->
-    <section class="instagram-section">
-      <div class="instagram-card">
-        <div class="instagram-profile">
-          <div class="instagram-avatar">
-            <img src="LoveJones pic1.jpeg" alt="Love Jones">
+    <!-- Sección Álbum Fotográfico -->
+    <section class="photo-album-section">
+      <div class="album-grid">
+        <!-- Foto 1: Roc Marciano -->
+        <a class="album-item" href="https://www.instagram.com/p/DV49k9hjO30/?utm_source=ig_web_copy_link&stkn=MzRlODBiNWFlZA==" target="_blank" rel="noopener noreferrer">
+          <div class="album-item-frame">
+            <img src="./1.jpg" alt="Roc Marciano - Love Jones">
+            <div class="album-overlay">
+              <span>Ver post &rarr;</span>
+            </div>
           </div>
-          <div class="instagram-meta">
-            <h3>Love Jones</h3>
-            <div class="instagram-handle">@loveejonnes</div>
-            <p class="instagram-desc">Registro visual, notas y archivo cotidiano en torno al proceso de escritura e investigación.</p>
+        </a>
+
+        <!-- Foto 2: Jay-Z -->
+        <a class="album-item" href="https://www.instagram.com/p/Dd8f-DJlr5V/?utm_source=ig_web_copy_link&stkn=MzRlODBiNWFlZA==" target="_blank" rel="noopener noreferrer">
+          <div class="album-item-frame">
+            <img src="./2.jpg" alt="Jay-Z - Love Jones">
+            <div class="album-overlay">
+              <span>Ver post &rarr;</span>
+            </div>
           </div>
-        </div>
-        <a class="btn-instagram" href="https://www.instagram.com/loveejonnes/" target="_blank" rel="noopener noreferrer">
-          <svg viewBox="0 0 24 24">
-            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-          </svg>
-          Seguir en Instagram
+        </a>
+
+        <!-- Foto 3: Mach-Hommy -->
+        <a class="album-item" href="https://www.instagram.com/p/DSa36b_AQaV/?utm_source=ig_web_copy_link&stkn=MzRlODBiNWFlZA==" target="_blank" rel="noopener noreferrer">
+          <div class="album-item-frame">
+            <img src="./3.jpg" alt="Mach-Hommy - Love Jones">
+            <div class="album-overlay">
+              <span>Ver post &rarr;</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Foto 4: Da Brat -->
+        <a class="album-item" href="https://www.instagram.com/p/DbXANhqDH0F/?utm_source=ig_web_copy_link&stkn=MzRlODBiNWFlZA==" target="_blank" rel="noopener noreferrer">
+          <div class="album-item-frame">
+            <img src="./4.jpg" alt="Da Brat - Love Jones">
+            <div class="album-overlay">
+              <span>Ver post &rarr;</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Foto 5: Westside Gunn -->
+        <a class="album-item" href="https://www.instagram.com/p/DW2o6MJjP29/?utm_source=ig_web_copy_link&stkn=MzRlODBiNWFlZA==" target="_blank" rel="noopener noreferrer">
+          <div class="album-item-frame">
+            <img src="./5.jpg" alt="Westside Gunn - Love Jones">
+            <div class="album-overlay">
+              <span>Ver post &rarr;</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Foto 6: DOOM vs Ghostface -->
+        <a class="album-item" href="https://www.instagram.com/p/DVipyx_jv64/?utm_source=ig_web_copy_link&stkn=MzRlODBiNWFlZA==" target="_blank" rel="noopener noreferrer">
+          <div class="album-item-frame">
+            <img src="./6.jpg" alt="DOOM vs Ghostface - Love Jones">
+            <div class="album-overlay">
+              <span>Ver post &rarr;</span>
+            </div>
+          </div>
         </a>
       </div>
     </section>
@@ -590,6 +611,13 @@
   </footer>
 
   <script>
+    // Limpia automáticamente 'index.html' de la barra de direcciones
+    if (window.location.pathname.endsWith('/index.html')) {
+      const cleanPath = window.location.pathname.replace('/index.html', '/');
+      window.history.replaceState(null, '', cleanPath + window.location.search + window.location.hash);
+    }
+
+    // Lógica del Carrusel de Videos
     const track = document.getElementById('videoTrack');
     const wrapper = document.getElementById('carouselWrapper');
     let isPaused = false;
