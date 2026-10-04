@@ -33,6 +33,14 @@
       padding: 0;
     }
 
+    html, body {
+      cursor: default;
+    }
+
+    a, button {
+      cursor: pointer;
+    }
+
     body {
       background-color: var(--bg-color);
       color: var(--text-main);
@@ -42,6 +50,52 @@
       flex-direction: column;
       line-height: 1.85;
       -webkit-font-smoothing: antialiased;
+      position: relative;
+    }
+
+    /* Grano analógico de fondo */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.045;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    }
+
+    /* Cubo Holográfico Evasivo */
+    .floating-companion {
+      position: fixed;
+      bottom: 1.8rem;
+      right: 1.8rem;
+      width: 74px;
+      height: 85px;
+      z-index: 999;
+      pointer-events: auto;
+      will-change: transform;
+      transition: filter 0.3s ease;
+      filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.3));
+    }
+
+    .companion-inner {
+      width: 100%;
+      height: 100%;
+      animation: cyberPulse 4s ease-in-out infinite;
+    }
+
+    @keyframes cyberPulse {
+      0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+        filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.35));
+      }
+      50% {
+        transform: translateY(-4px) rotate(1deg);
+        filter: drop-shadow(0 0 12px rgba(255, 230, 128, 0.65));
+      }
     }
 
     /* Encabezado */
@@ -226,6 +280,12 @@
       .btn-submit {
         width: 100%;
       }
+      .floating-companion {
+        bottom: 1.2rem;
+        right: 1.2rem;
+        width: 62px;
+        height: 72px;
+      }
       footer {
         flex-direction: column;
         gap: 0.8rem;
@@ -235,6 +295,69 @@
   </style>
 </head>
 <body>
+
+  <!-- Cubo Holográfico Evasivo -->
+  <div class="floating-companion" id="companionBadge">
+    <div class="companion-inner">
+      <svg viewBox="0 0 120 135" width="100%" height="100%">
+        <defs>
+          <filter id="goldCyberGlow" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur stdDeviation="2" result="glow" />
+            <feMerge>
+              <feMergeNode in="glow" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+
+          <linearGradient id="cyberGoldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#ffffff" />
+            <stop offset="25%" stop-color="#ffe680" />
+            <stop offset="65%" stop-color="#d4af37" />
+            <stop offset="100%" stop-color="#997825" />
+          </linearGradient>
+
+          <linearGradient id="cyberInnerGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#59430c" />
+            <stop offset="100%" stop-color="#c5a028" />
+          </linearGradient>
+        </defs>
+
+        <g stroke="url(#cyberInnerGrad)" stroke-width="1.2" stroke-dasharray="2.5 2" fill="none">
+          <line x1="60" y1="82" x2="60" y2="52" />
+          <line x1="28" y1="34" x2="60" y2="52" />
+          <line x1="92" y1="34" x2="60" y2="52" />
+        </g>
+
+        <polygon points="60,8 92,26 92,68 60,86 28,68 28,26" 
+                 stroke="url(#cyberGoldGrad)" stroke-width="1.8" fill="none" filter="url(#goldCyberGlow)" />
+
+        <g stroke="url(#cyberGoldGrad)" stroke-width="1.4" fill="none">
+          <line x1="60" y1="46" x2="60" y2="86" />
+          <line x1="60" y1="46" x2="28" y2="26" />
+          <line x1="60" y1="46" x2="92" y2="26" />
+        </g>
+
+        <circle cx="60" cy="8" r="2.2" fill="#ffffff" filter="url(#goldCyberGlow)" />
+        <circle cx="92" cy="26" r="2" fill="#ffe680" />
+        <circle cx="92" cy="68" r="2" fill="#ffe680" />
+        <circle cx="60" cy="86" r="2.2" fill="#ffffff" filter="url(#goldCyberGlow)" />
+        <circle cx="28" cy="68" r="2" fill="#ffe680" />
+        <circle cx="28" cy="26" r="2" fill="#ffe680" />
+
+        <g font-family="'Space Mono', monospace" font-size="21" font-weight="700" 
+           fill="url(#cyberGoldGrad)" filter="url(#goldCyberGlow)" letter-spacing="1">
+          <text x="60" y="53" text-anchor="middle" dominant-baseline="central">LJ</text>
+        </g>
+
+        <g font-family="'Space Mono', monospace" font-size="7.5" font-weight="700" letter-spacing="2">
+          <text x="18" y="112" fill="#ffffff" filter="url(#goldCyberGlow)">L</text>
+          <text x="25" y="112" fill="#d4af37" font-weight="400">OVE</text>
+          <text x="64" y="112" fill="#ffffff" filter="url(#goldCyberGlow)">J</text>
+          <text x="71" y="112" fill="#d4af37" font-weight="400">ONES</text>
+        </g>
+      </svg>
+    </div>
+  </div>
 
   <!-- Encabezado -->
   <header>
@@ -307,5 +430,48 @@
     <div>Love Jones</div>
   </footer>
 
+  <script>
+    // Evasión del Cubo
+    const companion = document.getElementById('companionBadge');
+    let evadeX = 0;
+    let evadeY = 0;
+    let curX = 0;
+    let curY = 0;
+
+    window.addEventListener('mousemove', (e) => {
+      if (!companion) return;
+      const rect = companion.getBoundingClientRect();
+      const compCenterX = rect.left + rect.width / 2;
+      const compCenterY = rect.top + rect.height / 2;
+
+      const distX = e.clientX - compCenterX;
+      const distY = e.clientY - compCenterY;
+      const distance = Math.hypot(distX, distY);
+
+      const alertRadius = 140;
+
+      if (distance < alertRadius && distance > 0) {
+        const force = (alertRadius - distance) / alertRadius;
+        const angle = Math.atan2(distY, distX);
+        evadeX = -Math.cos(angle) * (force * 95);
+        evadeY = -Math.sin(angle) * (force * 95);
+      } else {
+        evadeX *= 0.88;
+        evadeY *= 0.88;
+      }
+    });
+
+    function renderEvasion() {
+      curX += (evadeX - curX) * 0.12;
+      curY += (evadeY - curY) * 0.12;
+
+      if (companion) {
+        companion.style.transform = `translate3d(${curX.toFixed(2)}px, ${curY.toFixed(2)}px, 0)`;
+      }
+      requestAnimationFrame(renderEvasion);
+    }
+
+    requestAnimationFrame(renderEvasion);
+  </script>
 </body>
 </html>
