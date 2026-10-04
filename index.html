@@ -8,7 +8,7 @@
   <!-- Favicon -->
   <link rel="icon" type="image/jpeg" href="LoveJones pic1.jpeg">
 
-  <!-- Tipografías: Monoespaciada técnica + Romana sobria de lectura -->
+  <!-- Tipografías -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
@@ -22,8 +22,8 @@
       --text-main: #dfd7c8;
       --text-muted: #8c8476;
       --border-color: #2b2622;
-      --gold-primary: #d4af37;
-      --gold-deep: #997825;
+      --gold-bright: #ffe680;
+      --gold-cyber: #d4af37;
       --font-mono: 'Space Mono', 'Courier Prime', monospace;
       --font-serif: 'Lora', Georgia, serif;
     }
@@ -34,8 +34,13 @@
       padding: 0;
     }
 
-    html, body, a, button, input, textarea {
-      cursor: crosshair;
+    /* Cursor estándar restaurado */
+    html, body {
+      cursor: default;
+    }
+
+    a, button {
+      cursor: pointer;
     }
 
     body {
@@ -50,7 +55,7 @@
       position: relative;
     }
 
-    /* Textura analógica de grano/papel carbón */
+    /* Grano de película de fondo */
     body::before {
       content: "";
       position: fixed;
@@ -64,33 +69,34 @@
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
     }
 
-    /* Cubo Acompañante: Oro puro / Metáfora de jaula mental y liberación */
+    /* Cubo Holográfico Evasivo (Cyber Glow Gold) */
     .floating-companion {
       position: fixed;
-      bottom: 2rem;
-      right: 2rem;
-      width: 86px;
-      height: 86px;
+      bottom: 2.2rem;
+      right: 2.2rem;
+      width: 96px;
+      height: 110px;
       z-index: 999;
-      pointer-events: none;
-      opacity: 0.88;
-      filter: drop-shadow(0 0 12px rgba(212, 175, 55, 0.22));
-      transition: opacity 0.3s ease;
+      pointer-events: auto;
       will-change: transform;
+      transition: filter 0.3s ease;
+      filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.35));
     }
 
     .companion-inner {
       width: 100%;
       height: 100%;
-      animation: subtleFloat 5.5s ease-in-out infinite;
+      animation: cyberPulse 4s ease-in-out infinite;
     }
 
-    @keyframes subtleFloat {
+    @keyframes cyberPulse {
       0%, 100% {
         transform: translateY(0px) rotate(0deg);
+        filter: drop-shadow(0 0 8px rgba(212, 175, 55, 0.4));
       }
       50% {
-        transform: translateY(-6px) rotate(1.2deg);
+        transform: translateY(-5px) rotate(1deg);
+        filter: drop-shadow(0 0 16px rgba(255, 230, 128, 0.75));
       }
     }
 
@@ -241,7 +247,7 @@
       font-weight: 700;
     }
 
-    /* Sección Curador Musical (YouTube) */
+    /* Sección Curador Musical */
     .youtube-section {
       padding-top: 5rem;
       padding-bottom: 5rem;
@@ -368,7 +374,6 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      cursor: crosshair;
       font-family: var(--font-mono);
       font-size: 1.05rem;
       transition: border-color 0.2s, background-color 0.2s;
@@ -535,8 +540,8 @@
       .floating-companion {
         bottom: 1.5rem;
         right: 1.5rem;
-        width: 70px;
-        height: 70px;
+        width: 76px;
+        height: 90px;
       }
 
       footer {
@@ -549,60 +554,78 @@
 </head>
 <body>
 
-  <!-- Acompañante Silencioso: Cubo de Oro Puro // Cárcel mental & Liberación Intelectual -->
-  <div class="floating-companion" id="companionBadge" aria-hidden="true">
+  <!-- Cubo Holográfico con Evasión Dinámica (Cyber Glow Light & LJ Definido) -->
+  <div class="floating-companion" id="companionBadge">
     <div class="companion-inner">
-      <svg viewBox="0 0 120 120" width="100%" height="100%">
+      <svg viewBox="0 0 120 135" width="100%" height="100%">
         <defs>
-          <!-- Gradiente de oro puro cepillado -->
-          <linearGradient id="pureGoldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#fff2b3" />
-            <stop offset="35%" stop-color="#d4af37" />
-            <stop offset="70%" stop-color="#aa820a" />
-            <stop offset="100%" stop-color="#f3e5ab" />
+          <!-- Filtro Cyber Glow Light -->
+          <filter id="goldCyberGlow" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur stdDeviation="2.2" result="glow" />
+            <feMerge>
+              <feMergeNode in="glow" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+
+          <!-- Gradiente Oro Cyberpunk -->
+          <linearGradient id="cyberGoldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#ffffff" />
+            <stop offset="25%" stop-color="#ffe680" />
+            <stop offset="65%" stop-color="#d4af37" />
+            <stop offset="100%" stop-color="#997825" />
           </linearGradient>
 
-          <!-- Gradiente para barras internas/aristas en sombra -->
-          <linearGradient id="deepGoldGrad" x1="0%" y1="100%" x2="100%" y2="0%">
-            <stop offset="0%" stop-color="#73540a" />
+          <!-- Gradiente de profundidad interna -->
+          <linearGradient id="cyberInnerGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#59430c" />
             <stop offset="100%" stop-color="#c5a028" />
           </linearGradient>
         </defs>
 
-        <!-- Aristas internas punteadas (rejas del cubo interior) -->
-        <g stroke="url(#deepGoldGrad)" stroke-width="1.3" stroke-dasharray="2 2" fill="none">
-          <line x1="60" y1="88" x2="60" y2="58" />
-          <line x1="28" y1="40" x2="60" y2="58" />
-          <line x1="92" y1="40" x2="60" y2="58" />
+        <!-- Aristas internas de la proyección -->
+        <g stroke="url(#cyberInnerGrad)" stroke-width="1.2" stroke-dasharray="2.5 2" fill="none">
+          <line x1="60" y1="82" x2="60" y2="52" />
+          <line x1="28" y1="34" x2="60" y2="52" />
+          <line x1="92" y1="34" x2="60" y2="52" />
         </g>
 
-        <!-- Aristas exteriores del Cubo de Oro -->
-        <polygon points="60,12 92,30 92,72 60,90 28,72 28,30" 
-                 stroke="url(#pureGoldGrad)" stroke-width="1.8" fill="none" />
+        <!-- Aristas exteriores del Cubo -->
+        <polygon points="60,8 92,26 92,68 60,86 28,68 28,26" 
+                 stroke="url(#cyberGoldGrad)" stroke-width="1.8" fill="none" filter="url(#goldCyberGlow)" />
 
-        <!-- Aristas frontales que convergen en el centro -->
-        <g stroke="url(#pureGoldGrad)" stroke-width="1.5" fill="none">
-          <line x1="60" y1="50" x2="60" y2="90" />
-          <line x1="60" y1="50" x2="28" y2="30" />
-          <line x1="60" y1="50" x2="92" y2="30" />
+        <!-- Aristas que convergen en el centro -->
+        <g stroke="url(#cyberGoldGrad)" stroke-width="1.4" fill="none">
+          <line x1="60" y1="46" x2="60" y2="86" />
+          <line x1="60" y1="46" x2="28" y2="26" />
+          <line x1="60" y1="46" x2="92" y2="26" />
         </g>
 
-        <!-- Vértices rematados en oro -->
-        <circle cx="60" cy="12" r="2" fill="url(#pureGoldGrad)" />
-        <circle cx="92" cy="30" r="2" fill="url(#pureGoldGrad)" />
-        <circle cx="92" cy="72" r="2" fill="url(#pureGoldGrad)" />
-        <circle cx="60" cy="90" r="2" fill="url(#pureGoldGrad)" />
-        <circle cx="28" cy="72" r="2" fill="url(#pureGoldGrad)" />
-        <circle cx="28" cy="30" r="2" fill="url(#pureGoldGrad)" />
+        <!-- Nodos de luz en vértices -->
+        <circle cx="60" cy="8" r="2.2" fill="#ffffff" filter="url(#goldCyberGlow)" />
+        <circle cx="92" cy="26" r="2" fill="#ffe680" />
+        <circle cx="92" cy="68" r="2" fill="#ffe680" />
+        <circle cx="60" cy="86" r="2.2" fill="#ffffff" filter="url(#goldCyberGlow)" />
+        <circle cx="28" cy="68" r="2" fill="#ffe680" />
+        <circle cx="28" cy="26" r="2" fill="#ffe680" />
 
-        <!-- Monograma interior LJ fundido en oro -->
-        <text x="60" y="58" text-anchor="middle" dominant-baseline="central" 
-              font-family="'Space Mono', monospace" font-size="20" font-weight="700" 
-              fill="url(#pureGoldGrad)" letter-spacing="1">LJ</text>
+        <!-- Monograma interior LJ estilizado y definido -->
+        <g font-family="'Space Mono', monospace" font-size="21" font-weight="700" 
+           fill="url(#cyberGoldGrad)" filter="url(#goldCyberGlow)" letter-spacing="1">
+          <text x="60" y="53" text-anchor="middle" dominant-baseline="central">LJ</text>
+        </g>
 
-        <!-- Inscripción documental -->
-        <text x="60" y="108" text-anchor="middle" font-family="'Space Mono', monospace" 
-              font-size="6.5" font-weight="700" fill="#c5a028" letter-spacing="1.5">LJ // ARCHIVE</text>
+        <!-- Inscripción inferior con L y J resaltadas -->
+        <g font-family="'Space Mono', monospace" font-size="7.5" font-weight="700" letter-spacing="2">
+          <!-- L -->
+          <text x="18" y="112" fill="#ffffff" filter="url(#goldCyberGlow)">L</text>
+          <!-- ove -->
+          <text x="25" y="112" fill="#d4af37" font-weight="400">OVE</text>
+          <!-- J -->
+          <text x="64" y="112" fill="#ffffff" filter="url(#goldCyberGlow)">J</text>
+          <!-- ones -->
+          <text x="71" y="112" fill="#d4af37" font-weight="400">ONES</text>
+        </g>
       </svg>
     </div>
   </div>
@@ -618,7 +641,6 @@
 
   <!-- Contenido Central -->
   <main>
-    <!-- Portada Principal -->
     <section class="hero-section">
       <div class="profile-container">
         <div class="profile-img-wrap">
@@ -632,7 +654,6 @@
           <p>Love Jones es el aka de un escritor e investigador independiente de la ciudad de Bogotá, Colombia. Su paso por universidades como la Universidad Autónoma de Colombia y la Universidad de La Salle le dieron las bases para seguir formándose de manera independiente como escritor e investigador. Dentro de lo que podemos saber, actualmente se encuentra trabajando en un libro recopilatorio de ensayos sobre la cultura Hip-Hop.</p>
         </div>
 
-        <!-- Redes Sociales -->
         <div class="social-links">
           <a class="social-icon-btn" href="https://www.youtube.com/@LoveeJonnes" target="_blank" rel="noopener noreferrer" aria-label="Canal de YouTube">
             <svg viewBox="0 0 24 24">
@@ -655,7 +676,7 @@
       </div>
     </section>
 
-    <!-- Sección CURADOR MUSICAL -->
+    <!-- Sección Curador Musical -->
     <section class="youtube-section">
       <div class="section-title">Curador Musical</div>
       <p class="youtube-bio">
@@ -699,7 +720,7 @@
       </div>
     </section>
 
-    <!-- Sección THA DIGGER AKA HUSTLER RESEARCHER -->
+    <!-- Sección Tha Digger aka Hustler Researcher -->
     <section class="researcher-section">
       <div class="section-title">THA DIGGER AKA HUSTLER RESEARCHER</div>
       <p class="researcher-text">
@@ -707,7 +728,7 @@
       </p>
     </section>
 
-    <!-- Sección ALGUNOS ENSAYOS -->
+    <!-- Sección Algunos Ensayos -->
     <section class="essays-section">
       <div class="section-title">Algunos Ensayos</div>
       <p class="essays-bio">
@@ -817,31 +838,53 @@
       setTimeout(() => { isPaused = false; }, 3000);
     }
 
-    // Movimiento sutil y amortiguado del Cubo
+    // Física de Evasión (El cubo evita ser atrapado)
     const companion = document.getElementById('companionBadge');
-    let targetX = 0;
-    let targetY = 0;
-    let currentX = 0;
-    let currentY = 0;
+    let evadeX = 0;
+    let evadeY = 0;
+    let curX = 0;
+    let curY = 0;
 
     window.addEventListener('mousemove', (e) => {
-      const relX = (e.clientX / window.innerWidth) - 0.5;
-      const relY = (e.clientY / window.innerHeight) - 0.5;
-      targetX = relX * 16;
-      targetY = relY * 16;
+      if (!companion) return;
+      const rect = companion.getBoundingClientRect();
+      const compCenterX = rect.left + rect.width / 2;
+      const compCenterY = rect.top + rect.height / 2;
+
+      const distX = e.clientX - compCenterX;
+      const distY = e.clientY - compCenterY;
+      const distance = Math.hypot(distX, distY);
+
+      // Radio de alerta (160px)
+      const alertRadius = 160;
+
+      if (distance < alertRadius && distance > 0) {
+        // Fuerza de repulsión inversamente proporcional
+        const force = (alertRadius - distance) / alertRadius;
+        const angle = Math.atan2(distY, distX);
+        
+        // Empuja en dirección contraria
+        evadeX = -Math.cos(angle) * (force * 110);
+        evadeY = -Math.sin(angle) * (force * 110);
+      } else {
+        // Regresa gradualmente a su posición base
+        evadeX *= 0.88;
+        evadeY *= 0.88;
+      }
     });
 
-    function renderCompanion() {
-      currentX += (targetX - currentX) * 0.08;
-      currentY += (targetY - currentY) * 0.08;
-      
+    function renderEvasion() {
+      // Amortiguación continua (lerp)
+      curX += (evadeX - curX) * 0.12;
+      curY += (evadeY - curY) * 0.12;
+
       if (companion) {
-        companion.style.transform = `translate3d(${currentX.toFixed(2)}px, ${currentY.toFixed(2)}px, 0)`;
+        companion.style.transform = `translate3d(${curX.toFixed(2)}px, ${curY.toFixed(2)}px, 0)`;
       }
-      requestAnimationFrame(renderCompanion);
+      requestAnimationFrame(renderEvasion);
     }
 
-    requestAnimationFrame(renderCompanion);
+    requestAnimationFrame(renderEvasion);
   </script>
 </body>
 </html>
