@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Love Jones — Taller Editorial Avanzado</title>
+  <title>Love Jones — Taller Editorial &bull; Notas Flotantes</title>
   
   <link rel="icon" type="image/jpeg" href="LoveJones pic1.jpeg">
 
@@ -76,14 +76,8 @@
       gap: 1.2rem;
     }
 
-    .metrics-bar span b {
-      color: var(--text-main);
-    }
-
-    .status-save {
-      color: var(--accent-color);
-      font-weight: 700;
-    }
+    .metrics-bar span b { color: var(--text-main); }
+    .status-save { color: var(--accent-color); font-weight: 700; }
 
     .tool-btn {
       background: var(--card-bg);
@@ -106,6 +100,7 @@
     .tool-btn.btn-accent {
       border-color: var(--accent-color);
       color: #e6a89f;
+      font-weight: 700;
     }
 
     .btn-export {
@@ -133,7 +128,7 @@
 
     .btn-clear:hover { color: var(--accent-hover); }
 
-    /* Mesa de redacción */
+    /* Mesa de Redacción */
     main {
       flex: 1;
       max-width: 760px;
@@ -200,7 +195,7 @@
       line-height: 1.35;
     }
 
-    /* Lienzo de lectura */
+    /* Lienzo de Lectura */
     #editorialCanvas {
       outline: none;
       font-family: var(--font-serif);
@@ -252,9 +247,7 @@
       padding-left: 1.8rem;
     }
 
-    #editorialCanvas li {
-      margin-bottom: 0.5rem;
-    }
+    #editorialCanvas li { margin-bottom: 0.5rem; }
 
     #editorialCanvas a {
       color: var(--text-main);
@@ -268,7 +261,11 @@
       padding: 0.1rem 0.3rem;
     }
 
-    .footnote-ref {
+    /* Estilo del Botón de la Nota en el Texto */
+    .footnote-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       color: var(--accent-color);
       font-family: var(--font-mono);
       font-weight: 700;
@@ -276,10 +273,14 @@
       vertical-align: super;
       text-decoration: none;
       cursor: pointer;
-      margin: 0 0.2rem;
+      margin: 0 0.15rem;
+      background: rgba(158, 53, 39, 0.12);
+      padding: 0.1rem 0.35rem;
+      border-radius: 2px;
+      border: 1px dashed var(--border-color);
     }
 
-    /* Sección de Notas al Pie */
+    /* Editor de Notas al Pie */
     .footnotes-section {
       margin-top: 4rem;
       padding-top: 2rem;
@@ -305,7 +306,8 @@
     }
 
     #footnotesList li {
-      margin-bottom: 0.6rem;
+      margin-bottom: 0.8rem;
+      padding-right: 1rem;
     }
 
     @media (max-width: 768px) {
@@ -334,7 +336,7 @@
         <button class="tool-btn" onclick="exec('insertOrderedList')">1. Lista</button>
         <button class="tool-btn" onclick="applyHighlight()">Resaltar</button>
         <button class="tool-btn" onclick="insertLink()">Enlace</button>
-        <button class="tool-btn btn-accent" onclick="insertFootnote()">[+ NOTA]</button>
+        <button class="tool-btn btn-accent" onclick="insertFootnote()">[+ NOTA FLOTANTE]</button>
         <button class="tool-btn" onclick="exec('insertHorizontalRule')">Línea &bull;</button>
       </div>
 
@@ -365,12 +367,12 @@
 
     <!-- Hoja de Redacción -->
     <div id="editorialCanvas" contenteditable="true" spellcheck="false">
-      <p>Comienza a escribir o pega aquí el contenido de tu investigación...</p>
+      <p>Comienza a escribir aquí tu texto. Cuando necesites citar una fuente o hacer una aclaración teórica, sitúa el cursor donde va la referencia y presiona el botón <b>[+ NOTA FLOTANTE]</b>.</p>
     </div>
 
-    <!-- Sección de Notas al Pie -->
+    <!-- Registro de Notas al Pie (Editable) -->
     <div class="footnotes-section" id="footnotesSection" style="display: none;">
-      <div class="footnotes-title">Aparato Crítico &bull; Referencias</div>
+      <div class="footnotes-title">Aparato Crítico &bull; Referencias (Edita aquí el contenido de cada nota)</div>
       <ol id="footnotesList" contenteditable="true" spellcheck="false">
       </ol>
     </div>
@@ -412,26 +414,27 @@
 
     function insertFootnote() {
       footnoteIndex++;
-      const sup = document.createElement('a');
-      sup.className = 'footnote-ref';
-      sup.href = '#fn-' + footnoteIndex;
-      sup.id = 'ref-' + footnoteIndex;
-      sup.textContent = '[' + footnoteIndex + ']';
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'footnote-button';
+      btn.setAttribute('data-fn', footnoteIndex);
+      btn.textContent = '[' + footnoteIndex + ']';
 
       const sel = window.getSelection();
       if (sel.rangeCount) {
         const range = sel.getRangeAt(0);
         range.collapse(false);
-        range.insertNode(sup);
-        range.setStartAfter(sup);
+        range.insertNode(btn);
+        range.setStartAfter(btn);
         sel.removeAllRanges();
         sel.addRange(range);
       }
 
       fSec.style.display = 'block';
       const li = document.createElement('li');
-      li.id = 'fn-' + footnoteIndex;
-      li.innerHTML = 'Referencia documental o bibliográfica [' + footnoteIndex + ']... <a href="#ref-' + footnoteIndex + '">&uarr;</a>';
+      li.id = 'fn-item-' + footnoteIndex;
+      li.setAttribute('data-fn-id', footnoteIndex);
+      li.innerHTML = 'Escribe aquí la referencia documental o bibliográfica [' + footnoteIndex + ']...';
       fList.appendChild(li);
 
       triggerAutoSave();
@@ -509,7 +512,7 @@
       const fnVisible = fSec.style.display !== 'none';
       const fnHtml = fnVisible ? `
       <div class="footnotes-section">
-        <div class="footnotes-title">Aparato Crítico &bull; Referencias</div>
+        <div class="footnotes-title">Aparato Crítico &bull; Registro Completo</div>
         <ol class="footnotes-list">
           ${fList.innerHTML}
         </ol>
@@ -528,7 +531,7 @@
   <style>
     :root {
       --bg-color: #0d0c0b;
-      --card-bg: #121110;
+      --card-bg: #141312;
       --accent-color: #9e3527;
       --accent-hover: #b83f30;
       --text-main: #dfd7c8;
@@ -662,15 +665,75 @@
       border-bottom: 1px solid var(--accent-color);
       padding: 0.1rem 0.3rem;
     }
-    .footnote-ref {
+    
+    /* Botón interactivo de la nota al pie */
+    .footnote-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       color: var(--accent-color);
       font-family: var(--font-mono);
       font-weight: 700;
-      font-size: 0.75rem;
+      font-size: 0.76rem;
       vertical-align: super;
       text-decoration: none;
-      margin: 0 0.2rem;
+      cursor: pointer;
+      margin: 0 0.15rem;
+      background: rgba(158, 53, 39, 0.12);
+      border: 1px dashed var(--border-color);
+      padding: 0.1rem 0.35rem;
+      border-radius: 2px;
+      transition: all 0.2s ease;
     }
+    .footnote-button:hover, .footnote-button.active {
+      background: var(--accent-color);
+      color: #ffffff;
+      border-color: var(--accent-hover);
+    }
+
+    /* Tarjeta Flotante (Popup / Popover) */
+    .footnote-popover {
+      position: absolute;
+      z-index: 1000;
+      width: min(360px, 90vw);
+      background-color: #161514;
+      border: 1px dashed var(--accent-color);
+      box-shadow: 0 14px 35px rgba(0,0,0,0.85);
+      border-radius: 4px;
+      padding: 1.2rem;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--text-main);
+      line-height: 1.65;
+      display: none;
+      animation: fadeInNote 0.2s ease;
+    }
+    @keyframes fadeInNote {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .popover-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.6rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px dashed var(--border-color);
+      color: var(--accent-color);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+    }
+    .popover-close {
+      cursor: pointer;
+      color: var(--text-muted);
+      background: none;
+      border: none;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+    }
+    .popover-close:hover { color: var(--text-main); }
+
     .footnotes-section {
       margin-top: 4.5rem;
       padding-top: 2rem;
@@ -691,7 +754,7 @@
       line-height: 1.7;
       padding-left: 1.4rem;
     }
-    .footnotes-list li { margin-bottom: 0.6rem; }
+    .footnotes-list li { margin-bottom: 0.8rem; }
     .article-body hr {
       border: none;
       border-top: 1px dashed var(--border-color);
@@ -738,15 +801,82 @@
     </article>
     \${fnHtml}
   </main>
+
+  <!-- Tarjeta Flotante Inyectada Dinámicamente -->
+  <div id="activePopover" class="footnote-popover">
+    <div class="popover-header">
+      <span id="popoverLabel">NOTA</span>
+      <button type="button" class="popover-close" onclick="closePopover()">&times;</button>
+    </div>
+    <div id="popoverContent"></div>
+  </div>
+
   <footer>
     <div>&copy; Bogotá, Colombia.</div>
     <div>Love Jones</div>
   </footer>
+
   <script>
     if (window.location.pathname.endsWith('.html')) {
       const clean = window.location.pathname.replace('.html', '');
       window.history.replaceState(null, '', clean + window.location.search + window.location.hash);
     }
+
+    const popover = document.getElementById('activePopover');
+    const popContent = document.getElementById('popoverContent');
+    const popLabel = document.getElementById('popoverLabel');
+    let currentTrigger = null;
+
+    function closePopover() {
+      popover.style.display = 'none';
+      if (currentTrigger) currentTrigger.classList.remove('active');
+      currentTrigger = null;
+    }
+
+    document.addEventListener('click', (e) => {
+      const btn = e.target.closest('.footnote-button');
+      if (btn) {
+        e.stopPropagation();
+        const fnId = btn.getAttribute('data-fn');
+        const targetLi = document.querySelector('[data-fn-id="' + fnId + '"]') || document.getElementById('fn-item-' + fnId);
+
+        if (currentTrigger === btn && popover.style.display === 'block') {
+          closePopover();
+          return;
+        }
+
+        if (targetLi) {
+          if (currentTrigger) currentTrigger.classList.remove('active');
+          currentTrigger = btn;
+          btn.classList.add('active');
+
+          popLabel.textContent = 'NOTA [' + fnId + ']';
+          popContent.innerHTML = targetLi.innerHTML;
+          popover.style.display = 'block';
+
+          const rect = btn.getBoundingClientRect();
+          const popWidth = popover.offsetWidth;
+          let left = rect.left + window.scrollX - (popWidth / 2) + (rect.width / 2);
+          
+          if (left < 15) left = 15;
+          if (left + popWidth > window.innerWidth - 15) {
+            left = window.innerWidth - popWidth - 15;
+          }
+
+          let top = rect.bottom + window.scrollY + 8;
+          popover.style.left = left + 'px';
+          popover.style.top = top + 'px';
+        }
+        return;
+      }
+
+      if (!popover.contains(e.target)) {
+        closePopover();
+      }
+    });
+
+    window.addEventListener('resize', closePopover);
+    window.addEventListener('scroll', () => { if (popover.style.display === 'block') closePopover(); }, { passive: true });
   <\/script>
 </body>
 </html>`;
