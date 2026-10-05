@@ -238,8 +238,8 @@
       line-height: 1.35;
     }
 
-    /* Lienzo Editorial (Modo Web Estándar) */
-    #editorialCanvas {
+    /* Lienzo Editorial */
+    #editorialCanvas, .article-body {
       outline: none;
       font-family: var(--font-serif);
       font-size: 1.15rem;
@@ -248,13 +248,13 @@
       min-height: 420px;
     }
 
-    #editorialCanvas p {
+    #editorialCanvas p, .article-body p {
       margin-bottom: 2rem;
       text-align: justify;
     }
 
-    /* MODO MAQUETACIÓN DE LIBRO IMPRESO */
-    #editorialCanvas.mode-book p {
+    /* Modo Libro Impreso */
+    #editorialCanvas.mode-book p, .article-body.mode-book p {
       margin-bottom: 0 !important;
       text-indent: 2em;
       text-align: justify;
@@ -266,13 +266,21 @@
     #editorialCanvas.mode-book h3 + p,
     #editorialCanvas.mode-book blockquote + p,
     #editorialCanvas.mode-book hr + p,
-    #editorialCanvas.mode-book .editorial-plate + p {
+    #editorialCanvas.mode-book .editorial-plate + p,
+    .article-body.mode-book > p:first-of-type,
+    .article-body.mode-book h2 + p,
+    .article-body.mode-book h3 + p,
+    .article-body.mode-book blockquote + p,
+    .article-body.mode-book hr + p,
+    .article-body.mode-book .editorial-plate + p {
       text-indent: 0 !important;
     }
 
-    /* Letra Capitular (Drop Cap) */
+    /* Capitular */
     #editorialCanvas.mode-book.has-dropcap > p:first-of-type::first-letter,
-    #editorialCanvas.mode-book.has-dropcap h2 + p::first-letter {
+    #editorialCanvas.mode-book.has-dropcap h2 + p::first-letter,
+    .article-body.mode-book.has-dropcap > p:first-of-type::first-letter,
+    .article-body.mode-book.has-dropcap h2 + p::first-letter {
       float: left;
       font-size: 3.5rem;
       line-height: 0.8;
@@ -284,7 +292,7 @@
       font-weight: 700;
     }
 
-    #editorialCanvas h2 {
+    #editorialCanvas h2, .article-body h2 {
       font-family: var(--font-mono);
       font-size: 1.25rem;
       color: var(--text-main);
@@ -293,7 +301,7 @@
       margin: 3.2rem 0 1.2rem 0;
     }
 
-    #editorialCanvas h3 {
+    #editorialCanvas h3, .article-body h3 {
       font-family: var(--font-mono);
       font-size: 1.05rem;
       color: var(--accent-hover);
@@ -302,40 +310,45 @@
       margin: 2.4rem 0 1rem 0;
     }
 
-    #editorialCanvas blockquote {
+    /* Citas en Bloque */
+    #editorialCanvas blockquote, .article-body blockquote {
+      display: block;
+      width: 100%;
       border-left: 2px solid var(--accent-color);
-      padding-left: 1.4rem;
-      margin: 2.5rem 0;
+      padding: 0.6rem 0 0.6rem 1.4rem;
+      margin: 2.2rem 0;
       color: var(--text-muted);
       font-style: italic;
+      background: transparent;
+      box-sizing: border-box;
     }
 
-    #editorialCanvas hr {
+    #editorialCanvas hr, .article-body hr {
       border: none;
       border-top: 1px dashed var(--border-color);
       margin: 3.5rem 0;
     }
 
-    #editorialCanvas ul, #editorialCanvas ol {
+    #editorialCanvas ul, #editorialCanvas ol,
+    .article-body ul, .article-body ol {
       margin-bottom: 2rem;
       padding-left: 1.8rem;
     }
 
-    #editorialCanvas li { margin-bottom: 0.5rem; }
+    #editorialCanvas li, .article-body li { margin-bottom: 0.5rem; }
 
-    #editorialCanvas a {
+    #editorialCanvas a, .article-body a {
       color: var(--text-main);
       text-decoration: underline;
       text-underline-offset: 3px;
     }
 
-    #editorialCanvas .highlight-text {
+    #editorialCanvas .highlight-text, .article-body .highlight-text {
       background-color: rgba(158, 53, 39, 0.22);
       border-bottom: 1px solid var(--accent-color);
       padding: 0.1rem 0.3rem;
     }
 
-    /* Láminas de Archivo e Incrustaciones */
     .editorial-plate {
       margin: 3.5rem 0;
       border: 1px dashed var(--border-color);
@@ -390,34 +403,32 @@
       margin: 0 0.2rem;
     }
 
+    /* Notas al pie en el texto: compactas y sin fondo */
     .footnote-button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
+      display: inline;
+      background: none;
+      border: none;
+      padding: 0;
+      margin: 0 0.12rem;
       color: var(--accent-color);
       font-family: var(--font-mono);
+      font-size: 0.7rem;
       font-weight: 700;
-      font-size: 0.76rem;
       vertical-align: super;
-      text-decoration: none;
+      line-height: 1;
       cursor: pointer;
-      margin: 0 0.15rem;
-      background: rgba(158, 53, 39, 0.12);
-      border: 1px dashed var(--border-color);
-      padding: 0.1rem 0.35rem;
-      border-radius: 2px;
-      transition: all 0.2s ease;
+      text-decoration: none;
       user-select: none;
+      transition: color 0.15s ease;
     }
 
-    .footnote-button:hover {
-      background: var(--accent-color);
-      color: #ffffff;
+    .footnote-button:hover,
+    .footnote-button.active {
+      color: var(--accent-hover);
+      text-decoration: underline;
     }
 
-    /* ==========================================================
-       MODAL DE PREVISUALIZACIÓN EN VIVO (ESTILO SUBSTACK)
-       ========================================================== */
+    /* Modal de Previsualización */
     .preview-modal {
       display: none;
       position: fixed;
@@ -440,10 +451,7 @@
       font-size: 0.78rem;
     }
 
-    .device-switcher {
-      display: flex;
-      gap: 0.4rem;
-    }
+    .device-switcher { display: flex; gap: 0.4rem; }
 
     .device-btn {
       background: #1a1816;
@@ -483,7 +491,6 @@
       position: relative;
     }
 
-    /* Simulación Móvil */
     .preview-frame.device-mobile {
       max-width: 410px;
       padding: 2rem 1.4rem;
@@ -527,11 +534,7 @@
 
     .studio-title span { color: var(--accent-color); }
 
-    .studio-body {
-      flex: 1;
-      display: flex;
-      overflow: hidden;
-    }
+    .studio-body { flex: 1; display: flex; overflow: hidden; }
 
     .studio-controls {
       width: 320px;
@@ -584,7 +587,7 @@
       border: 1px dashed var(--border-color);
     }
 
-    /* Popover para notas al pie */
+    /* Popover para Notas al Pie */
     .footnote-popover {
       position: absolute;
       z-index: 5000;
@@ -656,7 +659,6 @@
       </div>
 
       <div class="toolbar-group">
-        <!-- BOTÓN DE PREVISUALIZACIÓN -->
         <button class="tool-btn btn-preview" type="button" onclick="openLivePreview()">[PREVISUALIZAR]</button>
         <button class="tool-btn btn-export" type="button" onclick="exportHtmlFile()">[EXPORTAR ENSAYO .HTML]</button>
       </div>
@@ -683,7 +685,7 @@
     <input type="text" id="docTitle" class="title-input" placeholder="TÍTULO COMPLETO DEL ENSAYO">
 
     <div id="editorialCanvas" contenteditable="true" spellcheck="false">
-      <p>Comienza a redactar aquí. Puedes pulsar <b>[PREVISUALIZAR]</b> en cualquier momento para ver cómo lucirá exactamente en Love Jones tanto en pantalla completa como en versión móvil.</p>
+      <p>Comienza a redactar aquí. Puedes pulsar <b>[PREVISUALIZAR]</b> en cualquier momento para verificar la lectura.</p>
     </div>
 
     <div class="footnotes-section" id="footnotesSection" style="display: none; margin-top:4rem; padding-top:2rem; border-top:1px dashed var(--border-color);">
@@ -697,7 +699,7 @@
     </div>
   </main>
 
-  <!-- MODAL DE PREVISUALIZACIÓN EN VIVO (SUBSTACK STYLE) -->
+  <!-- MODAL DE PREVISUALIZACIÓN EN VIVO -->
   <div class="preview-modal" id="livePreviewModal">
     <div class="preview-header">
       <div style="display:flex; align-items:center; gap:1.2rem;">
@@ -712,10 +714,10 @@
 
     <div class="preview-body-container" onclick="handlePreviewOverlayClick(event)">
       <div class="preview-frame" id="previewFrame">
-        <!-- Contenido generado dinámicamente -->
+        <!-- Encabezado superior sin "ARCHIVO // MONOGRÁFICO" -->
         <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px dashed var(--border-color); padding-bottom:1.4rem; margin-bottom:2.5rem; font-family:var(--font-mono); font-size:0.78rem;">
           <span style="font-weight:700; color:var(--text-main); letter-spacing:0.12em;">LOVE JONES</span>
-          <span style="color:var(--text-muted);">ARCHIVO // MONOGRÁFICO</span>
+          <span></span>
         </div>
 
         <div id="prevDocMeta" style="font-family:var(--font-mono); font-size:0.78rem; color:var(--text-muted); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:0.8rem;"></div>
@@ -736,7 +738,7 @@
     </div>
   </div>
 
-  <!-- Popover flotante para la vista previa -->
+  <!-- Popover flotante para notas -->
   <div id="previewPopover" class="footnote-popover">
     <div class="popover-header">
       <span id="prevPopoverLabel">NOTA</span>
@@ -902,14 +904,17 @@
       triggerAutoSave();
     }
 
+    // Cita en Bloque Segura
     function applyBlockquote() {
       canvas.focus();
       const sel = window.getSelection();
       if (!sel.rangeCount) return;
+
       let node = sel.anchorNode;
       while (node && node !== canvas && !['P', 'H2', 'H3', 'BLOCKQUOTE', 'DIV'].includes(node.nodeName)) {
         node = node.parentNode;
       }
+
       if (node && node.nodeName === 'BLOCKQUOTE') {
         const p = document.createElement('p');
         p.innerHTML = node.innerHTML;
@@ -918,6 +923,11 @@
         const bq = document.createElement('blockquote');
         bq.innerHTML = node.innerHTML;
         node.parentNode.replaceChild(bq, node);
+      } else if (!sel.isCollapsed) {
+        const range = sel.getRangeAt(0);
+        const bq = document.createElement('blockquote');
+        bq.appendChild(range.extractContents());
+        range.insertNode(bq);
       }
       triggerAutoSave();
     }
@@ -956,7 +966,6 @@
       triggerAutoSave();
     }
 
-    // Renumeración estricta de notas
     function reindexFootnotes() {
       const buttons = canvas.querySelectorAll('.footnote-button');
       const listItems = Array.from(fList.querySelectorAll('li'));
@@ -1129,7 +1138,7 @@
     loadDraft();
 
     // ==========================================
-    // SISTEMA DE PREVISUALIZACIÓN (ESTILO SUBSTACK)
+    // SISTEMA DE PREVISUALIZACIÓN EN VIVO
     // ==========================================
     const prevModal = document.getElementById('livePreviewModal');
     const prevFrame = document.getElementById('previewFrame');
@@ -1143,9 +1152,9 @@
     const prevPopover = document.getElementById('previewPopover');
     const prevPopLabel = document.getElementById('prevPopoverLabel');
     const prevPopContent = document.getElementById('prevPopoverContent');
+    let activePreviewTrigger = null;
 
     function openLivePreview() {
-      // Inyecta datos del editor a la vista previa
       const docId = idInput.value.trim();
       const meta = metaInput.value.trim();
       prevMeta.textContent = (docId ? docId + ' • ' : '') + meta;
@@ -1168,13 +1177,23 @@
         prevCiArea.style.display = 'none';
       }
 
-      // Activa interactividad en notas al pie dentro de la vista previa
+      // Interactividad con alternancia (abrir/cerrar al volver a pulsar)
       prevContent.querySelectorAll('.footnote-button').forEach(btn => {
         btn.addEventListener('click', (e) => {
           e.stopPropagation();
+
+          if (activePreviewTrigger === btn && prevPopover.style.display === 'block') {
+            closePreviewPopover();
+            return;
+          }
+
           const fnId = btn.getAttribute('data-fn');
           const targetLi = prevFnList.querySelector(`[data-fn-id="${fnId}"]`) || document.getElementById('fn-item-' + fnId);
           if (targetLi) {
+            if (activePreviewTrigger) activePreviewTrigger.classList.remove('active');
+            activePreviewTrigger = btn;
+            btn.classList.add('active');
+
             prevPopLabel.textContent = 'NOTA [' + fnId + ']';
             prevPopContent.innerHTML = targetLi.innerHTML;
             prevPopover.style.display = 'block';
@@ -1211,6 +1230,10 @@
 
     function closePreviewPopover() {
       prevPopover.style.display = 'none';
+      if (activePreviewTrigger) {
+        activePreviewTrigger.classList.remove('active');
+        activePreviewTrigger = null;
+      }
     }
 
     function handlePreviewOverlayClick(e) {
@@ -1219,7 +1242,6 @@
       }
     }
 
-    // Tecla Escape para salir de la previsualización
     window.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && prevModal.classList.contains('active')) {
         closeLivePreview();
@@ -1490,7 +1512,6 @@
     }
     .article-body p { font-size: 1.15rem; margin-bottom: 2rem; color: #dfd7c8; text-align: justify; }
 
-    /* ESTILOS DE LIBRO IMPRESO */
     .article-body.mode-book p {
       margin-bottom: 0 !important;
       text-indent: 2em;
@@ -1526,13 +1547,18 @@
       letter-spacing: 0.08em;
       margin: 3.2rem 0 1.2rem 0;
     }
+
     .article-body blockquote {
+      display: block;
+      width: 100%;
       border-left: 2px solid var(--accent-color);
-      padding-left: 1.4rem;
-      margin: 2.5rem 0;
+      padding: 0.6rem 0 0.6rem 1.4rem;
+      margin: 2.2rem 0;
       color: var(--text-muted);
       font-style: italic;
+      box-sizing: border-box;
     }
+
     .editorial-plate {
       margin: 3.5rem 0;
       border: 1px dashed var(--border-color);
@@ -1554,20 +1580,63 @@
     .plate-source { display: block; margin-top: 0.35rem; color: #635b50; font-size: 0.72rem; }
 
     .footnote-button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
+      display: inline;
+      background: none;
+      border: none;
+      padding: 0;
+      margin: 0 0.12rem;
       color: var(--accent-color);
       font-family: var(--font-mono);
+      font-size: 0.7rem;
       font-weight: 700;
-      font-size: 0.76rem;
       vertical-align: super;
+      line-height: 1;
+      cursor: pointer;
       text-decoration: none;
-      margin: 0 0.15rem;
-      background: rgba(158, 53, 39, 0.12);
-      border: 1px dashed var(--border-color);
-      padding: 0.1rem 0.35rem;
-      border-radius: 2px;
+    }
+
+    .footnote-button:hover,
+    .footnote-button.active {
+      color: var(--accent-hover);
+      text-decoration: underline;
+    }
+
+    .footnote-popover {
+      position: absolute;
+      z-index: 5000;
+      width: min(340px, 86vw);
+      background-color: #161514;
+      border: 1px dashed var(--accent-color);
+      box-shadow: 0 14px 35px rgba(0,0,0,0.85);
+      border-radius: 4px;
+      padding: 1.2rem;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--text-main);
+      line-height: 1.65;
+      display: none;
+    }
+
+    .popover-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.6rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px dashed var(--border-color);
+      color: var(--accent-color);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+    }
+
+    .popover-close {
+      cursor: pointer;
+      color: var(--text-muted);
+      background: none;
+      border: none;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
     }
 
     footer {
@@ -1603,10 +1672,74 @@
     ${fnHtml}
     ${ciHtml}
   </main>
+
+  <div id="activePopover" class="footnote-popover">
+    <div class="popover-header">
+      <span id="popoverLabel">NOTA</span>
+      <button type="button" class="popover-close" onclick="closePopover()">&times;</button>
+    </div>
+    <div id="popoverContent"></div>
+  </div>
+
   <footer>
     <div>&copy; Bogotá, Colombia.</div>
     <div>Love Jones</div>
   </footer>
+
+  <script>
+    const popover = document.getElementById('activePopover');
+    const popContent = document.getElementById('popoverContent');
+    const popLabel = document.getElementById('popoverLabel');
+    let currentTrigger = null;
+
+    function closePopover() {
+      popover.style.display = 'none';
+      if (currentTrigger) {
+        currentTrigger.classList.remove('active');
+        currentTrigger = null;
+      }
+    }
+
+    document.addEventListener('click', (e) => {
+      const btn = e.target.closest('.footnote-button');
+      if (btn) {
+        e.stopPropagation();
+
+        if (currentTrigger === btn && popover.style.display === 'block') {
+          closePopover();
+          return;
+        }
+
+        const fnId = btn.getAttribute('data-fn');
+        const targetLi = document.getElementById('fn-item-' + fnId) || document.querySelector('[data-fn-id="' + fnId + '"]');
+
+        if (targetLi) {
+          if (currentTrigger) currentTrigger.classList.remove('active');
+          currentTrigger = btn;
+          btn.classList.add('active');
+
+          popLabel.textContent = 'NOTA [' + fnId + ']';
+          popContent.innerHTML = targetLi.innerHTML;
+          popover.style.display = 'block';
+
+          const rect = btn.getBoundingClientRect();
+          let left = rect.left + window.scrollX - 140;
+          if (left < 20) left = 20;
+          if (left + 320 > window.innerWidth) left = window.innerWidth - 340;
+          popover.style.left = left + 'px';
+          popover.style.top = (rect.bottom + window.scrollY + 8) + 'px';
+        }
+        return;
+      }
+
+      if (!popover.contains(e.target)) {
+        closePopover();
+      }
+    });
+
+    window.addEventListener('resize', closePopover);
+    window.addEventListener('scroll', () => { if (popover.style.display === 'block') closePopover(); }, { passive: true });
+  <\/script>
 </body>
 </html>`;
 
