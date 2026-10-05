@@ -248,7 +248,6 @@
       hyphens: auto;
     }
 
-    /* El primer párrafo de cada bloque o tras subtítulo no lleva sangría */
     #editorialCanvas.mode-book > p:first-of-type,
     #editorialCanvas.mode-book h2 + p,
     #editorialCanvas.mode-book h3 + p,
@@ -395,6 +394,7 @@
       padding: 0.1rem 0.35rem;
       border-radius: 2px;
       transition: all 0.2s ease;
+      user-select: none;
     }
 
     .footnote-button:hover {
@@ -551,9 +551,7 @@
     <input type="text" id="docTitle" class="title-input" placeholder="TÍTULO COMPLETO DEL ENSAYO">
 
     <div id="editorialCanvas" contenteditable="true" spellcheck="false">
-      <p>Este es el primer párrafo de tu ensayo. En la maquetación clásica de libros no lleva sangría para abrir limpiamente el capítulo.</p>
-      <p>A partir del segundo párrafo continuo, si activas el interruptor <b>[MODO: LIBRO / IMPRENTA]</b> en la barra superior, el editor elimina los saltos vacíos y aplica la sangría de primera línea reglamentaria de Pages o InDesign.</p>
-      <p>También puedes pulsar <b>[CAPITULAR: ON]</b> para agrandar la primera letra inicial con jerarquía editorial.</p>
+      <p>Comienza a redactar aquí. Puedes pulsar <b>[+ NOTA]</b> para agregar notas al pie correlativas o <b>[+ MAQUETAR PORTADA / OBJETO]</b> para diseñar artefactos editoriales.</p>
     </div>
 
     <div class="footnotes-section" id="footnotesSection" style="display: none; margin-top:4rem; padding-top:2rem; border-top:1px dashed var(--border-color);">
@@ -745,7 +743,6 @@
     }
 
     function applyHighlight() {
-      canvas.focus();
       const sel = window.getSelection();
       if (!sel.rangeCount || sel.isCollapsed) return;
       const range = sel.getRangeAt(0);
@@ -779,15 +776,58 @@
       triggerAutoSave();
     }
 
+    // SINCRONIZACIÓN Y RENUMERACIÓN ESTRICTA EN ORDEN DE LECTURA
+    function reindexFootnotes() {
+      const buttons = canvas.querySelectorAll('.footnote-button');
+      const listItems = Array.from(fList.querySelectorAll('li'));
+
+      if (buttons.length === 0) {
+        fSec.style.display = 'none';
+        fList.innerHTML = '';
+        footnoteIndex = 0;
+        return;
+      }
+
+      fSec.style.display = 'block';
+
+      // Conservar el contenido escrito por el usuario en cada nota existente
+      const contentMap = {};
+      listItems.forEach(li => {
+        const id = li.getAttribute('data-fn-id');
+        if (id) contentMap[id] = li.innerHTML;
+      });
+
+      fList.innerHTML = '';
+
+      buttons.forEach((btn, idx) => {
+        const newNum = idx + 1;
+        const oldId = btn.getAttribute('data-fn');
+        
+        btn.setAttribute('data-fn', newNum);
+        btn.textContent = '[' + newNum + ']';
+
+        const li = document.createElement('li');
+        li.id = 'fn-item-' + newNum;
+        li.setAttribute('data-fn-id', newNum);
+        
+        if (contentMap[oldId]) {
+          li.innerHTML = contentMap[oldId];
+        } else {
+          li.innerHTML = 'Aclaración conceptual [' + newNum + ']...';
+        }
+        fList.appendChild(li);
+      });
+
+      footnoteIndex = buttons.length;
+    }
+
     function insertFootnote() {
       canvas.focus();
-      footnoteIndex++;
       const btn = document.createElement('button');
       btn.type = 'button';
       btn.className = 'footnote-button';
-      btn.setAttribute('data-fn', footnoteIndex);
       btn.setAttribute('contenteditable', 'false');
-      btn.textContent = '[' + footnoteIndex + ']';
+      btn.textContent = '[*]';
 
       const sel = window.getSelection();
       if (sel.rangeCount) {
@@ -795,14 +835,13 @@
         range.collapse(false);
         range.insertNode(btn);
         range.setStartAfter(btn);
+        sel.removeAllRanges();
+        sel.addRange(range);
+      } else {
+        canvas.appendChild(btn);
       }
 
-      fSec.style.display = 'block';
-      const li = document.createElement('li');
-      li.id = 'fn-item-' + footnoteIndex;
-      li.setAttribute('data-fn-id', footnoteIndex);
-      li.innerHTML = 'Aclaración conceptual [' + footnoteIndex + ']...';
-      fList.appendChild(li);
+      reindexFootnotes();
       triggerAutoSave();
     }
 
@@ -875,10 +914,10 @@
           if (draft.citations) cList.innerHTML = draft.citations;
           if (draft.hasFn) fSec.style.display = 'block';
           if (draft.hasCi) cSec.style.display = 'block';
-          footnoteIndex = draft.fnCount || 0;
           figureIndex = draft.figCount || 0;
           if (draft.isBook) toggleBookMode();
           if (draft.isDrop) toggleDropcap();
+          reindexFootnotes();
         } catch(e) {}
       } else {
         slugInput.value = 'poetica-del-sample';
@@ -896,7 +935,12 @@
       }
     }
 
-    canvas.addEventListener('input', triggerAutoSave);
+    // Renumera en cada input por si se borraron notas con tecla retroceso/suprimir
+    canvas.addEventListener('input', () => {
+      reindexFootnotes();
+      triggerAutoSave();
+    });
+
     fList.addEventListener('input', triggerAutoSave);
     cList.addEventListener('input', triggerAutoSave);
     slugInput.addEventListener('input', triggerAutoSave);
@@ -1064,14 +1108,14 @@
       const fnHtml = fnVisible ? `
       <div class="footnotes-section" style="margin-top:4.5rem; padding-top:2rem; border-top:1px dashed var(--border-color);">
         <div style="font-family:var(--font-mono); font-size:0.8rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent-color); margin-bottom:1.2rem;">Notas</div>
-        <ol style="font-family:var(--font-mono); font-size:0.82rem; color:var(--text-muted); line-height:1.7; padding-left:1.4rem;">\${fList.innerHTML}</ol>
+        <ol style="font-family:var(--font-mono); font-size:0.82rem; color:var(--text-muted); line-height:1.7; padding-left:1.4rem;">${fList.innerHTML}</ol>
       </div>` : '';
 
       const ciVisible = cSec.style.display !== 'none';
       const ciHtml = ciVisible ? `
       <div class="footnotes-section" style="margin-top:3rem; padding-top:2rem; border-top:1px dashed var(--border-color);">
         <div style="font-family:var(--font-mono); font-size:0.8rem; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent-color); margin-bottom:1.2rem;">Fuentes & Bibliografía</div>
-        <ul style="font-family:var(--font-mono); font-size:0.82rem; color:var(--text-muted); line-height:1.7; padding-left:1.4rem;">\${cList.innerHTML}</ul>
+        <ul style="font-family:var(--font-mono); font-size:0.82rem; color:var(--text-muted); line-height:1.7; padding-left:1.4rem;">${cList.innerHTML}</ul>
       </div>` : '';
 
       const articleClasses = (isBookMode ? 'mode-book' : '') + (isDropcap ? ' has-dropcap' : '');
@@ -1081,7 +1125,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Love Jones — \${title}</title>
+  <title>Love Jones — ${title}</title>
   <link rel="icon" type="image/jpeg" href="LoveJones pic1.jpeg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1232,6 +1276,24 @@
     }
     .plate-number { color: var(--accent-color); font-weight: 700; margin-right: 0.4rem; }
     .plate-source { display: block; margin-top: 0.35rem; color: #635b50; font-size: 0.72rem; }
+
+    .footnote-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-color);
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 0.76rem;
+      vertical-align: super;
+      text-decoration: none;
+      margin: 0 0.15rem;
+      background: rgba(158, 53, 39, 0.12);
+      border: 1px dashed var(--border-color);
+      padding: 0.1rem 0.35rem;
+      border-radius: 2px;
+    }
+
     footer {
       max-width: 1040px;
       width: 100%;
@@ -1257,13 +1319,13 @@
   </header>
   <main>
     <a href="archivo.html" class="back-link">&larr; Volver al archivo</a>
-    <div class="doc-meta">\${docId} &bull; \${meta}</div>
-    <h1 class="article-title">\${title}</h1>
-    <article class="article-body \${articleClasses}">
-      \${content}
+    <div class="doc-meta">${docId} &bull; ${meta}</div>
+    <h1 class="article-title">${title}</h1>
+    <article class="article-body ${articleClasses}">
+      ${content}
     </article>
-    \${fnHtml}
-    \${ciHtml}
+    ${fnHtml}
+    ${ciHtml}
   </main>
   <footer>
     <div>&copy; Bogotá, Colombia.</div>
