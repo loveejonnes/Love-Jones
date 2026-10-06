@@ -44,7 +44,7 @@
       overflow-x: hidden;
     }
 
-    /* Barra Superior Tipo Substack Minimal */
+    /* Barra Superior Minimalista */
     .top-nav {
       position: sticky;
       top: 0;
@@ -123,10 +123,15 @@
       border-color: var(--accent-hover);
     }
 
+    .btn-action.btn-drafts {
+      border-color: var(--gold-muted);
+      color: var(--gold-muted);
+    }
+
     .btn-drawer-toggle {
       background: transparent;
-      border: 1px dashed var(--gold-muted);
-      color: var(--gold-muted);
+      border: 1px dashed var(--border-color);
+      color: var(--text-muted);
       font-family: var(--font-mono);
       font-size: 0.72rem;
       padding: 0.45rem 0.85rem;
@@ -136,10 +141,11 @@
     }
 
     .btn-drawer-toggle:hover {
-      background: rgba(194, 166, 97, 0.12);
+      border-color: var(--gold-muted);
+      color: var(--gold-muted);
     }
 
-    /* Lienzo de Escritura Substack */
+    /* Mesa de Escritura */
     main {
       flex: 1;
       max-width: 720px;
@@ -208,7 +214,6 @@
       line-height: 1.3;
     }
 
-    /* Área de Texto Editable */
     #editorialCanvas {
       outline: none;
       font-family: var(--font-serif);
@@ -225,7 +230,6 @@
       letter-spacing: 0.012em;
     }
 
-    /* Modo Libro Impreso */
     #editorialCanvas.mode-book p {
       margin-bottom: 0 !important;
       text-indent: 2em;
@@ -329,7 +333,7 @@
       padding: 0.1rem 0.3rem;
     }
 
-    /* Barra Flotante Substack (Bubble Menu al seleccionar) */
+    /* Bubble Menu Substack */
     .bubble-menu {
       position: absolute;
       display: none;
@@ -366,7 +370,7 @@
       color: var(--gold-muted);
     }
 
-    /* Botón Más (+) en línea tipo Substack */
+    /* Botón Más (+) en línea */
     .block-plus-btn {
       position: absolute;
       left: -48px;
@@ -393,7 +397,6 @@
       transform: scale(1.1);
     }
 
-    /* Menú Desplegable del Botón (+) */
     .block-menu {
       position: absolute;
       left: -10px;
@@ -430,7 +433,7 @@
       color: var(--gold-muted);
     }
 
-    /* Cajón Lateral Desplegable (Drawer) */
+    /* Cajón Lateral (Drawer) */
     .drawer-overlay {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
@@ -536,11 +539,9 @@
       font-weight: 700;
     }
 
-    .drawer-btn.full {
-      grid-column: span 2;
-    }
+    .drawer-btn.full { grid-column: span 2; }
 
-    /* Láminas de Archivo e Incrustaciones */
+    /* Láminas y Elementos */
     .editorial-plate {
       margin: 3.5rem 0;
       border: 1px dashed var(--border-color);
@@ -619,7 +620,6 @@
       color: #0c0b0a;
     }
 
-    /* Popover Flotante de Notas */
     .footnote-popover {
       position: absolute;
       z-index: 3000;
@@ -700,33 +700,111 @@
       width: 100%;
     }
 
+    /* Modal Gestor Multiborrador */
+    .drafts-modal {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(10, 9, 8, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 4500;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      padding: 1.5rem;
+    }
+
+    .drafts-modal.active { display: flex; }
+
+    .drafts-window {
+      background: #121110;
+      border: 1px dashed var(--gold-muted);
+      width: 100%;
+      max-width: 680px;
+      max-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.8);
+    }
+
+    .drafts-win-header {
+      padding: 1.2rem 1.6rem;
+      border-bottom: 1px dashed var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+    }
+
+    .drafts-win-title {
+      font-size: 0.84rem;
+      color: var(--gold-muted);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    .drafts-win-content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1.4rem 1.6rem;
+    }
+
+    .draft-item {
+      padding: 1rem 0;
+      border-bottom: 1px dashed var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      font-family: var(--font-mono);
+    }
+
+    .draft-info-title {
+      font-size: 0.88rem;
+      color: var(--text-main);
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+
+    .draft-info-meta {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+
+    .draft-item-actions {
+      display: flex;
+      gap: 0.4rem;
+    }
+
     @media (max-width: 820px) {
       .block-plus-btn { display: none !important; }
       .metrics-tag { display: none; }
+      .top-nav { padding: 0.8rem 1rem; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Barra Superior Minimalista -->
+  <!-- Barra Superior -->
   <header class="top-nav">
     <div class="brand-section">
       <a href="archivo.html" class="brand-name">Love Jones</a>
       <div class="metrics-tag">
         <span>Palabras: <b id="wordCount">0</b></span>
         <span>Lectura: <b id="readTime">0 min</b></span>
-        <span class="status-save" id="saveIndicator">Guardado en caché</span>
+        <span class="status-save" id="saveIndicator">Guardado</span>
       </div>
     </div>
 
     <div class="nav-actions">
+      <button class="btn-action btn-drafts" type="button" onclick="openDraftsModal()">[BORRADORES]</button>
       <button class="btn-action" type="button" onclick="openPreview()">[PREVISUALIZAR]</button>
-      <button class="btn-drawer-toggle" type="button" onclick="toggleDrawer()">[HERRAMIENTAS &equiv;]</button>
+      <button class="btn-drawer-toggle" type="button" onclick="toggleDrawer()">[&equiv; HERRAMIENTAS]</button>
       <button class="btn-action btn-export" type="button" onclick="exportHtmlFile()">[EXPORTAR .HTML]</button>
     </div>
   </header>
 
-  <!-- Botón de bloque (+) en línea tipo Substack -->
+  <!-- Botón (+) en línea -->
   <button id="blockPlusBtn" class="block-plus-btn" title="Añadir bloque">+</button>
   <div id="blockMenu" class="block-menu">
     <button class="block-menu-item" onclick="insertHeading('H2')"><b>H2</b> Título principal</button>
@@ -737,7 +815,7 @@
     <button class="block-menu-item" onclick="insertPlate()"><b>[&bull;]</b> Lámina / Imagen</button>
   </div>
 
-  <!-- Barra Flotante Contextual (Bubble Menu) -->
+  <!-- Bubble Menu contextual -->
   <div id="bubbleMenu" class="bubble-menu">
     <button class="bubble-btn" onmousedown="event.preventDefault()" onclick="exec('bold')"><b>B</b></button>
     <button class="bubble-btn" onmousedown="event.preventDefault()" onclick="exec('italic')"><i>I</i></button>
@@ -746,7 +824,7 @@
     <button class="bubble-btn" onmousedown="event.preventDefault()" onclick="insertFootnote()">[+ Nota]</button>
   </div>
 
-  <!-- Cajón Lateral Colapsable (Drawer) -->
+  <!-- Cajón Lateral Colapsable -->
   <div class="drawer-overlay" id="drawerOverlay" onclick="toggleDrawer()"></div>
   <aside class="editorial-drawer" id="editorialDrawer">
     <div class="drawer-header">
@@ -795,13 +873,17 @@
         </div>
       </div>
 
-      <div style="margin-top:auto;">
-        <button class="drawer-btn full" style="border-color:#522; color:var(--accent-hover);" onclick="resetCanvas()">Reiniciar Borrador</button>
+      <div>
+        <div class="drawer-section-title">Archivo de Manuscritos</div>
+        <div class="drawer-grid">
+          <button class="drawer-btn full" style="border-color:var(--gold-muted); color:var(--gold-muted);" onclick="openDraftsModal()">GESTIONAR BORRADORES</button>
+          <button class="drawer-btn full" onclick="createNewDraft()">[+ NUEVO ENSAYO EN BLANCO]</button>
+        </div>
       </div>
     </div>
   </aside>
 
-  <!-- Mesa de Escritura Principal -->
+  <!-- Mesa de Escritura -->
   <main>
     <input type="text" id="docSlug" class="doc-slug-input" placeholder="nombre-archivo (ej: poetica-del-sample)">
 
@@ -813,23 +895,21 @@
     <input type="text" id="docTitle" class="title-input" placeholder="TÍTULO COMPLETO DEL ENSAYO">
 
     <div id="editorialCanvas" contenteditable="true" spellcheck="false">
-      <p>Comienza a escribir aquí. Al seleccionar cualquier texto se desplegará el menú contextual flotante para aplicar negrita, cursiva o insertar notas. Si te sitúas en una línea vacía, aparecerá a la izquierda el botón <b>+</b> para insertar encabezados o láminas de archivo.</p>
+      <p>Comienza a redactar aquí. Cada palabra se almacena de forma instantánea en tu gestor de borradores.</p>
     </div>
 
-    <!-- Sección de Notas Flotantes -->
     <div class="footnotes-section" id="footnotesSection" style="display: none; margin-top:4.5rem; padding-top:2rem; border-top:1px dashed var(--border-color);">
       <div style="font-family:var(--font-mono); font-size:0.8rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold-muted); margin-bottom:1.2rem;">Aparato Crítico &bull; Notas</div>
       <ol id="footnotesList" contenteditable="true" spellcheck="false" style="font-family:var(--font-mono); font-size:0.82rem; color:var(--text-muted); line-height:1.7; padding-left:1.4rem;"></ol>
     </div>
 
-    <!-- Sección de Citas Bibliográficas -->
     <div class="footnotes-section" id="citationsSection" style="display: none; margin-top:3rem; padding-top:2rem; border-top:1px dashed var(--border-color);">
       <div style="font-family:var(--font-mono); font-size:0.8rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold-muted); margin-bottom:1.2rem;">Fuentes & Bibliografía</div>
       <ul id="citationsList" contenteditable="true" spellcheck="false" style="font-family:var(--font-mono); font-size:0.82rem; color:var(--text-muted); line-height:1.7; padding-left:1.4rem;"></ul>
     </div>
   </main>
 
-  <!-- Tarjeta Popover de Notas al Pie -->
+  <!-- Popover de Notas -->
   <div id="activePopover" class="footnote-popover">
     <div class="popover-header">
       <span id="popoverLabel">NOTA</span>
@@ -838,7 +918,7 @@
     <div id="popoverContent"></div>
   </div>
 
-  <!-- Modal del Previsualizador Tipo Substack -->
+  <!-- Modal Previsualizador -->
   <div id="previewModal" class="preview-modal">
     <div class="preview-header">
       <span style="color:var(--gold-muted); letter-spacing:0.1em;">VISTA PREVIA EDITORIAL</span>
@@ -846,6 +926,22 @@
     </div>
     <div class="preview-content-area">
       <div class="preview-wrapper" id="previewTarget"></div>
+    </div>
+  </div>
+
+  <!-- Modal Gestor de Borradores -->
+  <div id="draftsModal" class="drafts-modal">
+    <div class="drafts-window">
+      <div class="drafts-win-header">
+        <span class="drafts-win-title">Borradores Guardados</span>
+        <button class="btn-action" onclick="closeDraftsModal()">&times; CERRAR</button>
+      </div>
+      <div class="drafts-win-content">
+        <div style="display:flex; justify-content:space-between; margin-bottom:1.2rem;">
+          <button class="btn-action" style="border-color:var(--gold-muted); color:var(--gold-muted);" onclick="createNewDraft()">+ NUEVO ENSAYO</button>
+        </div>
+        <div id="draftsListContainer"></div>
+      </div>
     </div>
   </div>
 
@@ -870,12 +966,12 @@
     const bookModeBtn = document.getElementById('bookModeBtn');
     const dropcapBtn = document.getElementById('dropcapBtn');
 
+    let currentDraftId = null;
     let footnoteIndex = 0;
     let plateIndex = 0;
     let isBookMode = false;
     let isDropcap = false;
 
-    // Control del Cajón Lateral (Drawer)
     function toggleDrawer() {
       const isOpen = drawer.classList.contains('open');
       if (isOpen) {
@@ -887,7 +983,6 @@
       }
     }
 
-    // Comandos de formato básicos
     function exec(cmd, val = null) {
       document.execCommand(cmd, false, val);
       canvas.focus();
@@ -944,7 +1039,7 @@
       if (node && node !== canvas) {
         const bq = document.createElement('blockquote');
         bq.className = 'pullquote';
-        bq.innerHTML = node.innerHTML || 'Frase o cita destacada...';
+        bq.innerHTML = node.innerHTML || 'Frase destacada...';
         node.parentNode.replaceChild(bq, node);
       }
       closeBlockMenu();
@@ -977,7 +1072,6 @@
       closeBlockMenu();
     }
 
-    // Lógicas de bloques y notas
     function insertPlate() {
       const url = prompt('URL o nombre del archivo de imagen:');
       if (!url) return;
@@ -1090,7 +1184,6 @@
       footnoteIndex = buttons.length;
     }
 
-    // Interruptores de Modo Libro
     function toggleBookMode() {
       isBookMode = !isBookMode;
       if (isBookMode) {
@@ -1119,7 +1212,6 @@
       triggerAutoSave();
     }
 
-    // Métricas y Guardado Automático
     function updateMetrics() {
       const text = canvas.innerText || '';
       const words = text.trim() ? text.trim().split(/\s+/).length : 0;
@@ -1127,11 +1219,29 @@
       document.getElementById('readTime').textContent = Math.ceil(words / 200) + ' min';
     }
 
+    // ==========================================
+    // SISTEMA MULTIBORRADOR (LocalStorage)
+    // ==========================================
+    function getAllDrafts() {
+      const raw = localStorage.getItem('lj_manuscript_drafts');
+      return raw ? JSON.parse(raw) : [];
+    }
+
+    function saveAllDrafts(drafts) {
+      localStorage.setItem('lj_manuscript_drafts', JSON.stringify(drafts));
+    }
+
     function triggerAutoSave() {
       updateMetrics();
-      const draft = {
+      if (!currentDraftId) currentDraftId = 'draft_' + Date.now();
+
+      const text = canvas.innerText || '';
+      const words = text.trim() ? text.trim().split(/\s+/).length : 0;
+
+      const draftData = {
+        id: currentDraftId,
         slug: slugInput.value,
-        id: idInput.value,
+        docId: idInput.value,
         meta: metaInput.value,
         title: titleInput.value,
         body: canvas.innerHTML,
@@ -1142,49 +1252,125 @@
         isBook: isBookMode,
         isDrop: isDropcap,
         hasFn: fSec.style.display !== 'none',
-        hasCi: cSec.style.display !== 'none'
+        hasCi: cSec.style.display !== 'none',
+        words: words,
+        updatedAt: new Date().toLocaleString('es-CO', { dateStyle: 'short', timeStyle: 'short' })
       };
-      localStorage.setItem('lj_editor_substack_v1', JSON.stringify(draft));
-      saveInd.textContent = 'Guardado';
-      setTimeout(() => { saveInd.textContent = 'Guardado en caché'; }, 1000);
-    }
 
-    function loadDraft() {
-      const raw = localStorage.getItem('lj_editor_substack_v1');
-      if (raw) {
-        try {
-          const draft = JSON.parse(raw);
-          slugInput.value = draft.slug || '';
-          idInput.value = draft.id || '';
-          metaInput.value = draft.meta || '';
-          titleInput.value = draft.title || '';
-          if (draft.body) canvas.innerHTML = draft.body;
-          if (draft.footnotes) fList.innerHTML = draft.footnotes;
-          if (draft.citations) cList.innerHTML = draft.citations;
-          if (draft.hasFn) fSec.style.display = 'block';
-          if (draft.hasCi) cSec.style.display = 'block';
-          plateIndex = draft.plateCount || 0;
-          if (draft.isBook) toggleBookMode();
-          if (draft.isDrop) toggleDropcap();
-          reindexFootnotes();
-        } catch(e) {}
+      const drafts = getAllDrafts();
+      const existingIdx = drafts.findIndex(d => d.id === currentDraftId);
+
+      if (existingIdx >= 0) {
+        drafts[existingIdx] = draftData;
       } else {
-        slugInput.value = 'poetica-del-sample';
-        idInput.value = '[TXT.01]';
-        metaInput.value = 'BOGOTÁ // ENSAYO MONOGRÁFICO // 2026';
-        titleInput.value = 'LA POÉTICA DEL SAMPLE Y EL MINIMALISMO EN EL RAP';
+        drafts.unshift(draftData);
       }
+
+      saveAllDrafts(drafts);
+      localStorage.setItem('lj_last_active_draft', currentDraftId);
+
+      saveInd.textContent = 'Guardado';
+      setTimeout(() => { saveInd.textContent = 'Guardado'; }, 1000);
+    }
+
+    function loadDraftById(id) {
+      const drafts = getAllDrafts();
+      const draft = drafts.find(d => d.id === id);
+      if (!draft) return;
+
+      currentDraftId = draft.id;
+      slugInput.value = draft.slug || '';
+      idInput.value = draft.docId || '';
+      metaInput.value = draft.meta || '';
+      titleInput.value = draft.title || '';
+      canvas.innerHTML = draft.body || '<p></p>';
+      fList.innerHTML = draft.footnotes || '';
+      cList.innerHTML = draft.citations || '';
+      fSec.style.display = draft.hasFn ? 'block' : 'none';
+      cSec.style.display = draft.hasCi ? 'block' : 'none';
+      plateIndex = draft.plateCount || 0;
+
+      isBookMode = !draft.isBook;
+      toggleBookMode();
+      isDropcap = !draft.isDrop;
+      toggleDropcap();
+
+      reindexFootnotes();
       updateMetrics();
+      localStorage.setItem('lj_last_active_draft', currentDraftId);
+      closeDraftsModal();
     }
 
-    function resetCanvas() {
-      if (confirm('¿Deseas reiniciar la mesa de trabajo y vaciar el borrador actual?')) {
-        localStorage.removeItem('lj_editor_substack_v1');
-        location.reload();
+    function createNewDraft() {
+      if (canvas.innerText.trim().length > 10) {
+        triggerAutoSave();
       }
+      currentDraftId = 'draft_' + Date.now();
+      slugInput.value = '';
+      idInput.value = '[TXT.01]';
+      metaInput.value = 'BOGOTÁ // ENSAYO // 2026';
+      titleInput.value = '';
+      canvas.innerHTML = '<p>Comienza aquí tu nuevo ensayo...</p>';
+      fList.innerHTML = '';
+      cList.innerHTML = '';
+      fSec.style.display = 'none';
+      cSec.style.display = 'none';
+      footnoteIndex = 0;
+      plateIndex = 0;
+      updateMetrics();
+      triggerAutoSave();
+      closeDraftsModal();
     }
 
-    // Control de Barra Flotante (Bubble Menu)
+    function deleteDraft(id, e) {
+      e.stopPropagation();
+      if (!confirm('¿Eliminar este borrador de forma permanente?')) return;
+      let drafts = getAllDrafts();
+      drafts = drafts.filter(d => d.id !== id);
+      saveAllDrafts(drafts);
+
+      if (currentDraftId === id) {
+        if (drafts.length > 0) {
+          loadDraftById(drafts[0].id);
+        } else {
+          createNewDraft();
+        }
+      }
+      renderDraftsList();
+    }
+
+    function openDraftsModal() {
+      renderDraftsList();
+      document.getElementById('draftsModal').classList.add('active');
+    }
+
+    function closeDraftsModal() {
+      document.getElementById('draftsModal').classList.remove('active');
+    }
+
+    function renderDraftsList() {
+      const container = document.getElementById('draftsListContainer');
+      const drafts = getAllDrafts();
+      if (drafts.length === 0) {
+        container.innerHTML = '<div style="color:var(--text-muted); font-size:0.8rem; font-family:var(--font-mono); padding:1rem 0;">No hay borradores guardados aún.</div>';
+        return;
+      }
+
+      container.innerHTML = drafts.map(d => `
+        <div class="draft-item" style="cursor:pointer;" onclick="loadDraftById('${d.id}')">
+          <div>
+            <div class="draft-info-title">${d.title ? d.title : '(Borrador sin título)'} ${d.id === currentDraftId ? '<span style="color:var(--gold-muted); font-size:0.7rem;">[ACTUAL]</span>' : ''}</div>
+            <div class="draft-info-meta">${d.docId || '[TXT]'} &bull; ${d.words || 0} palabras &bull; ${d.updatedAt}</div>
+          </div>
+          <div class="draft-item-actions">
+            <button class="btn-action" type="button" onclick="loadDraftById('${d.id}')">Abrir</button>
+            <button class="btn-action" style="color:var(--accent-hover);" type="button" onclick="deleteDraft('${d.id}', event)">&times;</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Burbuja Substack
     document.addEventListener('selectionchange', () => {
       const sel = window.getSelection();
       if (!sel.isCollapsed && sel.rangeCount > 0 && canvas.contains(sel.anchorNode)) {
@@ -1198,7 +1384,7 @@
       }
     });
 
-    // Control de Botón Más (+) en línea
+    // Botón (+) en línea
     function updatePlusButton() {
       const sel = window.getSelection();
       if (sel.rangeCount > 0 && sel.isCollapsed && canvas.contains(sel.anchorNode)) {
@@ -1235,7 +1421,7 @@
       if (!blockMenu.contains(e.target) && e.target !== blockPlusBtn) closeBlockMenu();
     });
 
-    // Manejo de Popover de Notas
+    // Popover de Notas
     const popover = document.getElementById('activePopover');
     const popContent = document.getElementById('popoverContent');
     const popLabel = document.getElementById('popoverLabel');
@@ -1273,7 +1459,7 @@
       if (!popover.contains(e.target)) closePopover();
     });
 
-    // Previsualizador Tipo Substack
+    // Previsualizador
     function openPreview() {
       const target = document.getElementById('previewTarget');
       const articleClasses = (isBookMode ? 'mode-book' : '') + (isDropcap ? ' has-dropcap' : '');
@@ -1307,7 +1493,7 @@
       document.getElementById('previewModal').classList.remove('active');
     }
 
-    // Exportador de Archivo HTML
+    // Exportador HTML
     function exportHtmlFile() {
       const slug = (slugInput.value || 'ensayo').trim().toLowerCase().replace(/\s+/g, '-');
       const docId = idInput.value.trim();
@@ -1580,7 +1766,6 @@
       background-color: #080706;
       display: flex;
       justify-content: center;
-      cursor: zoom-in;
     }
     .plate-img-wrap img {
       max-width: 100%;
@@ -1775,7 +1960,7 @@
       link.click();
     }
 
-    // Escuchas de eventos
+    // Escuchas
     canvas.addEventListener('input', () => {
       reindexFootnotes();
       triggerAutoSave();
@@ -1788,7 +1973,16 @@
     metaInput.addEventListener('input', triggerAutoSave);
     titleInput.addEventListener('input', triggerAutoSave);
 
-    loadDraft();
+    // Inicialización del entorno
+    const lastActive = localStorage.getItem('lj_last_active_draft');
+    const drafts = getAllDrafts();
+    if (lastActive && drafts.some(d => d.id === lastActive)) {
+      loadDraftById(lastActive);
+    } else if (drafts.length > 0) {
+      loadDraftById(drafts[0].id);
+    } else {
+      createNewDraft();
+    }
   </script>
 </body>
 </html>
