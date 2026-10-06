@@ -3,26 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Love Jones — Taller Editorial</title>
+  <title>Love Jones — Taller Editorial & Redactor</title>
   
   <link rel="icon" type="image/jpeg" href="LoveJones pic1.jpeg">
 
-  <!-- Tipografías -->
+  <!-- Tipografías del Sistema Editorial -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
   <style>
     :root {
       --bg-color: #0c0b0a;
-      --card-bg: #141312;
-      --accent-color: #c44333;       /* Rojo lacre iluminado */
-      --accent-glow: rgba(196, 67, 51, 0.35);
-      --gold-muted: #c2a661;         /* Oro viejo mate */
-      --gold-bright: #dfc27d;        /* Oro luminoso */
-      --text-main: #f5f0e6;          /* Marfil nítido */
-      --text-muted: #aba294;         /* Lino suave */
+      --card-bg: #131211;
+      --card-bg-elevated: #1a1816;
+      --accent-color: #8f3024;
+      --accent-hover: #b03d2e;
+      --gold-muted: #c2a661;
+      --text-main: #f2ede4;
+      --text-muted: #a89f91;
       --border-color: #24201d;
+      --border-focus: #3a332c;
       --font-mono: 'Space Mono', 'Courier Prime', monospace;
       --font-serif: 'Lora', Georgia, serif;
     }
@@ -43,93 +44,102 @@
       overflow-x: hidden;
     }
 
-    /* Barra Superior */
-    .substack-topbar {
+    /* Barra Superior Tipo Substack Minimal */
+    .top-nav {
       position: sticky;
       top: 0;
-      background-color: rgba(12, 11, 10, 0.96);
+      background-color: rgba(12, 11, 10, 0.95);
       backdrop-filter: blur(12px);
       border-bottom: 1px dashed var(--border-color);
       z-index: 1000;
-      padding: 0.9rem 2.2rem;
+      padding: 0.9rem 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
-    .topbar-left {
+    .brand-section {
       display: flex;
       align-items: center;
       gap: 1.4rem;
-      font-family: var(--font-mono);
-      font-size: 0.74rem;
-      color: var(--text-muted);
     }
 
-    .brand-mark {
-      font-weight: 700;
-      color: #ffffff;
-      letter-spacing: 0.12em;
+    .brand-name {
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
+      color: var(--text-main);
+      font-weight: 700;
       text-decoration: none;
     }
 
-    .status-text {
-      color: #6d665b;
+    .metrics-tag {
+      font-family: var(--font-mono);
       font-size: 0.72rem;
-      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+      display: flex;
+      gap: 1rem;
     }
 
-    .status-text.saved { color: var(--gold-bright); }
+    .metrics-tag span b { color: var(--gold-muted); }
+    .status-save { color: var(--gold-muted); font-size: 0.72rem; }
 
-    .topbar-right {
+    .nav-actions {
       display: flex;
       align-items: center;
-      gap: 0.8rem;
+      gap: 0.6rem;
     }
 
-    .btn-top {
-      font-family: var(--font-mono);
-      font-size: 0.74rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 0.45rem 0.9rem;
-      cursor: pointer;
+    .btn-action {
+      background: var(--card-bg);
       border: 1px solid var(--border-color);
-      background: transparent;
       color: var(--text-main);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      padding: 0.45rem 0.85rem;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
       transition: all 0.2s ease;
+      user-select: none;
     }
 
-    .btn-top:hover {
-      border-color: var(--gold-bright);
+    .btn-action:hover {
+      border-color: var(--gold-muted);
       color: #fff;
     }
 
-    .btn-top.btn-drafts {
-      border-color: #3d3525;
-      color: var(--gold-bright);
-      background: rgba(194, 166, 97, 0.08);
-    }
-
-    .btn-top.btn-drafts:hover {
-      background: var(--gold-muted);
-      color: #0c0b0a;
-    }
-
-    .btn-export-main {
-      background: #8f3024;
+    .btn-action.btn-export {
+      background: var(--accent-color);
       border-color: var(--accent-color);
-      color: #fff;
+      color: #ffffff;
       font-weight: 700;
     }
 
-    .btn-export-main:hover {
-      background: var(--accent-color);
-      box-shadow: 0 0 12px var(--accent-glow);
+    .btn-action.btn-export:hover {
+      background: var(--accent-hover);
+      border-color: var(--accent-hover);
     }
 
-    /* Contenedor Principal */
+    .btn-drawer-toggle {
+      background: transparent;
+      border: 1px dashed var(--gold-muted);
+      color: var(--gold-muted);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      padding: 0.45rem 0.85rem;
+      cursor: pointer;
+      letter-spacing: 0.08em;
+      transition: all 0.2s ease;
+    }
+
+    .btn-drawer-toggle:hover {
+      background: rgba(194, 166, 97, 0.12);
+    }
+
+    /* Lienzo de Escritura Substack */
     main {
       flex: 1;
       max-width: 720px;
@@ -139,222 +149,400 @@
       position: relative;
     }
 
-    .doc-slug-meta {
+    .doc-slug-input {
       font-family: var(--font-mono);
       font-size: 0.75rem;
       color: var(--text-muted);
-      display: flex;
-      gap: 1rem;
-      margin-bottom: 2rem;
+      background: transparent;
+      border: none;
       border-bottom: 1px dashed var(--border-color);
-      padding-bottom: 0.6rem;
-    }
-
-    .meta-field {
-      background: transparent;
-      border: none;
-      outline: none;
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      color: var(--gold-bright);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      flex: 1;
-    }
-
-    .title-field {
       width: 100%;
+      padding: 0.35rem 0;
+      margin-bottom: 1.8rem;
+      outline: none;
+      letter-spacing: 0.05em;
+    }
+
+    .meta-inputs {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 1.2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .meta-input {
       background: transparent;
       border: none;
-      outline: none;
       font-family: var(--font-mono);
-      font-size: 2.15rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      outline: none;
+    }
+
+    #docId {
+      color: var(--gold-muted);
       font-weight: 700;
-      line-height: 1.3;
-      letter-spacing: 0.04em;
-      color: #ffffff;
-      margin-bottom: 0.8rem;
-      text-transform: uppercase;
+      border-bottom: 1px dashed var(--border-color);
     }
 
-    .title-field::placeholder { color: #3d3731; }
+    #docMeta {
+      color: var(--text-muted);
+      border-bottom: 1px dashed var(--border-color);
+    }
 
-    .subtitle-field {
+    .title-input {
       width: 100%;
       background: transparent;
       border: none;
+      border-bottom: 1px dashed var(--border-color);
+      font-family: var(--font-mono);
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--text-main);
+      padding: 0.5rem 0 1.5rem 0;
+      margin-bottom: 3.2rem;
+      outline: none;
+      text-transform: uppercase;
+      line-height: 1.3;
+    }
+
+    /* Área de Texto Editable */
+    #editorialCanvas {
       outline: none;
       font-family: var(--font-serif);
-      font-size: 1.25rem;
-      font-style: italic;
-      color: var(--text-muted);
-      margin-bottom: 3.5rem;
-      line-height: 1.5;
-    }
-
-    .subtitle-field::placeholder { color: #3d3731; font-style: italic; }
-
-    /* Área de Redacción y Lectura */
-    #editorArea, .article-body {
-      outline: none;
-      font-size: 1.15rem;
-      line-height: 2.05;
+      font-size: 1.18rem;
+      line-height: 2;
       color: var(--text-main);
       min-height: 480px;
     }
 
-    #editorArea p, .article-body p {
+    #editorialCanvas p {
       margin-bottom: 2.2rem;
       text-align: justify;
       hyphens: auto;
       letter-spacing: 0.012em;
     }
 
-    #editorArea b, #editorArea strong,
-    .article-body b, .article-body strong {
-      color: #ffffff !important;
-      font-weight: 700 !important;
-    }
-
-    #editorArea i, #editorArea em,
-    .article-body i, .article-body em {
-      color: #faebd7 !important;
-      font-style: italic !important;
-    }
-
-    /* MODO LIBRO IMPRESO */
-    #editorArea.mode-book p, .article-body.mode-book p {
+    /* Modo Libro Impreso */
+    #editorialCanvas.mode-book p {
       margin-bottom: 0 !important;
-      text-indent: 2.2em;
+      text-indent: 2em;
       text-align: justify;
       hyphens: auto;
     }
 
-    #editorArea.mode-book > p:first-of-type,
-    #editorArea.mode-book h2 + p,
-    #editorArea.mode-book h3 + p,
-    #editorArea.mode-book blockquote + p,
-    #editorArea.mode-book hr + p,
-    #editorArea.mode-book .editorial-plate + p,
-    .article-body.mode-book > p:first-of-type,
-    .article-body.mode-book h2 + p,
-    .article-body.mode-book h3 + p,
-    .article-body.mode-book blockquote + p,
-    .article-body.mode-book hr + p,
-    .article-body.mode-book .editorial-plate + p {
+    #editorialCanvas.mode-book > p:first-of-type,
+    #editorialCanvas.mode-book h2 + p,
+    #editorialCanvas.mode-book h3 + p,
+    #editorialCanvas.mode-book blockquote + p,
+    #editorialCanvas.mode-book hr + p,
+    #editorialCanvas.mode-book .editorial-plate + p {
       text-indent: 0 !important;
     }
 
-    /* Letra Capitular */
-    #editorArea.mode-book.has-dropcap > p:first-of-type::first-letter,
-    #editorArea.mode-book.has-dropcap h2 + p::first-letter,
-    .article-body.mode-book.has-dropcap > p:first-of-type::first-letter,
-    .article-body.mode-book.has-dropcap h2 + p::first-letter {
+    #editorialCanvas.mode-book.has-dropcap > p:first-of-type::first-letter,
+    #editorialCanvas.mode-book.has-dropcap h2 + p::first-letter {
       float: left;
-      font-size: 3.8rem;
-      line-height: 0.78;
-      padding-top: 6px;
-      padding-right: 14px;
-      color: var(--gold-bright);
+      font-size: 3.6rem;
+      line-height: 0.8;
+      padding-top: 4px;
+      padding-right: 12px;
+      padding-bottom: 2px;
+      color: var(--gold-muted);
       font-family: var(--font-serif);
       font-weight: 700;
-      text-shadow: 0 0 10px rgba(223, 194, 125, 0.2);
     }
 
-    #editorArea h2, .article-body h2 {
+    #editorialCanvas h2 {
       font-family: var(--font-mono);
-      font-size: 1.28rem;
-      color: #ffffff;
+      font-size: 1.3rem;
+      color: var(--text-main);
       text-transform: uppercase;
-      letter-spacing: 0.09em;
-      margin: 3.8rem 0 1.2rem 0;
+      letter-spacing: 0.08em;
+      margin: 3.6rem 0 1.3rem 0;
     }
 
-    #editorArea h3, .article-body h3 {
+    #editorialCanvas h3 {
       font-family: var(--font-mono);
-      font-size: 1.05rem;
-      color: var(--gold-bright);
+      font-size: 1.08rem;
+      color: var(--gold-muted);
       text-transform: uppercase;
-      letter-spacing: 0.07em;
-      margin: 2.8rem 0 1rem 0;
+      letter-spacing: 0.06em;
+      margin: 2.6rem 0 1rem 0;
     }
 
-    /* Cita en Bloque */
-    #editorArea blockquote, .article-body blockquote {
-      border-left: 3px solid var(--accent-color);
-      box-shadow: -3px 0 12px var(--accent-glow);
-      padding: 0.8rem 0 0.8rem 1.8rem;
-      margin: 3rem 0;
-      background: rgba(196, 67, 51, 0.04);
-      color: #ded7cb;
+    #editorialCanvas blockquote {
+      border-left: 2px solid var(--accent-color);
+      padding: 0.4rem 0 0.4rem 1.6rem;
+      margin: 2.8rem 0;
+      color: #d1c8ba;
       font-style: italic;
-      font-size: 1.18rem;
-      line-height: 1.9;
+      font-size: 1.16rem;
     }
 
-    #editorArea .pull-quote, .article-body .pull-quote {
+    #editorialCanvas blockquote.pullquote {
+      border-left: none;
       text-align: center;
       font-size: 1.45rem;
-      font-style: italic;
-      line-height: 1.65;
-      color: var(--gold-bright);
-      margin: 4rem 1.5rem;
-      padding: 1.8rem 0;
-      border-top: 1px dashed #3a3222;
-      border-bottom: 1px dashed #3a3222;
-    }
-
-    #editorArea .divider-dots, .article-body .divider-dots {
-      text-align: center;
-      letter-spacing: 1.4em;
+      line-height: 1.6;
       color: var(--gold-muted);
+      padding: 2rem 1.5rem;
+      margin: 3.5rem 0;
+      font-style: normal;
+      border-top: 1px dashed var(--border-color);
+      border-bottom: 1px dashed var(--border-color);
+    }
+
+    #editorialCanvas hr {
+      border: none;
+      text-align: center;
       margin: 3.8rem 0;
-      user-select: none;
+      height: auto;
     }
 
-    #editorArea a, .article-body a {
-      color: #ffffff;
+    #editorialCanvas hr::after {
+      content: "•   •   •";
+      font-family: var(--font-mono);
+      color: var(--gold-muted);
+      letter-spacing: 0.5em;
+      font-size: 0.85rem;
+    }
+
+    #editorialCanvas ul, #editorialCanvas ol {
+      margin-bottom: 2.2rem;
+      padding-left: 2rem;
+    }
+
+    #editorialCanvas li { margin-bottom: 0.5rem; }
+
+    #editorialCanvas a {
+      color: var(--text-main);
       text-decoration: underline;
-      text-underline-offset: 4px;
-      text-decoration-color: var(--gold-muted);
+      text-underline-offset: 3px;
     }
 
-    #editorArea .highlight-text, .article-body .highlight-text {
-      background-color: rgba(196, 67, 51, 0.2);
+    #editorialCanvas .highlight-text {
+      background-color: rgba(143, 48, 36, 0.22);
       border-bottom: 1px solid var(--accent-color);
-      padding: 0.1rem 0.35rem;
+      padding: 0.1rem 0.3rem;
+    }
+
+    /* Barra Flotante Substack (Bubble Menu al seleccionar) */
+    .bubble-menu {
+      position: absolute;
+      display: none;
+      background: #141312;
+      border: 1px dashed var(--gold-muted);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.85);
+      border-radius: 4px;
+      padding: 0.3rem;
+      z-index: 2000;
+      flex-direction: row;
+      gap: 0.25rem;
+      animation: fadeInMenu 0.15s ease-out;
+    }
+
+    @keyframes fadeInMenu {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .bubble-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-main);
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      padding: 0.35rem 0.6rem;
+      cursor: pointer;
+      border-radius: 2px;
+      transition: all 0.15s ease;
+    }
+
+    .bubble-btn:hover {
+      background: rgba(194, 166, 97, 0.15);
+      color: var(--gold-muted);
+    }
+
+    /* Botón Más (+) en línea tipo Substack */
+    .block-plus-btn {
+      position: absolute;
+      left: -48px;
+      display: none;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--card-bg);
+      border: 1px dashed var(--border-color);
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      font-size: 1rem;
+      line-height: 26px;
+      text-align: center;
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.2s ease;
+      z-index: 100;
+    }
+
+    .block-plus-btn:hover {
+      border-color: var(--gold-muted);
+      color: var(--gold-muted);
+      transform: scale(1.1);
+    }
+
+    /* Menú Desplegable del Botón (+) */
+    .block-menu {
+      position: absolute;
+      left: -10px;
+      display: none;
+      background: #141312;
+      border: 1px dashed var(--gold-muted);
+      box-shadow: 0 12px 35px rgba(0,0,0,0.85);
+      border-radius: 4px;
+      padding: 0.4rem;
+      z-index: 1500;
+      flex-direction: column;
+      gap: 0.25rem;
+      min-width: 175px;
+      font-family: var(--font-mono);
+    }
+
+    .block-menu-item {
+      background: transparent;
+      border: none;
+      color: var(--text-main);
+      font-size: 0.75rem;
+      padding: 0.5rem 0.8rem;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      border-radius: 2px;
+      transition: all 0.15s ease;
+    }
+
+    .block-menu-item:hover {
+      background: rgba(194, 166, 97, 0.15);
+      color: var(--gold-muted);
+    }
+
+    /* Cajón Lateral Desplegable (Drawer) */
+    .drawer-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(2px);
+      z-index: 2500;
+      display: none;
+    }
+
+    .drawer-overlay.active { display: block; }
+
+    .editorial-drawer {
+      position: fixed;
+      top: 0; right: -360px;
+      width: 340px;
+      height: 100%;
+      background: #11100f;
+      border-left: 1px dashed var(--border-color);
+      z-index: 2600;
+      display: flex;
+      flex-direction: column;
+      box-shadow: -15px 0 40px rgba(0,0,0,0.8);
+      transition: right 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      font-family: var(--font-mono);
+    }
+
+    .editorial-drawer.open { right: 0; }
+
+    .drawer-header {
+      padding: 1.4rem 1.6rem;
+      border-bottom: 1px dashed var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .drawer-title {
+      font-size: 0.82rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold-muted);
+      font-weight: 700;
+    }
+
+    .drawer-close {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      cursor: pointer;
+    }
+
+    .drawer-close:hover { color: var(--text-main); }
+
+    .drawer-content {
+      flex: 1;
+      padding: 1.6rem;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+    }
+
+    .drawer-section-title {
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.8rem;
+      border-bottom: 1px dashed var(--border-color);
+      padding-bottom: 0.35rem;
+    }
+
+    .drawer-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.45rem;
+    }
+
+    .drawer-btn {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      font-family: var(--font-mono);
+      font-size: 0.73rem;
+      padding: 0.5rem 0.6rem;
+      text-align: center;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      transition: all 0.2s ease;
+    }
+
+    .drawer-btn:hover {
+      border-color: var(--gold-muted);
       color: #fff;
     }
 
-    /* Botón Superíndice en Texto (Nota de libro impreso) */
-    .footnote-button {
-      display: inline-block;
-      color: var(--gold-bright);
-      font-family: var(--font-serif);
+    .drawer-btn.active {
+      background: var(--gold-muted);
+      color: #0c0b0a;
+      border-color: var(--gold-muted);
       font-weight: 700;
-      font-size: 0.88rem;
-      line-height: 0;
-      vertical-align: super;
-      text-decoration: none;
-      cursor: pointer;
-      margin: 0 0.15rem;
-      background: transparent;
-      border: none;
-      padding: 0 0.15rem;
-      user-select: none;
-      transition: all 0.2s ease;
-      filter: drop-shadow(0 0 2px rgba(223, 194, 125, 0.3));
     }
 
-    .footnote-button:hover, .footnote-button.active {
-      color: #ffffff;
-      transform: scale(1.22);
-      filter: drop-shadow(0 0 8px var(--gold-bright));
+    .drawer-btn.full {
+      grid-column: span 2;
     }
 
-    /* Láminas */
+    /* Láminas de Archivo e Incrustaciones */
     .editorial-plate {
-      margin: 3.8rem 0;
+      margin: 3.5rem 0;
       border: 1px dashed var(--border-color);
       background-color: #11100f;
       padding: 1.4rem;
@@ -378,548 +566,343 @@
       padding-top: 0.8rem;
       border-top: 1px dashed var(--border-color);
       font-family: var(--font-mono);
-      font-size: 0.76rem;
+      font-size: 0.78rem;
       line-height: 1.6;
       color: var(--text-muted);
     }
 
     .plate-number {
-      color: var(--gold-bright);
+      color: var(--gold-muted);
       font-weight: 700;
       margin-right: 0.4rem;
     }
 
-    /* Apartado de Notas al Pie (Abajo) */
-    .footnotes-section {
-      margin-top: 5rem;
-      padding-top: 2rem;
-      border-top: 1px dashed var(--border-color);
+    .plate-source {
+      display: block;
+      margin-top: 0.35rem;
+      color: #6d665b;
+      font-size: 0.72rem;
     }
 
-    .footnotes-title {
+    .citation-tag {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--gold-muted);
+      background: rgba(194, 166, 97, 0.08);
+      border: 1px dashed #3a3222;
+      padding: 0 0.4rem;
+      margin: 0 0.2rem;
+    }
+
+    .footnote-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold-muted);
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 0.76rem;
+      vertical-align: super;
+      text-decoration: none;
+      cursor: pointer;
+      margin: 0 0.15rem;
+      background: rgba(194, 166, 97, 0.1);
+      border: 1px dashed #3a3222;
+      padding: 0.1rem 0.35rem;
+      border-radius: 2px;
+      transition: all 0.2s ease;
+      user-select: none;
+    }
+
+    .footnote-button:hover {
+      background: var(--gold-muted);
+      color: #0c0b0a;
+    }
+
+    /* Popover Flotante de Notas */
+    .footnote-popover {
+      position: absolute;
+      z-index: 3000;
+      width: min(340px, 90vw);
+      background-color: #141312;
+      border: 1px dashed var(--gold-muted);
+      box-shadow: 0 12px 35px rgba(0,0,0,0.85);
+      border-radius: 4px;
+      padding: 1.1rem;
       font-family: var(--font-mono);
       font-size: 0.8rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--gold-bright);
-      margin-bottom: 1.2rem;
-    }
-
-    #footnotesList, .footnotes-list {
-      list-style: none;
-      font-family: var(--font-mono);
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      line-height: 1.7;
-      padding: 0;
-      outline: none;
-    }
-
-    #footnotesList li, .footnotes-list li {
-      margin-bottom: 0.85rem;
-      padding: 0.35rem 0.6rem;
-      border-radius: 2px;
-      display: flex;
-      align-items: baseline;
-      gap: 0.6rem;
-      transition: background-color 0.4s ease;
-    }
-
-    .footnote-index-btn {
-      color: var(--gold-bright);
-      font-weight: 700;
-      background: transparent;
-      border: none;
-      cursor: pointer;
-      font-family: var(--font-mono);
-      font-size: 0.85rem;
-      padding: 0;
-      user-select: none;
-      transition: all 0.2s ease;
-    }
-
-    .footnote-index-btn:hover {
-      color: #ffffff;
-      transform: scale(1.15);
-    }
-
-    .footnote-highlight {
-      background-color: rgba(223, 194, 125, 0.18) !important;
-      color: #ffffff !important;
-    }
-
-    /* Drawer Lateral */
-    .sidebar-drawer {
-      position: fixed;
-      top: 60px;
-      right: -310px;
-      width: 310px;
-      height: calc(100vh - 60px);
-      background: rgba(18, 17, 16, 0.98);
-      backdrop-filter: blur(12px);
-      border-left: 1px dashed var(--border-color);
-      box-shadow: -10px 0 35px rgba(0,0,0,0.8);
-      z-index: 3000;
-      transition: right 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-      display: flex;
-      flex-direction: column;
-      padding: 1.4rem;
-      overflow-y: auto;
-    }
-
-    .sidebar-drawer.open { right: 0; }
-
-    .drawer-toggle-tab {
-      position: fixed;
-      top: 76px;
-      right: 0;
-      z-index: 3100;
-      background: #181614;
-      border: 1px dashed var(--gold-muted);
-      border-right: none;
-      color: var(--gold-bright);
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 0.55rem 0.8rem;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      transition: all 0.25s ease;
-      box-shadow: -4px 4px 15px rgba(0,0,0,0.6);
-    }
-
-    .sidebar-drawer.open + .drawer-toggle-tab {
-      right: 310px;
-      background: #8f3024;
-      color: #fff;
-      border-color: var(--accent-color);
-    }
-
-    .drawer-section {
-      margin-bottom: 1.6rem;
-      padding-bottom: 1.2rem;
-      border-bottom: 1px dashed var(--border-color);
-    }
-
-    .drawer-section:last-child { border-bottom: none; }
-
-    .drawer-header {
-      font-family: var(--font-mono);
-      font-size: 0.68rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--gold-bright);
-      font-weight: 700;
-      margin-bottom: 0.8rem;
-    }
-
-    .drawer-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.4rem; }
-    .drawer-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.4rem; }
-
-    .drawer-btn {
-      background: #141312;
-      border: 1px solid var(--border-color);
       color: var(--text-main);
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      padding: 0.5rem 0.4rem;
-      cursor: pointer;
-      text-align: center;
-      transition: all 0.15s ease;
-      user-select: none;
-    }
-
-    .drawer-btn:hover {
-      border-color: var(--gold-bright);
-      color: #fff;
-      background: #1c1a18;
-    }
-
-    .drawer-btn.btn-gold-accent {
-      border-color: #4a3e20;
-      color: var(--gold-bright);
-      font-weight: 700;
-    }
-
-    .drawer-btn.btn-active {
-      background: #8f3024;
-      color: #fff;
-      border-color: var(--accent-color);
-    }
-
-    /* Modal Gestor Borradores */
-    .drafts-modal {
+      line-height: 1.65;
       display: none;
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(10, 9, 8, 0.94);
-      backdrop-filter: blur(12px);
-      z-index: 5000;
-      justify-content: center;
-      align-items: center;
-      padding: 1.5rem;
+      animation: fadeInNote 0.15s ease-out;
     }
 
-    .drafts-modal.active { display: flex; }
+    @keyframes fadeInNote {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
-    .drafts-panel {
-      background: var(--card-bg);
-      border: 1px dashed var(--gold-muted);
-      width: 100%;
-      max-width: 640px;
-      max-height: 85vh;
+    .popover-header {
       display: flex;
-      flex-direction: column;
-      box-shadow: 0 15px 45px rgba(0,0,0,0.9);
-    }
-
-    .drafts-panel-header {
-      padding: 1.2rem 1.6rem;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+      padding-bottom: 0.4rem;
       border-bottom: 1px dashed var(--border-color);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-family: var(--font-mono);
-    }
-
-    .drafts-title {
-      font-size: 0.85rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--gold-bright);
+      color: var(--gold-muted);
+      font-size: 0.72rem;
       font-weight: 700;
+      letter-spacing: 0.1em;
     }
 
-    .drafts-list-wrap {
-      flex: 1;
-      overflow-y: auto;
-      padding: 1.4rem 1.6rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.9rem;
-    }
-
-    .draft-entry-card {
-      background: #0d0c0b;
-      border: 1px solid var(--border-color);
-      padding: 1rem 1.2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 1rem;
-      transition: border-color 0.2s ease;
-    }
-
-    .draft-entry-card:hover { border-color: var(--gold-bright); }
-    .draft-entry-card.is-current { border-left: 3px solid var(--accent-color); }
-
-    .draft-entry-info { display: flex; flex-direction: column; gap: 0.3rem; overflow: hidden; }
-
-    .draft-entry-title {
-      font-family: var(--font-mono);
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: #ffffff;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .draft-entry-meta {
-      font-family: var(--font-mono);
-      font-size: 0.68rem;
+    .popover-close {
+      cursor: pointer;
       color: var(--text-muted);
-      letter-spacing: 0.06em;
+      background: none;
+      border: none;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
     }
 
-    .draft-actions { display: flex; gap: 0.4rem; flex-shrink: 0; }
-
-    .drafts-panel-footer {
-      padding: 1rem 1.6rem;
-      border-top: 1px dashed var(--border-color);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: #100f0e;
-    }
-
-    /* Modal de Previsualización */
+    /* Modal de Previsualizador */
     .preview-modal {
-      display: none;
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
       background: rgba(10, 9, 8, 0.98);
-      backdrop-filter: blur(12px);
+      backdrop-filter: blur(10px);
       z-index: 4000;
+      display: none;
       flex-direction: column;
     }
 
     .preview-modal.active { display: flex; }
 
     .preview-header {
-      padding: 0.8rem 1.8rem;
-      background: #141312;
+      padding: 1rem 2rem;
+      background: #11100f;
       border-bottom: 1px dashed var(--border-color);
       display: flex;
       justify-content: space-between;
       align-items: center;
       font-family: var(--font-mono);
-      z-index: 10;
     }
 
-    .preview-body-container {
+    .preview-content-area {
       flex: 1;
       overflow-y: auto;
-      padding: 2.5rem 1rem;
+      padding: 4rem 1.8rem;
       display: flex;
       justify-content: center;
-      position: relative;
     }
 
-    .preview-viewport {
-      background: var(--bg-color);
-      border: 1px dashed var(--border-color);
-      min-height: 100%;
-      padding: 4.5rem 3rem;
-      transition: width 0.3s ease;
+    .preview-wrapper {
+      max-width: 720px;
       width: 100%;
-      max-width: 760px;
-      position: relative;
-    }
-
-    .preview-viewport.mode-mobile {
-      max-width: 390px;
-      padding: 2.5rem 1.4rem;
-      border: 1px solid #332d27;
-      border-radius: 12px;
-      margin-top: 1rem;
-      margin-bottom: 2rem;
     }
 
     @media (max-width: 820px) {
-      .substack-topbar { padding: 0.8rem 1.2rem; }
-      main { padding: 3rem 1.2rem 8rem 1.2rem; }
-      .sidebar-drawer { width: 280px; }
-      .drawer-toggle-tab { font-size: 0.65rem; padding: 0.4rem 0.6rem; }
-      .title-field { font-size: 1.55rem; }
-      #editorArea p, .article-body p { text-align: left; }
-      #footnotesList, .footnotes-list { font-size: 0.88rem; line-height: 1.8; }
+      .block-plus-btn { display: none !important; }
+      .metrics-tag { display: none; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Barra Superior -->
-  <header class="substack-topbar">
-    <div class="topbar-left">
-      <a href="archivo.html" class="brand-mark">&larr; Love Jones</a>
-      <span class="status-text" id="saveStatus">Guardado</span>
-      <span>&bull;</span>
-      <span id="wordMetric">0 palabras</span>
+  <!-- Barra Superior Minimalista -->
+  <header class="top-nav">
+    <div class="brand-section">
+      <a href="archivo.html" class="brand-name">Love Jones</a>
+      <div class="metrics-tag">
+        <span>Palabras: <b id="wordCount">0</b></span>
+        <span>Lectura: <b id="readTime">0 min</b></span>
+        <span class="status-save" id="saveIndicator">Guardado en caché</span>
+      </div>
     </div>
 
-    <div class="topbar-right">
-      <button class="btn-top btn-drafts" type="button" onclick="openDraftsModal()">[Mis Borradores]</button>
-      <button class="btn-top" type="button" onclick="openLivePreview()">Previsualizar</button>
-      <button class="btn-top btn-export-main" type="button" onclick="exportHtmlFile()">Exportar Ensayo</button>
+    <div class="nav-actions">
+      <button class="btn-action" type="button" onclick="openPreview()">[PREVISUALIZAR]</button>
+      <button class="btn-drawer-toggle" type="button" onclick="toggleDrawer()">[HERRAMIENTAS &equiv;]</button>
+      <button class="btn-action btn-export" type="button" onclick="exportHtmlFile()">[EXPORTAR .HTML]</button>
     </div>
   </header>
 
-  <!-- CAJA DESPLEGABLE LATERAL -->
-  <aside class="sidebar-drawer" id="sideDrawer">
-    <div class="drawer-section">
-      <div class="drawer-header">Archivo & Sesiones</div>
-      <button type="button" class="drawer-btn btn-gold-accent" style="width:100%;" onclick="openDraftsModal()">[ABRIR GESTOR DE BORRADORES]</button>
-      <button type="button" class="drawer-btn" style="width:100%; margin-top:0.4rem;" onclick="createNewDraft()">+ NUEVO ENSAYO EN BLANCO</button>
+  <!-- Botón de bloque (+) en línea tipo Substack -->
+  <button id="blockPlusBtn" class="block-plus-btn" title="Añadir bloque">+</button>
+  <div id="blockMenu" class="block-menu">
+    <button class="block-menu-item" onclick="insertHeading('H2')"><b>H2</b> Título principal</button>
+    <button class="block-menu-item" onclick="insertHeading('H3')"><b>H3</b> Subtítulo</button>
+    <button class="block-menu-item" onclick="applyBlockquote()"><i>&ldquo;</i> Cita estándar</button>
+    <button class="block-menu-item" onclick="applyPullQuote()"><i>&bdquo;</i> Cita destacada</button>
+    <button class="block-menu-item" onclick="insertDivider()"><b>&bull;&bull;&bull;</b> Separador</button>
+    <button class="block-menu-item" onclick="insertPlate()"><b>[&bull;]</b> Lámina / Imagen</button>
+  </div>
+
+  <!-- Barra Flotante Contextual (Bubble Menu) -->
+  <div id="bubbleMenu" class="bubble-menu">
+    <button class="bubble-btn" onmousedown="event.preventDefault()" onclick="exec('bold')"><b>B</b></button>
+    <button class="bubble-btn" onmousedown="event.preventDefault()" onclick="exec('italic')"><i>I</i></button>
+    <button class="bubble-btn" onmousedown="event.preventDefault()" onclick="applyHighlight()">Resaltar</button>
+    <button class="bubble-btn" onmousedown="event.preventDefault()" onclick="insertLink()">Enlace</button>
+    <button class="bubble-btn" onmousedown="event.preventDefault()" onclick="insertFootnote()">[+ Nota]</button>
+  </div>
+
+  <!-- Cajón Lateral Colapsable (Drawer) -->
+  <div class="drawer-overlay" id="drawerOverlay" onclick="toggleDrawer()"></div>
+  <aside class="editorial-drawer" id="editorialDrawer">
+    <div class="drawer-header">
+      <span class="drawer-title">Gabinete Editorial</span>
+      <button class="drawer-close" onclick="toggleDrawer()">&times;</button>
     </div>
 
-    <div class="drawer-section">
-      <div class="drawer-header">1. Estilo & Formato</div>
-      <div class="drawer-grid-3">
-        <button type="button" class="drawer-btn" onmousedown="event.preventDefault()" onclick="execFormat('bold')"><b>B</b></button>
-        <button type="button" class="drawer-btn" onmousedown="event.preventDefault()" onclick="execFormat('italic')"><i>I</i></button>
-        <button type="button" class="drawer-btn" onmousedown="event.preventDefault()" onclick="applyHighlight()">Resaltar</button>
+    <div class="drawer-content">
+      <div>
+        <div class="drawer-section-title">Estructura & Tipografía</div>
+        <div class="drawer-grid">
+          <button class="drawer-btn" onmousedown="event.preventDefault()" onclick="applyBlock('H2')">H2 Título</button>
+          <button class="drawer-btn" onmousedown="event.preventDefault()" onclick="applyBlock('H3')">H3 Sección</button>
+          <button class="drawer-btn" onmousedown="event.preventDefault()" onclick="applyBlock('P')">Párrafo</button>
+          <button class="drawer-btn" onmousedown="event.preventDefault()" onclick="applyHighlight()">Resaltar</button>
+          <button class="drawer-btn" onmousedown="event.preventDefault()" onclick="exec('bold')"><b>Negrita</b></button>
+          <button class="drawer-btn" onmousedown="event.preventDefault()" onclick="exec('italic')"><i>Cursiva</i></button>
+          <button class="drawer-btn" onmousedown="event.preventDefault()" onclick="exec('insertUnorderedList')">&bull; Lista</button>
+          <button class="drawer-btn" onmousedown="event.preventDefault()" onclick="insertLink()">Enlace</button>
+        </div>
       </div>
-      <div class="drawer-grid" style="margin-top:0.4rem;">
-        <button type="button" class="drawer-btn" onmousedown="event.preventDefault()" onclick="execFormat('undo')">&larr; Deshacer</button>
-        <button type="button" class="drawer-btn" onmousedown="event.preventDefault()" onclick="execFormat('redo')">Rehacer &rarr;</button>
-      </div>
-    </div>
 
-    <div class="drawer-section">
-      <div class="drawer-header">2. Jerarquía Tipográfica</div>
-      <div class="drawer-grid">
-        <button type="button" class="drawer-btn" onmousedown="event.preventDefault()" onclick="applyBlock('H2')">Título H2</button>
-        <button type="button" class="drawer-btn" onmousedown="event.preventDefault()" onclick="applyBlock('H3')">Subtítulo H3</button>
+      <div>
+        <div class="drawer-section-title">Citas & Elementos</div>
+        <div class="drawer-grid">
+          <button class="drawer-btn" onmousedown="event.preventDefault()" onclick="applyBlockquote()">Cita Barra</button>
+          <button class="drawer-btn" onmousedown="event.preventDefault()" onclick="applyPullQuote()">Pull Quote</button>
+          <button class="drawer-btn full" onmousedown="event.preventDefault()" onclick="insertPlate()">[+ LÁMINA / FIGURA]</button>
+          <button class="drawer-btn full" onmousedown="event.preventDefault()" onclick="insertDivider()">Separador (• • •)</button>
+        </div>
       </div>
-      <div class="drawer-grid" style="margin-top:0.4rem;">
-        <button type="button" class="drawer-btn" onmousedown="event.preventDefault()" onclick="applyBlock('P')">Párrafo Normal</button>
-        <button type="button" class="drawer-btn" onmousedown="event.preventDefault()" onclick="insertInlineLink()">+ Enlace Web</button>
+
+      <div>
+        <div class="drawer-section-title">Aparato Crítico</div>
+        <div class="drawer-grid">
+          <button class="drawer-btn full" style="border-color:var(--gold-muted); color:var(--gold-muted);" onmousedown="event.preventDefault()" onclick="insertFootnote()">[+ NOTA AL PIE]</button>
+          <button class="drawer-btn full" onmousedown="event.preventDefault()" onclick="insertCitation()">[+ CITA / FUENTE]</button>
+        </div>
       </div>
-    </div>
 
-    <div class="drawer-section">
-      <div class="drawer-header">3. Citas & Cortes</div>
-      <div class="drawer-grid">
-        <button type="button" class="drawer-btn" onmousedown="event.preventDefault()" onclick="applyBlockquote()">Cita en Bloque</button>
-        <button type="button" class="drawer-btn" onmousedown="event.preventDefault()" onclick="insertPullQuote()">Cita Destacada</button>
+      <div>
+        <div class="drawer-section-title">Modo Libro Impreso</div>
+        <div class="drawer-grid">
+          <button class="drawer-btn" id="bookModeBtn" onclick="toggleBookMode()">[SANGRÍAS: OFF]</button>
+          <button class="drawer-btn" id="dropcapBtn" onclick="toggleDropcap()">[CAPITULAR: OFF]</button>
+        </div>
       </div>
-      <button type="button" class="drawer-btn" style="width:100%; margin-top:0.4rem;" onmousedown="event.preventDefault()" onclick="insertDots()">Separador &bull; &bull; &bull;</button>
-    </div>
 
-    <div class="drawer-section">
-      <div class="drawer-header">4. Aparato Crítico & Archivo</div>
-      <button type="button" class="drawer-btn btn-gold-accent" style="width:100%;" onmousedown="event.preventDefault()" onclick="insertFootnoteAction()">[+ NOTA DE LIBRO IMPRESO]</button>
-      <button type="button" class="drawer-btn" style="width:100%; margin-top:0.4rem;" onmousedown="event.preventDefault()" onclick="insertPlateAction()">[+ LÁMINA / FIGURA]</button>
-    </div>
-
-    <div class="drawer-section">
-      <div class="drawer-header">5. Maquetación Editorial</div>
-      <button type="button" class="drawer-btn" id="drawerBookBtn" style="width:100%;" onclick="toggleBookMode()">[MODO: ENSAYO WEB]</button>
-      <button type="button" class="drawer-btn" id="drawerDropBtn" style="width:100%; margin-top:0.4rem; display:none;" onclick="toggleDropcap()">[CAPITULAR: OFF]</button>
+      <div style="margin-top:auto;">
+        <button class="drawer-btn full" style="border-color:#522; color:var(--accent-hover);" onclick="resetCanvas()">Reiniciar Borrador</button>
+      </div>
     </div>
   </aside>
 
-  <!-- Pestaña Gatillo del Panel -->
-  <button type="button" class="drawer-toggle-tab" id="drawerToggle" onclick="toggleSidebar()">
-    <span id="drawerToggleIcon">&larr;</span> <span>HERRAMIENTAS</span>
-  </button>
+  <!-- Mesa de Escritura Principal -->
+  <main>
+    <input type="text" id="docSlug" class="doc-slug-input" placeholder="nombre-archivo (ej: poetica-del-sample)">
 
-  <main id="mainContainer">
-    <div class="doc-slug-meta">
-      <input type="text" id="docSlug" class="meta-field" placeholder="slug-del-ensayo" style="max-width: 200px;">
-      <input type="text" id="docId" class="meta-field" placeholder="[TXT.01]" style="max-width: 90px;">
-      <input type="text" id="docMeta" class="meta-field" placeholder="BOGOTÁ // ENSAYO MONOGRÁFICO // 2026">
+    <div class="meta-inputs">
+      <input type="text" id="docId" class="meta-input" placeholder="[TXT.01]">
+      <input type="text" id="docMeta" class="meta-input" placeholder="BOGOTÁ // ENSAYO MONOGRÁFICO // 2026">
     </div>
 
-    <input type="text" id="docTitle" class="title-field" placeholder="Título...">
-    <input type="text" id="docSubtitle" class="subtitle-field" placeholder="Escribe un subtítulo descriptivo...">
+    <input type="text" id="docTitle" class="title-input" placeholder="TÍTULO COMPLETO DEL ENSAYO">
 
-    <div id="editorArea" contenteditable="true" spellcheck="false">
-      <p>Comienza a redactar aquí tu ensayo. Emplea la barra lateral para alternar títulos H2, <b>negritas contundentes</b>, <i>cursivas en pergamino</i> o añadir notas de libro impreso: al hacer clic en el número te llevará directamente a la referencia abajo y podrás regresar al texto con un solo clic.</p>
+    <div id="editorialCanvas" contenteditable="true" spellcheck="false">
+      <p>Comienza a escribir aquí. Al seleccionar cualquier texto se desplegará el menú contextual flotante para aplicar negrita, cursiva o insertar notas. Si te sitúas en una línea vacía, aparecerá a la izquierda el botón <b>+</b> para insertar encabezados o láminas de archivo.</p>
     </div>
 
-    <div class="footnotes-section" id="footnotesSection" style="display: none;">
-      <div class="footnotes-title">Notas</div>
-      <ol id="footnotesList" contenteditable="true" spellcheck="false"></ol>
+    <!-- Sección de Notas Flotantes -->
+    <div class="footnotes-section" id="footnotesSection" style="display: none; margin-top:4.5rem; padding-top:2rem; border-top:1px dashed var(--border-color);">
+      <div style="font-family:var(--font-mono); font-size:0.8rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold-muted); margin-bottom:1.2rem;">Aparato Crítico &bull; Notas</div>
+      <ol id="footnotesList" contenteditable="true" spellcheck="false" style="font-family:var(--font-mono); font-size:0.82rem; color:var(--text-muted); line-height:1.7; padding-left:1.4rem;"></ol>
+    </div>
+
+    <!-- Sección de Citas Bibliográficas -->
+    <div class="footnotes-section" id="citationsSection" style="display: none; margin-top:3rem; padding-top:2rem; border-top:1px dashed var(--border-color);">
+      <div style="font-family:var(--font-mono); font-size:0.8rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold-muted); margin-bottom:1.2rem;">Fuentes & Bibliografía</div>
+      <ul id="citationsList" contenteditable="true" spellcheck="false" style="font-family:var(--font-mono); font-size:0.82rem; color:var(--text-muted); line-height:1.7; padding-left:1.4rem;"></ul>
     </div>
   </main>
 
-  <!-- MODAL: GESTOR DE BORRADORES -->
-  <div class="drafts-modal" id="draftsModal">
-    <div class="drafts-panel">
-      <div class="drafts-panel-header">
-        <span class="drafts-title">&bull; Archivo de Borradores en Curso</span>
-        <button type="button" class="btn-top" style="border:none;" onclick="closeDraftsModal()">&times;</button>
-      </div>
-      <div class="drafts-list-wrap" id="draftsListContainer"></div>
-      <div class="drafts-panel-footer">
-        <button type="button" class="btn-top" onclick="createNewDraft()">+ Iniciar Nuevo Ensayo</button>
-        <button type="button" class="btn-top" onclick="closeDraftsModal()">Cerrar</button>
-      </div>
+  <!-- Tarjeta Popover de Notas al Pie -->
+  <div id="activePopover" class="footnote-popover">
+    <div class="popover-header">
+      <span id="popoverLabel">NOTA</span>
+      <button type="button" class="popover-close" onclick="closePopover()">&times;</button>
     </div>
+    <div id="popoverContent"></div>
   </div>
 
-  <!-- Modal de Previsualización -->
-  <div class="preview-modal" id="previewModal">
+  <!-- Modal del Previsualizador Tipo Substack -->
+  <div id="previewModal" class="preview-modal">
     <div class="preview-header">
-      <div style="display: flex; gap: 0.5rem;">
-        <button class="btn-top" onclick="setPreviewDevice('desktop')">Escritorio</button>
-        <button class="btn-top" onclick="setPreviewDevice('mobile')">Móvil</button>
-      </div>
-      <button class="btn-top" onclick="closeLivePreview()">&times; Cerrar Vista Previa (Esc)</button>
+      <span style="color:var(--gold-muted); letter-spacing:0.1em;">VISTA PREVIA EDITORIAL</span>
+      <button class="btn-action" onclick="closePreview()">&times; SALIR DE LA VISTA PREVIA</button>
     </div>
-    <div class="preview-body-container" id="pvContainer">
-      <div class="preview-viewport" id="previewViewport">
-        <div id="pvDocMeta" style="font-family:var(--font-mono); font-size:0.78rem; color:var(--gold-bright); letter-spacing:0.16em; text-transform:uppercase; margin-bottom:0.9rem;"></div>
-        <h1 id="pvTitle" style="font-family:var(--font-mono); font-size:2.05rem; letter-spacing:0.05em; line-height:1.35; text-transform:uppercase; color:#ffffff; margin-bottom:1rem;"></h1>
-        <div id="pvSubtitle" style="font-family:var(--font-serif); font-size:1.25rem; font-style:italic; color:var(--text-muted); margin-bottom:3rem; border-bottom:1px dashed var(--border-color); padding-bottom:1.5rem;"></div>
-        <article id="pvContent" class="article-body"></article>
-        <div id="pvFootnotes" class="footnotes-section" style="display:none;"></div>
-      </div>
+    <div class="preview-content-area">
+      <div class="preview-wrapper" id="previewTarget"></div>
     </div>
   </div>
 
   <script>
-    const editor = document.getElementById('editorArea');
+    const canvas = document.getElementById('editorialCanvas');
     const fList = document.getElementById('footnotesList');
     const fSec = document.getElementById('footnotesSection');
+    const cList = document.getElementById('citationsList');
+    const cSec = document.getElementById('citationsSection');
     const slugInput = document.getElementById('docSlug');
     const idInput = document.getElementById('docId');
     const metaInput = document.getElementById('docMeta');
     const titleInput = document.getElementById('docTitle');
-    const subtitleInput = document.getElementById('docSubtitle');
-    const saveStatus = document.getElementById('saveStatus');
-    const wordMetric = document.getElementById('wordMetric');
+    const saveInd = document.getElementById('saveIndicator');
 
-    const sideDrawer = document.getElementById('sideDrawer');
-    const drawerToggleIcon = document.getElementById('drawerToggleIcon');
-    const drawerBookBtn = document.getElementById('drawerBookBtn');
-    const drawerDropBtn = document.getElementById('drawerDropBtn');
+    const bubbleMenu = document.getElementById('bubbleMenu');
+    const blockPlusBtn = document.getElementById('blockPlusBtn');
+    const blockMenu = document.getElementById('blockMenu');
+    const drawer = document.getElementById('editorialDrawer');
+    const drawerOverlay = document.getElementById('drawerOverlay');
 
-    const draftsModal = document.getElementById('draftsModal');
-    const draftsContainer = document.getElementById('draftsListContainer');
+    const bookModeBtn = document.getElementById('bookModeBtn');
+    const dropcapBtn = document.getElementById('dropcapBtn');
 
+    let footnoteIndex = 0;
+    let plateIndex = 0;
     let isBookMode = false;
     let isDropcap = false;
 
-    let currentDraftId = localStorage.getItem('lj_active_draft_id') || 'draft_default';
-
-    function toggleSidebar() {
-      const isOpen = sideDrawer.classList.toggle('open');
-      drawerToggleIcon.innerHTML = isOpen ? '&times;' : '&larr;';
-    }
-
-    function toggleBookMode() {
-      isBookMode = !isBookMode;
-      if (isBookMode) {
-        editor.classList.add('mode-book');
-        drawerBookBtn.textContent = '[MODO: LIBRO / IMPRENTA]';
-        drawerBookBtn.classList.add('btn-active');
-        drawerDropBtn.style.display = 'block';
+    // Control del Cajón Lateral (Drawer)
+    function toggleDrawer() {
+      const isOpen = drawer.classList.contains('open');
+      if (isOpen) {
+        drawer.classList.remove('open');
+        drawerOverlay.classList.remove('active');
       } else {
-        editor.classList.remove('mode-book');
-        drawerBookBtn.textContent = '[MODO: ENSAYO WEB]';
-        drawerBookBtn.classList.remove('btn-active');
-        drawerDropBtn.style.display = 'none';
+        drawer.classList.add('open');
+        drawerOverlay.classList.add('active');
       }
-      triggerAutoSave();
     }
 
-    function toggleDropcap() {
-      isDropcap = !isDropcap;
-      if (isDropcap) {
-        editor.classList.add('has-dropcap');
-        drawerDropBtn.textContent = '[CAPITULAR: ON]';
-        drawerDropBtn.classList.add('btn-active');
-      } else {
-        editor.classList.remove('has-dropcap');
-        drawerDropBtn.textContent = '[CAPITULAR: OFF]';
-        drawerDropBtn.classList.remove('btn-active');
-      }
-      triggerAutoSave();
-    }
-
-    function execFormat(cmd, val = null) {
-      editor.focus();
+    // Comandos de formato básicos
+    function exec(cmd, val = null) {
       document.execCommand(cmd, false, val);
+      canvas.focus();
       triggerAutoSave();
     }
 
     function applyBlock(tagName) {
-      editor.focus();
+      canvas.focus();
       const sel = window.getSelection();
       if (!sel.rangeCount) return;
       let node = sel.anchorNode;
-      while (node && node !== editor && !['P', 'H2', 'H3', 'BLOCKQUOTE', 'DIV'].includes(node.nodeName)) {
+      while (node && node !== canvas && !['P', 'H2', 'H3', 'BLOCKQUOTE', 'DIV'].includes(node.nodeName)) {
         node = node.parentNode;
       }
-      if (node && node !== editor) {
+      if (node && node !== canvas) {
         const newEl = document.createElement(tagName.toLowerCase());
         newEl.innerHTML = node.innerHTML;
         node.parentNode.replaceChild(newEl, node);
@@ -930,43 +913,45 @@
     }
 
     function applyBlockquote() {
-      editor.focus();
+      canvas.focus();
       const sel = window.getSelection();
       if (!sel.rangeCount) return;
       let node = sel.anchorNode;
-      while (node && node !== editor && !['P', 'H2', 'H3', 'BLOCKQUOTE', 'DIV'].includes(node.nodeName)) {
+      while (node && node !== canvas && !['P', 'H2', 'H3', 'BLOCKQUOTE', 'DIV'].includes(node.nodeName)) {
         node = node.parentNode;
       }
       if (node && node.nodeName === 'BLOCKQUOTE') {
         const p = document.createElement('p');
         p.innerHTML = node.innerHTML;
         node.parentNode.replaceChild(p, node);
-      } else if (node && node !== editor) {
+      } else if (node && node !== canvas) {
         const bq = document.createElement('blockquote');
         bq.innerHTML = node.innerHTML;
         node.parentNode.replaceChild(bq, node);
-      } else {
-        document.execCommand('formatBlock', false, '<blockquote>');
       }
+      closeBlockMenu();
       triggerAutoSave();
     }
 
-    function insertPullQuote() {
-      editor.focus();
-      const pqHtml = '<div class="pull-quote">&ldquo;Escribe aquí la cita destacada&rdquo;</div><p><br></p>';
-      document.execCommand('insertHTML', false, pqHtml);
-      triggerAutoSave();
-    }
-
-    function insertDots() {
-      editor.focus();
-      const dotsHtml = '<div class="divider-dots">&bull; &bull; &bull;</div><p><br></p>';
-      document.execCommand('insertHTML', false, dotsHtml);
+    function applyPullQuote() {
+      canvas.focus();
+      const sel = window.getSelection();
+      if (!sel.rangeCount) return;
+      let node = sel.anchorNode;
+      while (node && node !== canvas && !['P', 'H2', 'H3', 'BLOCKQUOTE', 'DIV'].includes(node.nodeName)) {
+        node = node.parentNode;
+      }
+      if (node && node !== canvas) {
+        const bq = document.createElement('blockquote');
+        bq.className = 'pullquote';
+        bq.innerHTML = node.innerHTML || 'Frase o cita destacada...';
+        node.parentNode.replaceChild(bq, node);
+      }
+      closeBlockMenu();
       triggerAutoSave();
     }
 
     function applyHighlight() {
-      editor.focus();
       const sel = window.getSelection();
       if (!sel.rangeCount || sel.isCollapsed) return;
       const range = sel.getRangeAt(0);
@@ -977,90 +962,60 @@
       triggerAutoSave();
     }
 
-    function insertInlineLink() {
+    function insertLink() {
       const url = prompt('Introduce la dirección web (URL):');
+      if (url) exec('createLink', url);
+    }
+
+    function insertDivider() {
+      exec('insertHorizontalRule');
+      closeBlockMenu();
+    }
+
+    function insertHeading(tag) {
+      applyBlock(tag);
+      closeBlockMenu();
+    }
+
+    // Lógicas de bloques y notas
+    function insertPlate() {
+      const url = prompt('URL o nombre del archivo de imagen:');
       if (!url) return;
-      editor.focus();
+      plateIndex++;
+      const fig = document.createElement('figure');
+      fig.className = 'editorial-plate';
+      fig.setAttribute('contenteditable', 'false');
+
+      fig.innerHTML = `
+        <div class="plate-img-wrap">
+          <img src="${url}" alt="Lámina ${plateIndex}">
+        </div>
+        <figcaption class="plate-caption" contenteditable="true">
+          <span class="plate-number">[FIG. ${String(plateIndex).padStart(2, '0')}]</span>
+          Escribe aquí el comentario analítico de la pieza visual...
+          <span class="plate-source">REGISTRO / ARCHIVO DOCUMENTAL</span>
+        </figcaption>
+      `;
+
       const sel = window.getSelection();
-      if (sel.rangeCount > 0) {
+      if (sel.rangeCount) {
         const range = sel.getRangeAt(0);
-        const a = document.createElement('a');
-        a.href = url;
-        a.target = '_blank';
-        a.rel = 'noopener noreferrer';
-        if (sel.isCollapsed) {
-          a.textContent = url;
-        } else {
-          a.appendChild(range.extractContents());
-        }
-        range.insertNode(a);
+        range.insertNode(fig);
+        range.setStartAfter(fig);
+      } else {
+        canvas.appendChild(fig);
       }
+      closeBlockMenu();
       triggerAutoSave();
     }
 
-    function insertPlateAction() {
-      const url = prompt('URL o nombre de archivo de la imagen:');
-      if (!url) return;
-      editor.focus();
-      const figHtml = '<figure class="editorial-plate" contenteditable="false"><div class="plate-img-wrap"><img src="' + url + '" alt="Lámina de Archivo"></div><figcaption class="plate-caption" contenteditable="true"><span class="plate-number">[FIG. ARCHIVO]</span> Añade aquí el comentario analítico o técnico de la pieza...</figcaption></figure><p><br></p>';
-      document.execCommand('insertHTML', false, figHtml);
-      triggerAutoSave();
-    }
-
-    // ==========================================
-    // NOTAS AL PIE: RENUMERACIÓN DINÁMICA
-    // ==========================================
-    function reindexFootnotes() {
-      const buttons = editor.querySelectorAll('.footnote-button');
-      const listItems = Array.from(fList.querySelectorAll('li'));
-
-      if (buttons.length === 0) {
-        fSec.style.display = 'none';
-        fList.innerHTML = '';
-        return;
-      }
-
-      fSec.style.display = 'block';
-
-      const contentMap = {};
-      listItems.forEach(li => {
-        const id = li.getAttribute('data-fn-id');
-        const textSpan = li.querySelector('.fn-text-body');
-        if (id && textSpan) {
-          contentMap[id] = textSpan.innerHTML;
-        } else if (id) {
-          contentMap[id] = li.innerHTML;
-        }
-      });
-
-      fList.innerHTML = '';
-
-      buttons.forEach((btn, idx) => {
-        const newNum = idx + 1;
-        const oldId = btn.getAttribute('data-fn');
-        
-        btn.id = 'fn-ref-' + newNum;
-        btn.setAttribute('data-fn', newNum);
-        btn.innerHTML = '<sup>' + newNum + '</sup>';
-
-        const li = document.createElement('li');
-        li.id = 'fn-item-' + newNum;
-        li.setAttribute('data-fn-id', newNum);
-        
-        const noteText = contentMap[oldId] || ('Aclaración conceptual o referencia ' + newNum + '...');
-        li.innerHTML = '<button type="button" class="footnote-index-btn" data-return-to="' + newNum + '">[' + newNum + ']</button><span class="fn-text-body" contenteditable="true">' + noteText + '</span>';
-        
-        fList.appendChild(li);
-      });
-    }
-
-    function insertFootnoteAction() {
-      editor.focus();
+    function insertFootnote() {
+      canvas.focus();
       const btn = document.createElement('button');
       btn.type = 'button';
       btn.className = 'footnote-button';
       btn.setAttribute('contenteditable', 'false');
-      btn.innerHTML = '<sup>*</sup>';
+      btn.textContent = '[*]';
 
       const sel = window.getSelection();
       if (sel.rangeCount) {
@@ -1068,430 +1023,772 @@
         range.collapse(false);
         range.insertNode(btn);
         range.setStartAfter(btn);
-        sel.removeAllRanges();
-        sel.addRange(range);
       } else {
-        editor.appendChild(btn);
+        canvas.appendChild(btn);
       }
 
       reindexFootnotes();
       triggerAutoSave();
     }
 
-    // ==========================================
-    // NAVEGACIÓN BIDIRECCIONAL (ESCRITORIO & MÓVIL)
-    // ==========================================
-    function handleFootnoteInteraction(e) {
-      // 1. Clic en el número abajo para volver al texto
-      const returnBtn = e.target.closest('.footnote-index-btn');
-      if (returnBtn) {
-        e.preventDefault();
-        e.stopPropagation();
-        const refId = returnBtn.getAttribute('data-return-to');
-        
-        const inPreview = document.getElementById('previewModal').classList.contains('active');
-        const container = inPreview ? document.getElementById('pvContent') : editor;
-        const sourceRef = container.querySelector('[data-fn="' + refId + '"]');
+    function insertCitation() {
+      const refText = prompt('Referencia bibliográfica corta (ej: Rose, T., 1994, p. 42):');
+      if (!refText) return;
 
-        if (sourceRef) {
-          sourceRef.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          sourceRef.classList.add('active');
-          setTimeout(() => sourceRef.classList.remove('active'), 1400);
-        }
+      const span = document.createElement('span');
+      span.className = 'citation-tag';
+      span.setAttribute('contenteditable', 'false');
+      span.textContent = '(' + refText + ')';
+
+      const sel = window.getSelection();
+      if (sel.rangeCount) {
+        const range = sel.getRangeAt(0);
+        range.collapse(false);
+        range.insertNode(span);
+        range.setStartAfter(span);
+      }
+
+      cSec.style.display = 'block';
+      const li = document.createElement('li');
+      li.textContent = refText + ' — Ficha documental completa.';
+      cList.appendChild(li);
+
+      triggerAutoSave();
+    }
+
+    function reindexFootnotes() {
+      const buttons = canvas.querySelectorAll('.footnote-button');
+      const listItems = Array.from(fList.querySelectorAll('li'));
+
+      if (buttons.length === 0) {
+        fSec.style.display = 'none';
+        fList.innerHTML = '';
+        footnoteIndex = 0;
         return;
       }
 
-      // 2. Clic en el superíndice para descender directo a la nota abajo
-      const fnBtn = e.target.closest('.footnote-button');
-      if (fnBtn) {
-        e.preventDefault();
-        e.stopPropagation();
-        const fnId = fnBtn.getAttribute('data-fn');
-        
-        const inPreview = document.getElementById('previewModal').classList.contains('active');
-        const fContainer = inPreview ? document.getElementById('pvFootnotes') : fSec;
-        const targetLi = fContainer.querySelector('[data-fn-id="' + fnId + '"]');
+      fSec.style.display = 'block';
+      const contentMap = {};
+      listItems.forEach(li => {
+        const id = li.getAttribute('data-fn-id');
+        if (id) contentMap[id] = li.innerHTML;
+      });
 
-        if (targetLi) {
-          targetLi.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          targetLi.classList.add('footnote-highlight');
-          setTimeout(() => targetLi.classList.remove('footnote-highlight'), 1800);
-        }
+      fList.innerHTML = '';
+      buttons.forEach((btn, idx) => {
+        const newNum = idx + 1;
+        const oldId = btn.getAttribute('data-fn');
+        btn.setAttribute('data-fn', newNum);
+        btn.textContent = '[' + newNum + ']';
+
+        const li = document.createElement('li');
+        li.id = 'fn-item-' + newNum;
+        li.setAttribute('data-fn-id', newNum);
+        li.innerHTML = contentMap[oldId] || 'Aclaración conceptual [' + newNum + ']...';
+        fList.appendChild(li);
+      });
+      footnoteIndex = buttons.length;
+    }
+
+    // Interruptores de Modo Libro
+    function toggleBookMode() {
+      isBookMode = !isBookMode;
+      if (isBookMode) {
+        canvas.classList.add('mode-book');
+        bookModeBtn.textContent = '[SANGRÍAS: ON]';
+        bookModeBtn.classList.add('active');
+      } else {
+        canvas.classList.remove('mode-book');
+        bookModeBtn.textContent = '[SANGRÍAS: OFF]';
+        bookModeBtn.classList.remove('active');
       }
+      triggerAutoSave();
     }
 
-    document.addEventListener('click', handleFootnoteInteraction);
-
-    // ==========================================
-    // MULTIBORRADORES INDEPENDIENTES
-    // ==========================================
-    function getStoredDraftsIndex() {
-      try {
-        return JSON.parse(localStorage.getItem('lj_drafts_directory') || '{}');
-      } catch (e) {
-        return {};
+    function toggleDropcap() {
+      isDropcap = !isDropcap;
+      if (isDropcap) {
+        canvas.classList.add('has-dropcap');
+        dropcapBtn.textContent = '[CAPITULAR: ON]';
+        dropcapBtn.classList.add('active');
+      } else {
+        canvas.classList.remove('has-dropcap');
+        dropcapBtn.textContent = '[CAPITULAR: OFF]';
+        dropcapBtn.classList.remove('active');
       }
+      triggerAutoSave();
     }
 
-    function setStoredDraftsIndex(index) {
-      localStorage.setItem('lj_drafts_directory', JSON.stringify(index));
-    }
-
+    // Métricas y Guardado Automático
     function updateMetrics() {
-      const text = editor.innerText || '';
+      const text = canvas.innerText || '';
       const words = text.trim() ? text.trim().split(/\s+/).length : 0;
-      wordMetric.textContent = words + ' palabras';
-      return words;
+      document.getElementById('wordCount').textContent = words;
+      document.getElementById('readTime').textContent = Math.ceil(words / 200) + ' min';
     }
 
     function triggerAutoSave() {
-      const words = updateMetrics();
-      const now = new Date();
-      const timeStr = now.toLocaleDateString('es-CO', { day: '2-digit', month: 'short' }) + ' // ' + 
-                      now.toLocaleTimeString('es-CO', { hour: '2-digit', minute: '2-digit' });
-
-      const draftPayload = {
-        id: currentDraftId,
+      updateMetrics();
+      const draft = {
         slug: slugInput.value,
-        docCatalog: idInput.value,
+        id: idInput.value,
         meta: metaInput.value,
         title: titleInput.value,
-        subtitle: subtitleInput.value,
-        body: editor.innerHTML,
+        body: canvas.innerHTML,
         footnotes: fList.innerHTML,
-        hasFn: fSec.style.display !== 'none',
+        citations: cList.innerHTML,
+        fnCount: footnoteIndex,
+        plateCount: plateIndex,
         isBook: isBookMode,
         isDrop: isDropcap,
-        wordCount: words,
-        updatedAt: timeStr
+        hasFn: fSec.style.display !== 'none',
+        hasCi: cSec.style.display !== 'none'
       };
-
-      localStorage.setItem('lj_draft_item_' + currentDraftId, JSON.stringify(draftPayload));
-
-      const directory = getStoredDraftsIndex();
-      directory[currentDraftId] = {
-        id: currentDraftId,
-        title: titleInput.value.trim() || 'Sin Título (' + currentDraftId + ')',
-        catalog: idInput.value.trim() || '[S/N]',
-        words: words,
-        updatedAt: timeStr
-      };
-      setStoredDraftsIndex(directory);
-
-      saveStatus.textContent = 'Guardado';
-      saveStatus.classList.add('saved');
+      localStorage.setItem('lj_editor_substack_v1', JSON.stringify(draft));
+      saveInd.textContent = 'Guardado';
+      setTimeout(() => { saveInd.textContent = 'Guardado en caché'; }, 1000);
     }
 
-    function loadDraftById(draftId) {
-      const raw = localStorage.getItem('lj_draft_item_' + draftId);
-      if (!raw) return;
-
-      try {
-        const draft = JSON.parse(raw);
-        currentDraftId = draftId;
-        localStorage.setItem('lj_active_draft_id', draftId);
-
-        slugInput.value = draft.slug || '';
-        idInput.value = draft.docCatalog || '';
-        metaInput.value = draft.meta || '';
-        titleInput.value = draft.title || '';
-        subtitleInput.value = draft.subtitle || '';
-        editor.innerHTML = draft.body || '<p></p>';
-        fList.innerHTML = draft.footnotes || '';
-
-        if (draft.hasFn) fSec.style.display = 'block';
-        else fSec.style.display = 'none';
-
-        if (draft.isBook !== isBookMode) toggleBookMode();
-        if (draft.isDrop !== isDropcap) toggleDropcap();
-
-        reindexFootnotes();
-        updateMetrics();
-        closeDraftsModal();
-      } catch (e) {
-        console.error(e);
-      }
-    }
-
-    function createNewDraft() {
-      const newId = 'draft_' + Date.now();
-      currentDraftId = newId;
-      localStorage.setItem('lj_active_draft_id', newId);
-
-      slugInput.value = '';
-      idInput.value = '[TXT.' + String(Object.keys(getStoredDraftsIndex()).length + 1).padStart(2, '0') + ']';
-      metaInput.value = 'BOGOTÁ // ENSAYO MONOGRÁFICO // 2026';
-      titleInput.value = '';
-      subtitleInput.value = '';
-      editor.innerHTML = '<p>Comienza a escribir este nuevo ensayo...</p>';
-      fList.innerHTML = '';
-      fSec.style.display = 'none';
-
-      if (isBookMode) toggleBookMode();
-      if (isDropcap) toggleDropcap();
-
-      triggerAutoSave();
-      closeDraftsModal();
-    }
-
-    function deleteDraft(draftId, e) {
-      e.stopPropagation();
-      if (!confirm('¿Deseas eliminar este borrador permanentemente?')) return;
-
-      localStorage.removeItem('lj_draft_item_' + draftId);
-      const directory = getStoredDraftsIndex();
-      delete directory[draftId];
-      setStoredDraftsIndex(directory);
-
-      if (draftId === currentDraftId) {
-        const remainingKeys = Object.keys(directory);
-        if (remainingKeys.length > 0) {
-          loadDraftById(remainingKeys[0]);
-        } else {
-          createNewDraft();
-        }
+    function loadDraft() {
+      const raw = localStorage.getItem('lj_editor_substack_v1');
+      if (raw) {
+        try {
+          const draft = JSON.parse(raw);
+          slugInput.value = draft.slug || '';
+          idInput.value = draft.id || '';
+          metaInput.value = draft.meta || '';
+          titleInput.value = draft.title || '';
+          if (draft.body) canvas.innerHTML = draft.body;
+          if (draft.footnotes) fList.innerHTML = draft.footnotes;
+          if (draft.citations) cList.innerHTML = draft.citations;
+          if (draft.hasFn) fSec.style.display = 'block';
+          if (draft.hasCi) cSec.style.display = 'block';
+          plateIndex = draft.plateCount || 0;
+          if (draft.isBook) toggleBookMode();
+          if (draft.isDrop) toggleDropcap();
+          reindexFootnotes();
+        } catch(e) {}
       } else {
-        renderDraftsList();
-      }
-    }
-
-    function renderDraftsList() {
-      const directory = getStoredDraftsIndex();
-      const keys = Object.keys(directory);
-      draftsContainer.innerHTML = '';
-
-      if (keys.length === 0) {
-        draftsContainer.innerHTML = '<p style="font-family:var(--font-mono); font-size:0.78rem; color:var(--text-muted); text-align:center; padding:2rem 0;">No hay otros borradores almacenados aún.</p>';
-        return;
-      }
-
-      keys.reverse().forEach(key => {
-        const item = directory[key];
-        const isCurrent = key === currentDraftId;
-        const card = document.createElement('div');
-        card.className = 'draft-entry-card' + (isCurrent ? ' is-current' : '');
-
-        card.innerHTML = '<div class="draft-entry-info"><div class="draft-entry-title">' + item.title + '</div><div class="draft-entry-meta">' + item.catalog + ' &bull; ' + item.words + ' palabras &bull; ' + item.updatedAt + '</div></div><div class="draft-actions">' + (isCurrent ? '<span class="status-text saved" style="font-family:var(--font-mono); font-size:0.72rem; align-self:center;">[ACTIVO]</span>' : '<button type="button" class="btn-top" onclick="loadDraftById(\'' + key + '\')">ABRIR</button>') + '<button type="button" class="btn-top" style="color:#e05244; border-color:#522;" onclick="deleteDraft(\'' + key + '\', event)">ELIMINAR</button></div>';
-        draftsContainer.appendChild(card);
-      });
-    }
-
-    function openDraftsModal() {
-      renderDraftsList();
-      draftsModal.classList.add('active');
-    }
-
-    function closeDraftsModal() {
-      draftsModal.classList.remove('active');
-    }
-
-    function initialWorkspaceSetup() {
-      const directory = getStoredDraftsIndex();
-      if (directory[currentDraftId]) {
-        loadDraftById(currentDraftId);
-      } else if (Object.keys(directory).length > 0) {
-        loadDraftById(Object.keys(directory)[0]);
-      } else {
-        currentDraftId = 'draft_01';
-        localStorage.setItem('lj_active_draft_id', currentDraftId);
         slugInput.value = 'poetica-del-sample';
         idInput.value = '[TXT.01]';
         metaInput.value = 'BOGOTÁ // ENSAYO MONOGRÁFICO // 2026';
         titleInput.value = 'LA POÉTICA DEL SAMPLE Y EL MINIMALISMO EN EL RAP';
-        subtitleInput.value = 'Aproximaciones al vacío, la micro-repetición y el grano analógico como documento.';
-        triggerAutoSave();
+      }
+      updateMetrics();
+    }
+
+    function resetCanvas() {
+      if (confirm('¿Deseas reiniciar la mesa de trabajo y vaciar el borrador actual?')) {
+        localStorage.removeItem('lj_editor_substack_v1');
+        location.reload();
       }
     }
 
-    editor.addEventListener('input', () => {
-      saveStatus.textContent = 'Guardando...';
-      saveStatus.classList.remove('saved');
-      reindexFootnotes();
-      triggerAutoSave();
+    // Control de Barra Flotante (Bubble Menu)
+    document.addEventListener('selectionchange', () => {
+      const sel = window.getSelection();
+      if (!sel.isCollapsed && sel.rangeCount > 0 && canvas.contains(sel.anchorNode)) {
+        const range = sel.getRangeAt(0);
+        const rect = range.getBoundingClientRect();
+        bubbleMenu.style.display = 'flex';
+        bubbleMenu.style.left = `${rect.left + window.scrollX + (rect.width / 2) - (bubbleMenu.offsetWidth / 2)}px`;
+        bubbleMenu.style.top = `${rect.top + window.scrollY - 44}px`;
+      } else {
+        bubbleMenu.style.display = 'none';
+      }
     });
 
-    fList.addEventListener('input', triggerAutoSave);
-    slugInput.addEventListener('input', triggerAutoSave);
-    idInput.addEventListener('input', triggerAutoSave);
-    metaInput.addEventListener('input', triggerAutoSave);
-    titleInput.addEventListener('input', triggerAutoSave);
-    subtitleInput.addEventListener('input', triggerAutoSave);
+    // Control de Botón Más (+) en línea
+    function updatePlusButton() {
+      const sel = window.getSelection();
+      if (sel.rangeCount > 0 && sel.isCollapsed && canvas.contains(sel.anchorNode)) {
+        let node = sel.anchorNode;
+        if (node.nodeType === Node.TEXT_NODE) node = node.parentNode;
+        if (node && node.closest('#editorialCanvas')) {
+          const block = node.closest('p, h2, h3, blockquote');
+          if (block && (!block.textContent.trim() || block.innerHTML === '<br>')) {
+            const rect = block.getBoundingClientRect();
+            blockPlusBtn.style.display = 'block';
+            blockPlusBtn.style.top = `${rect.top + window.scrollY + 2}px`;
+            blockPlusBtn.style.left = `${rect.left + window.scrollX - 36}px`;
+            return;
+          }
+        }
+      }
+      blockPlusBtn.style.display = 'none';
+      closeBlockMenu();
+    }
 
-    initialWorkspaceSetup();
+    canvas.addEventListener('keyup', updatePlusButton);
+    canvas.addEventListener('click', updatePlusButton);
 
-    const pvModal = document.getElementById('previewModal');
-    const pvViewport = document.getElementById('previewViewport');
-    const pvDocMeta = document.getElementById('pvDocMeta');
-    const pvTitle = document.getElementById('pvTitle');
-    const pvSubtitle = document.getElementById('pvSubtitle');
-    const pvContent = document.getElementById('pvContent');
-    const pvFootnotes = document.getElementById('pvFootnotes');
+    blockPlusBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const rect = blockPlusBtn.getBoundingClientRect();
+      blockMenu.style.display = 'flex';
+      blockMenu.style.top = `${rect.top + window.scrollY + 32}px`;
+      blockMenu.style.left = `${rect.left + window.scrollX}px`;
+    });
 
-    function openLivePreview() {
-      pvDocMeta.textContent = (idInput.value || '[TXT.01]') + ' \u2022 ' + (metaInput.value || 'ENSAYO EDITORIAL');
-      pvTitle.textContent = titleInput.value || 'TÍTULO DEL ENSAYO';
-      pvSubtitle.textContent = subtitleInput.value || '';
+    function closeBlockMenu() { blockMenu.style.display = 'none'; }
+    document.addEventListener('click', (e) => {
+      if (!blockMenu.contains(e.target) && e.target !== blockPlusBtn) closeBlockMenu();
+    });
+
+    // Manejo de Popover de Notas
+    const popover = document.getElementById('activePopover');
+    const popContent = document.getElementById('popoverContent');
+    const popLabel = document.getElementById('popoverLabel');
+    let currentTrigger = null;
+
+    function closePopover() {
+      popover.style.display = 'none';
+      currentTrigger = null;
+    }
+
+    document.addEventListener('click', (e) => {
+      const btn = e.target.closest('.footnote-button');
+      if (btn) {
+        e.stopPropagation();
+        const fnId = btn.getAttribute('data-fn');
+        const targetLi = document.querySelector('[data-fn-id="' + fnId + '"]') || document.getElementById('fn-item-' + fnId);
+
+        if (currentTrigger === btn && popover.style.display === 'block') {
+          closePopover();
+          return;
+        }
+
+        if (targetLi) {
+          currentTrigger = btn;
+          popLabel.textContent = 'NOTA [' + fnId + ']';
+          popContent.innerHTML = targetLi.innerHTML;
+          popover.style.display = 'block';
+
+          const rect = btn.getBoundingClientRect();
+          popover.style.left = `${rect.left + window.scrollX - (popover.offsetWidth / 2) + (rect.width / 2)}px`;
+          popover.style.top = `${rect.bottom + window.scrollY + 8}px`;
+        }
+        return;
+      }
+      if (!popover.contains(e.target)) closePopover();
+    });
+
+    // Previsualizador Tipo Substack
+    function openPreview() {
+      const target = document.getElementById('previewTarget');
+      const articleClasses = (isBookMode ? 'mode-book' : '') + (isDropcap ? ' has-dropcap' : '');
       
-      pvContent.className = 'article-body ' + (isBookMode ? 'mode-book' : '') + (isDropcap ? ' has-dropcap' : '');
-      pvContent.innerHTML = editor.innerHTML;
+      const fnVisible = fSec.style.display !== 'none';
+      const fnHtml = fnVisible ? `
+        <div style="margin-top:4rem; padding-top:2rem; border-top:1px dashed var(--border-color);">
+          <div style="font-family:var(--font-mono); font-size:0.8rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold-muted); margin-bottom:1.2rem;">Aparato Crítico &bull; Notas</div>
+          <ol style="font-family:var(--font-mono); font-size:0.82rem; color:var(--text-muted); line-height:1.7; padding-left:1.4rem;">${fList.innerHTML}</ol>
+        </div>` : '';
 
-      if (fSec.style.display !== 'none') {
-        pvFootnotes.style.display = 'block';
-        pvFootnotes.innerHTML = '<div class="footnotes-title">Notas</div><ol class="footnotes-list">' + fList.innerHTML + '</ol>';
-      } else {
-        pvFootnotes.style.display = 'none';
-      }
+      const ciVisible = cSec.style.display !== 'none';
+      const ciHtml = ciVisible ? `
+        <div style="margin-top:3rem; padding-top:2rem; border-top:1px dashed var(--border-color);">
+          <div style="font-family:var(--font-mono); font-size:0.8rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold-muted); margin-bottom:1.2rem;">Fuentes & Bibliografía</div>
+          <ul style="font-family:var(--font-mono); font-size:0.82rem; color:var(--text-muted); line-height:1.7; padding-left:1.4rem;">${cList.innerHTML}</ul>
+        </div>` : '';
 
-      pvModal.classList.add('active');
+      target.innerHTML = `
+        <div style="font-family:var(--font-mono); font-size:0.78rem; color:var(--gold-muted); letter-spacing:0.16em; text-transform:uppercase; margin-bottom:0.9rem;">${idInput.value} &bull; ${metaInput.value}</div>
+        <h1 style="font-family:var(--font-mono); font-size:1.95rem; letter-spacing:0.05em; line-height:1.35; text-transform:uppercase; color:var(--text-main); margin-bottom:3rem; border-bottom:1px dashed var(--border-color); padding-bottom:1.8rem;">${titleInput.value}</h1>
+        <article class="${articleClasses}">${canvas.innerHTML}</article>
+        ${fnHtml}
+        ${ciHtml}
+      `;
+
+      document.getElementById('previewModal').classList.add('active');
     }
 
-    function closeLivePreview() {
-      pvModal.classList.remove('active');
+    function closePreview() {
+      document.getElementById('previewModal').classList.remove('active');
     }
 
-    function setPreviewDevice(mode) {
-      if (mode === 'mobile') {
-        pvViewport.classList.add('mode-mobile');
-      } else {
-        pvViewport.classList.remove('mode-mobile');
-      }
-    }
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        closeLivePreview();
-        closeDraftsModal();
-      }
-    });
-
+    // Exportador de Archivo HTML
     function exportHtmlFile() {
       const slug = (slugInput.value || 'ensayo').trim().toLowerCase().replace(/\s+/g, '-');
       const docId = idInput.value.trim();
       const meta = metaInput.value.trim();
       const title = titleInput.value.trim();
-      const subtitle = subtitleInput.value.trim();
-      const content = editor.innerHTML;
-      
+      const content = canvas.innerHTML;
+
       const fnVisible = fSec.style.display !== 'none';
-      const fnHtml = fnVisible ? '<div class="footnotes-section"><div class="footnotes-title">Notas</div><ol class="footnotes-list">' + fList.innerHTML + '</ol></div>' : '';
+      const fnHtml = fnVisible ? `
+      <div class="footnotes-section">
+        <div class="footnotes-title">Aparato Crítico &bull; Notas</div>
+        <ol class="footnotes-list">${fList.innerHTML}</ol>
+      </div>` : '';
+
+      const ciVisible = cSec.style.display !== 'none';
+      const ciHtml = ciVisible ? `
+      <div class="footnotes-section">
+        <div class="footnotes-title">Fuentes & Bibliografía</div>
+        <ul class="citations-list">${cList.innerHTML}</ul>
+      </div>` : '';
 
       const articleClasses = (isBookMode ? 'mode-book' : '') + (isDropcap ? ' has-dropcap' : '');
 
-      let tpl = '<!DOCTYPE html>\n<html lang="es">\n<head>\n';
-      tpl += '  <meta charset="UTF-8">\n';
-      tpl += '  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">\n';
-      tpl += '  <title>Love Jones — ' + title + '</title>\n';
-      tpl += '  <link rel="icon" type="image/jpeg" href="LoveJones pic1.jpeg">\n';
-      tpl += '  <link rel="preconnect" href="https://fonts.googleapis.com">\n';
-      tpl += '  <link rel="preconnect" href="https://fonts.gstatic.com">\n';
-      tpl += '  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">\n';
-      tpl += '  <style>\n';
-      tpl += '    :root {\n';
-      tpl += '      --bg-color: #0c0b0a; --card-bg: #141312; --accent-color: #c44333; --accent-glow: rgba(196, 67, 51, 0.35);\n';
-      tpl += '      --gold-muted: #c2a661; --gold-bright: #dfc27d; --text-main: #f5f0e6; --text-muted: #aba294;\n';
-      tpl += '      --border-color: #24201d; --font-mono: \'Space Mono\', \'Courier Prime\', monospace; --font-serif: \'Lora\', Georgia, serif;\n';
-      tpl += '    }\n';
-      tpl += '    * { box-sizing: border-box; margin: 0; padding: 0; }\n';
-      tpl += '    body { background-color: var(--bg-color); color: var(--text-main); font-family: var(--font-serif); min-height: 100vh; display: flex; flex-direction: column; line-height: 2.05; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility; overflow-x: hidden; }\n';
-      tpl += '    header { width: 100%; padding: 2.8rem 2.5rem; max-width: 1040px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dashed var(--border-color); }\n';
-      tpl += '    .brand-logo { font-family: var(--font-mono); font-size: 1.25rem; letter-spacing: 0.14em; text-transform: uppercase; color: #ffffff; text-decoration: none; font-weight: 700; }\n';
-      tpl += '    .header-nav { display: flex; align-items: center; gap: 2.2rem; }\n';
-      tpl += '    .nav-link { font-family: var(--font-mono); text-decoration: none; color: var(--text-muted); font-size: 0.82rem; letter-spacing: 0.12em; padding-bottom: 4px; border-bottom: 1px dashed transparent; transition: color 0.2s ease; }\n';
-      tpl += '    .nav-link:hover, .nav-link.active { color: #ffffff; border-bottom-color: var(--gold-bright); }\n';
-      tpl += '    main { flex: 1; max-width: 720px; width: 100%; margin: 0 auto; padding: 5.5rem 2rem 7rem 2rem; position: relative; }\n';
-      tpl += '    .back-link { font-family: var(--font-mono); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--gold-bright); text-decoration: none; display: inline-block; margin-bottom: 3rem; transition: color 0.2s ease; }\n';
-      tpl += '    .back-link:hover { color: #ffffff; }\n';
-      tpl += '    .doc-meta { font-family: var(--font-mono); font-size: 0.78rem; color: var(--gold-bright); letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 0.9rem; }\n';
-      tpl += '    .article-title { font-family: var(--font-mono); font-size: 2.05rem; letter-spacing: 0.05em; line-height: 1.35; text-transform: uppercase; color: #ffffff; margin-bottom: 0.8rem; }\n';
-      tpl += '    .article-subtitle { font-family: var(--font-serif); font-size: 1.25rem; font-style: italic; color: var(--text-muted); margin-bottom: 3.2rem; border-bottom: 1px dashed var(--border-color); padding-bottom: 1.8rem; line-height: 1.5; }\n';
-      tpl += '    .article-body p { font-size: 1.15rem; margin-bottom: 2.2rem; color: var(--text-main); text-align: justify; hyphens: auto; letter-spacing: 0.012em; }\n';
-      tpl += '    .article-body b, .article-body strong { color: #ffffff !important; font-weight: 700 !important; }\n';
-      tpl += '    .article-body i, .article-body em { color: #faebd7 !important; font-style: italic !important; }\n';
-      tpl += '    .article-body.mode-book p { margin-bottom: 0 !important; text-indent: 2.2em; text-align: justify; hyphens: auto; }\n';
-      tpl += '    .article-body.mode-book > p:first-of-type, .article-body.mode-book h2 + p, .article-body.mode-book h3 + p, .article-body.mode-book blockquote + p, .article-body.mode-book hr + p, .article-body.mode-book .editorial-plate + p { text-indent: 0 !important; }\n';
-      tpl += '    .article-body.mode-book.has-dropcap > p:first-of-type::first-letter, .article-body.mode-book.has-dropcap h2 + p::first-letter { float: left; font-size: 3.8rem; line-height: 0.78; padding-top: 6px; padding-right: 14px; color: var(--gold-bright); font-family: var(--font-serif); font-weight: 700; text-shadow: 0 0 10px rgba(223, 194, 125, 0.2); }\n';
-      tpl += '    .article-body h2 { font-family: var(--font-mono); font-size: 1.28rem; color: #ffffff; text-transform: uppercase; letter-spacing: 0.09em; margin: 3.8rem 0 1.3rem 0; }\n';
-      tpl += '    .article-body h3 { font-family: var(--font-mono); font-size: 1.05rem; color: var(--gold-bright); text-transform: uppercase; letter-spacing: 0.07em; margin: 2.8rem 0 1rem 0; }\n';
-      tpl += '    .article-body blockquote { border-left: 3px solid var(--accent-color); box-shadow: -3px 0 12px var(--accent-glow); padding: 0.8rem 0 0.8rem 1.8rem; margin: 3rem 0; background: rgba(196, 67, 51, 0.04); color: #ded7cb; font-style: italic; font-size: 1.18rem; line-height: 1.9; }\n';
-      tpl += '    .article-body .pull-quote { text-align: center; font-size: 1.45rem; font-style: italic; line-height: 1.65; color: var(--gold-bright); margin: 4rem 1.5rem; padding: 1.8rem 0; border-top: 1px dashed #3a3222; border-bottom: 1px dashed #3a3222; }\n';
-      tpl += '    .article-body .divider-dots { text-align: center; letter-spacing: 1.4em; color: var(--gold-muted); margin: 3.8rem 0; user-select: none; }\n';
-      tpl += '    .article-body a { color: #ffffff; text-decoration: underline; text-underline-offset: 4px; text-decoration-color: var(--gold-muted); }\n';
-      tpl += '    .footnote-button { display: inline-block; color: var(--gold-bright); font-family: var(--font-serif); font-weight: 700; font-size: 0.88rem; line-height: 0; vertical-align: super; text-decoration: none; cursor: pointer; margin: 0 0.15rem; background: transparent; border: none; padding: 0 0.15rem; user-select: none; transition: all 0.2s ease; filter: drop-shadow(0 0 2px rgba(223, 194, 125, 0.3)); }\n';
-      tpl += '    .footnote-button:hover, .footnote-button.active { color: #ffffff; transform: scale(1.22); filter: drop-shadow(0 0 8px var(--gold-bright)); }\n';
-      tpl += '    .editorial-plate { margin: 3.8rem 0; border: 1px dashed var(--border-color); background-color: #11100f; padding: 1.4rem; }\n';
-      tpl += '    .plate-img-wrap { width: 100%; background-color: #080706; display: flex; justify-content: center; }\n';
-      tpl += '    .plate-img-wrap img { max-width: 100%; height: auto; display: block; }\n';
-      tpl += '    .plate-caption { margin-top: 1rem; padding-top: 0.8rem; border-top: 1px dashed var(--border-color); font-family: var(--font-mono); font-size: 0.78rem; line-height: 1.6; color: var(--text-muted); }\n';
-      tpl += '    .plate-number { color: var(--gold-bright); font-weight: 700; margin-right: 0.4rem; }\n';
-      tpl += '    .footnotes-section { margin-top: 4.8rem; padding-top: 2rem; border-top: 1px dashed var(--border-color); }\n';
-      tpl += '    .footnotes-title { font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold-bright); margin-bottom: 1.2rem; }\n';
-      tpl += '    .footnotes-list { list-style: none; font-family: var(--font-mono); font-size: 0.82rem; color: var(--text-muted); line-height: 1.7; padding: 0; }\n';
-      tpl += '    .footnotes-list li { margin-bottom: 0.85rem; padding: 0.35rem 0.6rem; border-radius: 2px; display: flex; align-items: baseline; gap: 0.6rem; transition: background-color 0.4s ease; }\n';
-      tpl += '    .footnote-index-btn { color: var(--gold-bright); font-weight: 700; background: transparent; border: none; cursor: pointer; font-family: var(--font-mono); font-size: 0.85rem; padding: 0; user-select: none; transition: all 0.2s ease; }\n';
-      tpl += '    .footnote-index-btn:hover { color: #ffffff; transform: scale(1.15); }\n';
-      tpl += '    .footnote-highlight { background-color: rgba(223, 194, 125, 0.18) !important; color: #ffffff !important; }\n';
-      tpl += '    footer { max-width: 1040px; width: 100%; margin: 0 auto; padding: 2.8rem 2.5rem; border-top: 1px dashed var(--border-color); display: flex; justify-content: space-between; align-items: center; font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.1em; color: #5c554b; }\n';
-      tpl += '    @media (max-width: 820px) { header { padding: 1.8rem 1.4rem; } main { padding: 3.5rem 1.4rem; } .article-title { font-size: 1.45rem; } .article-body p { text-align: left; } .footnotes-list { font-size: 0.88rem; line-height: 1.8; } footer { flex-direction: column; gap: 0.6rem; text-align: center; } }\n';
-      tpl += '  </style>\n</head>\n<body>\n';
-      tpl += '  <header>\n';
-      tpl += '    <a href="./" class="brand-logo">Love Jones</a>\n';
-      tpl += '    <nav class="header-nav">\n';
-      tpl += '      <a class="nav-link" href="https://substack.com/@loveejonnes" target="_blank" rel="noopener noreferrer">DROPGEMS</a>\n';
-      tpl += '      <a class="nav-link active" href="archivo.html">ARCHIVO</a>\n';
-      tpl += '      <a class="nav-link" href="contacto.html">CONTACTO</a>\n';
-      tpl += '    </nav>\n';
-      tpl += '  </header>\n';
-      tpl += '  <main id="mainContainer">\n';
-      tpl += '    <a href="archivo.html" class="back-link">&larr; Volver al archivo</a>\n';
-      tpl += '    <div class="doc-meta">' + docId + ' &bull; ' + meta + '</div>\n';
-      tpl += '    <h1 class="article-title">' + title + '</h1>\n';
-      if (subtitle) tpl += '    <div class="article-subtitle">' + subtitle + '</div>\n';
-      tpl += '    <article class="article-body ' + articleClasses + '">\n' + content + '\n    </article>\n';
-      tpl += '    ' + fnHtml + '\n';
-      tpl += '  </main>\n';
-      tpl += '  <footer>\n';
-      tpl += '    <div>&copy; Bogotá, Colombia.</div>\n';
-      tpl += '    <div>Love Jones</div>\n';
-      tpl += '  </footer>\n';
-      tpl += '  <script>\n';
-      tpl += '    if (window.location.pathname.endsWith(".html")) {\n';
-      tpl += '      const clean = window.location.pathname.replace(".html", "");\n';
-      tpl += '      window.history.replaceState(null, "", clean + window.location.search + window.location.hash);\n';
-      tpl += '    }\n';
-      tpl += '    document.addEventListener("click", function(e) {\n';
-      tpl += '      const returnBtn = e.target.closest(".footnote-index-btn");\n';
-      tpl += '      if (returnBtn) {\n';
-      tpl += '        e.preventDefault(); e.stopPropagation();\n';
-      tpl += '        const refId = returnBtn.getAttribute("data-return-to");\n';
-      tpl += '        const sourceRef = document.querySelector(\'[data-fn="\' + refId + \'"]\');\n';
-      tpl += '        if (sourceRef) {\n';
-      tpl += '          sourceRef.scrollIntoView({ behavior: "smooth", block: "center" });\n';
-      tpl += '          sourceRef.classList.add("active");\n';
-      tpl += '          setTimeout(() => sourceRef.classList.remove("active"), 1400);\n';
-      tpl += '        }\n';
-      tpl += '        return;\n';
-      tpl += '      }\n';
-      tpl += '      const fnBtn = e.target.closest(".footnote-button");\n';
-      tpl += '      if (fnBtn) {\n';
-      tpl += '        e.preventDefault(); e.stopPropagation();\n';
-      tpl += '        const fnId = fnBtn.getAttribute("data-fn");\n';
-      tpl += '        const targetLi = document.querySelector(\'[data-fn-id="\' + fnId + \'"]\');\n';
-      tpl += '        if (targetLi) {\n';
-      tpl += '          targetLi.scrollIntoView({ behavior: "smooth", block: "center" });\n';
-      tpl += '          targetLi.classList.add("footnote-highlight");\n';
-      tpl += '          setTimeout(() => targetLi.classList.remove("footnote-highlight"), 1800);\n';
-      tpl += '        }\n';
-      tpl += '      }\n';
-      tpl += '    });\n';
-      tpl += '  <\/script>\n';
-      tpl += '</body>\n</html>';
+      const template = `<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Love Jones — \${title}</title>
+  <link rel="icon" type="image/jpeg" href="LoveJones pic1.jpeg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-color: #0c0b0a;
+      --card-bg: #131211;
+      --accent-color: #8f3024;
+      --accent-hover: #b03d2e;
+      --gold-muted: #c2a661;
+      --text-main: #f2ede4;
+      --text-muted: #a89f91;
+      --border-color: #24201d;
+      --font-mono: 'Space Mono', 'Courier Prime', monospace;
+      --font-serif: 'Lora', Georgia, serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      font-family: var(--font-serif);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      line-height: 2;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
+    }
+    header {
+      width: 100%;
+      padding: 2.8rem 2.5rem;
+      max-width: 1040px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px dashed var(--border-color);
+    }
+    .brand-logo {
+      font-family: var(--font-mono);
+      font-size: 1.25rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-main);
+      text-decoration: none;
+      font-weight: 700;
+    }
+    .header-nav { display: flex; align-items: center; gap: 2.2rem; }
+    .nav-link {
+      font-family: var(--font-mono);
+      text-decoration: none;
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      letter-spacing: 0.12em;
+      padding-bottom: 4px;
+      border-bottom: 1px dashed transparent;
+      transition: color 0.2s ease;
+    }
+    .nav-link:hover, .nav-link.active {
+      color: var(--text-main);
+      border-bottom-color: var(--gold-muted);
+    }
+    main {
+      flex: 1;
+      max-width: 720px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 5.5rem 2rem 7rem 2rem;
+    }
+    .back-link {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--gold-muted);
+      text-decoration: none;
+      display: inline-block;
+      margin-bottom: 3rem;
+      transition: color 0.2s ease;
+    }
+    .back-link:hover { color: var(--text-main); }
+    .doc-meta {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--gold-muted);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 0.9rem;
+    }
+    .article-title {
+      font-family: var(--font-mono);
+      font-size: 1.95rem;
+      letter-spacing: 0.05em;
+      line-height: 1.35;
+      text-transform: uppercase;
+      color: var(--text-main);
+      margin-bottom: 3.2rem;
+      border-bottom: 1px dashed var(--border-color);
+      padding-bottom: 2rem;
+    }
+    .article-body p {
+      font-size: 1.18rem;
+      margin-bottom: 2.2rem;
+      color: var(--text-main);
+      text-align: justify;
+      hyphens: auto;
+      letter-spacing: 0.012em;
+    }
+    .article-body.mode-book p {
+      margin-bottom: 0 !important;
+      text-indent: 2em;
+      text-align: justify;
+      hyphens: auto;
+    }
+    .article-body.mode-book > p:first-of-type,
+    .article-body.mode-book h2 + p,
+    .article-body.mode-book h3 + p,
+    .article-body.mode-book blockquote + p,
+    .article-body.mode-book hr + p,
+    .article-body.mode-book .editorial-plate + p {
+      text-indent: 0 !important;
+    }
+    .article-body.mode-book.has-dropcap > p:first-of-type::first-letter,
+    .article-body.mode-book.has-dropcap h2 + p::first-letter {
+      float: left;
+      font-size: 3.6rem;
+      line-height: 0.8;
+      padding-top: 4px;
+      padding-right: 12px;
+      padding-bottom: 2px;
+      color: var(--gold-muted);
+      font-family: var(--font-serif);
+      font-weight: 700;
+    }
+    .article-body h2 {
+      font-family: var(--font-mono);
+      font-size: 1.3rem;
+      color: var(--text-main);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin: 3.6rem 0 1.3rem 0;
+    }
+    .article-body h3 {
+      font-family: var(--font-mono);
+      font-size: 1.08rem;
+      color: var(--gold-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin: 2.6rem 0 1rem 0;
+    }
+    .article-body blockquote {
+      border-left: 2px solid var(--accent-color);
+      padding: 0.4rem 0 0.4rem 1.6rem;
+      margin: 2.8rem 0;
+      color: #d1c8ba;
+      font-style: italic;
+      font-size: 1.16rem;
+    }
+    .article-body blockquote.pullquote {
+      border-left: none;
+      text-align: center;
+      font-size: 1.45rem;
+      line-height: 1.6;
+      color: var(--gold-muted);
+      padding: 2rem 1.5rem;
+      margin: 3.5rem 0;
+      font-style: normal;
+      border-top: 1px dashed var(--border-color);
+      border-bottom: 1px dashed var(--border-color);
+    }
+    .article-body hr {
+      border: none;
+      text-align: center;
+      margin: 3.8rem 0;
+      height: auto;
+    }
+    .article-body hr::after {
+      content: "•   •   •";
+      font-family: var(--font-mono);
+      color: var(--gold-muted);
+      letter-spacing: 0.5em;
+      font-size: 0.85rem;
+    }
+    .article-body ul, .article-body ol {
+      margin-bottom: 2.2rem;
+      padding-left: 2rem;
+      color: var(--text-main);
+    }
+    .article-body li { margin-bottom: 0.6rem; }
+    .article-body a {
+      color: var(--text-main);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .article-body .highlight-text {
+      background-color: rgba(143, 48, 36, 0.22);
+      border-bottom: 1px solid var(--accent-color);
+      padding: 0.1rem 0.3rem;
+    }
+    .footnote-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold-muted);
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 0.76rem;
+      vertical-align: super;
+      text-decoration: none;
+      cursor: pointer;
+      margin: 0 0.15rem;
+      background: rgba(194, 166, 97, 0.1);
+      border: 1px dashed #3a3222;
+      padding: 0.1rem 0.35rem;
+      border-radius: 2px;
+      transition: all 0.2s ease;
+    }
+    .footnote-button:hover, .footnote-button.active {
+      background: var(--gold-muted);
+      color: #0c0b0a;
+    }
+    .citation-tag {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--gold-muted);
+      background: rgba(194, 166, 97, 0.08);
+      border: 1px dashed #3a3222;
+      padding: 0 0.4rem;
+      margin: 0 0.2rem;
+    }
+    .editorial-plate {
+      margin: 3.5rem 0;
+      border: 1px dashed var(--border-color);
+      background-color: #11100f;
+      padding: 1.4rem;
+    }
+    .plate-img-wrap {
+      width: 100%;
+      background-color: #080706;
+      display: flex;
+      justify-content: center;
+      cursor: zoom-in;
+    }
+    .plate-img-wrap img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+    .plate-caption {
+      margin-top: 1rem;
+      padding-top: 0.8rem;
+      border-top: 1px dashed var(--border-color);
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      line-height: 1.6;
+      color: var(--text-muted);
+    }
+    .plate-number {
+      color: var(--gold-muted);
+      font-weight: 700;
+      margin-right: 0.4rem;
+    }
+    .plate-source {
+      display: block;
+      margin-top: 0.35rem;
+      color: #6d665b;
+      font-size: 0.72rem;
+    }
+    .footnote-popover {
+      position: absolute;
+      z-index: 1000;
+      width: min(340px, 90vw);
+      background-color: #141312;
+      border: 1px dashed var(--gold-muted);
+      box-shadow: 0 12px 35px rgba(0,0,0,0.85);
+      border-radius: 4px;
+      padding: 1.1rem;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      color: var(--text-main);
+      line-height: 1.65;
+      display: none;
+    }
+    .popover-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px dashed var(--border-color);
+      color: var(--gold-muted);
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
+    .popover-close {
+      cursor: pointer;
+      color: var(--text-muted);
+      background: none;
+      border: none;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+    }
+    .footnotes-section {
+      margin-top: 4.8rem;
+      padding-top: 2rem;
+      border-top: 1px dashed var(--border-color);
+    }
+    .footnotes-title {
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold-muted);
+      margin-bottom: 1.2rem;
+    }
+    .footnotes-list, .citations-list {
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      padding-left: 1.4rem;
+    }
+    .footnotes-list li, .citations-list li { margin-bottom: 0.8rem; }
+    footer {
+      max-width: 1040px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 2.8rem 2.5rem;
+      border-top: 1px dashed var(--border-color);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.1em;
+      color: #5c554b;
+    }
+    @media (max-width: 768px) {
+      header { padding: 1.8rem 1.4rem; }
+      main { padding: 3.5rem 1.4rem; }
+      .article-title { font-size: 1.45rem; }
+      .article-body p { text-align: left; }
+      footer { flex-direction: column; gap: 0.6rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="./" class="brand-logo">Love Jones</a>
+    <nav class="header-nav">
+      <a class="nav-link" href="https://substack.com/@loveejonnes" target="_blank" rel="noopener noreferrer">DROPGEMS</a>
+      <a class="nav-link active" href="archivo.html">ARCHIVO</a>
+      <a class="nav-link" href="contacto.html">CONTACTO</a>
+    </nav>
+  </header>
+  <main>
+    <a href="archivo.html" class="back-link">&larr; Volver al archivo</a>
+    <div class="doc-meta">\${docId} &bull; \${meta}</div>
+    <h1 class="article-title">\${title}</h1>
+    <article class="article-body \${articleClasses}">
+      \${content}
+    </article>
+    \${fnHtml}
+    \${ciHtml}
+  </main>
+  
+  <div id="activePopover" class="footnote-popover">
+    <div class="popover-header">
+      <span id="popoverLabel">NOTA</span>
+      <button type="button" class="popover-close" onclick="closePopover()">&times;</button>
+    </div>
+    <div id="popoverContent"></div>
+  </div>
 
-      const blob = new Blob([tpl], { type: 'text/html;charset=utf-8' });
+  <footer>
+    <div>&copy; Bogotá, Colombia.</div>
+    <div>Love Jones</div>
+  </footer>
+
+  <script>
+    if (window.location.pathname.endsWith('.html')) {
+      const clean = window.location.pathname.replace('.html', '');
+      window.history.replaceState(null, '', clean + window.location.search + window.location.hash);
+    }
+
+    const popover = document.getElementById('activePopover');
+    const popContent = document.getElementById('popoverContent');
+    const popLabel = document.getElementById('popoverLabel');
+    let currentTrigger = null;
+
+    function closePopover() {
+      popover.style.display = 'none';
+      if (currentTrigger) currentTrigger.classList.remove('active');
+      currentTrigger = null;
+    }
+
+    document.addEventListener('click', (e) => {
+      const btn = e.target.closest('.footnote-button');
+      if (btn) {
+        e.stopPropagation();
+        const fnId = btn.getAttribute('data-fn');
+        const targetLi = document.getElementById('fn-item-' + fnId);
+
+        if (currentTrigger === btn && popover.style.display === 'block') {
+          closePopover();
+          return;
+        }
+
+        if (targetLi) {
+          if (currentTrigger) currentTrigger.classList.remove('active');
+          currentTrigger = btn;
+          btn.classList.add('active');
+
+          popLabel.textContent = 'NOTA [' + fnId + ']';
+          popContent.innerHTML = targetLi.innerHTML;
+          popover.style.display = 'block';
+
+          const rect = btn.getBoundingClientRect();
+          popover.style.left = (rect.left + window.scrollX - (popover.offsetWidth / 2) + (rect.width / 2)) + 'px';
+          popover.style.top = (rect.bottom + window.scrollY + 8) + 'px';
+        }
+        return;
+      }
+      if (!popover.contains(e.target)) closePopover();
+    });
+  <\/script>
+</body>
+</html>`;
+
+      const blob = new Blob([template], { type: 'text/html;charset=utf-8' });
       const link = document.createElement('a');
       link.href = URL.createObjectURL(blob);
       link.download = slug + '.html';
       link.click();
     }
+
+    // Escuchas de eventos
+    canvas.addEventListener('input', () => {
+      reindexFootnotes();
+      triggerAutoSave();
+    });
+
+    fList.addEventListener('input', triggerAutoSave);
+    cList.addEventListener('input', triggerAutoSave);
+    slugInput.addEventListener('input', triggerAutoSave);
+    idInput.addEventListener('input', triggerAutoSave);
+    metaInput.addEventListener('input', triggerAutoSave);
+    titleInput.addEventListener('input', triggerAutoSave);
+
+    loadDraft();
   </script>
 </body>
 </html>
