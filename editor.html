@@ -279,7 +279,7 @@
       margin: 2.8rem 0 1rem 0;
     }
 
-    /* Cita en Bloque con Línea Iluminada */
+    /* Cita en Bloque */
     #editorArea blockquote, .article-body blockquote {
       border-left: 3px solid var(--accent-color);
       box-shadow: -3px 0 12px var(--accent-glow);
@@ -326,7 +326,7 @@
       color: #fff;
     }
 
-    /* Botón Superíndice en Texto */
+    /* Botón Superíndice en Texto (Nota de libro impreso) */
     .footnote-button {
       display: inline-block;
       color: var(--gold-bright);
@@ -422,7 +422,7 @@
       display: flex;
       align-items: baseline;
       gap: 0.6rem;
-      transition: background-color 0.3s ease;
+      transition: background-color 0.4s ease;
     }
 
     .footnote-index-btn {
@@ -444,61 +444,9 @@
     }
 
     .footnote-highlight {
-      background-color: rgba(223, 194, 125, 0.15) !important;
+      background-color: rgba(223, 194, 125, 0.18) !important;
       color: #ffffff !important;
     }
-
-    /* ========================================================
-       BURBUJA MARGINAL AL LADO DERECHO DEL TEXTO (FIJA / FLOTANTE)
-       ======================================================== */
-    .side-marginal-note {
-      position: fixed;
-      width: 270px;
-      background-color: #171513;
-      border-left: 2px solid var(--gold-bright);
-      border-top: 1px dashed var(--border-color);
-      border-bottom: 1px dashed var(--border-color);
-      border-right: 1px dashed var(--border-color);
-      box-shadow: 0 10px 35px rgba(0,0,0,0.92);
-      border-radius: 0 4px 4px 0;
-      padding: 1rem 1.15rem;
-      font-family: var(--font-mono);
-      font-size: 0.77rem;
-      color: var(--text-main);
-      line-height: 1.6;
-      display: none;
-      z-index: 6000;
-      animation: fadeInMarginal 0.18s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    @keyframes fadeInMarginal {
-      from { opacity: 0; transform: translateX(-6px); }
-      to { opacity: 1; transform: translateX(0); }
-    }
-
-    .marginal-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 0.5rem;
-      padding-bottom: 0.35rem;
-      border-bottom: 1px dashed var(--border-color);
-      color: var(--gold-bright);
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-    }
-
-    .marginal-close {
-      cursor: pointer;
-      color: var(--text-muted);
-      background: none;
-      border: none;
-      font-family: var(--font-mono);
-      font-size: 0.9rem;
-    }
-
-    .marginal-close:hover { color: #ffffff; }
 
     /* Drawer Lateral */
     .sidebar-drawer {
@@ -760,7 +708,6 @@
       .drawer-toggle-tab { font-size: 0.65rem; padding: 0.4rem 0.6rem; }
       .title-field { font-size: 1.55rem; }
       #editorArea p, .article-body p { text-align: left; }
-      .side-marginal-note { display: none !important; }
       #footnotesList, .footnotes-list { font-size: 0.88rem; line-height: 1.8; }
     }
   </style>
@@ -854,7 +801,7 @@
     <input type="text" id="docSubtitle" class="subtitle-field" placeholder="Escribe un subtítulo descriptivo...">
 
     <div id="editorArea" contenteditable="true" spellcheck="false">
-      <p>Comienza a redactar aquí tu ensayo. Emplea la barra lateral para alternar títulos H2, <b>negritas contundentes</b>, <i>cursivas en pergamino</i> o añadir notas de libro impreso que se desplegarán al margen derecho en computadoras o te guiarán de forma interactiva en teléfonos móviles.</p>
+      <p>Comienza a redactar aquí tu ensayo. Emplea la barra lateral para alternar títulos H2, <b>negritas contundentes</b>, <i>cursivas en pergamino</i> o añadir notas de libro impreso: al hacer clic en el número te llevará directamente a la referencia abajo y podrás regresar al texto con un solo clic.</p>
     </div>
 
     <div class="footnotes-section" id="footnotesSection" style="display: none;">
@@ -863,21 +810,12 @@
     </div>
   </main>
 
-  <!-- NOTA MARGINAL DERECHA -->
-  <aside id="sideMarginalNote" class="side-marginal-note">
-    <div class="marginal-header">
-      <span id="marginalLabel">NOTA 1</span>
-      <button type="button" class="marginal-close" onclick="closeMarginalNote()">&times;</button>
-    </div>
-    <div id="marginalContent"></div>
-  </aside>
-
   <!-- MODAL: GESTOR DE BORRADORES -->
   <div class="drafts-modal" id="draftsModal">
     <div class="drafts-panel">
       <div class="drafts-panel-header">
         <span class="drafts-title">&bull; Archivo de Borradores en Curso</span>
-        <button type="button" class="marginal-close" onclick="closeDraftsModal()">&times;</button>
+        <button type="button" class="btn-top" style="border:none;" onclick="closeDraftsModal()">&times;</button>
       </div>
       <div class="drafts-list-wrap" id="draftsListContainer"></div>
       <div class="drafts-panel-footer">
@@ -927,11 +865,6 @@
     const draftsModal = document.getElementById('draftsModal');
     const draftsContainer = document.getElementById('draftsListContainer');
 
-    const marginalNote = document.getElementById('sideMarginalNote');
-    const marginalContent = document.getElementById('marginalContent');
-    const marginalLabel = document.getElementById('marginalLabel');
-
-    let currentActiveFootnoteBtn = null;
     let isBookMode = false;
     let isDropcap = false;
 
@@ -1074,6 +1007,9 @@
       triggerAutoSave();
     }
 
+    // ==========================================
+    // NOTAS AL PIE: RENUMERACIÓN DINÁMICA
+    // ==========================================
     function reindexFootnotes() {
       const buttons = editor.querySelectorAll('.footnote-button');
       const listItems = Array.from(fList.querySelectorAll('li'));
@@ -1142,14 +1078,11 @@
       triggerAutoSave();
     }
 
-    function closeMarginalNote() {
-      marginalNote.style.display = 'none';
-      if (currentActiveFootnoteBtn) currentActiveFootnoteBtn.classList.remove('active');
-      currentActiveFootnoteBtn = null;
-    }
-
+    // ==========================================
+    // NAVEGACIÓN BIDIRECCIONAL (ESCRITORIO & MÓVIL)
+    // ==========================================
     function handleFootnoteInteraction(e) {
-      // 1. Clic en el número en el listado inferior para volver al texto
+      // 1. Clic en el número abajo para volver al texto
       const returnBtn = e.target.closest('.footnote-index-btn');
       if (returnBtn) {
         e.preventDefault();
@@ -1163,14 +1096,15 @@
         if (sourceRef) {
           sourceRef.scrollIntoView({ behavior: 'smooth', block: 'center' });
           sourceRef.classList.add('active');
-          setTimeout(() => sourceRef.classList.remove('active'), 1200);
+          setTimeout(() => sourceRef.classList.remove('active'), 1400);
         }
         return;
       }
 
-      // 2. Clic en el superíndice
+      // 2. Clic en el superíndice para descender directo a la nota abajo
       const fnBtn = e.target.closest('.footnote-button');
       if (fnBtn) {
+        e.preventDefault();
         e.stopPropagation();
         const fnId = fnBtn.getAttribute('data-fn');
         
@@ -1178,63 +1112,19 @@
         const fContainer = inPreview ? document.getElementById('pvFootnotes') : fSec;
         const targetLi = fContainer.querySelector('[data-fn-id="' + fnId + '"]');
 
-        if (!targetLi) return;
-
-        const isMobileScreen = window.innerWidth <= 820 || document.getElementById('previewViewport')?.classList.contains('mode-mobile');
-
-        // Modo Móvil
-        if (isMobileScreen) {
-          closeMarginalNote();
+        if (targetLi) {
           targetLi.scrollIntoView({ behavior: 'smooth', block: 'center' });
           targetLi.classList.add('footnote-highlight');
           setTimeout(() => targetLi.classList.remove('footnote-highlight'), 1800);
-          return;
         }
-
-        // Modo Escritorio: Si es el mismo botón, se cierra (toggle)
-        if (currentActiveFootnoteBtn === fnBtn && marginalNote.style.display === 'block') {
-          closeMarginalNote();
-          return;
-        }
-
-        if (currentActiveFootnoteBtn) currentActiveFootnoteBtn.classList.remove('active');
-        currentActiveFootnoteBtn = fnBtn;
-        fnBtn.classList.add('active');
-
-        marginalLabel.textContent = 'NOTA ' + fnId;
-        const textSpan = targetLi.querySelector('.fn-text-body') || targetLi;
-        marginalContent.innerHTML = textSpan.innerHTML;
-
-        // Cálculo de posición fija garantizada
-        const rect = fnBtn.getBoundingClientRect();
-        const noteWidth = 270;
-
-        let leftPos = rect.right + 20;
-
-        // Si sobrepasa la pantalla por la derecha, situar al margen derecho seguro
-        if (leftPos + noteWidth > window.innerWidth - 15) {
-          leftPos = window.innerWidth - noteWidth - 25;
-        }
-
-        // Centrado vertical respecto al superíndice
-        let topPos = rect.top - 10;
-        if (topPos < 70) topPos = 70;
-        if (topPos + 200 > window.innerHeight) topPos = window.innerHeight - 220;
-
-        marginalNote.style.left = leftPos + 'px';
-        marginalNote.style.top = topPos + 'px';
-        marginalNote.style.display = 'block';
-        return;
-      }
-
-      // 3. Clic afuera: cerrar nota
-      if (!marginalNote.contains(e.target)) {
-        closeMarginalNote();
       }
     }
 
     document.addEventListener('click', handleFootnoteInteraction);
 
+    // ==========================================
+    // MULTIBORRADORES INDEPENDIENTES
+    // ==========================================
     function getStoredDraftsIndex() {
       try {
         return JSON.parse(localStorage.getItem('lj_drafts_directory') || '{}');
@@ -1427,11 +1317,6 @@
     titleInput.addEventListener('input', triggerAutoSave);
     subtitleInput.addEventListener('input', triggerAutoSave);
 
-    window.addEventListener('resize', closeMarginalNote);
-    window.addEventListener('scroll', () => {
-      if (marginalNote.style.display === 'block') closeMarginalNote();
-    }, { passive: true });
-
     initialWorkspaceSetup();
 
     const pvModal = document.getElementById('previewModal');
@@ -1462,7 +1347,6 @@
 
     function closeLivePreview() {
       pvModal.classList.remove('active');
-      closeMarginalNote();
     }
 
     function setPreviewDevice(mode) {
@@ -1471,7 +1355,6 @@
       } else {
         pvViewport.classList.remove('mode-mobile');
       }
-      closeMarginalNote();
     }
 
     document.addEventListener('keydown', (e) => {
@@ -1540,20 +1423,15 @@
       tpl += '    .plate-img-wrap img { max-width: 100%; height: auto; display: block; }\n';
       tpl += '    .plate-caption { margin-top: 1rem; padding-top: 0.8rem; border-top: 1px dashed var(--border-color); font-family: var(--font-mono); font-size: 0.78rem; line-height: 1.6; color: var(--text-muted); }\n';
       tpl += '    .plate-number { color: var(--gold-bright); font-weight: 700; margin-right: 0.4rem; }\n';
-      tpl += '    .side-marginal-note { position: fixed; width: 270px; background-color: #171513; border-left: 2px solid var(--gold-bright); border-top: 1px dashed var(--border-color); border-bottom: 1px dashed var(--border-color); border-right: 1px dashed var(--border-color); box-shadow: 0 10px 35px rgba(0,0,0,0.92); border-radius: 0 4px 4px 0; padding: 1rem 1.15rem; font-family: var(--font-mono); font-size: 0.77rem; color: var(--text-main); line-height: 1.6; display: none; z-index: 6000; animation: fadeInMarginal 0.18s cubic-bezier(0.16, 1, 0.3, 1); }\n';
-      tpl += '    @keyframes fadeInMarginal { from { opacity: 0; transform: translateX(-6px); } to { opacity: 1; transform: translateX(0); } }\n';
-      tpl += '    .marginal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; padding-bottom: 0.35rem; border-bottom: 1px dashed var(--border-color); color: var(--gold-bright); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; }\n';
-      tpl += '    .marginal-close { cursor: pointer; color: var(--text-muted); background: none; border: none; font-family: var(--font-mono); font-size: 0.9rem; }\n';
-      tpl += '    .marginal-close:hover { color: #ffffff; }\n';
       tpl += '    .footnotes-section { margin-top: 4.8rem; padding-top: 2rem; border-top: 1px dashed var(--border-color); }\n';
       tpl += '    .footnotes-title { font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold-bright); margin-bottom: 1.2rem; }\n';
       tpl += '    .footnotes-list { list-style: none; font-family: var(--font-mono); font-size: 0.82rem; color: var(--text-muted); line-height: 1.7; padding: 0; }\n';
-      tpl += '    .footnotes-list li { margin-bottom: 0.85rem; padding: 0.35rem 0.6rem; border-radius: 2px; display: flex; align-items: baseline; gap: 0.6rem; transition: background-color 0.3s ease; }\n';
-      tpl += '    .footnote-index-btn { color: var(--gold-bright); font-weight: 700; background: transparent; border: none; cursor: pointer; font-family: var(--font-mono); font-size: 0.85rem; padding: 0; transition: all 0.2s ease; }\n';
+      tpl += '    .footnotes-list li { margin-bottom: 0.85rem; padding: 0.35rem 0.6rem; border-radius: 2px; display: flex; align-items: baseline; gap: 0.6rem; transition: background-color 0.4s ease; }\n';
+      tpl += '    .footnote-index-btn { color: var(--gold-bright); font-weight: 700; background: transparent; border: none; cursor: pointer; font-family: var(--font-mono); font-size: 0.85rem; padding: 0; user-select: none; transition: all 0.2s ease; }\n';
       tpl += '    .footnote-index-btn:hover { color: #ffffff; transform: scale(1.15); }\n';
-      tpl += '    .footnote-highlight { background-color: rgba(223, 194, 125, 0.15) !important; color: #ffffff !important; }\n';
+      tpl += '    .footnote-highlight { background-color: rgba(223, 194, 125, 0.18) !important; color: #ffffff !important; }\n';
       tpl += '    footer { max-width: 1040px; width: 100%; margin: 0 auto; padding: 2.8rem 2.5rem; border-top: 1px dashed var(--border-color); display: flex; justify-content: space-between; align-items: center; font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.1em; color: #5c554b; }\n';
-      tpl += '    @media (max-width: 820px) { header { padding: 1.8rem 1.4rem; } main { padding: 3.5rem 1.4rem; } .article-title { font-size: 1.45rem; } .article-body p { text-align: left; } .side-marginal-note { display: none !important; } .footnotes-list { font-size: 0.88rem; line-height: 1.8; } footer { flex-direction: column; gap: 0.6rem; text-align: center; } }\n';
+      tpl += '    @media (max-width: 820px) { header { padding: 1.8rem 1.4rem; } main { padding: 3.5rem 1.4rem; } .article-title { font-size: 1.45rem; } .article-body p { text-align: left; } .footnotes-list { font-size: 0.88rem; line-height: 1.8; } footer { flex-direction: column; gap: 0.6rem; text-align: center; } }\n';
       tpl += '  </style>\n</head>\n<body>\n';
       tpl += '  <header>\n';
       tpl += '    <a href="./" class="brand-logo">Love Jones</a>\n';
@@ -1571,13 +1449,6 @@
       tpl += '    <article class="article-body ' + articleClasses + '">\n' + content + '\n    </article>\n';
       tpl += '    ' + fnHtml + '\n';
       tpl += '  </main>\n';
-      tpl += '  <aside id="sideMarginalNote" class="side-marginal-note">\n';
-      tpl += '    <div class="marginal-header">\n';
-      tpl += '      <span id="marginalLabel">NOTA</span>\n';
-      tpl += '      <button type="button" class="marginal-close" onclick="closeMarginalNote()">&times;</button>\n';
-      tpl += '    </div>\n';
-      tpl += '    <div id="marginalContent"></div>\n';
-      tpl += '  </aside>\n';
       tpl += '  <footer>\n';
       tpl += '    <div>&copy; Bogotá, Colombia.</div>\n';
       tpl += '    <div>Love Jones</div>\n';
@@ -1586,15 +1457,6 @@
       tpl += '    if (window.location.pathname.endsWith(".html")) {\n';
       tpl += '      const clean = window.location.pathname.replace(".html", "");\n';
       tpl += '      window.history.replaceState(null, "", clean + window.location.search + window.location.hash);\n';
-      tpl += '    }\n';
-      tpl += '    const marginalNote = document.getElementById("sideMarginalNote");\n';
-      tpl += '    const marginalContent = document.getElementById("marginalContent");\n';
-      tpl += '    const marginalLabel = document.getElementById("marginalLabel");\n';
-      tpl += '    let currentTrigger = null;\n';
-      tpl += '    function closeMarginalNote() {\n';
-      tpl += '      marginalNote.style.display = "none";\n';
-      tpl += '      if (currentTrigger) currentTrigger.classList.remove("active");\n';
-      tpl += '      currentTrigger = null;\n';
       tpl += '    }\n';
       tpl += '    document.addEventListener("click", function(e) {\n';
       tpl += '      const returnBtn = e.target.closest(".footnote-index-btn");\n';
@@ -1605,47 +1467,22 @@
       tpl += '        if (sourceRef) {\n';
       tpl += '          sourceRef.scrollIntoView({ behavior: "smooth", block: "center" });\n';
       tpl += '          sourceRef.classList.add("active");\n';
-      tpl += '          setTimeout(() => sourceRef.classList.remove("active"), 1200);\n';
+      tpl += '          setTimeout(() => sourceRef.classList.remove("active"), 1400);\n';
       tpl += '        }\n';
       tpl += '        return;\n';
       tpl += '      }\n';
-      tpl += '      const btn = e.target.closest(".footnote-button");\n';
-      tpl += '      if (btn) {\n';
-      tpl += '        e.stopPropagation();\n';
-      tpl += '        const fnId = btn.getAttribute("data-fn");\n';
+      tpl += '      const fnBtn = e.target.closest(".footnote-button");\n';
+      tpl += '      if (fnBtn) {\n';
+      tpl += '        e.preventDefault(); e.stopPropagation();\n';
+      tpl += '        const fnId = fnBtn.getAttribute("data-fn");\n';
       tpl += '        const targetLi = document.querySelector(\'[data-fn-id="\' + fnId + \'"]\');\n';
-      tpl += '        if (!targetLi) return;\n';
-      tpl += '        if (window.innerWidth <= 820) {\n';
-      tpl += '          closeMarginalNote();\n';
+      tpl += '        if (targetLi) {\n';
       tpl += '          targetLi.scrollIntoView({ behavior: "smooth", block: "center" });\n';
       tpl += '          targetLi.classList.add("footnote-highlight");\n';
       tpl += '          setTimeout(() => targetLi.classList.remove("footnote-highlight"), 1800);\n';
-      tpl += '          return;\n';
       tpl += '        }\n';
-      tpl += '        if (currentTrigger === btn && marginalNote.style.display === "block") {\n';
-      tpl += '          closeMarginalNote(); return;\n';
-      tpl += '        }\n';
-      tpl += '        if (currentTrigger) currentTrigger.classList.remove("active");\n';
-      tpl += '        currentTrigger = btn; btn.classList.add("active");\n';
-      tpl += '        marginalLabel.textContent = "NOTA " + fnId;\n';
-      tpl += '        const textSpan = targetLi.querySelector(".fn-text-body") || targetLi;\n';
-      tpl += '        marginalContent.innerHTML = textSpan.innerHTML;\n';
-      tpl += '        const rect = btn.getBoundingClientRect();\n';
-      tpl += '        const noteWidth = 270;\n';
-      tpl += '        let leftPos = rect.right + 20;\n';
-      tpl += '        if (leftPos + noteWidth > window.innerWidth - 15) leftPos = window.innerWidth - noteWidth - 25;\n';
-      tpl += '        let topPos = rect.top - 10;\n';
-      tpl += '        if (topPos < 70) topPos = 70;\n';
-      tpl += '        if (topPos + 200 > window.innerHeight) topPos = window.innerHeight - 220;\n';
-      tpl += '        marginalNote.style.left = leftPos + "px";\n';
-      tpl += '        marginalNote.style.top = topPos + "px";\n';
-      tpl += '        marginalNote.style.display = "block";\n';
-      tpl += '        return;\n';
       tpl += '      }\n';
-      tpl += '      if (!marginalNote.contains(e.target)) closeMarginalNote();\n';
       tpl += '    });\n';
-      tpl += '    window.addEventListener("resize", closeMarginalNote);\n';
-      tpl += '    window.addEventListener("scroll", function() { if (marginalNote.style.display === "block") closeMarginalNote(); }, { passive: true });\n';
       tpl += '  <\/script>\n';
       tpl += '</body>\n</html>';
 
