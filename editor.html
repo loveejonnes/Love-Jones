@@ -29,6 +29,7 @@
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
 
     body {
       background-color: var(--bg-color);
@@ -214,7 +215,7 @@
       line-height: 1.3;
     }
 
-    #editorialCanvas {
+    #editorialCanvas, .preview-body {
       outline: none;
       font-family: var(--font-serif);
       font-size: 1.18rem;
@@ -223,14 +224,15 @@
       min-height: 480px;
     }
 
-    #editorialCanvas p {
+    #editorialCanvas p, .preview-body p {
       margin-bottom: 2.2rem;
       text-align: justify;
       hyphens: auto;
       letter-spacing: 0.012em;
     }
 
-    #editorialCanvas.mode-book p {
+    /* Modo Libro Impreso */
+    #editorialCanvas.mode-book p, .preview-body.mode-book p {
       margin-bottom: 0 !important;
       text-indent: 2em;
       text-align: justify;
@@ -242,12 +244,20 @@
     #editorialCanvas.mode-book h3 + p,
     #editorialCanvas.mode-book blockquote + p,
     #editorialCanvas.mode-book hr + p,
-    #editorialCanvas.mode-book .editorial-plate + p {
+    #editorialCanvas.mode-book .editorial-plate + p,
+    .preview-body.mode-book > p:first-of-type,
+    .preview-body.mode-book h2 + p,
+    .preview-body.mode-book h3 + p,
+    .preview-body.mode-book blockquote + p,
+    .preview-body.mode-book hr + p,
+    .preview-body.mode-book .editorial-plate + p {
       text-indent: 0 !important;
     }
 
     #editorialCanvas.mode-book.has-dropcap > p:first-of-type::first-letter,
-    #editorialCanvas.mode-book.has-dropcap h2 + p::first-letter {
+    #editorialCanvas.mode-book.has-dropcap h2 + p::first-letter,
+    .preview-body.mode-book.has-dropcap > p:first-of-type::first-letter,
+    .preview-body.mode-book.has-dropcap h2 + p::first-letter {
       float: left;
       font-size: 3.6rem;
       line-height: 0.8;
@@ -259,7 +269,7 @@
       font-weight: 700;
     }
 
-    #editorialCanvas h2 {
+    #editorialCanvas h2, .preview-body h2 {
       font-family: var(--font-mono);
       font-size: 1.3rem;
       color: var(--text-main);
@@ -268,7 +278,7 @@
       margin: 3.6rem 0 1.3rem 0;
     }
 
-    #editorialCanvas h3 {
+    #editorialCanvas h3, .preview-body h3 {
       font-family: var(--font-mono);
       font-size: 1.08rem;
       color: var(--gold-muted);
@@ -277,17 +287,19 @@
       margin: 2.6rem 0 1rem 0;
     }
 
-    #editorialCanvas blockquote {
-      border-left: 2px solid var(--accent-color);
+    #editorialCanvas blockquote, .preview-body blockquote {
+      border-left: 3px solid #c44333;
       padding: 0.4rem 0 0.4rem 1.6rem;
       margin: 2.8rem 0;
       color: #d1c8ba;
       font-style: italic;
       font-size: 1.16rem;
+      box-shadow: -2px 0 10px rgba(196, 67, 51, 0.2);
     }
 
-    #editorialCanvas blockquote.pullquote {
+    #editorialCanvas blockquote.pullquote, .preview-body blockquote.pullquote {
       border-left: none;
+      box-shadow: none;
       text-align: center;
       font-size: 1.45rem;
       line-height: 1.6;
@@ -299,14 +311,14 @@
       border-bottom: 1px dashed var(--border-color);
     }
 
-    #editorialCanvas hr {
+    #editorialCanvas hr, .preview-body hr {
       border: none;
       text-align: center;
       margin: 3.8rem 0;
       height: auto;
     }
 
-    #editorialCanvas hr::after {
+    #editorialCanvas hr::after, .preview-body hr::after {
       content: "•   •   •";
       font-family: var(--font-mono);
       color: var(--gold-muted);
@@ -314,23 +326,52 @@
       font-size: 0.85rem;
     }
 
-    #editorialCanvas ul, #editorialCanvas ol {
+    #editorialCanvas ul, #editorialCanvas ol,
+    .preview-body ul, .preview-body ol {
       margin-bottom: 2.2rem;
       padding-left: 2rem;
     }
 
-    #editorialCanvas li { margin-bottom: 0.5rem; }
+    #editorialCanvas li, .preview-body li { margin-bottom: 0.5rem; }
 
-    #editorialCanvas a {
+    #editorialCanvas a, .preview-body a {
       color: var(--text-main);
       text-decoration: underline;
       text-underline-offset: 3px;
     }
 
-    #editorialCanvas .highlight-text {
+    #editorialCanvas .highlight-text, .preview-body .highlight-text {
       background-color: rgba(143, 48, 36, 0.22);
       border-bottom: 1px solid var(--accent-color);
       padding: 0.1rem 0.3rem;
+    }
+
+    /* Superíndice Clásico de Notas */
+    .footnote-ref-link {
+      color: var(--gold-muted);
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 700;
+      vertical-align: super;
+      text-decoration: none;
+      margin: 0 0.15rem;
+      padding: 0 0.1rem;
+      cursor: pointer;
+      transition: color 0.2s ease;
+    }
+
+    .footnote-ref-link:hover {
+      color: #ffffff;
+      text-decoration: underline;
+    }
+
+    .highlight-target {
+      animation: pulseGold 1.5s ease-out;
+    }
+
+    @keyframes pulseGold {
+      0% { background-color: rgba(194, 166, 97, 0.4); }
+      100% { background-color: transparent; }
     }
 
     /* Bubble Menu Substack */
@@ -541,7 +582,7 @@
 
     .drawer-btn.full { grid-column: span 2; }
 
-    /* Láminas y Elementos */
+    /* Láminas Críticas */
     .editorial-plate {
       margin: 3.5rem 0;
       border: 1px dashed var(--border-color);
@@ -595,76 +636,7 @@
       margin: 0 0.2rem;
     }
 
-    .footnote-button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--gold-muted);
-      font-family: var(--font-mono);
-      font-weight: 700;
-      font-size: 0.76rem;
-      vertical-align: super;
-      text-decoration: none;
-      cursor: pointer;
-      margin: 0 0.15rem;
-      background: rgba(194, 166, 97, 0.1);
-      border: 1px dashed #3a3222;
-      padding: 0.1rem 0.35rem;
-      border-radius: 2px;
-      transition: all 0.2s ease;
-      user-select: none;
-    }
-
-    .footnote-button:hover {
-      background: var(--gold-muted);
-      color: #0c0b0a;
-    }
-
-    .footnote-popover {
-      position: absolute;
-      z-index: 3000;
-      width: min(340px, 90vw);
-      background-color: #141312;
-      border: 1px dashed var(--gold-muted);
-      box-shadow: 0 12px 35px rgba(0,0,0,0.85);
-      border-radius: 4px;
-      padding: 1.1rem;
-      font-family: var(--font-mono);
-      font-size: 0.8rem;
-      color: var(--text-main);
-      line-height: 1.65;
-      display: none;
-      animation: fadeInNote 0.15s ease-out;
-    }
-
-    @keyframes fadeInNote {
-      from { opacity: 0; transform: translateY(4px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .popover-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 0.5rem;
-      padding-bottom: 0.4rem;
-      border-bottom: 1px dashed var(--border-color);
-      color: var(--gold-muted);
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-    }
-
-    .popover-close {
-      cursor: pointer;
-      color: var(--text-muted);
-      background: none;
-      border: none;
-      font-family: var(--font-mono);
-      font-size: 0.85rem;
-    }
-
-    /* Modal de Previsualizador */
+    /* Modal Previsualizador */
     .preview-modal {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
@@ -815,7 +787,7 @@
     <button class="block-menu-item" onclick="insertPlate()"><b>[&bull;]</b> Lámina / Imagen</button>
   </div>
 
-  <!-- Bubble Menu contextual -->
+  <!-- Bubble Menu Contextual -->
   <div id="bubbleMenu" class="bubble-menu">
     <button class="bubble-btn" onmousedown="event.preventDefault()" onclick="exec('bold')"><b>B</b></button>
     <button class="bubble-btn" onmousedown="event.preventDefault()" onclick="exec('italic')"><i>I</i></button>
@@ -860,7 +832,7 @@
       <div>
         <div class="drawer-section-title">Aparato Crítico</div>
         <div class="drawer-grid">
-          <button class="drawer-btn full" style="border-color:var(--gold-muted); color:var(--gold-muted);" onmousedown="event.preventDefault()" onclick="insertFootnote()">[+ NOTA AL PIE]</button>
+          <button class="drawer-btn full" style="border-color:var(--gold-muted); color:var(--gold-muted);" onmousedown="event.preventDefault()" onclick="insertFootnote()">[+ NOTA DE LIBRO]</button>
           <button class="drawer-btn full" onmousedown="event.preventDefault()" onclick="insertCitation()">[+ CITA / FUENTE]</button>
         </div>
       </div>
@@ -895,28 +867,21 @@
     <input type="text" id="docTitle" class="title-input" placeholder="TÍTULO COMPLETO DEL ENSAYO">
 
     <div id="editorialCanvas" contenteditable="true" spellcheck="false">
-      <p>Comienza a redactar aquí. Cada palabra se almacena de forma instantánea en tu gestor de borradores.</p>
+      <p>Comienza a redactar aquí. Cada modificación se guardará de forma automática en tu almacenamiento local.</p>
     </div>
 
+    <!-- Notas al Pie Dinámicas -->
     <div class="footnotes-section" id="footnotesSection" style="display: none; margin-top:4.5rem; padding-top:2rem; border-top:1px dashed var(--border-color);">
-      <div style="font-family:var(--font-mono); font-size:0.8rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold-muted); margin-bottom:1.2rem;">Aparato Crítico &bull; Notas</div>
+      <div style="font-family:var(--font-mono); font-size:0.8rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold-muted); margin-bottom:1.2rem;">Notas</div>
       <ol id="footnotesList" contenteditable="true" spellcheck="false" style="font-family:var(--font-mono); font-size:0.82rem; color:var(--text-muted); line-height:1.7; padding-left:1.4rem;"></ol>
     </div>
 
+    <!-- Fuentes & Bibliografía -->
     <div class="footnotes-section" id="citationsSection" style="display: none; margin-top:3rem; padding-top:2rem; border-top:1px dashed var(--border-color);">
       <div style="font-family:var(--font-mono); font-size:0.8rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold-muted); margin-bottom:1.2rem;">Fuentes & Bibliografía</div>
       <ul id="citationsList" contenteditable="true" spellcheck="false" style="font-family:var(--font-mono); font-size:0.82rem; color:var(--text-muted); line-height:1.7; padding-left:1.4rem;"></ul>
     </div>
   </main>
-
-  <!-- Popover de Notas -->
-  <div id="activePopover" class="footnote-popover">
-    <div class="popover-header">
-      <span id="popoverLabel">NOTA</span>
-      <button type="button" class="popover-close" onclick="closePopover()">&times;</button>
-    </div>
-    <div id="popoverContent"></div>
-  </div>
 
   <!-- Modal Previsualizador -->
   <div id="previewModal" class="preview-modal">
@@ -967,8 +932,6 @@
     const dropcapBtn = document.getElementById('dropcapBtn');
 
     let currentDraftId = null;
-    let footnoteIndex = 0;
-    let plateIndex = 0;
     let isBookMode = false;
     let isDropcap = false;
 
@@ -1057,9 +1020,19 @@
       triggerAutoSave();
     }
 
+    // Enlace seguro conservando la selección del DOM
     function insertLink() {
+      const sel = window.getSelection();
+      if (!sel.rangeCount) return;
+      const range = sel.getRangeAt(0).cloneRange();
+      
       const url = prompt('Introduce la dirección web (URL):');
-      if (url) exec('createLink', url);
+      if (!url) return;
+
+      sel.removeAllRanges();
+      sel.addRange(range);
+      document.execCommand('createLink', false, url);
+      triggerAutoSave();
     }
 
     function insertDivider() {
@@ -1075,18 +1048,18 @@
     function insertPlate() {
       const url = prompt('URL o nombre del archivo de imagen:');
       if (!url) return;
-      plateIndex++;
+      
       const fig = document.createElement('figure');
       fig.className = 'editorial-plate';
       fig.setAttribute('contenteditable', 'false');
 
       fig.innerHTML = `
         <div class="plate-img-wrap">
-          <img src="${url}" alt="Lámina ${plateIndex}">
+          <img src="${url}" alt="Lámina de estudio">
         </div>
         <figcaption class="plate-caption" contenteditable="true">
-          <span class="plate-number">[FIG. ${String(plateIndex).padStart(2, '0')}]</span>
-          Escribe aquí el comentario analítico de la pieza visual...
+          <span class="plate-number">[FIG. 00]</span>
+          Escribe aquí el análisis de la pieza visual...
           <span class="plate-source">REGISTRO / ARCHIVO DOCUMENTAL</span>
         </figcaption>
       `;
@@ -1100,25 +1073,36 @@
         canvas.appendChild(fig);
       }
       closeBlockMenu();
+      reindexPlates();
       triggerAutoSave();
     }
 
+    function reindexPlates() {
+      const plates = canvas.querySelectorAll('.editorial-plate');
+      plates.forEach((p, idx) => {
+        const numEl = p.querySelector('.plate-number');
+        if (numEl) {
+          numEl.textContent = `[FIG. ${String(idx + 1).padStart(2, '0')}]`;
+        }
+      });
+    }
+
+    // Inserción de superíndice de libro
     function insertFootnote() {
       canvas.focus();
-      const btn = document.createElement('button');
-      btn.type = 'button';
-      btn.className = 'footnote-button';
-      btn.setAttribute('contenteditable', 'false');
-      btn.textContent = '[*]';
+      const a = document.createElement('a');
+      a.className = 'footnote-ref-link';
+      a.setAttribute('contenteditable', 'false');
+      a.textContent = '¹';
 
       const sel = window.getSelection();
       if (sel.rangeCount) {
         const range = sel.getRangeAt(0);
         range.collapse(false);
-        range.insertNode(btn);
-        range.setStartAfter(btn);
+        range.insertNode(a);
+        range.setStartAfter(a);
       } else {
-        canvas.appendChild(btn);
+        canvas.appendChild(a);
       }
 
       reindexFootnotes();
@@ -1126,7 +1110,7 @@
     }
 
     function insertCitation() {
-      const refText = prompt('Referencia bibliográfica corta (ej: Rose, T., 1994, p. 42):');
+      const refText = prompt('Referencia bibliográfica (ej: Rose, T., 1994, p. 42):');
       if (!refText) return;
 
       const span = document.createElement('span');
@@ -1150,14 +1134,14 @@
       triggerAutoSave();
     }
 
+    // Renumeración dinámica y enlaces bidireccionales
     function reindexFootnotes() {
-      const buttons = canvas.querySelectorAll('.footnote-button');
+      const refs = canvas.querySelectorAll('.footnote-ref-link');
       const listItems = Array.from(fList.querySelectorAll('li'));
 
-      if (buttons.length === 0) {
+      if (refs.length === 0) {
         fSec.style.display = 'none';
         fList.innerHTML = '';
-        footnoteIndex = 0;
         return;
       }
 
@@ -1169,20 +1153,52 @@
       });
 
       fList.innerHTML = '';
-      buttons.forEach((btn, idx) => {
+      refs.forEach((ref, idx) => {
         const newNum = idx + 1;
-        const oldId = btn.getAttribute('data-fn');
-        btn.setAttribute('data-fn', newNum);
-        btn.textContent = '[' + newNum + ']';
+        const oldId = ref.getAttribute('data-fn');
+        
+        ref.setAttribute('data-fn', newNum);
+        ref.id = 'ref-doc-' + newNum;
+        ref.href = '#fn-item-' + newNum;
+        ref.textContent = '[' + newNum + ']';
 
         const li = document.createElement('li');
         li.id = 'fn-item-' + newNum;
         li.setAttribute('data-fn-id', newNum);
-        li.innerHTML = contentMap[oldId] || 'Aclaración conceptual [' + newNum + ']...';
+        
+        const preserved = contentMap[oldId] || `Aclaración conceptual [${newNum}]...`;
+        li.innerHTML = preserved;
         fList.appendChild(li);
       });
-      footnoteIndex = buttons.length;
     }
+
+    // Salto suave bidireccional
+    document.addEventListener('click', (e) => {
+      const ref = e.target.closest('.footnote-ref-link');
+      if (ref) {
+        e.preventDefault();
+        const fnId = ref.getAttribute('data-fn');
+        const targetLi = document.getElementById('fn-item-' + fnId);
+        if (targetLi) {
+          targetLi.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          targetLi.classList.add('highlight-target');
+          setTimeout(() => targetLi.classList.remove('highlight-target'), 1600);
+        }
+        return;
+      }
+
+      const li = e.target.closest('#footnotesList li');
+      if (li) {
+        const fnId = li.getAttribute('data-fn-id');
+        const targetRef = document.getElementById('ref-doc-' + fnId);
+        if (targetRef && e.offsetX < 30) { // Si hace clic hacia el inicio de la nota
+          e.preventDefault();
+          targetRef.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          targetRef.classList.add('highlight-target');
+          setTimeout(() => targetRef.classList.remove('highlight-target'), 1600);
+        }
+      }
+    });
 
     function toggleBookMode() {
       isBookMode = !isBookMode;
@@ -1219,9 +1235,7 @@
       document.getElementById('readTime').textContent = Math.ceil(words / 200) + ' min';
     }
 
-    // ==========================================
-    // SISTEMA MULTIBORRADOR (LocalStorage)
-    // ==========================================
+    // Gestor de almacenamiento local multiborrador
     function getAllDrafts() {
       const raw = localStorage.getItem('lj_manuscript_drafts');
       return raw ? JSON.parse(raw) : [];
@@ -1247,8 +1261,6 @@
         body: canvas.innerHTML,
         footnotes: fList.innerHTML,
         citations: cList.innerHTML,
-        fnCount: footnoteIndex,
-        plateCount: plateIndex,
         isBook: isBookMode,
         isDrop: isDropcap,
         hasFn: fSec.style.display !== 'none',
@@ -1288,13 +1300,13 @@
       cList.innerHTML = draft.citations || '';
       fSec.style.display = draft.hasFn ? 'block' : 'none';
       cSec.style.display = draft.hasCi ? 'block' : 'none';
-      plateIndex = draft.plateCount || 0;
 
       isBookMode = !draft.isBook;
       toggleBookMode();
       isDropcap = !draft.isDrop;
       toggleDropcap();
 
+      reindexPlates();
       reindexFootnotes();
       updateMetrics();
       localStorage.setItem('lj_last_active_draft', currentDraftId);
@@ -1302,9 +1314,7 @@
     }
 
     function createNewDraft() {
-      if (canvas.innerText.trim().length > 10) {
-        triggerAutoSave();
-      }
+      if (canvas.innerText.trim().length > 10) triggerAutoSave();
       currentDraftId = 'draft_' + Date.now();
       slugInput.value = '';
       idInput.value = '[TXT.01]';
@@ -1315,8 +1325,6 @@
       cList.innerHTML = '';
       fSec.style.display = 'none';
       cSec.style.display = 'none';
-      footnoteIndex = 0;
-      plateIndex = 0;
       updateMetrics();
       triggerAutoSave();
       closeDraftsModal();
@@ -1370,7 +1378,7 @@
       `).join('');
     }
 
-    // Burbuja Substack
+    // Control de barra flotante Substack
     document.addEventListener('selectionchange', () => {
       const sel = window.getSelection();
       if (!sel.isCollapsed && sel.rangeCount > 0 && canvas.contains(sel.anchorNode)) {
@@ -1384,7 +1392,7 @@
       }
     });
 
-    // Botón (+) en línea
+    // Control de botón (+) en líneas vacías
     function updatePlusButton() {
       const sel = window.getSelection();
       if (sel.rangeCount > 0 && sel.isCollapsed && canvas.contains(sel.anchorNode)) {
@@ -1421,53 +1429,15 @@
       if (!blockMenu.contains(e.target) && e.target !== blockPlusBtn) closeBlockMenu();
     });
 
-    // Popover de Notas
-    const popover = document.getElementById('activePopover');
-    const popContent = document.getElementById('popoverContent');
-    const popLabel = document.getElementById('popoverLabel');
-    let currentTrigger = null;
-
-    function closePopover() {
-      popover.style.display = 'none';
-      currentTrigger = null;
-    }
-
-    document.addEventListener('click', (e) => {
-      const btn = e.target.closest('.footnote-button');
-      if (btn) {
-        e.stopPropagation();
-        const fnId = btn.getAttribute('data-fn');
-        const targetLi = document.querySelector('[data-fn-id="' + fnId + '"]') || document.getElementById('fn-item-' + fnId);
-
-        if (currentTrigger === btn && popover.style.display === 'block') {
-          closePopover();
-          return;
-        }
-
-        if (targetLi) {
-          currentTrigger = btn;
-          popLabel.textContent = 'NOTA [' + fnId + ']';
-          popContent.innerHTML = targetLi.innerHTML;
-          popover.style.display = 'block';
-
-          const rect = btn.getBoundingClientRect();
-          popover.style.left = `${rect.left + window.scrollX - (popover.offsetWidth / 2) + (rect.width / 2)}px`;
-          popover.style.top = `${rect.bottom + window.scrollY + 8}px`;
-        }
-        return;
-      }
-      if (!popover.contains(e.target)) closePopover();
-    });
-
-    // Previsualizador
+    // Previsualizador en vivo corregido
     function openPreview() {
       const target = document.getElementById('previewTarget');
-      const articleClasses = (isBookMode ? 'mode-book' : '') + (isDropcap ? ' has-dropcap' : '');
+      const articleClasses = 'preview-body ' + (isBookMode ? 'mode-book' : '') + (isDropcap ? ' has-dropcap' : '');
       
       const fnVisible = fSec.style.display !== 'none';
       const fnHtml = fnVisible ? `
         <div style="margin-top:4rem; padding-top:2rem; border-top:1px dashed var(--border-color);">
-          <div style="font-family:var(--font-mono); font-size:0.8rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold-muted); margin-bottom:1.2rem;">Aparato Crítico &bull; Notas</div>
+          <div style="font-family:var(--font-mono); font-size:0.8rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold-muted); margin-bottom:1.2rem;">Notas</div>
           <ol style="font-family:var(--font-mono); font-size:0.82rem; color:var(--text-muted); line-height:1.7; padding-left:1.4rem;">${fList.innerHTML}</ol>
         </div>` : '';
 
@@ -1493,7 +1463,7 @@
       document.getElementById('previewModal').classList.remove('active');
     }
 
-    // Exportador HTML
+    // Exportador de código .html
     function exportHtmlFile() {
       const slug = (slugInput.value || 'ensayo').trim().toLowerCase().replace(/\s+/g, '-');
       const docId = idInput.value.trim();
@@ -1504,7 +1474,7 @@
       const fnVisible = fSec.style.display !== 'none';
       const fnHtml = fnVisible ? `
       <div class="footnotes-section">
-        <div class="footnotes-title">Aparato Crítico &bull; Notas</div>
+        <div class="footnotes-title">Notas</div>
         <ol class="footnotes-list">${fList.innerHTML}</ol>
       </div>` : '';
 
@@ -1541,6 +1511,7 @@
       --font-serif: 'Lora', Georgia, serif;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
     body {
       background-color: var(--bg-color);
       color: var(--text-main);
@@ -1676,15 +1647,17 @@
       margin: 2.6rem 0 1rem 0;
     }
     .article-body blockquote {
-      border-left: 2px solid var(--accent-color);
+      border-left: 3px solid #c44333;
       padding: 0.4rem 0 0.4rem 1.6rem;
       margin: 2.8rem 0;
       color: #d1c8ba;
       font-style: italic;
       font-size: 1.16rem;
+      box-shadow: -2px 0 10px rgba(196, 67, 51, 0.2);
     }
     .article-body blockquote.pullquote {
       border-left: none;
+      box-shadow: none;
       text-align: center;
       font-size: 1.45rem;
       line-height: 1.6;
@@ -1724,27 +1697,20 @@
       border-bottom: 1px solid var(--accent-color);
       padding: 0.1rem 0.3rem;
     }
-    .footnote-button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
+    .footnote-ref-link {
       color: var(--gold-muted);
       font-family: var(--font-mono);
+      font-size: 0.78rem;
       font-weight: 700;
-      font-size: 0.76rem;
       vertical-align: super;
       text-decoration: none;
-      cursor: pointer;
       margin: 0 0.15rem;
-      background: rgba(194, 166, 97, 0.1);
-      border: 1px dashed #3a3222;
-      padding: 0.1rem 0.35rem;
-      border-radius: 2px;
-      transition: all 0.2s ease;
+      padding: 0 0.1rem;
+      transition: color 0.2s ease;
     }
-    .footnote-button:hover, .footnote-button.active {
-      background: var(--gold-muted);
-      color: #0c0b0a;
+    .footnote-ref-link:hover {
+      color: #ffffff;
+      text-decoration: underline;
     }
     .citation-tag {
       font-family: var(--font-mono);
@@ -1792,40 +1758,6 @@
       color: #6d665b;
       font-size: 0.72rem;
     }
-    .footnote-popover {
-      position: absolute;
-      z-index: 1000;
-      width: min(340px, 90vw);
-      background-color: #141312;
-      border: 1px dashed var(--gold-muted);
-      box-shadow: 0 12px 35px rgba(0,0,0,0.85);
-      border-radius: 4px;
-      padding: 1.1rem;
-      font-family: var(--font-mono);
-      font-size: 0.8rem;
-      color: var(--text-main);
-      line-height: 1.65;
-      display: none;
-    }
-    .popover-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 0.5rem;
-      padding-bottom: 0.4rem;
-      border-bottom: 1px dashed var(--border-color);
-      color: var(--gold-muted);
-      font-size: 0.72rem;
-      font-weight: 700;
-    }
-    .popover-close {
-      cursor: pointer;
-      color: var(--text-muted);
-      background: none;
-      border: none;
-      font-family: var(--font-mono);
-      font-size: 0.85rem;
-    }
     .footnotes-section {
       margin-top: 4.8rem;
       padding-top: 2rem;
@@ -1847,6 +1779,13 @@
       padding-left: 1.4rem;
     }
     .footnotes-list li, .citations-list li { margin-bottom: 0.8rem; }
+    .highlight-target {
+      animation: pulseGold 1.5s ease-out;
+    }
+    @keyframes pulseGold {
+      0% { background-color: rgba(194, 166, 97, 0.4); }
+      100% { background-color: transparent; }
+    }
     footer {
       max-width: 1040px;
       width: 100%;
@@ -1889,14 +1828,6 @@
     \${fnHtml}
     \${ciHtml}
   </main>
-  
-  <div id="activePopover" class="footnote-popover">
-    <div class="popover-header">
-      <span id="popoverLabel">NOTA</span>
-      <button type="button" class="popover-close" onclick="closePopover()">&times;</button>
-    </div>
-    <div id="popoverContent"></div>
-  </div>
 
   <footer>
     <div>&copy; Bogotá, Colombia.</div>
@@ -1909,45 +1840,31 @@
       window.history.replaceState(null, '', clean + window.location.search + window.location.hash);
     }
 
-    const popover = document.getElementById('activePopover');
-    const popContent = document.getElementById('popoverContent');
-    const popLabel = document.getElementById('popoverLabel');
-    let currentTrigger = null;
-
-    function closePopover() {
-      popover.style.display = 'none';
-      if (currentTrigger) currentTrigger.classList.remove('active');
-      currentTrigger = null;
-    }
-
     document.addEventListener('click', (e) => {
-      const btn = e.target.closest('.footnote-button');
-      if (btn) {
-        e.stopPropagation();
-        const fnId = btn.getAttribute('data-fn');
+      const ref = e.target.closest('.footnote-ref-link');
+      if (ref) {
+        e.preventDefault();
+        const fnId = ref.getAttribute('data-fn');
         const targetLi = document.getElementById('fn-item-' + fnId);
-
-        if (currentTrigger === btn && popover.style.display === 'block') {
-          closePopover();
-          return;
-        }
-
         if (targetLi) {
-          if (currentTrigger) currentTrigger.classList.remove('active');
-          currentTrigger = btn;
-          btn.classList.add('active');
-
-          popLabel.textContent = 'NOTA [' + fnId + ']';
-          popContent.innerHTML = targetLi.innerHTML;
-          popover.style.display = 'block';
-
-          const rect = btn.getBoundingClientRect();
-          popover.style.left = (rect.left + window.scrollX - (popover.offsetWidth / 2) + (rect.width / 2)) + 'px';
-          popover.style.top = (rect.bottom + window.scrollY + 8) + 'px';
+          targetLi.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          targetLi.classList.add('highlight-target');
+          setTimeout(() => targetLi.classList.remove('highlight-target'), 1600);
         }
         return;
       }
-      if (!popover.contains(e.target)) closePopover();
+
+      const li = e.target.closest('.footnotes-list li');
+      if (li) {
+        const fnId = li.getAttribute('data-fn-id');
+        const targetRef = document.getElementById('ref-doc-' + fnId);
+        if (targetRef && e.offsetX < 30) {
+          e.preventDefault();
+          targetRef.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          targetRef.classList.add('highlight-target');
+          setTimeout(() => targetRef.classList.remove('highlight-target'), 1600);
+        }
+      }
     });
   <\/script>
 </body>
@@ -1960,8 +1877,9 @@
       link.click();
     }
 
-    // Escuchas
+    // Escuchas del editor
     canvas.addEventListener('input', () => {
+      reindexPlates();
       reindexFootnotes();
       triggerAutoSave();
     });
@@ -1973,7 +1891,7 @@
     metaInput.addEventListener('input', triggerAutoSave);
     titleInput.addEventListener('input', triggerAutoSave);
 
-    // Inicialización del entorno
+    // Inicializar cargando el último borrador activo
     const lastActive = localStorage.getItem('lj_last_active_draft');
     const drafts = getAllDrafts();
     if (lastActive && drafts.some(d => d.id === lastActive)) {
