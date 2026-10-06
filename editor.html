@@ -10,17 +10,18 @@
   <!-- Tipografías -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
   <style>
     :root {
       --bg-color: #0c0b0a;
       --card-bg: #141312;
-      --accent-color: #8f3024;
-      --accent-hover: #b03d2e;
-      --gold-muted: #c2a661;
-      --text-main: #f2ede4;
-      --text-muted: #a89f91;
+      --accent-color: #c44333;       /* Rojo lacre iluminado */
+      --accent-glow: rgba(196, 67, 51, 0.35);
+      --gold-muted: #c2a661;         /* Oro viejo mate */
+      --gold-bright: #dfc27d;        /* Oro luminoso de detalle */
+      --text-main: #f5f0e6;          /* Marfil nítido */
+      --text-muted: #aba294;         /* Lino suave */
       --border-color: #24201d;
       --font-mono: 'Space Mono', 'Courier Prime', monospace;
       --font-serif: 'Lora', Georgia, serif;
@@ -42,11 +43,11 @@
       overflow-x: hidden;
     }
 
-    /* Barra Superior Minimalista */
+    /* Barra Superior */
     .substack-topbar {
       position: sticky;
       top: 0;
-      background-color: rgba(12, 11, 10, 0.95);
+      background-color: rgba(12, 11, 10, 0.96);
       backdrop-filter: blur(12px);
       border-bottom: 1px dashed var(--border-color);
       z-index: 1000;
@@ -67,8 +68,8 @@
 
     .brand-mark {
       font-weight: 700;
-      color: var(--text-main);
-      letter-spacing: 0.1em;
+      color: #ffffff;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       text-decoration: none;
     }
@@ -79,7 +80,7 @@
       letter-spacing: 0.05em;
     }
 
-    .status-text.saved { color: var(--gold-muted); }
+    .status-text.saved { color: var(--gold-bright); }
 
     .topbar-right {
       display: flex;
@@ -101,14 +102,14 @@
     }
 
     .btn-top:hover {
-      border-color: var(--gold-muted);
+      border-color: var(--gold-bright);
       color: #fff;
     }
 
     .btn-top.btn-drafts {
       border-color: #3d3525;
-      color: var(--gold-muted);
-      background: rgba(194, 166, 97, 0.06);
+      color: var(--gold-bright);
+      background: rgba(194, 166, 97, 0.08);
     }
 
     .btn-top.btn-drafts:hover {
@@ -117,15 +118,15 @@
     }
 
     .btn-export-main {
-      background: var(--accent-color);
+      background: #8f3024;
       border-color: var(--accent-color);
       color: #fff;
       font-weight: 700;
     }
 
     .btn-export-main:hover {
-      background: var(--accent-hover);
-      border-color: var(--accent-hover);
+      background: var(--accent-color);
+      box-shadow: 0 0 12px var(--accent-glow);
     }
 
     /* Lienzo de Escritura Central */
@@ -155,7 +156,7 @@
       outline: none;
       font-family: var(--font-mono);
       font-size: 0.75rem;
-      color: var(--gold-muted);
+      color: var(--gold-bright);
       letter-spacing: 0.12em;
       text-transform: uppercase;
       flex: 1;
@@ -167,11 +168,11 @@
       border: none;
       outline: none;
       font-family: var(--font-mono);
-      font-size: 2.1rem;
+      font-size: 2.15rem;
       font-weight: 700;
       line-height: 1.3;
       letter-spacing: 0.04em;
-      color: var(--text-main);
+      color: #ffffff;
       margin-bottom: 0.8rem;
       text-transform: uppercase;
     }
@@ -197,7 +198,7 @@
     #editorArea {
       outline: none;
       font-size: 1.15rem;
-      line-height: 2;
+      line-height: 2.05;
       color: var(--text-main);
       min-height: 480px;
     }
@@ -209,10 +210,25 @@
       letter-spacing: 0.012em;
     }
 
+    /* Negritas y Cursivas Reforzadas */
+    #editorArea b, #editorArea strong,
+    .article-body b, .article-body strong {
+      color: #ffffff !important;
+      font-weight: 700 !important;
+      letter-spacing: 0.015em;
+    }
+
+    #editorArea i, #editorArea em,
+    .article-body i, .article-body em {
+      color: #faebd7 !important;
+      font-style: italic !important;
+      letter-spacing: 0.015em;
+    }
+
     /* MODO LIBRO IMPRESO */
     #editorArea.mode-book p {
       margin-bottom: 0 !important;
-      text-indent: 2em;
+      text-indent: 2.2em;
       text-align: justify;
       hyphens: auto;
     }
@@ -226,110 +242,121 @@
       text-indent: 0 !important;
     }
 
-    /* Letra Capitular */
+    /* Letra Capitular con Relieve Dorado */
     #editorArea.mode-book.has-dropcap > p:first-of-type::first-letter,
-    #editorArea.mode-book.has-dropcap h2 + p::first-letter {
+    #editorArea.mode-book.has-dropcap h2 + p::first-letter,
+    .article-body.mode-book.has-dropcap > p:first-of-type::first-letter,
+    .article-body.mode-book.has-dropcap h2 + p::first-letter {
       float: left;
-      font-size: 3.6rem;
-      line-height: 0.8;
-      padding-top: 4px;
-      padding-right: 12px;
-      color: var(--gold-muted);
+      font-size: 3.8rem;
+      line-height: 0.78;
+      padding-top: 6px;
+      padding-right: 14px;
+      color: var(--gold-bright);
       font-family: var(--font-serif);
       font-weight: 700;
+      text-shadow: 0 0 10px rgba(223, 194, 125, 0.2);
     }
 
-    #editorArea h2 {
+    #editorArea h2, .article-body h2 {
       font-family: var(--font-mono);
       font-size: 1.28rem;
-      color: var(--text-main);
+      color: #ffffff;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin: 3.6rem 0 1.2rem 0;
+      letter-spacing: 0.09em;
+      margin: 3.8rem 0 1.2rem 0;
     }
 
-    #editorArea h3 {
+    #editorArea h3, .article-body h3 {
       font-family: var(--font-mono);
       font-size: 1.05rem;
-      color: var(--gold-muted);
+      color: var(--gold-bright);
       text-transform: uppercase;
-      letter-spacing: 0.06em;
-      margin: 2.6rem 0 1rem 0;
+      letter-spacing: 0.07em;
+      margin: 2.8rem 0 1rem 0;
     }
 
-    #editorArea blockquote {
-      border-left: 2px solid var(--accent-color);
-      padding: 0.5rem 0 0.5rem 1.6rem;
-      margin: 2.8rem 0;
-      color: #d1c8ba;
+    /* Cita en Bloque con Línea Iluminada */
+    #editorArea blockquote, .article-body blockquote {
+      border-left: 3px solid var(--accent-color);
+      box-shadow: -3px 0 12px var(--accent-glow);
+      padding: 0.8rem 0 0.8rem 1.8rem;
+      margin: 3rem 0;
+      background: rgba(196, 67, 51, 0.04);
+      color: #ded7cb;
       font-style: italic;
-      font-size: 1.15rem;
+      font-size: 1.18rem;
+      line-height: 1.9;
     }
 
-    #editorArea .pull-quote {
+    /* Cita Destacada (Pull Quote) */
+    #editorArea .pull-quote, .article-body .pull-quote {
       text-align: center;
       font-size: 1.45rem;
       font-style: italic;
-      line-height: 1.6;
-      color: var(--gold-muted);
-      margin: 3.5rem 2rem;
-      padding: 1.5rem 0;
-      border-top: 1px dashed var(--border-color);
-      border-bottom: 1px dashed var(--border-color);
+      line-height: 1.65;
+      color: var(--gold-bright);
+      margin: 4rem 1.5rem;
+      padding: 1.8rem 0;
+      border-top: 1px dashed #3a3222;
+      border-bottom: 1px dashed #3a3222;
+      position: relative;
     }
 
-    #editorArea .divider-dots {
+    #editorArea .divider-dots, .article-body .divider-dots {
       text-align: center;
-      letter-spacing: 1.2em;
+      letter-spacing: 1.4em;
       color: var(--gold-muted);
-      margin: 3.5rem 0;
+      margin: 3.8rem 0;
       user-select: none;
     }
 
-    #editorArea a {
-      color: var(--text-main);
+    #editorArea a, .article-body a {
+      color: #ffffff;
       text-decoration: underline;
-      text-underline-offset: 3px;
+      text-underline-offset: 4px;
+      text-decoration-color: var(--gold-muted);
     }
 
-    #editorArea .highlight-text {
-      background-color: rgba(143, 48, 36, 0.22);
+    #editorArea .highlight-text, .article-body .highlight-text {
+      background-color: rgba(196, 67, 51, 0.2);
       border-bottom: 1px solid var(--accent-color);
-      padding: 0.1rem 0.3rem;
+      padding: 0.1rem 0.35rem;
+      color: #fff;
     }
 
-    /* Superíndice de Nota al Pie */
+    /* Superíndice de Nota de Libro Clásico */
     .footnote-button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--gold-muted);
-      font-family: var(--font-mono);
+      display: inline-block;
+      color: var(--gold-bright);
+      font-family: var(--font-serif);
       font-weight: 700;
-      font-size: 0.76rem;
+      font-size: 0.85rem;
+      line-height: 0;
       vertical-align: super;
       text-decoration: none;
       cursor: pointer;
-      margin: 0 0.2rem;
-      background: rgba(194, 166, 97, 0.1);
-      border: 1px dashed #3a3222;
-      padding: 0.05rem 0.35rem;
-      border-radius: 2px;
+      margin: 0 0.15rem;
+      background: transparent;
+      border: none;
+      padding: 0 0.15rem;
       user-select: none;
       transition: all 0.2s ease;
+      filter: drop-shadow(0 0 2px rgba(223, 194, 125, 0.3));
     }
 
     .footnote-button:hover, .footnote-button.active {
-      background: var(--gold-muted);
-      color: #0c0b0a;
+      color: #ffffff;
+      transform: scale(1.15);
+      filter: drop-shadow(0 0 6px var(--gold-bright));
     }
 
     /* Láminas */
     .editorial-plate {
-      margin: 3.5rem 0;
+      margin: 3.8rem 0;
       border: 1px dashed var(--border-color);
       background-color: #11100f;
-      padding: 1.2rem;
+      padding: 1.4rem;
     }
 
     .plate-img-wrap {
@@ -356,7 +383,7 @@
     }
 
     .plate-number {
-      color: var(--gold-muted);
+      color: var(--gold-bright);
       font-weight: 700;
       margin-right: 0.4rem;
     }
@@ -373,7 +400,7 @@
       font-size: 0.8rem;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: var(--gold-muted);
+      color: var(--gold-bright);
       margin-bottom: 1.2rem;
     }
 
@@ -388,9 +415,7 @@
 
     #footnotesList li { margin-bottom: 0.8rem; padding-right: 1rem; }
 
-    /* ========================================================
-       CAJA LATERAL DESPLEGABLE DE HERRAMIENTAS (DRAWER)
-       ======================================================== */
+    /* Drawer Lateral */
     .sidebar-drawer {
       position: fixed;
       top: 60px;
@@ -419,7 +444,7 @@
       background: #181614;
       border: 1px dashed var(--gold-muted);
       border-right: none;
-      color: var(--gold-muted);
+      color: var(--gold-bright);
       font-family: var(--font-mono);
       font-size: 0.72rem;
       letter-spacing: 0.12em;
@@ -435,9 +460,9 @@
 
     .sidebar-drawer.open + .drawer-toggle-tab {
       right: 310px;
-      background: var(--accent-color);
+      background: #8f3024;
       color: #fff;
-      border-color: var(--accent-hover);
+      border-color: var(--accent-color);
     }
 
     .drawer-section {
@@ -453,22 +478,13 @@
       font-size: 0.68rem;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: var(--gold-muted);
+      color: var(--gold-bright);
       font-weight: 700;
       margin-bottom: 0.8rem;
     }
 
-    .drawer-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 0.4rem;
-    }
-
-    .drawer-grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0.4rem;
-    }
+    .drawer-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.4rem; }
+    .drawer-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.4rem; }
 
     .drawer-btn {
       background: #141312;
@@ -484,26 +500,24 @@
     }
 
     .drawer-btn:hover {
-      border-color: var(--gold-muted);
+      border-color: var(--gold-bright);
       color: #fff;
       background: #1c1a18;
     }
 
     .drawer-btn.btn-gold-accent {
       border-color: #4a3e20;
-      color: var(--gold-muted);
+      color: var(--gold-bright);
       font-weight: 700;
     }
 
     .drawer-btn.btn-active {
-      background: var(--accent-color);
+      background: #8f3024;
       color: #fff;
-      border-color: var(--accent-hover);
+      border-color: var(--accent-color);
     }
 
-    /* ========================================================
-       MODAL: GESTOR DE BORRADORES (OPCIÓN 1)
-       ======================================================== */
+    /* Modal Gestor Borradores */
     .drafts-modal {
       display: none;
       position: fixed;
@@ -542,7 +556,7 @@
       font-size: 0.85rem;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: var(--gold-muted);
+      color: var(--gold-bright);
       font-weight: 700;
     }
 
@@ -566,21 +580,16 @@
       transition: border-color 0.2s ease;
     }
 
-    .draft-entry-card:hover { border-color: var(--gold-muted); }
+    .draft-entry-card:hover { border-color: var(--gold-bright); }
     .draft-entry-card.is-current { border-left: 3px solid var(--accent-color); }
 
-    .draft-entry-info {
-      display: flex;
-      flex-direction: column;
-      gap: 0.3rem;
-      overflow: hidden;
-    }
+    .draft-entry-info { display: flex; flex-direction: column; gap: 0.3rem; overflow: hidden; }
 
     .draft-entry-title {
       font-family: var(--font-mono);
       font-size: 0.85rem;
       font-weight: 700;
-      color: var(--text-main);
+      color: #ffffff;
       text-transform: uppercase;
       letter-spacing: 0.04em;
       white-space: nowrap;
@@ -595,11 +604,7 @@
       letter-spacing: 0.06em;
     }
 
-    .draft-actions {
-      display: flex;
-      gap: 0.4rem;
-      flex-shrink: 0;
-    }
+    .draft-actions { display: flex; gap: 0.4rem; flex-shrink: 0; }
 
     .drafts-panel-footer {
       padding: 1rem 1.6rem;
@@ -610,19 +615,19 @@
       background: #100f0e;
     }
 
-    /* BURBUJA EMERGENTE FLOTANTE PARA LECTURA DE NOTAS */
+    /* BURBUJA FLOTANTE PARA LECTURA DE NOTAS (POPOVER) */
     .footnote-popover {
       position: absolute;
-      z-index: 3000;
+      z-index: 9999;
       width: min(340px, 90vw);
-      background-color: #161514;
-      border: 1px dashed var(--gold-muted);
-      box-shadow: 0 14px 40px rgba(0,0,0,0.95);
+      background-color: #171513;
+      border: 1px dashed var(--gold-bright);
+      box-shadow: 0 16px 45px rgba(0,0,0,0.98);
       border-radius: 3px;
       padding: 1.1rem;
       font-family: var(--font-mono);
       font-size: 0.8rem;
-      color: var(--text-main);
+      color: #f2ede4;
       line-height: 1.65;
       display: none;
       animation: fadeInNote 0.18s ease;
@@ -640,7 +645,7 @@
       margin-bottom: 0.6rem;
       padding-bottom: 0.4rem;
       border-bottom: 1px dashed var(--border-color);
-      color: var(--gold-muted);
+      color: var(--gold-bright);
       font-size: 0.72rem;
       font-weight: 700;
       letter-spacing: 0.12em;
@@ -655,9 +660,9 @@
       font-size: 0.85rem;
     }
 
-    .popover-close:hover { color: var(--text-main); }
+    .popover-close:hover { color: #ffffff; }
 
-    /* MODAL DE PREVISUALIZACIÓN */
+    /* Modal de Previsualización */
     .preview-modal {
       display: none;
       position: fixed;
@@ -686,6 +691,7 @@
       padding: 2.5rem 1rem;
       display: flex;
       justify-content: center;
+      position: relative;
     }
 
     .preview-viewport {
@@ -719,7 +725,7 @@
 </head>
 <body>
 
-  <!-- Barra Superior Minimalista -->
+  <!-- Barra Superior -->
   <header class="substack-topbar">
     <div class="topbar-left">
       <a href="archivo.html" class="brand-mark">&larr; Love Jones</a>
@@ -735,7 +741,7 @@
     </div>
   </header>
 
-  <!-- CAJA DESPLEGABLE LATERAL (DRAWER) -->
+  <!-- CAJA DESPLEGABLE LATERAL -->
   <aside class="sidebar-drawer" id="sideDrawer">
     <div class="drawer-section">
       <div class="drawer-header">Archivo & Sesiones</div>
@@ -746,8 +752,8 @@
     <div class="drawer-section">
       <div class="drawer-header">1. Estilo & Formato</div>
       <div class="drawer-grid-3">
-        <button type="button" class="drawer-btn" onmousedown="event.preventDefault()" onclick="execFormat('bold')"><b>B</b></button>
-        <button type="button" class="drawer-btn" onmousedown="event.preventDefault()" onclick="execFormat('italic')"><i>I</i></button>
+        <button type="button" class="drawer-btn" onmousedown="event.preventDefault()" onclick="execFormat('bold')"><b>B</b> (Fuerte)</button>
+        <button type="button" class="drawer-btn" onmousedown="event.preventDefault()" onclick="execFormat('italic')"><i>I</i> (Cursiva)</button>
         <button type="button" class="drawer-btn" onmousedown="event.preventDefault()" onclick="applyHighlight()">Resaltar</button>
       </div>
       <div class="drawer-grid" style="margin-top:0.4rem;">
@@ -779,7 +785,7 @@
 
     <div class="drawer-section">
       <div class="drawer-header">4. Aparato Crítico & Archivo</div>
-      <button type="button" class="drawer-btn btn-gold-accent" style="width:100%;" onmousedown="event.preventDefault()" onclick="insertFootnoteAction()">[+ AÑADIR NOTA AL PIE]</button>
+      <button type="button" class="drawer-btn btn-gold-accent" style="width:100%;" onmousedown="event.preventDefault()" onclick="insertFootnoteAction()">[+ NOTA DE LIBRO IMPRESO]</button>
       <button type="button" class="drawer-btn" style="width:100%; margin-top:0.4rem;" onmousedown="event.preventDefault()" onclick="insertPlateAction()">[+ LÁMINA / FIGURA]</button>
     </div>
 
@@ -806,7 +812,7 @@
     <input type="text" id="docSubtitle" class="subtitle-field" placeholder="Escribe un subtítulo descriptivo...">
 
     <div id="editorArea" contenteditable="true" spellcheck="false">
-      <p>Comienza a escribir aquí tu ensayo. Abre la caja lateral de herramientas a la derecha cuando necesites estructurar títulos, notas al pie flotantes o consultar tus borradores anteriores.</p>
+      <p>Comienza a redactar aquí tu ensayo. Emplea la barra lateral para alternar títulos H2, <b>negritas contundentes</b>, <i>cursivas en pergamino</i> o añadir notas al pie de libro impreso con burbuja flotante.</p>
     </div>
 
     <div class="footnotes-section" id="footnotesSection" style="display: none;">
@@ -822,9 +828,7 @@
         <span class="drafts-title">&bull; Archivo de Borradores en Curso</span>
         <button type="button" class="popover-close" onclick="closeDraftsModal()">&times;</button>
       </div>
-      <div class="drafts-list-wrap" id="draftsListContainer">
-        <!-- Generación dinámica de borradores -->
-      </div>
+      <div class="drafts-list-wrap" id="draftsListContainer"></div>
       <div class="drafts-panel-footer">
         <button type="button" class="btn-top" onclick="createNewDraft()">+ Iniciar Nuevo Ensayo</button>
         <button type="button" class="btn-top" onclick="closeDraftsModal()">Cerrar</button>
@@ -835,7 +839,7 @@
   <!-- Popover Flotante de Notas -->
   <div id="activePopover" class="footnote-popover">
     <div class="popover-header">
-      <span id="popoverLabel">NOTA [1]</span>
+      <span id="popoverLabel">NOTA 1</span>
       <button type="button" class="popover-close" onclick="closePopover()">&times;</button>
     </div>
     <div id="popoverContent"></div>
@@ -850,10 +854,10 @@
       </div>
       <button class="btn-top" onclick="closeLivePreview()">&times; Cerrar Vista Previa (Esc)</button>
     </div>
-    <div class="preview-body-container">
+    <div class="preview-body-container" id="pvContainer">
       <div class="preview-viewport" id="previewViewport">
-        <div id="pvDocMeta" style="font-family:var(--font-mono); font-size:0.78rem; color:var(--gold-muted); letter-spacing:0.16em; text-transform:uppercase; margin-bottom:0.9rem;"></div>
-        <h1 id="pvTitle" style="font-family:var(--font-mono); font-size:1.95rem; letter-spacing:0.05em; line-height:1.35; text-transform:uppercase; color:var(--text-main); margin-bottom:1rem;"></h1>
+        <div id="pvDocMeta" style="font-family:var(--font-mono); font-size:0.78rem; color:var(--gold-bright); letter-spacing:0.16em; text-transform:uppercase; margin-bottom:0.9rem;"></div>
+        <h1 id="pvTitle" style="font-family:var(--font-mono); font-size:2.05rem; letter-spacing:0.05em; line-height:1.35; text-transform:uppercase; color:#ffffff; margin-bottom:1rem;"></h1>
         <div id="pvSubtitle" style="font-family:var(--font-serif); font-size:1.25rem; font-style:italic; color:var(--text-muted); margin-bottom:3rem; border-bottom:1px dashed var(--border-color); padding-bottom:1.5rem;"></div>
         <article id="pvContent" class="article-body"></article>
         <div id="pvFootnotes" class="footnotes-section" style="display:none;"></div>
@@ -889,10 +893,8 @@
     let isBookMode = false;
     let isDropcap = false;
 
-    // ID del borrador activo en la sesión
     let currentDraftId = localStorage.getItem('lj_active_draft_id') || 'draft_default';
 
-    // Control de la Caja Lateral Desplegable
     function toggleSidebar() {
       const isOpen = sideDrawer.classList.toggle('open');
       drawerToggleIcon.innerHTML = isOpen ? '&times;' : '&larr;';
@@ -928,7 +930,6 @@
       triggerAutoSave();
     }
 
-    // Comandos de Edición Seguros
     function execFormat(cmd, val = null) {
       editor.focus();
       document.execCommand(cmd, false, val);
@@ -1041,7 +1042,7 @@
     }
 
     // ==========================================
-    // NOTAS AL PIE CON RENUMERACIÓN DINÁMICA
+    // NOTAS AL PIE DE LIBRO IMPRESO
     // ==========================================
     function reindexFootnotes() {
       const buttons = editor.querySelectorAll('.footnote-button');
@@ -1068,7 +1069,7 @@
         const oldId = btn.getAttribute('data-fn');
         
         btn.setAttribute('data-fn', newNum);
-        btn.textContent = '[' + newNum + ']';
+        btn.innerHTML = `<sup>${newNum}</sup>`;
 
         const li = document.createElement('li');
         li.id = 'fn-item-' + newNum;
@@ -1077,7 +1078,7 @@
         if (contentMap[oldId]) {
           li.innerHTML = contentMap[oldId];
         } else {
-          li.innerHTML = 'Referencia documental o aclaración conceptual [' + newNum + ']...';
+          li.innerHTML = 'Aclaración conceptual o referencia teórica ' + newNum + '...';
         }
         fList.appendChild(li);
       });
@@ -1089,7 +1090,7 @@
       btn.type = 'button';
       btn.className = 'footnote-button';
       btn.setAttribute('contenteditable', 'false');
-      btn.textContent = '[*]';
+      btn.innerHTML = '<sup>*</sup>';
 
       const sel = window.getSelection();
       if (sel.rangeCount) {
@@ -1108,7 +1109,7 @@
     }
 
     // ==========================================
-    // BURBUJA EMERGENTE FLOTANTE (POPOVER)
+    // MOTOR DE BURBUJA FLOTANTE (POPOVER)
     // ==========================================
     function closePopover() {
       popover.style.display = 'none';
@@ -1116,7 +1117,7 @@
       currentPopoverBtn = null;
     }
 
-    document.addEventListener('click', (e) => {
+    function handleFootnoteClick(e) {
       const fnBtn = e.target.closest('.footnote-button');
       if (fnBtn) {
         e.stopPropagation();
@@ -1133,7 +1134,7 @@
           currentPopoverBtn = fnBtn;
           fnBtn.classList.add('active');
 
-          popLabel.textContent = 'NOTA [' + fnId + ']';
+          popLabel.textContent = 'NOTA ' + fnId;
           popContent.innerHTML = targetLi.innerHTML;
           popover.style.display = 'block';
 
@@ -1154,11 +1155,13 @@
       if (!popover.contains(e.target)) {
         closePopover();
       }
-    });
+    }
 
-    // ========================================================
-    // MOTOR DE MULTIBORRADORES INDEPENDIENTES (OPCIÓN 1)
-    // ========================================================
+    document.addEventListener('click', handleFootnoteClick);
+
+    // ==========================================
+    // MULTIBORRADORES INDEPENDIENTES
+    // ==========================================
     function getStoredDraftsIndex() {
       try {
         return JSON.parse(localStorage.getItem('lj_drafts_directory') || '{}');
@@ -1200,10 +1203,8 @@
         updatedAt: timeStr
       };
 
-      // Guardar el cuerpo del borrador específico
       localStorage.setItem('lj_draft_item_' + currentDraftId, JSON.stringify(draftPayload));
 
-      // Actualizar el índice general de borradores
       const directory = getStoredDraftsIndex();
       directory[currentDraftId] = {
         id: currentDraftId,
@@ -1272,14 +1273,13 @@
 
     function deleteDraft(draftId, e) {
       e.stopPropagation();
-      if (!confirm('¿Deseas eliminar este borrador de forma permanente?')) return;
+      if (!confirm('¿Deseas eliminar este borrador permanentemente?')) return;
 
       localStorage.removeItem('lj_draft_item_' + draftId);
       const directory = getStoredDraftsIndex();
       delete directory[draftId];
       setStoredDraftsIndex(directory);
 
-      // Si se eliminó el borrador que estaba abierto en pantalla, crear uno nuevo
       if (draftId === currentDraftId) {
         const remainingKeys = Object.keys(directory);
         if (remainingKeys.length > 0) {
@@ -1302,7 +1302,6 @@
         return;
       }
 
-      // Ordenar por el más reciente
       keys.reverse().forEach(key => {
         const item = directory[key];
         const isCurrent = key === currentDraftId;
@@ -1318,7 +1317,7 @@
             ${isCurrent 
               ? '<span class="status-text saved" style="font-family:var(--font-mono); font-size:0.72rem; align-self:center;">[ACTIVO]</span>' 
               : `<button type="button" class="btn-top" onclick="loadDraftById('${key}')">ABRIR</button>`}
-            <button type="button" class="btn-top" style="color:var(--accent-hover); border-color:#522;" onclick="deleteDraft('${key}', event)">ELIMINAR</button>
+            <button type="button" class="btn-top" style="color:#e05244; border-color:#522;" onclick="deleteDraft('${key}', event)">ELIMINAR</button>
           </div>
         `;
         draftsContainer.appendChild(card);
@@ -1341,7 +1340,6 @@
       } else if (Object.keys(directory).length > 0) {
         loadDraftById(Object.keys(directory)[0]);
       } else {
-        // Inicializar borrador inaugural de ejemplo
         currentDraftId = 'draft_01';
         localStorage.setItem('lj_active_draft_id', currentDraftId);
         slugInput.value = 'poetica-del-sample';
@@ -1452,16 +1450,17 @@
   <link rel="icon" type="image/jpeg" href="LoveJones pic1.jpeg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg-color: #0c0b0a;
       --card-bg: #141312;
-      --accent-color: #8f3024;
-      --accent-hover: #b03d2e;
+      --accent-color: #c44333;
+      --accent-glow: rgba(196, 67, 51, 0.35);
       --gold-muted: #c2a661;
-      --text-main: #f2ede4;
-      --text-muted: #a89f91;
+      --gold-bright: #dfc27d;
+      --text-main: #f5f0e6;
+      --text-muted: #aba294;
       --border-color: #24201d;
       --font-mono: 'Space Mono', 'Courier Prime', monospace;
       --font-serif: 'Lora', Georgia, serif;
@@ -1474,7 +1473,7 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      line-height: 2;
+      line-height: 2.05;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       text-rendering: optimizeLegibility;
@@ -1494,7 +1493,7 @@
       font-size: 1.25rem;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: var(--text-main);
+      color: #ffffff;
       text-decoration: none;
       font-weight: 700;
     }
@@ -1509,35 +1508,35 @@
       border-bottom: 1px dashed transparent;
       transition: color 0.2s ease;
     }
-    .nav-link:hover, .nav-link.active { color: var(--text-main); border-bottom-color: var(--gold-muted); }
+    .nav-link:hover, .nav-link.active { color: #ffffff; border-bottom-color: var(--gold-bright); }
     main { flex: 1; max-width: 720px; width: 100%; margin: 0 auto; padding: 5.5rem 2rem 7rem 2rem; position: relative; }
     .back-link {
       font-family: var(--font-mono);
       font-size: 0.78rem;
       text-transform: uppercase;
       letter-spacing: 0.12em;
-      color: var(--gold-muted);
+      color: var(--gold-bright);
       text-decoration: none;
       display: inline-block;
       margin-bottom: 3rem;
       transition: color 0.2s ease;
     }
-    .back-link:hover { color: var(--text-main); }
+    .back-link:hover { color: #ffffff; }
     .doc-meta {
       font-family: var(--font-mono);
       font-size: 0.78rem;
-      color: var(--gold-muted);
+      color: var(--gold-bright);
       letter-spacing: 0.16em;
       text-transform: uppercase;
       margin-bottom: 0.9rem;
     }
     .article-title {
       font-family: var(--font-mono);
-      font-size: 1.95rem;
+      font-size: 2.05rem;
       letter-spacing: 0.05em;
       line-height: 1.35;
       text-transform: uppercase;
-      color: var(--text-main);
+      color: #ffffff;
       margin-bottom: 0.8rem;
     }
     .article-subtitle {
@@ -1559,10 +1558,18 @@
       letter-spacing: 0.012em;
     }
 
-    /* MODO LIBRO EN EXPORTADO */
+    .article-body b, .article-body strong {
+      color: #ffffff !important;
+      font-weight: 700 !important;
+    }
+    .article-body i, .article-body em {
+      color: #faebd7 !important;
+      font-style: italic !important;
+    }
+
     .article-body.mode-book p {
       margin-bottom: 0 !important;
-      text-indent: 2em;
+      text-indent: 2.2em;
       text-align: justify;
       hyphens: auto;
     }
@@ -1577,84 +1584,89 @@
     .article-body.mode-book.has-dropcap > p:first-of-type::first-letter,
     .article-body.mode-book.has-dropcap h2 + p::first-letter {
       float: left;
-      font-size: 3.6rem;
-      line-height: 0.8;
-      padding-top: 4px;
-      padding-right: 12px;
-      color: var(--gold-muted);
+      font-size: 3.8rem;
+      line-height: 0.78;
+      padding-top: 6px;
+      padding-right: 14px;
+      color: var(--gold-bright);
       font-family: var(--font-serif);
       font-weight: 700;
+      text-shadow: 0 0 10px rgba(223, 194, 125, 0.2);
     }
 
     .article-body h2 {
       font-family: var(--font-mono);
-      font-size: 1.25rem;
-      color: var(--text-main);
+      font-size: 1.28rem;
+      color: #ffffff;
       text-transform: uppercase;
       letter-spacing: 0.09em;
-      margin: 3.6rem 0 1.3rem 0;
+      margin: 3.8rem 0 1.3rem 0;
     }
     .article-body h3 {
       font-family: var(--font-mono);
       font-size: 1.05rem;
-      color: var(--gold-muted);
+      color: var(--gold-bright);
       text-transform: uppercase;
       letter-spacing: 0.07em;
-      margin: 2.6rem 0 1rem 0;
+      margin: 2.8rem 0 1rem 0;
     }
     .article-body blockquote {
-      border-left: 2px solid var(--accent-color);
-      padding: 0.6rem 0 0.6rem 1.6rem;
-      margin: 2.8rem 0;
-      color: #d1c8ba;
+      border-left: 3px solid var(--accent-color);
+      box-shadow: -3px 0 12px var(--accent-glow);
+      padding: 0.8rem 0 0.8rem 1.8rem;
+      margin: 3rem 0;
+      background: rgba(196, 67, 51, 0.04);
+      color: #ded7cb;
       font-style: italic;
-      font-size: 1.15rem;
+      font-size: 1.18rem;
+      line-height: 1.9;
     }
     .article-body .pull-quote {
       text-align: center;
       font-size: 1.45rem;
       font-style: italic;
-      line-height: 1.6;
-      color: var(--gold-muted);
-      margin: 3.5rem 1.5rem;
-      padding: 1.5rem 0;
-      border-top: 1px dashed var(--border-color);
-      border-bottom: 1px dashed var(--border-color);
+      line-height: 1.65;
+      color: var(--gold-bright);
+      margin: 4rem 1.5rem;
+      padding: 1.8rem 0;
+      border-top: 1px dashed #3a3222;
+      border-bottom: 1px dashed #3a3222;
     }
     .article-body .divider-dots {
       text-align: center;
-      letter-spacing: 1.2em;
+      letter-spacing: 1.4em;
       color: var(--gold-muted);
-      margin: 3.5rem 0;
+      margin: 3.8rem 0;
       user-select: none;
     }
-    .article-body a { color: var(--text-main); text-decoration: underline; text-underline-offset: 3px; }
+    .article-body a { color: #ffffff; text-decoration: underline; text-underline-offset: 4px; text-decoration-color: var(--gold-muted); }
     
     .footnote-button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--gold-muted);
-      font-family: var(--font-mono);
+      display: inline-block;
+      color: var(--gold-bright);
+      font-family: var(--font-serif);
       font-weight: 700;
-      font-size: 0.76rem;
+      font-size: 0.85rem;
+      line-height: 0;
       vertical-align: super;
       text-decoration: none;
       cursor: pointer;
-      margin: 0 0.2rem;
-      background: rgba(194, 166, 97, 0.1);
-      border: 1px dashed #3a3222;
-      padding: 0.05rem 0.35rem;
-      border-radius: 2px;
+      margin: 0 0.15rem;
+      background: transparent;
+      border: none;
+      padding: 0 0.15rem;
+      user-select: none;
       transition: all 0.2s ease;
+      filter: drop-shadow(0 0 2px rgba(223, 194, 125, 0.3));
     }
     .footnote-button:hover, .footnote-button.active {
-      background: var(--gold-muted);
-      color: #0c0b0a;
+      color: #ffffff;
+      transform: scale(1.15);
+      filter: drop-shadow(0 0 6px var(--gold-bright));
     }
 
     .editorial-plate {
-      margin: 3.5rem 0;
+      margin: 3.8rem 0;
       border: 1px dashed var(--border-color);
       background-color: #11100f;
       padding: 1.4rem;
@@ -1670,20 +1682,20 @@
       line-height: 1.6;
       color: var(--text-muted);
     }
-    .plate-number { color: var(--gold-muted); font-weight: 700; margin-right: 0.4rem; }
+    .plate-number { color: var(--gold-bright); font-weight: 700; margin-right: 0.4rem; }
 
     .footnote-popover {
       position: absolute;
-      z-index: 3000;
+      z-index: 9999;
       width: min(340px, 90vw);
-      background-color: #161514;
-      border: 1px dashed var(--gold-muted);
-      box-shadow: 0 14px 40px rgba(0,0,0,0.95);
+      background-color: #171513;
+      border: 1px dashed var(--gold-bright);
+      box-shadow: 0 16px 45px rgba(0,0,0,0.98);
       border-radius: 3px;
       padding: 1.1rem;
       font-family: var(--font-mono);
       font-size: 0.8rem;
-      color: var(--text-main);
+      color: #f2ede4;
       line-height: 1.65;
       display: none;
       animation: fadeInNote 0.18s ease;
@@ -1699,13 +1711,13 @@
       margin-bottom: 0.6rem;
       padding-bottom: 0.4rem;
       border-bottom: 1px dashed var(--border-color);
-      color: var(--gold-muted);
+      color: var(--gold-bright);
       font-size: 0.72rem;
       font-weight: 700;
       letter-spacing: 0.12em;
     }
     .popover-close { cursor: pointer; color: var(--text-muted); background: none; border: none; font-family: var(--font-mono); font-size: 0.85rem; }
-    .popover-close:hover { color: var(--text-main); }
+    .popover-close:hover { color: #ffffff; }
 
     .footnotes-section { margin-top: 4.8rem; padding-top: 2rem; border-top: 1px dashed var(--border-color); }
     .footnotes-title {
@@ -1713,7 +1725,7 @@
       font-size: 0.8rem;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: var(--gold-muted);
+      color: var(--gold-bright);
       margin-bottom: 1.2rem;
     }
     .footnotes-list { font-family: var(--font-mono); font-size: 0.82rem; color: var(--text-muted); line-height: 1.7; padding-left: 1.4rem; }
@@ -1808,7 +1820,7 @@
           currentTrigger = btn;
           btn.classList.add('active');
 
-          popLabel.textContent = 'NOTA [' + fnId + ']';
+          popLabel.textContent = 'NOTA ' + fnId;
           popContent.innerHTML = targetLi.innerHTML;
           popover.style.display = 'block';
 
