@@ -326,7 +326,7 @@
       color: #fff;
     }
 
-    /* Botón Superíndice en Texto (Nota de libro impreso) */
+    /* Botón Superíndice en Texto */
     .footnote-button {
       display: inline-block;
       color: var(--gold-bright);
@@ -425,7 +425,7 @@
       transition: background-color 0.3s ease;
     }
 
-    /* Botón Número en la lista de abajo para volver al texto */
+    /* Botón Número en la lista inferior */
     .footnote-index-btn {
       color: var(--gold-bright);
       font-weight: 700;
@@ -449,9 +449,7 @@
       color: #ffffff !important;
     }
 
-    /* ========================================================
-       BURBUJA MARGINAL AL LADO DERECHO DEL TEXTO (ESCRITORIO)
-       ======================================================== */
+    /* BURBUJA MARGINAL AL LADO DERECHO */
     .side-marginal-note {
       position: absolute;
       width: 260px;
@@ -795,8 +793,8 @@
     <div class="drawer-section">
       <div class="drawer-header">1. Estilo & Formato</div>
       <div class="drawer-grid-3">
-        <button type="button" class="drawer-btn" onmousedown="event.preventDefault()" onclick="execFormat('bold')"><b>B</b> (Fuerte)</button>
-        <button type="button" class="drawer-btn" onmousedown="event.preventDefault()" onclick="execFormat('italic')"><i>I</i> (Cursiva)</button>
+        <button type="button" class="drawer-btn" onmousedown="event.preventDefault()" onclick="execFormat('bold')"><b>B</b></button>
+        <button type="button" class="drawer-btn" onmousedown="event.preventDefault()" onclick="execFormat('italic')"><i>I</i></button>
         <button type="button" class="drawer-btn" onmousedown="event.preventDefault()" onclick="applyHighlight()">Resaltar</button>
       </div>
       <div class="drawer-grid" style="margin-top:0.4rem;">
@@ -1021,14 +1019,14 @@
 
     function insertPullQuote() {
       editor.focus();
-      const pqHtml = `<div class="pull-quote">&ldquo;Escribe aquí la cita destacada&rdquo;</div><p><br></p>`;
+      const pqHtml = '<div class="pull-quote">&ldquo;Escribe aquí la cita destacada&rdquo;</div><p><br></p>';
       document.execCommand('insertHTML', false, pqHtml);
       triggerAutoSave();
     }
 
     function insertDots() {
       editor.focus();
-      const dotsHtml = `<div class="divider-dots">&bull; &bull; &bull;</div><p><br></p>`;
+      const dotsHtml = '<div class="divider-dots">&bull; &bull; &bull;</div><p><br></p>';
       document.execCommand('insertHTML', false, dotsHtml);
       triggerAutoSave();
     }
@@ -1070,23 +1068,11 @@
       const url = prompt('URL o nombre de archivo de la imagen:');
       if (!url) return;
       editor.focus();
-      const figHtml = `
-        <figure class="editorial-plate" contenteditable="false">
-          <div class="plate-img-wrap">
-            <img src="${url}" alt="Lámina de Archivo">
-          </div>
-          <figcaption class="plate-caption" contenteditable="true">
-            <span class="plate-number">[FIG. ARCHIVO]</span>
-            Añade aquí el comentario analítico o técnico de la pieza...
-          </figcaption>
-        </figure><p><br></p>`;
+      const figHtml = '<figure class="editorial-plate" contenteditable="false"><div class="plate-img-wrap"><img src="' + url + '" alt="Lámina de Archivo"></div><figcaption class="plate-caption" contenteditable="true"><span class="plate-number">[FIG. ARCHIVO]</span> Añade aquí el comentario analítico o técnico de la pieza...</figcaption></figure><p><br></p>';
       document.execCommand('insertHTML', false, figHtml);
       triggerAutoSave();
     }
 
-    // ==========================================
-    // NOTAS AL PIE: RENUMERACIÓN DINÁMICA
-    // ==========================================
     function reindexFootnotes() {
       const buttons = editor.querySelectorAll('.footnote-button');
       const listItems = Array.from(fList.querySelectorAll('li'));
@@ -1118,14 +1104,14 @@
         
         btn.id = 'fn-ref-' + newNum;
         btn.setAttribute('data-fn', newNum);
-        btn.innerHTML = `<sup>${newNum}</sup>`;
+        btn.innerHTML = '<sup>' + newNum + '</sup>';
 
         const li = document.createElement('li');
         li.id = 'fn-item-' + newNum;
         li.setAttribute('data-fn-id', newNum);
         
         const noteText = contentMap[oldId] || ('Aclaración conceptual o referencia ' + newNum + '...');
-        li.innerHTML = `<button type="button" class="footnote-index-btn" data-return-to="${newNum}">[${newNum}]</button><span class="fn-text-body" contenteditable="true">${noteText}</span>`;
+        li.innerHTML = '<button type="button" class="footnote-index-btn" data-return-to="' + newNum + '">[' + newNum + ']</button><span class="fn-text-body" contenteditable="true">' + noteText + '</span>';
         
         fList.appendChild(li);
       });
@@ -1155,9 +1141,6 @@
       triggerAutoSave();
     }
 
-    // ==========================================
-    // SISTEMA DE INTERACCIÓN DE NOTAS
-    // ==========================================
     function closeMarginalNote() {
       marginalNote.style.display = 'none';
       if (currentActiveFootnoteBtn) currentActiveFootnoteBtn.classList.remove('active');
@@ -1165,17 +1148,15 @@
     }
 
     function handleFootnoteInteraction(e) {
-      // 1. Clic en el número de abajo: vuelve de inmediato al texto
       const returnBtn = e.target.closest('.footnote-index-btn');
       if (returnBtn) {
         e.preventDefault();
         e.stopPropagation();
         const refId = returnBtn.getAttribute('data-return-to');
         
-        // Buscar el origen en el editor o en el previsualizador
         const inPreview = document.getElementById('previewModal').classList.contains('active');
         const container = inPreview ? document.getElementById('pvContent') : editor;
-        const sourceRef = container.querySelector(`[data-fn="${refId}"]`);
+        const sourceRef = container.querySelector('[data-fn="' + refId + '"]');
 
         if (sourceRef) {
           sourceRef.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -1185,7 +1166,6 @@
         return;
       }
 
-      // 2. Clic en el superíndice
       const fnBtn = e.target.closest('.footnote-button');
       if (fnBtn) {
         e.stopPropagation();
@@ -1193,11 +1173,10 @@
         
         const inPreview = document.getElementById('previewModal').classList.contains('active');
         const fContainer = inPreview ? document.getElementById('pvFootnotes') : fSec;
-        const targetLi = fContainer.querySelector(`[data-fn-id="${fnId}"]`);
+        const targetLi = fContainer.querySelector('[data-fn-id="' + fnId + '"]');
 
         if (!targetLi) return;
 
-        // Comprobación de pantalla móvil
         const isMobileScreen = window.innerWidth <= 820 || document.getElementById('previewViewport')?.classList.contains('mode-mobile');
 
         if (isMobileScreen) {
@@ -1208,7 +1187,6 @@
           return;
         }
 
-        // Modo Escritorio: Si ya estaba abierto para el mismo botón, se cierra (toggle)
         if (currentActiveFootnoteBtn === fnBtn && marginalNote.style.display === 'block') {
           closeMarginalNote();
           return;
@@ -1246,7 +1224,6 @@
         return;
       }
 
-      // 3. Clic afuera de la nota: se cierra
       if (!marginalNote.contains(e.target)) {
         closeMarginalNote();
       }
@@ -1254,9 +1231,6 @@
 
     document.addEventListener('click', handleFootnoteInteraction);
 
-    // ==========================================
-    // MULTIBORRADORES INDEPENDIENTES
-    // ==========================================
     function getStoredDraftsIndex() {
       try {
         return JSON.parse(localStorage.getItem('lj_drafts_directory') || '{}');
@@ -1403,18 +1377,7 @@
         const card = document.createElement('div');
         card.className = 'draft-entry-card' + (isCurrent ? ' is-current' : '');
 
-        card.innerHTML = `
-          <div class="draft-entry-info">
-            <div class="draft-entry-title">${item.title}</div>
-            <div class="draft-entry-meta">${item.catalog} &bull; ${item.words} palabras &bull; ${item.updatedAt}</div>
-          </div>
-          <div class="draft-actions">
-            ${isCurrent 
-              ? '<span class="status-text saved" style="font-family:var(--font-mono); font-size:0.72rem; align-self:center;">[ACTIVO]</span>' 
-              : `<button type="button" class="btn-top" onclick="loadDraftById('${key}')">ABRIR</button>`}
-            <button type="button" class="btn-top" style="color:#e05244; border-color:#522;" onclick="deleteDraft('${key}', event)">ELIMINAR</button>
-          </div>
-        `;
+        card.innerHTML = '<div class="draft-entry-info"><div class="draft-entry-title">' + item.title + '</div><div class="draft-entry-meta">' + item.catalog + ' &bull; ' + item.words + ' palabras &bull; ' + item.updatedAt + '</div></div><div class="draft-actions">' + (isCurrent ? '<span class="status-text saved" style="font-family:var(--font-mono); font-size:0.72rem; align-self:center;">[ACTIVO]</span>' : '<button type="button" class="btn-top" onclick="loadDraftById(\'' + key + '\')">ABRIR</button>') + '<button type="button" class="btn-top" style="color:#e05244; border-color:#522;" onclick="deleteDraft(\'' + key + '\', event)">ELIMINAR</button></div>';
         draftsContainer.appendChild(card);
       });
     }
@@ -1467,9 +1430,6 @@
 
     initialWorkspaceSetup();
 
-    // ==========================================
-    // PREVISUALIZADOR EN VIVO
-    // ==========================================
     const pvModal = document.getElementById('previewModal');
     const pvViewport = document.getElementById('previewViewport');
     const pvDocMeta = document.getElementById('pvDocMeta');
@@ -1517,9 +1477,6 @@
       }
     });
 
-    // ==========================================
-    // EXPORTACIÓN A ARCHIVO .HTML
-    // ==========================================
     function exportHtmlFile() {
       const slug = (slugInput.value || 'ensayo').trim().toLowerCase().replace(/\s+/g, '-');
       const docId = idInput.value.trim();
@@ -1529,455 +1486,164 @@
       const content = editor.innerHTML;
       
       const fnVisible = fSec.style.display !== 'none';
-      const fnHtml = fnVisible ? `
-      <div class="footnotes-section">
-        <div class="footnotes-title">Notas</div>
-        <ol class="footnotes-list">${fList.innerHTML}</ol>
-      </div>` : '';
+      const fnHtml = fnVisible ? '<div class="footnotes-section"><div class="footnotes-title">Notas</div><ol class="footnotes-list">' + fList.innerHTML + '</ol></div>' : '';
 
       const articleClasses = (isBookMode ? 'mode-book' : '') + (isDropcap ? ' has-dropcap' : '');
 
-      const template = `<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Love Jones — \${title}</title>
-  <link rel="icon" type="image/jpeg" href="LoveJones pic1.jpeg">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg-color: #0c0b0a;
-      --card-bg: #141312;
-      --accent-color: #c44333;
-      --accent-glow: rgba(196, 67, 51, 0.35);
-      --gold-muted: #c2a661;
-      --gold-bright: #dfc27d;
-      --text-main: #f5f0e6;
-      --text-muted: #aba294;
-      --border-color: #24201d;
-      --font-mono: 'Space Mono', 'Courier Prime', monospace;
-      --font-serif: 'Lora', Georgia, serif;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      background-color: var(--bg-color);
-      color: var(--text-main);
-      font-family: var(--font-serif);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      line-height: 2.05;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      text-rendering: optimizeLegibility;
-      overflow-x: hidden;
-    }
-    header {
-      width: 100%;
-      padding: 2.8rem 2.5rem;
-      max-width: 1040px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px dashed var(--border-color);
-    }
-    .brand-logo {
-      font-family: var(--font-mono);
-      font-size: 1.25rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: #ffffff;
-      text-decoration: none;
-      font-weight: 700;
-    }
-    .header-nav { display: flex; align-items: center; gap: 2.2rem; }
-    .nav-link {
-      font-family: var(--font-mono);
-      text-decoration: none;
-      color: var(--text-muted);
-      font-size: 0.82rem;
-      letter-spacing: 0.12em;
-      padding-bottom: 4px;
-      border-bottom: 1px dashed transparent;
-      transition: color 0.2s ease;
-    }
-    .nav-link:hover, .nav-link.active { color: #ffffff; border-bottom-color: var(--gold-bright); }
-    main { flex: 1; max-width: 720px; width: 100%; margin: 0 auto; padding: 5.5rem 2rem 7rem 2rem; position: relative; }
-    .back-link {
-      font-family: var(--font-mono);
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--gold-bright);
-      text-decoration: none;
-      display: inline-block;
-      margin-bottom: 3rem;
-      transition: color 0.2s ease;
-    }
-    .back-link:hover { color: #ffffff; }
-    .doc-meta {
-      font-family: var(--font-mono);
-      font-size: 0.78rem;
-      color: var(--gold-bright);
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      margin-bottom: 0.9rem;
-    }
-    .article-title {
-      font-family: var(--font-mono);
-      font-size: 2.05rem;
-      letter-spacing: 0.05em;
-      line-height: 1.35;
-      text-transform: uppercase;
-      color: #ffffff;
-      margin-bottom: 0.8rem;
-    }
-    .article-subtitle {
-      font-family: var(--font-serif);
-      font-size: 1.25rem;
-      font-style: italic;
-      color: var(--text-muted);
-      margin-bottom: 3.2rem;
-      border-bottom: 1px dashed var(--border-color);
-      padding-bottom: 1.8rem;
-      line-height: 1.5;
-    }
-    .article-body p {
-      font-size: 1.15rem;
-      margin-bottom: 2.2rem;
-      color: var(--text-main);
-      text-align: justify;
-      hyphens: auto;
-      letter-spacing: 0.012em;
-    }
+      let tpl = '<!DOCTYPE html>\n<html lang="es">\n<head>\n';
+      tpl += '  <meta charset="UTF-8">\n';
+      tpl += '  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">\n';
+      tpl += '  <title>Love Jones — ' + title + '</title>\n';
+      tpl += '  <link rel="icon" type="image/jpeg" href="LoveJones pic1.jpeg">\n';
+      tpl += '  <link rel="preconnect" href="https://fonts.googleapis.com">\n';
+      tpl += '  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n';
+      tpl += '  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">\n';
+      tpl += '  <style>\n';
+      tpl += '    :root {\n';
+      tpl += '      --bg-color: #0c0b0a; --card-bg: #141312; --accent-color: #c44333; --accent-glow: rgba(196, 67, 51, 0.35);\n';
+      tpl += '      --gold-muted: #c2a661; --gold-bright: #dfc27d; --text-main: #f5f0e6; --text-muted: #aba294;\n';
+      tpl += '      --border-color: #24201d; --font-mono: \'Space Mono\', \'Courier Prime\', monospace; --font-serif: \'Lora\', Georgia, serif;\n';
+      tpl += '    }\n';
+      tpl += '    * { box-sizing: border-box; margin: 0; padding: 0; }\n';
+      tpl += '    body { background-color: var(--bg-color); color: var(--text-main); font-family: var(--font-serif); min-height: 100vh; display: flex; flex-direction: column; line-height: 2.05; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; text-rendering: optimizeLegibility; overflow-x: hidden; }\n';
+      tpl += '    header { width: 100%; padding: 2.8rem 2.5rem; max-width: 1040px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dashed var(--border-color); }\n';
+      tpl += '    .brand-logo { font-family: var(--font-mono); font-size: 1.25rem; letter-spacing: 0.14em; text-transform: uppercase; color: #ffffff; text-decoration: none; font-weight: 700; }\n';
+      tpl += '    .header-nav { display: flex; align-items: center; gap: 2.2rem; }\n';
+      tpl += '    .nav-link { font-family: var(--font-mono); text-decoration: none; color: var(--text-muted); font-size: 0.82rem; letter-spacing: 0.12em; padding-bottom: 4px; border-bottom: 1px dashed transparent; transition: color 0.2s ease; }\n';
+      tpl += '    .nav-link:hover, .nav-link.active { color: #ffffff; border-bottom-color: var(--gold-bright); }\n';
+      tpl += '    main { flex: 1; max-width: 720px; width: 100%; margin: 0 auto; padding: 5.5rem 2rem 7rem 2rem; position: relative; }\n';
+      tpl += '    .back-link { font-family: var(--font-mono); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--gold-bright); text-decoration: none; display: inline-block; margin-bottom: 3rem; transition: color 0.2s ease; }\n';
+      tpl += '    .back-link:hover { color: #ffffff; }\n';
+      tpl += '    .doc-meta { font-family: var(--font-mono); font-size: 0.78rem; color: var(--gold-bright); letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 0.9rem; }\n';
+      tpl += '    .article-title { font-family: var(--font-mono); font-size: 2.05rem; letter-spacing: 0.05em; line-height: 1.35; text-transform: uppercase; color: #ffffff; margin-bottom: 0.8rem; }\n';
+      tpl += '    .article-subtitle { font-family: var(--font-serif); font-size: 1.25rem; font-style: italic; color: var(--text-muted); margin-bottom: 3.2rem; border-bottom: 1px dashed var(--border-color); padding-bottom: 1.8rem; line-height: 1.5; }\n';
+      tpl += '    .article-body p { font-size: 1.15rem; margin-bottom: 2.2rem; color: var(--text-main); text-align: justify; hyphens: auto; letter-spacing: 0.012em; }\n';
+      tpl += '    .article-body b, .article-body strong { color: #ffffff !important; font-weight: 700 !important; }\n';
+      tpl += '    .article-body i, .article-body em { color: #faebd7 !important; font-style: italic !important; }\n';
+      tpl += '    .article-body.mode-book p { margin-bottom: 0 !important; text-indent: 2.2em; text-align: justify; hyphens: auto; }\n';
+      tpl += '    .article-body.mode-book > p:first-of-type, .article-body.mode-book h2 + p, .article-body.mode-book h3 + p, .article-body.mode-book blockquote + p, .article-body.mode-book hr + p, .article-body.mode-book .editorial-plate + p { text-indent: 0 !important; }\n';
+      tpl += '    .article-body.mode-book.has-dropcap > p:first-of-type::first-letter, .article-body.mode-book.has-dropcap h2 + p::first-letter { float: left; font-size: 3.8rem; line-height: 0.78; padding-top: 6px; padding-right: 14px; color: var(--gold-bright); font-family: var(--font-serif); font-weight: 700; text-shadow: 0 0 10px rgba(223, 194, 125, 0.2); }\n';
+      tpl += '    .article-body h2 { font-family: var(--font-mono); font-size: 1.28rem; color: #ffffff; text-transform: uppercase; letter-spacing: 0.09em; margin: 3.8rem 0 1.3rem 0; }\n';
+      tpl += '    .article-body h3 { font-family: var(--font-mono); font-size: 1.05rem; color: var(--gold-bright); text-transform: uppercase; letter-spacing: 0.07em; margin: 2.8rem 0 1rem 0; }\n';
+      tpl += '    .article-body blockquote { border-left: 3px solid var(--accent-color); box-shadow: -3px 0 12px var(--accent-glow); padding: 0.8rem 0 0.8rem 1.8rem; margin: 3rem 0; background: rgba(196, 67, 51, 0.04); color: #ded7cb; font-style: italic; font-size: 1.18rem; line-height: 1.9; }\n';
+      tpl += '    .article-body .pull-quote { text-align: center; font-size: 1.45rem; font-style: italic; line-height: 1.65; color: var(--gold-bright); margin: 4rem 1.5rem; padding: 1.8rem 0; border-top: 1px dashed #3a3222; border-bottom: 1px dashed #3a3222; }\n';
+      tpl += '    .article-body .divider-dots { text-align: center; letter-spacing: 1.4em; color: var(--gold-muted); margin: 3.8rem 0; user-select: none; }\n';
+      tpl += '    .article-body a { color: #ffffff; text-decoration: underline; text-underline-offset: 4px; text-decoration-color: var(--gold-muted); }\n';
+      tpl += '    .footnote-button { display: inline-block; color: var(--gold-bright); font-family: var(--font-serif); font-weight: 700; font-size: 0.88rem; line-height: 0; vertical-align: super; text-decoration: none; cursor: pointer; margin: 0 0.15rem; background: transparent; border: none; padding: 0 0.15rem; user-select: none; transition: all 0.2s ease; filter: drop-shadow(0 0 2px rgba(223, 194, 125, 0.3)); }\n';
+      tpl += '    .footnote-button:hover, .footnote-button.active { color: #ffffff; transform: scale(1.22); filter: drop-shadow(0 0 8px var(--gold-bright)); }\n';
+      tpl += '    .editorial-plate { margin: 3.8rem 0; border: 1px dashed var(--border-color); background-color: #11100f; padding: 1.4rem; }\n';
+      tpl += '    .plate-img-wrap { width: 100%; background-color: #080706; display: flex; justify-content: center; }\n';
+      tpl += '    .plate-img-wrap img { max-width: 100%; height: auto; display: block; }\n';
+      tpl += '    .plate-caption { margin-top: 1rem; padding-top: 0.8rem; border-top: 1px dashed var(--border-color); font-family: var(--font-mono); font-size: 0.78rem; line-height: 1.6; color: var(--text-muted); }\n';
+      tpl += '    .plate-number { color: var(--gold-bright); font-weight: 700; margin-right: 0.4rem; }\n';
+      tpl += '    .side-marginal-note { position: absolute; width: 260px; background-color: #171513; border-left: 2px solid var(--gold-bright); border-top: 1px dashed var(--border-color); border-bottom: 1px dashed var(--border-color); border-right: 1px dashed var(--border-color); box-shadow: 10px 10px 30px rgba(0,0,0,0.85); border-radius: 0 4px 4px 0; padding: 0.9rem 1.1rem; font-family: var(--font-mono); font-size: 0.77rem; color: var(--text-main); line-height: 1.6; display: none; z-index: 2500; animation: fadeInMarginal 0.2s cubic-bezier(0.16, 1, 0.3, 1); }\n';
+      tpl += '    @keyframes fadeInMarginal { from { opacity: 0; transform: translateX(-8px); } to { opacity: 1; transform: translateX(0); } }\n';
+      tpl += '    .marginal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; padding-bottom: 0.35rem; border-bottom: 1px dashed var(--border-color); color: var(--gold-bright); font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; }\n';
+      tpl += '    .marginal-close { cursor: pointer; color: var(--text-muted); background: none; border: none; font-family: var(--font-mono); font-size: 0.85rem; }\n';
+      tpl += '    .marginal-close:hover { color: #ffffff; }\n';
+      tpl += '    .footnotes-section { margin-top: 4.8rem; padding-top: 2rem; border-top: 1px dashed var(--border-color); }\n';
+      tpl += '    .footnotes-title { font-family: var(--font-mono); font-size: 0.8rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold-bright); margin-bottom: 1.2rem; }\n';
+      tpl += '    .footnotes-list { list-style: none; font-family: var(--font-mono); font-size: 0.82rem; color: var(--text-muted); line-height: 1.7; padding: 0; }\n';
+      tpl += '    .footnotes-list li { margin-bottom: 0.85rem; padding: 0.35rem 0.6rem; border-radius: 2px; display: flex; align-items: baseline; gap: 0.6rem; transition: background-color 0.3s ease; }\n';
+      tpl += '    .footnote-index-btn { color: var(--gold-bright); font-weight: 700; background: transparent; border: none; cursor: pointer; font-family: var(--font-mono); font-size: 0.85rem; padding: 0; user-select: none; transition: all 0.2s ease; }\n';
+      tpl += '    .footnote-index-btn:hover { color: #ffffff; transform: scale(1.15); }\n';
+      tpl += '    .footnote-highlight { background-color: rgba(223, 194, 125, 0.15) !important; color: #ffffff !important; }\n';
+      tpl += '    footer { max-width: 1040px; width: 100%; margin: 0 auto; padding: 2.8rem 2.5rem; border-top: 1px dashed var(--border-color); display: flex; justify-content: space-between; align-items: center; font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.1em; color: #5c554b; }\n';
+      tpl += '    @media (max-width: 820px) { header { padding: 1.8rem 1.4rem; } main { padding: 3.5rem 1.4rem; } .article-title { font-size: 1.45rem; } .article-body p { text-align: left; } .side-marginal-note { display: none !important; } .footnotes-list { font-size: 0.88rem; line-height: 1.8; } footer { flex-direction: column; gap: 0.6rem; text-align: center; } }\n';
+      tpl += '  </style>\n</head>\n<body>\n';
+      tpl += '  <header>\n';
+      tpl += '    <a href="./" class="brand-logo">Love Jones</a>\n';
+      tpl += '    <nav class="header-nav">\n';
+      tpl += '      <a class="nav-link" href="https://substack.com/@loveejonnes" target="_blank" rel="noopener noreferrer">DROPGEMS</a>\n';
+      tpl += '      <a class="nav-link active" href="archivo.html">ARCHIVO</a>\n';
+      tpl += '      <a class="nav-link" href="contacto.html">CONTACTO</a>\n';
+      tpl += '    </nav>\n';
+      tpl += '  </header>\n';
+      tpl += '  <main id="mainContainer">\n';
+      tpl += '    <a href="archivo.html" class="back-link">&larr; Volver al archivo</a>\n';
+      tpl += '    <div class="doc-meta">' + docId + ' &bull; ' + meta + '</div>\n';
+      tpl += '    <h1 class="article-title">' + title + '</h1>\n';
+      if (subtitle) tpl += '    <div class="article-subtitle">' + subtitle + '</div>\n';
+      tpl += '    <article class="article-body ' + articleClasses + '">\n' + content + '\n    </article>\n';
+      tpl += '    ' + fnHtml + '\n';
+      tpl += '  </main>\n';
+      tpl += '  <aside id="sideMarginalNote" class="side-marginal-note">\n';
+      tpl += '    <div class="marginal-header">\n';
+      tpl += '      <span id="marginalLabel">NOTA</span>\n';
+      tpl += '      <button type="button" class="marginal-close" onclick="closeMarginalNote()">&times;</button>\n';
+      tpl += '    </div>\n';
+      tpl += '    <div id="marginalContent"></div>\n';
+      tpl += '  </aside>\n';
+      tpl += '  <footer>\n';
+      tpl += '    <div>&copy; Bogotá, Colombia.</div>\n';
+      tpl += '    <div>Love Jones</div>\n';
+      tpl += '  </footer>\n';
+      tpl += '  <script>\n';
+      tpl += '    if (window.location.pathname.endsWith(".html")) {\n';
+      tpl += '      const clean = window.location.pathname.replace(".html", "");\n';
+      tpl += '      window.history.replaceState(null, "", clean + window.location.search + window.location.hash);\n';
+      tpl += '    }\n';
+      tpl += '    const marginalNote = document.getElementById("sideMarginalNote");\n';
+      tpl += '    const marginalContent = document.getElementById("marginalContent");\n';
+      tpl += '    const marginalLabel = document.getElementById("marginalLabel");\n';
+      tpl += '    let currentTrigger = null;\n';
+      tpl += '    function closeMarginalNote() {\n';
+      tpl += '      marginalNote.style.display = "none";\n';
+      tpl += '      if (currentTrigger) currentTrigger.classList.remove("active");\n';
+      tpl += '      currentTrigger = null;\n';
+      tpl += '    }\n';
+      tpl += '    document.addEventListener("click", function(e) {\n';
+      tpl += '      const returnBtn = e.target.closest(".footnote-index-btn");\n';
+      tpl += '      if (returnBtn) {\n';
+      tpl += '        e.preventDefault(); e.stopPropagation();\n';
+      tpl += '        const refId = returnBtn.getAttribute("data-return-to");\n';
+      tpl += '        const sourceRef = document.querySelector(\'[data-fn="\' + refId + \'"]\');\n';
+      tpl += '        if (sourceRef) {\n';
+      tpl += '          sourceRef.scrollIntoView({ behavior: "smooth", block: "center" });\n';
+      tpl += '          sourceRef.classList.add("active");\n';
+      tpl += '          setTimeout(() => sourceRef.classList.remove("active"), 1200);\n';
+      tpl += '        }\n';
+      tpl += '        return;\n';
+      tpl += '      }\n';
+      tpl += '      const btn = e.target.closest(".footnote-button");\n';
+      tpl += '      if (btn) {\n';
+      tpl += '        e.stopPropagation();\n';
+      tpl += '        const fnId = btn.getAttribute("data-fn");\n';
+      tpl += '        const targetLi = document.querySelector(\'[data-fn-id="\' + fnId + \'"]\');\n';
+      tpl += '        if (!targetLi) return;\n';
+      tpl += '        if (window.innerWidth <= 820) {\n';
+      tpl += '          closeMarginalNote();\n';
+      tpl += '          targetLi.scrollIntoView({ behavior: "smooth", block: "center" });\n';
+      tpl += '          targetLi.classList.add("footnote-highlight");\n';
+      tpl += '          setTimeout(() => targetLi.classList.remove("footnote-highlight"), 1800);\n';
+      tpl += '          return;\n';
+      tpl += '        }\n';
+      tpl += '        if (currentTrigger === btn && marginalNote.style.display === "block") {\n';
+      tpl += '          closeMarginalNote(); return;\n';
+      tpl += '        }\n';
+      tpl += '        if (currentTrigger) currentTrigger.classList.remove("active");\n';
+      tpl += '        currentTrigger = btn; btn.classList.add("active");\n';
+      tpl += '        marginalLabel.textContent = "NOTA " + fnId;\n';
+      tpl += '        const textSpan = targetLi.querySelector(".fn-text-body") || targetLi;\n';
+      tpl += '        marginalContent.innerHTML = textSpan.innerHTML;\n';
+      tpl += '        const rect = btn.getBoundingClientRect();\n';
+      tpl += '        const mainEl = document.getElementById("mainContainer");\n';
+      tpl += '        const mainRect = mainEl.getBoundingClientRect();\n';
+      tpl += '        let leftPos = mainRect.right + 25;\n';
+      tpl += '        if (leftPos + 270 > window.innerWidth) leftPos = window.innerWidth - 280;\n';
+      tpl += '        marginalNote.style.left = leftPos + "px";\n';
+      tpl += '        marginalNote.style.top = (rect.top + window.scrollY - 15) + "px";\n';
+      tpl += '        marginalNote.style.display = "block";\n';
+      tpl += '        return;\n';
+      tpl += '      }\n';
+      tpl += '      if (!marginalNote.contains(e.target)) closeMarginalNote();\n';
+      tpl += '    });\n';
+      tpl += '    window.addEventListener("resize", closeMarginalNote);\n';
+      tpl += '    window.addEventListener("scroll", function() { if (marginalNote.style.display === "block") closeMarginalNote(); }, { passive: true });\n';
+      tpl += '  <\/script>\n';
+      tpl += '</body>\n</html>';
 
-    .article-body b, .article-body strong { color: #ffffff !important; font-weight: 700 !important; }
-    .article-body i, .article-body em { color: #faebd7 !important; font-style: italic !important; }
-
-    .article-body.mode-book p {
-      margin-bottom: 0 !important;
-      text-indent: 2.2em;
-      text-align: justify;
-      hyphens: auto;
-    }
-    .article-body.mode-book > p:first-of-type,
-    .article-body.mode-book h2 + p,
-    .article-body.mode-book h3 + p,
-    .article-body.mode-book blockquote + p,
-    .article-body.mode-book hr + p,
-    .article-body.mode-book .editorial-plate + p {
-      text-indent: 0 !important;
-    }
-    .article-body.mode-book.has-dropcap > p:first-of-type::first-letter,
-    .article-body.mode-book.has-dropcap h2 + p::first-letter {
-      float: left;
-      font-size: 3.8rem;
-      line-height: 0.78;
-      padding-top: 6px;
-      padding-right: 14px;
-      color: var(--gold-bright);
-      font-family: var(--font-serif);
-      font-weight: 700;
-      text-shadow: 0 0 10px rgba(223, 194, 125, 0.2);
-    }
-
-    .article-body h2 {
-      font-family: var(--font-mono);
-      font-size: 1.28rem;
-      color: #ffffff;
-      text-transform: uppercase;
-      letter-spacing: 0.09em;
-      margin: 3.8rem 0 1.3rem 0;
-    }
-    .article-body h3 {
-      font-family: var(--font-mono);
-      font-size: 1.05rem;
-      color: var(--gold-bright);
-      text-transform: uppercase;
-      letter-spacing: 0.07em;
-      margin: 2.8rem 0 1rem 0;
-    }
-    .article-body blockquote {
-      border-left: 3px solid var(--accent-color);
-      box-shadow: -3px 0 12px var(--accent-glow);
-      padding: 0.8rem 0 0.8rem 1.8rem;
-      margin: 3rem 0;
-      background: rgba(196, 67, 51, 0.04);
-      color: #ded7cb;
-      font-style: italic;
-      font-size: 1.18rem;
-      line-height: 1.9;
-    }
-    .article-body .pull-quote {
-      text-align: center;
-      font-size: 1.45rem;
-      font-style: italic;
-      line-height: 1.65;
-      color: var(--gold-bright);
-      margin: 4rem 1.5rem;
-      padding: 1.8rem 0;
-      border-top: 1px dashed #3a3222;
-      border-bottom: 1px dashed #3a3222;
-    }
-    .article-body .divider-dots {
-      text-align: center;
-      letter-spacing: 1.4em;
-      color: var(--gold-muted);
-      margin: 3.8rem 0;
-      user-select: none;
-    }
-    .article-body a { color: #ffffff; text-decoration: underline; text-underline-offset: 4px; text-decoration-color: var(--gold-muted); }
-    
-    .footnote-button {
-      display: inline-block;
-      color: var(--gold-bright);
-      font-family: var(--font-serif);
-      font-weight: 700;
-      font-size: 0.88rem;
-      line-height: 0;
-      vertical-align: super;
-      text-decoration: none;
-      cursor: pointer;
-      margin: 0 0.15rem;
-      background: transparent;
-      border: none;
-      padding: 0 0.15rem;
-      user-select: none;
-      transition: all 0.2s ease;
-      filter: drop-shadow(0 0 2px rgba(223, 194, 125, 0.3));
-    }
-    .footnote-button:hover, .footnote-button.active {
-      color: #ffffff;
-      transform: scale(1.22);
-      filter: drop-shadow(0 0 8px var(--gold-bright));
-    }
-
-    .editorial-plate {
-      margin: 3.8rem 0;
-      border: 1px dashed var(--border-color);
-      background-color: #11100f;
-      padding: 1.4rem;
-    }
-    .plate-img-wrap { width: 100%; background-color: #080706; display: flex; justify-content: center; }
-    .plate-img-wrap img { max-width: 100%; height: auto; display: block; }
-    .plate-caption {
-      margin-top: 1rem;
-      padding-top: 0.8rem;
-      border-top: 1px dashed var(--border-color);
-      font-family: var(--font-mono);
-      font-size: 0.76rem;
-      line-height: 1.6;
-      color: var(--text-muted);
-    }
-    .plate-number { color: var(--gold-bright); font-weight: 700; margin-right: 0.4rem; }
-
-    /* NOTA MARGINAL ESCRITORIO */
-    .side-marginal-note {
-      position: absolute;
-      width: 260px;
-      background-color: #171513;
-      border-left: 2px solid var(--gold-bright);
-      border-top: 1px dashed var(--border-color);
-      border-bottom: 1px dashed var(--border-color);
-      border-right: 1px dashed var(--border-color);
-      box-shadow: 10px 10px 30px rgba(0,0,0,0.85);
-      border-radius: 0 4px 4px 0;
-      padding: 0.9rem 1.1rem;
-      font-family: var(--font-mono);
-      font-size: 0.77rem;
-      color: var(--text-main);
-      line-height: 1.6;
-      display: none;
-      z-index: 2500;
-      animation: fadeInMarginal 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    @keyframes fadeInMarginal {
-      from { opacity: 0; transform: translateX(-8px); }
-      to { opacity: 1; transform: translateX(0); }
-    }
-    .marginal-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 0.5rem;
-      padding-bottom: 0.35rem;
-      border-bottom: 1px dashed var(--border-color);
-      color: var(--gold-bright);
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-    }
-    .marginal-close { cursor: pointer; color: var(--text-muted); background: none; border: none; font-family: var(--font-mono); font-size: 0.85rem; }
-    .marginal-close:hover { color: #ffffff; }
-
-    .footnotes-section { margin-top: 4.8rem; padding-top: 2rem; border-top: 1px dashed var(--border-color); }
-    .footnotes-title {
-      font-family: var(--font-mono);
-      font-size: 0.8rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--gold-bright);
-      margin-bottom: 1.2rem;
-    }
-    .footnotes-list { list-style: none; font-family: var(--font-mono); font-size: 0.82rem; color: var(--text-muted); line-height: 1.7; padding: 0; }
-    .footnotes-list li { margin-bottom: 0.85rem; padding: 0.35rem 0.6rem; border-radius: 2px; display: flex; align-items: baseline; gap: 0.6rem; transition: background-color 0.3s ease; }
-    .footnote-index-btn { color: var(--gold-bright); font-weight: 700; background: transparent; border: none; cursor: pointer; font-family: var(--font-mono); font-size: 0.85rem; padding: 0; transition: all 0.2s ease; }
-    .footnote-index-btn:hover { color: #ffffff; transform: scale(1.15); }
-    .footnote-highlight { background-color: rgba(223, 194, 125, 0.15) !important; color: #ffffff !important; }
-
-    footer {
-      max-width: 1040px;
-      width: 100%;
-      margin: 0 auto;
-      padding: 2.8rem 2.5rem;
-      border-top: 1px dashed var(--border-color);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-family: var(--font-mono);
-      font-size: 0.78rem;
-      letter-spacing: 0.1em;
-      color: #5c554b;
-    }
-
-    @media (max-width: 820px) {
-      header { padding: 1.8rem 1.4rem; }
-      main { padding: 3.5rem 1.4rem; }
-      .article-title { font-size: 1.45rem; }
-      .article-body p { text-align: left; }
-      .side-marginal-note { display: none !important; }
-      .footnotes-list { font-size: 0.88rem; line-height: 1.8; }
-      footer { flex-direction: column; gap: 0.6rem; text-align: center; }
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <a href="./" class="brand-logo">Love Jones</a>
-    <nav class="header-nav">
-      <a class="nav-link" href="https://substack.com/@loveejonnes" target="_blank" rel="noopener noreferrer">DROPGEMS</a>
-      <a class="nav-link active" href="archivo.html">ARCHIVO</a>
-      <a class="nav-link" href="contacto.html">CONTACTO</a>
-    </nav>
-  </header>
-  <main id="mainContainer">
-    <a href="archivo.html" class="back-link">&larr; Volver al archivo</a>
-    <div class="doc-meta">\${docId} &bull; \${meta}</div>
-    <h1 class="article-title">\${title}</h1>
-    \${subtitle ? '<div class="article-subtitle">' + subtitle + '</div>' : ''}
-    <article class="article-body \${articleClasses}">
-      \${content}
-    </article>
-    \${fnHtml}
-  </main>
-
-  <aside id="sideMarginalNote" class="side-marginal-note">
-    <div class="marginal-header">
-      <span id="marginalLabel">NOTA</span>
-      <button type="button" class="marginal-close" onclick="closeMarginalNote()">&times;</button>
-    </div>
-    <div id="marginalContent"></div>
-  </aside>
-
-  <footer>
-    <div>&copy; Bogotá, Colombia.</div>
-    <div>Love Jones</div>
-  </footer>
-
-  <script>
-    if (window.location.pathname.endsWith('.html')) {
-      const clean = window.location.pathname.replace('.html', '');
-      window.history.replaceState(null, '', clean + window.location.search + window.location.hash);
-    }
-
-    const marginalNote = document.getElementById('sideMarginalNote');
-    const marginalContent = document.getElementById('marginalContent');
-    const marginalLabel = document.getElementById('marginalLabel');
-    let currentTrigger = null;
-
-    function closeMarginalNote() {
-      marginalNote.style.display = 'none';
-      if (currentTrigger) currentTrigger.classList.remove('active');
-      currentTrigger = null;
-    }
-
-    document.addEventListener('click', (e) => {
-      // 1. Clic en el botón número de la nota inferior para volver arriba
-      const returnBtn = e.target.closest('.footnote-index-btn');
-      if (returnBtn) {
-        e.preventDefault();
-        e.stopPropagation();
-        const refId = returnBtn.getAttribute('data-return-to');
-        const sourceRef = document.querySelector(`[data-fn="\${refId}"]`);
-        if (sourceRef) {
-          sourceRef.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          sourceRef.classList.add('active');
-          setTimeout(() => sourceRef.classList.remove('active'), 1200);
-        }
-        return;
-      }
-
-      // 2. Clic en el superíndice
-      const btn = e.target.closest('.footnote-button');
-      if (btn) {
-        e.stopPropagation();
-        const fnId = btn.getAttribute('data-fn');
-        const targetLi = document.querySelector(`[data-fn-id="\${fnId}"]`);
-        if (!targetLi) return;
-
-        // Comportamiento Móvil
-        if (window.innerWidth <= 820) {
-          closeMarginalNote();
-          targetLi.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          targetLi.classList.add('footnote-highlight');
-          setTimeout(() => targetLi.classList.remove('footnote-highlight'), 1800);
-          return;
-        }
-
-        // Comportamiento Escritorio: Toggle
-        if (currentTrigger === btn && marginalNote.style.display === 'block') {
-          closeMarginalNote();
-          return;
-        }
-
-        if (currentTrigger) currentTrigger.classList.remove('active');
-        currentTrigger = btn;
-        btn.classList.add('active');
-
-        marginalLabel.textContent = 'NOTA ' + fnId;
-        const textSpan = targetLi.querySelector('.fn-text-body') || targetLi;
-        marginalContent.innerHTML = textSpan.innerHTML;
-
-        const rect = btn.getBoundingClientRect();
-        const mainEl = document.getElementById('mainContainer');
-        const mainRect = mainEl.getBoundingClientRect();
-
-        let leftPos = mainRect.right + 25;
-        if (leftPos + 270 > window.innerWidth) leftPos = window.innerWidth - 280;
-
-        marginalNote.style.left = leftPos + 'px';
-        marginalNote.style.top = (rect.top + window.scrollY - 15) + 'px';
-        marginalNote.style.display = 'block';
-        return;
-      }
-
-      // 3. Clic afuera
-      if (!marginalNote.contains(e.target)) {
-        closeMarginalNote();
-      }
-    });
-
-    window.addEventListener('resize', closeMarginalNote);
-    window.addEventListener('scroll', () => { if (marginalNote.style.display === 'block') closeMarginalNote(); }, { passive: true });
-  <\/script>
-</body>
-</html>`;
-
-      const blob = new Blob([template], { type: 'text/html;charset=utf-8' });
+      const blob = new Blob([tpl], { type: 'text/html;charset=utf-8' });
       const link = document.createElement('a');
       link.href = URL.createObjectURL(blob);
       link.download = slug + '.html';
