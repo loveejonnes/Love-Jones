@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   
-  <!-- Directivas anti-caché del navegador -->
+  <!-- Directivas anti-caché -->
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
@@ -138,7 +138,7 @@
       border-bottom-color: var(--accent-color);
     }
 
-    /* Área principal vacía */
+    /* Área central vacía */
     main {
       flex: 1;
       max-width: 1040px;
@@ -148,7 +148,6 @@
       z-index: 10;
     }
 
-    /* Pie de página sobrio */
     footer {
       max-width: 1040px;
       width: 100%;
@@ -170,35 +169,18 @@
     .footer-brand { color: var(--text-main); font-weight: 700; }
 
     @media (max-width: 820px) {
-      header {
-        padding: 1.6rem 1.4rem;
-      }
-      .brand-logo {
-        font-size: 1.05rem;
-      }
-      .header-nav {
-        gap: 1.2rem;
-      }
-      .nav-link {
-        font-size: 0.75rem;
-        letter-spacing: 0.08em;
-      }
-      .floating-companion {
-        width: 54px;
-        height: 62px;
-      }
-      footer {
-        flex-direction: column;
-        gap: 0.6rem;
-        text-align: center;
-        padding: 2rem 1.4rem;
-      }
+      header { padding: 1.6rem 1.4rem; }
+      .brand-logo { font-size: 1.05rem; }
+      .header-nav { gap: 1.2rem; }
+      .nav-link { font-size: 0.75rem; letter-spacing: 0.08em; }
+      .floating-companion { width: 54px; height: 62px; }
+      footer { flex-direction: column; gap: 0.6rem; text-align: center; padding: 2rem 1.4rem; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Cubo Cinemático Dinámico con Rebote Libre -->
+  <!-- Cubo Cinemático Dinámico -->
   <div class="floating-companion" id="companionBadge" title="Love Jones — Toca o persigue">
     <div class="companion-inner" id="companionInner">
       <svg viewBox="0 0 120 135" width="100%" height="100%">
@@ -284,7 +266,6 @@
       window.history.replaceState(null, '', cleanPath + window.location.search + window.location.hash);
     }
 
-    // Cubo Cinemático Dinámico con Rebote Libre
     const companion = document.getElementById('companionBadge');
     const companionInner = document.getElementById('companionInner');
 
