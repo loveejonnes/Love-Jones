@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   
+  <!-- Directivas anti-caché del navegador -->
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <meta http-equiv="Pragma" content="no-cache">
   <meta http-equiv="Expires" content="0">
@@ -137,102 +138,14 @@
       border-bottom-color: var(--accent-color);
     }
 
-    /* Contenedor Principal: Pantalla de Error / Mantenimiento */
+    /* Área principal vacía */
     main {
       flex: 1;
-      max-width: 820px;
+      max-width: 1040px;
       width: 100%;
       margin: 0 auto;
-      padding: 6.5rem 2rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
       position: relative;
       z-index: 10;
-    }
-
-    .terminal-card {
-      background-color: #11100f;
-      border: 1px dashed var(--border-color);
-      padding: 3rem 2.6rem;
-      position: relative;
-      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6);
-    }
-
-    .terminal-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px dashed var(--border-color);
-      padding-bottom: 1.2rem;
-      margin-bottom: 2rem;
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      letter-spacing: 0.14em;
-    }
-
-    .error-code {
-      color: var(--accent-color);
-      font-weight: 700;
-    }
-
-    .server-status {
-      color: var(--text-muted);
-    }
-
-    .terminal-title {
-      font-family: var(--font-mono);
-      font-size: 1.45rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      color: var(--text-main);
-      text-transform: uppercase;
-      margin-bottom: 1.4rem;
-      line-height: 1.35;
-    }
-
-    .terminal-text {
-      color: var(--text-muted);
-      font-size: 1.02rem;
-      line-height: 1.85;
-      margin-bottom: 2.2rem;
-    }
-
-    .terminal-log {
-      background-color: #080706;
-      border: 1px dashed #241f1c;
-      padding: 1.2rem 1.4rem;
-      font-family: var(--font-mono);
-      font-size: 0.76rem;
-      color: #7a7266;
-      line-height: 1.9;
-      margin-bottom: 2.2rem;
-    }
-
-    .terminal-log span.highlight {
-      color: var(--accent-color);
-      font-weight: 700;
-    }
-
-    .terminal-log span.ok {
-      color: #5bb35b;
-    }
-
-    .back-action {
-      font-family: var(--font-mono);
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--accent-color);
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      transition: color 0.2s ease;
-    }
-
-    .back-action:hover {
-      color: var(--accent-hover);
     }
 
     /* Pie de página sobrio */
@@ -256,9 +169,6 @@
     .footer-city { color: var(--text-muted); }
     .footer-brand { color: var(--text-main); font-weight: 700; }
 
-    /* ========================================================
-       OPTIMIZACIÓN COMPLETA PARA DISPOSITIVOS MÓVILES
-       ======================================================== */
     @media (max-width: 820px) {
       header {
         padding: 1.6rem 1.4rem;
@@ -272,23 +182,6 @@
       .nav-link {
         font-size: 0.75rem;
         letter-spacing: 0.08em;
-      }
-      main {
-        padding: 3.5rem 1.4rem;
-      }
-      .terminal-card {
-        padding: 2.2rem 1.5rem;
-      }
-      .terminal-title {
-        font-size: 1.15rem;
-      }
-      .terminal-text {
-        font-size: 0.94rem;
-        line-height: 1.75;
-      }
-      .terminal-log {
-        padding: 1rem 1.2rem;
-        font-size: 0.72rem;
       }
       .floating-companion {
         width: 54px;
@@ -377,29 +270,8 @@
     </nav>
   </header>
 
-  <main>
-    <div class="terminal-card">
-      <div class="terminal-header">
-        <span class="error-code">[ERROR 503 // NODO TEMPORALMENTE SELLADO]</span>
-        <span class="server-status">ESTADO: COMPILACIÓN</span>
-      </div>
-
-      <h1 class="terminal-title">ACCESO RESTRINGIDO &bull; COMPILACIÓN DE ENSAYOS EN PROCESO</h1>
-
-      <p class="terminal-text">
-        El índice documental del archivo se encuentra fuera de línea temporalmente. Se están finalizando y catalogando los textos monográficos y el aparato crítico correspondiente antes de habilitar la consulta pública en la biblioteca.
-      </p>
-
-      <div class="terminal-log">
-        <div>&gt; INICIANDO DEPÓSITO MONOGRÁFICO... <span class="ok">[OK]</span></div>
-        <div>&gt; CARGANDO APARATO CRÍTICO & NOTAS AL PIE... <span class="ok">[EN COLA]</span></div>
-        <div>&gt; EXPEDIENTE [TXT.01]: <span class="highlight">EN REVISIÓN EDITORIAL</span></div>
-        <div>&gt; SERVICIO WEB: <span class="highlight">MODO MANTENIMIENTO ACTIVO</span></div>
-      </div>
-
-      <a href="./" class="back-action">&larr; Volver al portal principal</a>
-    </div>
-  </main>
+  <!-- Área principal vacía -->
+  <main></main>
 
   <footer>
     <div class="footer-city">&copy; Bogotá, Colombia.</div>
