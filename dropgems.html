@@ -3,6 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+
   <title>Love Jones — Dropgems</title>
   
   <link rel="icon" type="image/jpeg" href="LoveJones pic1.jpeg">
@@ -82,165 +87,13 @@
       border-bottom-color: var(--gold-muted);
     }
 
+    /* Área central limpia */
     main {
       flex: 1;
       max-width: 1040px;
       width: 100%;
       margin: 0 auto;
       padding: 4.5rem 2.5rem 7rem 2.5rem;
-    }
-
-    .showcase-header {
-      margin-bottom: 3.8rem;
-      border-bottom: 1px dashed var(--border-color);
-      padding-bottom: 2.5rem;
-    }
-
-    .section-tag {
-      font-family: var(--font-mono);
-      font-size: 0.76rem;
-      color: var(--gold-muted);
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      margin-bottom: 0.8rem;
-      display: inline-block;
-    }
-
-    .showcase-title {
-      font-family: var(--font-mono);
-      font-size: 2.1rem;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: var(--text-main);
-      margin-bottom: 1rem;
-      line-height: 1.3;
-    }
-
-    .showcase-desc {
-      font-family: var(--font-serif);
-      font-size: 1.15rem;
-      color: var(--text-muted);
-      max-width: 740px;
-      font-style: italic;
-    }
-
-    .subscribe-strip {
-      background: #11100f;
-      border: 1px dashed var(--border-color);
-      padding: 1.5rem 1.8rem;
-      margin-bottom: 3.5rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-    }
-
-    .strip-text {
-      font-family: var(--font-mono);
-      font-size: 0.8rem;
-      color: var(--text-main);
-      letter-spacing: 0.05em;
-    }
-
-    .strip-text span {
-      color: var(--gold-muted);
-      font-weight: 700;
-    }
-
-    .btn-action {
-      font-family: var(--font-mono);
-      font-size: 0.74rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 0.6rem 1.2rem;
-      border: 1px solid var(--border-color);
-      background: transparent;
-      color: var(--text-main);
-      text-decoration: none;
-      transition: all 0.2s ease;
-      display: inline-block;
-    }
-
-    .btn-action:hover {
-      border-color: var(--gold-muted);
-      color: var(--gold-muted);
-      background: rgba(194, 166, 97, 0.05);
-    }
-
-    .gems-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
-      gap: 2rem;
-    }
-
-    .gem-card {
-      background: var(--card-bg);
-      border: 1px dashed var(--border-color);
-      padding: 2rem 1.8rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: border-color 0.25s ease, transform 0.25s ease;
-    }
-
-    .gem-card:hover {
-      border-color: var(--gold-muted);
-      transform: translateY(-3px);
-    }
-
-    .gem-meta {
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      color: var(--gold-muted);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-bottom: 0.9rem;
-      display: flex;
-      justify-content: space-between;
-    }
-
-    .gem-title {
-      font-family: var(--font-mono);
-      font-size: 1.15rem;
-      letter-spacing: 0.03em;
-      text-transform: uppercase;
-      color: var(--text-main);
-      margin-bottom: 1rem;
-      line-height: 1.4;
-    }
-
-    .gem-synopsis {
-      font-size: 0.95rem;
-      color: var(--text-muted);
-      line-height: 1.7;
-      margin-bottom: 2rem;
-      flex: 1;
-    }
-
-    .gem-footer {
-      border-top: 1px dashed var(--border-color);
-      padding-top: 1.2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .gem-read-link {
-      font-family: var(--font-mono);
-      font-size: 0.74rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--text-main);
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      transition: color 0.2s ease;
-    }
-
-    .gem-read-link:hover {
-      color: var(--gold-muted);
     }
 
     footer {
@@ -261,9 +114,6 @@
     @media (max-width: 768px) {
       header { padding: 1.8rem 1.4rem; }
       main { padding: 3rem 1.4rem 5rem 1.4rem; }
-      .showcase-title { font-size: 1.6rem; }
-      .gems-grid { grid-template-columns: 1fr; }
-      .subscribe-strip { flex-direction: column; align-items: flex-start; }
       footer { flex-direction: column; gap: 0.6rem; text-align: center; }
     }
   </style>
@@ -279,85 +129,19 @@
     </nav>
   </header>
 
-  <main>
-    <section class="showcase-header">
-      <span class="section-tag">// VITRINA EDITORIAL & DESPACHOS</span>
-      <h1 class="showcase-title">DROPGEMS</h1>
-      <p class="showcase-desc">Registros breves, notas de escucha analógica, arqueología del sample y correspondencia cultural periódica.</p>
-    </section>
-
-    <div class="subscribe-strip">
-      <div class="strip-text">
-        <span>CORRESPONDENCIA:</span> Recibe estos despachos y notas breves en tu correo.
-      </div>
-      <a href="https://substack.com/@loveejonnes" target="_blank" rel="noopener noreferrer" class="btn-action">
-        Suscribirse en Substack &rarr;
-      </a>
-    </div>
-
-    <section class="gems-grid">
-
-      <!-- Ficha 01 -->
-      <article class="gem-card">
-        <div>
-          <div class="gem-meta">
-            <span>[GEM #03]</span>
-            <span>OCTUBRE 2026</span>
-          </div>
-          <h2 class="gem-title">LA MICRO-REPETICIÓN Y EL GRANO ANALÓGICO</h2>
-          <p class="gem-synopsis">Aproximaciones al bucle de vinilo no domesticado. Cómo la imperfección mecánica se convirtió en el documento estético y ético del underground neoyorquino.</p>
-        </div>
-        <div class="gem-footer">
-          <span style="font-family: var(--font-mono); font-size: 0.7rem; color: #6d665b;">4 MIN LECTURA</span>
-          <a href="https://dropgems.substack.com" target="_blank" rel="noopener noreferrer" class="gem-read-link">
-            Leer pieza &rarr;
-          </a>
-        </div>
-      </article>
-
-      <!-- Ficha 02 -->
-      <article class="gem-card">
-        <div>
-          <div class="gem-meta">
-            <span>[GEM #02]</span>
-            <span>SEPTIEMBRE 2026</span>
-          </div>
-          <h2 class="gem-title">ROC MARCIANO: EL ARTE DEL VACÍO Y LA PAUSA</h2>
-          <p class="gem-synopsis">Desglose de la economía métrica y la eliminación de la batería convencional. El silencio estructurado como postura ante el ruido masivo.</p>
-        </div>
-        <div class="gem-footer">
-          <span style="font-family: var(--font-mono); font-size: 0.7rem; color: #6d665b;">6 MIN LECTURA</span>
-          <a href="https://dropgems.substack.com" target="_blank" rel="noopener noreferrer" class="gem-read-link">
-            Leer pieza &rarr;
-          </a>
-        </div>
-      </article>
-
-      <!-- Ficha 03 -->
-      <article class="gem-card">
-        <div>
-          <div class="gem-meta">
-            <span>[GEM #01]</span>
-            <span>AGOSTO 2026</span>
-          </div>
-          <h2 class="gem-title">EL DIGGIN' COMO DISCIPLINA HISTORIOGRÁFICA</h2>
-          <p class="gem-synopsis">El rescate de prensajes olvidados más allá de la nostalgia: rescatar sonido es rescatar memoria social y tensiones de clase no archivadas.</p>
-        </div>
-        <div class="gem-footer">
-          <span style="font-family: var(--font-mono); font-size: 0.7rem; color: #6d665b;">5 MIN LECTURA</span>
-          <a href="https://dropgems.substack.com" target="_blank" rel="noopener noreferrer" class="gem-read-link">
-            Leer pieza &rarr;
-          </a>
-        </div>
-      </article>
-
-    </section>
-  </main>
+  <!-- Espacio en blanco para construir las publicaciones -->
+  <main></main>
 
   <footer>
     <div>&copy; Bogotá, Colombia.</div>
     <div>Love Jones</div>
   </footer>
 
+  <script>
+    if (window.location.pathname.endsWith('/dropgems.html')) {
+      const cleanPath = window.location.pathname.replace('/dropgems.html', '/dropgems');
+      window.history.replaceState(null, '', cleanPath + window.location.search + window.location.hash);
+    }
+  </script>
 </body>
 </html>
