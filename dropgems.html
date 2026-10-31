@@ -95,26 +95,11 @@
       padding: 4.5rem 2.5rem 7rem 2.5rem;
     }
 
-    /* Cabecera */
+    /* Cabecera limpia */
     .showcase-header {
       margin-bottom: 3.5rem;
       border-bottom: 1px dashed var(--border-color);
-      padding-bottom: 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      flex-wrap: wrap;
-      gap: 1.5rem;
-    }
-
-    .section-tag {
-      font-family: var(--font-mono);
-      font-size: 0.74rem;
-      color: var(--gold-muted);
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      margin-bottom: 0.5rem;
-      display: block;
+      padding-bottom: 1.8rem;
     }
 
     .showcase-title {
@@ -125,45 +110,32 @@
       color: var(--text-main);
     }
 
-    .subscribe-btn {
-      font-family: var(--font-mono);
-      font-size: 0.74rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 0.65rem 1.3rem;
-      border: 1px dashed var(--gold-muted);
-      background: transparent;
-      color: var(--gold-muted);
-      text-decoration: none;
-      transition: all 0.25s ease;
-    }
-
-    .subscribe-btn:hover {
-      background: rgba(194, 166, 97, 0.1);
-      color: var(--text-main);
-    }
-
-    /* Disposición Editorial en Columnas */
+    /* Grilla de Publicaciones */
     .collage-container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
       gap: 2.2rem;
-      align-items: start;
+      align-items: stretch;
     }
 
-    .collage-item {
+    /* Tarjeta completa como enlace clickeable */
+    .collage-card-link {
       background: var(--card-bg);
       border: 1px dashed var(--border-color);
       padding: 2.4rem 2rem;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      transition: border-color 0.25s ease, transform 0.2s ease;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.25s ease, transform 0.2s ease, background-color 0.2s ease;
       min-height: 280px;
+      cursor: pointer;
     }
 
-    .collage-item:hover {
+    .collage-card-link:hover {
       border-color: var(--gold-muted);
+      background-color: #171514;
       transform: translateY(-2px);
     }
 
@@ -199,23 +171,21 @@
       font-style: italic;
     }
 
-    .item-action {
+    .item-action-indicator {
       font-family: var(--font-mono);
       font-size: 0.74rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--text-main);
-      text-decoration: none;
-      align-self: flex-start;
       border-bottom: 1px dashed transparent;
-      transition: all 0.2s ease;
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
       padding-top: 0.8rem;
+      transition: color 0.2s ease, border-bottom-color 0.2s ease;
     }
 
-    .item-action:hover {
+    .collage-card-link:hover .item-action-indicator {
       color: var(--gold-muted);
       border-bottom-color: var(--gold-muted);
     }
@@ -237,7 +207,6 @@
 
     @media (max-width: 768px) {
       .collage-container { grid-template-columns: 1fr; }
-      .showcase-header { flex-direction: column; align-items: flex-start; }
       header { padding: 1.8rem 1.4rem; }
       main { padding: 3rem 1.4rem 5rem 1.4rem; }
       footer { flex-direction: column; gap: 0.6rem; text-align: center; }
@@ -257,20 +226,14 @@
 
   <main>
     <section class="showcase-header">
-      <div>
-        <span class="section-tag">// VITRINA DE PUBLICACIONES</span>
-        <h1 class="showcase-title">DROPGEMS</h1>
-      </div>
-      <a href="https://substack.com/@loveejonnes" target="_blank" rel="noopener noreferrer" class="subscribe-btn">
-        Recibir Despachos &rarr;
-      </a>
+      <h1 class="showcase-title">DROPGEMS</h1>
     </section>
 
-    <!-- Fichas de Publicaciones -->
+    <!-- Fichas de Publicaciones Clickeables -->
     <section class="collage-container">
 
       <!-- Pieza 1 -->
-      <article class="collage-item">
+      <a href="https://substack.com/home/post/p-209589501" target="_blank" rel="noopener noreferrer" class="collage-card-link">
         <div>
           <div class="item-meta">
             <span>[DESPACHO #01]</span>
@@ -279,13 +242,13 @@
           <h2 class="item-title">ENSAYO SOBRE EL HUMOR MORDAZ COMO UNA DE LAS GRANDES FORMAS DEL PENSAMIENTO</h2>
           <p class="item-extract">«El hombre hace planes, ¿Dios se ríe?»</p>
         </div>
-        <a href="https://substack.com/home/post/p-209589501" target="_blank" rel="noopener noreferrer" class="item-action">
+        <div class="item-action-indicator">
           Leer publicación &rarr;
-        </a>
-      </article>
+        </div>
+      </a>
 
       <!-- Pieza 2 -->
-      <article class="collage-item">
+      <a href="https://dropgems.substack.com/p/perro-come-perro-la-mejor-pelicula" target="_blank" rel="noopener noreferrer" class="collage-card-link">
         <div>
           <div class="item-meta">
             <span>[DESPACHO #02]</span>
@@ -294,10 +257,10 @@
           <h2 class="item-title">PERRO COME PERRO: LA MEJOR PELÍCULA COLOMBIANA DE CRIMEN</h2>
           <p class="item-extract">«CRIME PAY$»</p>
         </div>
-        <a href="https://dropgems.substack.com/p/perro-come-perro-la-mejor-pelicula" target="_blank" rel="noopener noreferrer" class="item-action">
+        <div class="item-action-indicator">
           Leer publicación &rarr;
-        </a>
-      </article>
+        </div>
+      </a>
 
     </section>
   </main>
