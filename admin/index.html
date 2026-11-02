@@ -4,43 +4,68 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Love Jones — Panel Editorial</title>
-  <script>
-    // Si el usuario no tiene token guardado, intercepta antes de abrir la ventana rota
-    window.CMS_MANUAL_INIT = true;
-  </script>
+  <style>
+    body { margin: 0; background-color: #0c0b0a; color: #f2ede4; font-family: monospace; }
+    #tokenModal {
+      position: fixed; inset: 0; background: #0c0b0a; z-index: 99999;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 1.5rem; text-align: center;
+    }
+    .login-box {
+      max-width: 420px; width: 100%; border: 1px dashed #3a342e; padding: 2rem; background: #141211;
+    }
+    h2 { color: #c2a661; font-size: 1rem; letter-spacing: 0.1em; margin-bottom: 1.5rem; }
+    input {
+      width: 100%; padding: 0.75rem; background: #0c0b0a; border: 1px solid #3a342e;
+      color: #f2ede4; font-family: monospace; font-size: 0.85rem; margin-bottom: 1.2rem; box-sizing: border-box;
+    }
+    button {
+      width: 100%; padding: 0.75rem; background: #c2a661; border: none; color: #0c0b0a;
+      font-weight: bold; font-family: monospace; cursor: pointer; text-transform: uppercase;
+    }
+    button:hover { background: #dfc37e; }
+  </style>
 </head>
 <body>
+  <div id="tokenModal">
+    <div class="login-box">
+      <h2>[ ACCESO AL PANEL EDITORIAL ]</h2>
+      <p style="font-size: 0.75rem; color: #a89f91; margin-bottom: 1.2rem; line-height: 1.6;">
+        Pega tu GitHub Personal Access Token (ghp_...) para desbloquear el escritorio de redacción:
+      </p>
+      <input type="password" id="patInput" placeholder="ghp_..." autocomplete="off" />
+      <button id="saveBtn">Ingresar al Editor</button>
+    </div>
+  </div>
+
+  <!-- Script de Decap CMS oficial -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+
   <script>
-    const { CMS, initCMS } = window;
-    initCMS({
-      config: {
-        backend: {
-          name: 'github',
-          repo: 'loveejonnes/Love-Jones',
-          branch: 'main',
-          auth_type: 'implicit'
-        },
-        media_folder: 'assets/img',
-        public_folder: '/Love-Jones/assets/img',
-        collections: [
-          {
-            name: 'ensayos',
-            label: 'Ensayos & Despachos',
-            folder: 'ensayos',
-            create: true,
-            slug: '{{slug}}',
-            fields: [
-              { label: 'Título del Ensayo', name: 'title', widget: 'string' },
-              { label: 'Subtítulo / Bajada', name: 'subtitle', widget: 'string', required: false },
-              { label: 'Número de Ficha', name: 'ficha', widget: 'string', default: '[EXP. 01]' },
-              { label: 'Fecha', name: 'date', widget: 'datetime', format: 'YYYY-MM-DD' },
-              { label: 'Sinopsis', name: 'description', widget: 'text' },
-              { label: 'Lámina / Portada', name: 'thumbnail', widget: 'image', required: false },
-              { label: 'Cuerpo del Ensayo', name: 'body', widget: 'markdown' }
-            ]
+    const modal = document.getElementById('tokenModal');
+    const existingAuth = localStorage.getItem('decap-cms-user');
+
+    function checkAuth() {
+      if (existingAuth) {
+        try {
+          const parsed = JSON.parse(existingAuth);
+          if (parsed && parsed.token) {
+            modal.style.display = 'none';
           }
-        ]
+        } catch (e) {
+          modal.style.display = 'flex';
+        }
+      }
+    }
+
+    checkAuth();
+
+    document.getElementById('saveBtn').addEventListener('click', () => {
+      const tokenVal = document.getElementById('patInput').value.trim();
+      if (tokenVal) {
+        localStorage.setItem('decap-cms-user', JSON.stringify({ token: tokenVal, backendName: 'github' }));
+        modal.style.display = 'none';
+        window.location.reload();
       }
     });
   </script>
