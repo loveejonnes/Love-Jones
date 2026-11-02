@@ -3,11 +3,9 @@ backend:
   repo: loveejonnes/Love-Jones
   branch: main
 
-# Carpeta donde se guardarán las imágenes que subas desde el panel
 media_folder: "assets/img"
 public_folder: "/Love-Jones/assets/img"
 
-# Configuración de tu colección de ensayos
 collections:
   - name: "ensayos"
     label: "Ensayos & Despachos"
