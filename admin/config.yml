@@ -1,0 +1,24 @@
+backend:
+  name: github
+  repo: loveejonnes/Love-Jones
+  branch: main
+
+# Carpeta donde se guardarán las imágenes que subas desde el panel
+media_folder: "assets/img"
+public_folder: "/Love-Jones/assets/img"
+
+# Configuración de tu colección de ensayos
+collections:
+  - name: "ensayos"
+    label: "Ensayos & Despachos"
+    folder: "ensayos"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Título del Ensayo", name: "title", widget: "string" }
+      - { label: "Subtítulo / Bajada", name: "subtitle", widget: "string", required: false }
+      - { label: "Número de Ficha", name: "ficha", widget: "string", default: "[EXP. 01]" }
+      - { label: "Fecha", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
+      - { label: "Sinopsis", name: "description", widget: "text" }
+      - { label: "Lámina / Portada", name: "thumbnail", widget: "image", required: false }
+      - { label: "Cuerpo del Ensayo", name: "body", widget: "markdown" }
