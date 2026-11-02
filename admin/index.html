@@ -4,8 +4,45 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Love Jones — Panel Editorial</title>
+  <script>
+    // Si el usuario no tiene token guardado, intercepta antes de abrir la ventana rota
+    window.CMS_MANUAL_INIT = true;
+  </script>
 </head>
 <body>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <script>
+    const { CMS, initCMS } = window;
+    initCMS({
+      config: {
+        backend: {
+          name: 'github',
+          repo: 'loveejonnes/Love-Jones',
+          branch: 'main',
+          auth_type: 'implicit'
+        },
+        media_folder: 'assets/img',
+        public_folder: '/Love-Jones/assets/img',
+        collections: [
+          {
+            name: 'ensayos',
+            label: 'Ensayos & Despachos',
+            folder: 'ensayos',
+            create: true,
+            slug: '{{slug}}',
+            fields: [
+              { label: 'Título del Ensayo', name: 'title', widget: 'string' },
+              { label: 'Subtítulo / Bajada', name: 'subtitle', widget: 'string', required: false },
+              { label: 'Número de Ficha', name: 'ficha', widget: 'string', default: '[EXP. 01]' },
+              { label: 'Fecha', name: 'date', widget: 'datetime', format: 'YYYY-MM-DD' },
+              { label: 'Sinopsis', name: 'description', widget: 'text' },
+              { label: 'Lámina / Portada', name: 'thumbnail', widget: 'image', required: false },
+              { label: 'Cuerpo del Ensayo', name: 'body', widget: 'markdown' }
+            ]
+          }
+        ]
+      }
+    });
+  </script>
 </body>
 </html>
