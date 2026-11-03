@@ -3,7 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- Directivas anti-caché del navegador -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+
   <title>Love Jones — Archivo & Lecturas</title>
+  <link rel="icon" type="image/jpeg" href="LoveJones pic1.jpeg">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
@@ -43,6 +51,7 @@
     header a:hover { color: var(--gold); }
     .container { max-width: 760px; margin: 0 auto 6rem auto; }
     
+    /* Tarjetas de Ensayos */
     .archive-card {
       background: var(--card-bg);
       border: 1px solid var(--border);
@@ -77,6 +86,7 @@
     }
     .read-btn:hover { text-decoration: underline; }
 
+    /* Sala de Lectura Monográfica */
     #articleView { display: none; }
     #articleContent p { margin-bottom: 2rem; font-size: 1.15rem; text-align: justify; }
     #articleContent blockquote {
@@ -100,14 +110,16 @@
 <body>
   <header>
     <a href="index.html">← LOVE JONES ARCHIVE</a>
-    <span>BIBLIOTECA & ENSAYOS</span>
+    <span>BIBLIOTECA</span>
   </header>
 
   <div class="container">
+    <!-- Listado de Ensayos -->
     <div id="listView">
-      <div id="essaysList">Cargando catálogo de ensayos...</div>
+      <div id="essaysList">Cargando catálogo...</div>
     </div>
 
+    <!-- Lectura individual del ensayo -->
     <article id="articleView">
       <span class="back-link" onclick="showList()">← VOLVER AL ÍNDICE</span>
       <div id="articleContent"></div>
@@ -123,14 +135,14 @@
       try {
         const res = await fetch(`https://api.github.com/repos/${REPO}/contents/ensayos?ref=${BRANCH}`);
         if (!res.ok) {
-          listContainer.innerHTML = '<p style="color:var(--text-muted);font-family:var(--font-mono);font-size:0.85rem;">Aún no hay ensayos publicados en la carpeta /ensayos.</p>';
+          listContainer.innerHTML = '<p style="color:var(--text-muted);font-family:var(--font-mono);font-size:0.85rem;">Aún no hay material publicado por ahora, regrese pronto.</p>';
           return;
         }
         const files = await res.json();
         const mdFiles = files.filter(f => f.name.endsWith('.md'));
         
         if (mdFiles.length === 0) {
-          listContainer.innerHTML = '<p style="color:var(--text-muted);font-family:var(--font-mono);font-size:0.85rem;">No se encontraron publicaciones.</p>';
+          listContainer.innerHTML = '<p style="color:var(--text-muted);font-family:var(--font-mono);font-size:0.85rem;">Aún no hay material publicado por ahora, regrese pronto.</p>';
           return;
         }
 
@@ -158,7 +170,7 @@
           listContainer.appendChild(card);
         }
       } catch (e) {
-        listContainer.innerHTML = '<p style="color:var(--text-muted);">Error al cargar los documentos.</p>';
+        listContainer.innerHTML = '<p style="color:var(--text-muted);font-family:var(--font-mono);font-size:0.85rem;">Aún no hay material publicado por ahora, regrese pronto.</p>';
       }
     }
 
