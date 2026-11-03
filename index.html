@@ -2,56 +2,36 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Expires" content="0">
-
-  <title>Love Jones</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Love Jones — Archivo & Curaduría</title>
 
   <!-- Favicon -->
   <link rel="icon" type="image/jpeg" href="LoveJones pic1.jpeg">
 
-  <!-- Metatags Open Graph y Twitter -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://loveejonnes.github.io/Love-Jones/">
-  <meta property="og:title" content="Love Jones">
-  <meta property="og:description" content="Tha Digger aka Hustler Researcher. Escritor e investigador independiente">
-  <meta property="og:image" content="https://loveejonnes.github.io/Love-Jones/LoveJones%20pic1.jpeg">
-  <meta property="og:image:secure_url" content="https://loveejonnes.github.io/Love-Jones/LoveJones%20pic1.jpeg">
-  <meta property="og:image:type" content="image/jpeg">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Love Jones">
-
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:url" content="https://loveejonnes.github.io/Love-Jones/">
-  <meta name="twitter:title" content="Love Jones">
-  <meta name="twitter:description" content="Tha Digger aka Hustler Researcher. Escritor e investigador independiente">
-  <meta name="twitter:image" content="https://loveejonnes.github.io/Love-Jones/LoveJones%20pic1.jpeg">
-
-  <!-- Tipografías -->
+  <!-- Tipografías de Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --bg-color: #0d0c0b;
-      --card-bg: #121110;
-      --accent-color: #9e3527;
-      --accent-hover: #b83f30;
-      --text-main: #dfd7c8;
-      --text-muted: #8c8476;
-      --border-color: #2b2622;
-      --font-mono: 'Space Mono', 'Courier Prime', monospace;
+      --bg-color: #0c0b0a;
+      --card-bg: #141311;
+      --accent-color: #9e3a2b;
+      --accent-hover: #b84534;
+      --text-main: #f2ede4;
+      --text-muted: #a69f92;
+      --border-color: #24201d;
       --font-serif: 'Lora', Georgia, serif;
+      --font-display: 'Cinzel', serif;
+      --font-mono: 'Space Mono', monospace;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { cursor: default; }
-    a, button { cursor: pointer; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
     body {
       background-color: var(--bg-color);
@@ -61,68 +41,36 @@
       display: flex;
       flex-direction: column;
       line-height: 1.85;
-      -webkit-font-smoothing: antialiased;
-      position: relative;
       overflow-x: hidden;
-      width: 100%;
+      position: relative;
     }
 
-    /* Grano analógico */
+    /* Grano de celuloide analógico */
     body::before {
       content: "";
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
       pointer-events: none;
-      z-index: 9999;
-      opacity: 0.045;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      z-index: 999;
+      opacity: 0.035;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
     }
 
-    /* Cubo Cinemático Dinámico */
-    .floating-companion {
-      position: fixed;
-      top: 0; left: 0;
-      width: 74px; height: 85px;
-      z-index: 500;
-      pointer-events: auto;
-      cursor: grab;
-      user-select: none;
-      -webkit-user-select: none;
-      touch-action: none;
-      will-change: transform;
-      filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.35));
-      transition: filter 0.25s ease;
-    }
-
-    .floating-companion:active {
-      cursor: grabbing;
-      filter: drop-shadow(0 0 22px rgba(255, 230, 128, 0.9));
-    }
-
-    .companion-inner {
-      width: 100%; height: 100%;
-      transform-origin: center;
-      transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-
-    /* Encabezado */
     header {
       width: 100%;
-      padding: 2.6rem 2.5rem;
+      padding: 2.8rem 2.5rem;
       max-width: 1040px;
       margin: 0 auto;
       display: flex;
       justify-content: space-between;
       align-items: center;
       border-bottom: 1px dashed var(--border-color);
-      position: relative;
-      z-index: 20;
     }
 
     .brand-logo {
-      font-family: var(--font-mono);
-      font-size: 1.25rem;
-      letter-spacing: 0.14em;
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
       color: var(--text-main);
       text-decoration: none;
@@ -130,593 +78,515 @@
       transition: opacity 0.2s ease;
     }
 
-    .brand-logo:hover { opacity: 0.85; }
+    .brand-logo:hover {
+      opacity: 0.8;
+    }
 
-    .header-nav { 
-      display: flex; 
-      align-items: center; 
-      gap: 2.2rem; 
-      flex-wrap: wrap;
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
     }
 
     .nav-link {
       font-family: var(--font-mono);
       text-decoration: none;
       color: var(--text-muted);
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       letter-spacing: 0.12em;
-      padding-bottom: 4px;
-      border-bottom: 1px dashed transparent;
+      text-transform: uppercase;
       transition: color 0.2s ease, border-color 0.2s ease;
-      white-space: nowrap;
+      padding-bottom: 3px;
+      border-bottom: 1.5px solid transparent;
     }
 
-    .nav-link:hover, .nav-link.active {
+    .nav-link:hover,
+    .nav-link.active {
       color: var(--text-main);
       border-bottom-color: var(--accent-color);
     }
 
-    /* Contenedor Principal */
     main {
       flex: 1;
       max-width: 1040px;
       width: 100%;
       margin: 0 auto;
       padding: 5rem 2.5rem;
-      position: relative;
-      z-index: 10;
     }
 
+    /* Perfil de autor */
     .hero-section {
       display: grid;
-      grid-template-columns: 320px 1fr;
-      gap: 5rem;
+      grid-template-columns: 240px 1fr;
+      gap: 3.5rem;
       align-items: center;
-      padding-bottom: 5rem;
+      padding-bottom: 4.5rem;
       border-bottom: 1px dashed var(--border-color);
     }
 
-    .profile-container { display: flex; justify-content: center; }
-
     .profile-img-wrap {
-      width: 280px; height: 280px;
+      width: 230px;
+      height: 230px;
       border-radius: 50%;
-      border: 1px dashed var(--border-color);
-      box-shadow: 0 0 35px rgba(0, 0, 0, 0.6);
       overflow: hidden;
-      background-color: #080808;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+      background-color: var(--card-bg);
     }
 
-    .profile-img-wrap img {
-      width: 100%; height: 100%;
+    .profile-img {
+      width: 100%;
+      height: 100%;
       object-fit: cover;
-      display: block;
-      filter: contrast(1.05) brightness(0.95);
+      filter: grayscale(20%);
     }
 
     .bio-content h1 {
-      font-family: var(--font-mono);
-      font-size: 2.3rem;
-      font-weight: 700;
+      font-family: var(--font-display);
+      font-size: 2.1rem;
       letter-spacing: 0.08em;
-      margin-bottom: 1.8rem;
+      margin-bottom: 1rem;
       color: var(--text-main);
-      line-height: 1.2;
+      font-weight: 600;
     }
 
     .bio-text {
       color: var(--text-muted);
       font-size: 1.05rem;
-      margin-bottom: 2.4rem;
+      line-height: 1.85;
+      margin-bottom: 1.8rem;
     }
 
-    .social-links { display: flex; align-items: center; gap: 1.6rem; }
-
-    .social-icon-btn {
-      display: inline-flex;
+    .social-links {
+      display: flex;
       align-items: center;
-      justify-content: center;
+      gap: 1.5rem;
+    }
+
+    .social-icon {
       color: var(--text-muted);
       text-decoration: none;
-      transition: color 0.2s ease, transform 0.15s ease;
-      background: transparent;
-      border: none;
-      padding: 0;
+      display: inline-flex;
+      align-items: center;
+      transition: color 0.2s ease, transform 0.2s ease;
     }
 
-    .social-icon-btn svg { width: 18px; height: 18px; fill: currentColor; }
-    .social-icon-btn:hover { color: var(--text-main); transform: translateY(-1.5px); }
+    .social-icon:hover {
+      color: var(--text-main);
+      transform: translateY(-2px);
+    }
 
-    .section-title {
+    .social-icon svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
+
+    /* Sección de correspondencia Substack */
+    .correspondence-box {
+      margin: 4.5rem 0;
+      padding: 2.8rem;
+      background: var(--card-bg);
+      border: 1px dashed var(--border-color);
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .box-tag {
       font-family: var(--font-mono);
-      font-size: 1.15rem;
-      letter-spacing: 0.18em;
+      font-size: 0.75rem;
+      letter-spacing: 0.16em;
+      color: #c2a661;
+      text-transform: uppercase;
+    }
+
+    .box-title {
+      font-family: var(--font-display);
+      font-size: 1.45rem;
+      letter-spacing: 0.06em;
+      color: var(--text-main);
+    }
+
+    .box-desc {
+      color: var(--text-muted);
+      font-size: 0.98rem;
+      line-height: 1.8;
+      max-width: 680px;
+    }
+
+    .box-link {
+      align-self: flex-start;
+      margin-top: 0.5rem;
+      font-family: var(--font-mono);
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--text-main);
-      margin-bottom: 1.2rem;
-      font-weight: 700;
+      text-decoration: none;
+      padding: 0.7rem 1.4rem;
+      border: 1px solid var(--border-color);
+      background: rgba(255,255,255,0.02);
+      transition: all 0.2s ease;
     }
 
-    /* Curador Musical */
-    .youtube-section {
-      padding-top: 5rem;
-      padding-bottom: 5rem;
+    .box-link:hover {
+      border-color: var(--accent-color);
+      background: rgba(158, 58, 43, 0.1);
+      color: #fff;
+    }
+
+    /* Secciones editoriales */
+    .editorial-section {
+      padding: 4.5rem 0;
       border-bottom: 1px dashed var(--border-color);
     }
 
-    .youtube-bio {
-      color: var(--text-muted);
-      font-size: 1.05rem;
-      max-width: 900px;
-      margin-bottom: 3rem;
+    .section-header {
+      margin-bottom: 2.2rem;
     }
 
-    .carousel-container { position: relative; width: 100%; overflow: hidden; }
+    .section-tag {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      color: #c2a661;
+      margin-bottom: 0.5rem;
+      display: block;
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      letter-spacing: 0.08em;
+      color: var(--text-main);
+    }
+
+    .section-bio {
+      color: var(--text-muted);
+      font-size: 0.98rem;
+      line-height: 1.8;
+      margin-top: 0.8rem;
+      max-width: 720px;
+    }
+
+    /* Carrusel YouTube */
+    .carousel-container {
+      position: relative;
+      overflow: hidden;
+      margin: 2rem 0;
+    }
 
     .carousel-track {
       display: flex;
-      gap: 1.8rem;
+      gap: 1.5rem;
       overflow-x: auto;
-      scroll-behavior: auto;
-      padding-bottom: 1.2rem;
+      scroll-snap-type: x mandatory;
       scrollbar-width: none;
+      -ms-overflow-style: none;
+      padding-bottom: 1rem;
     }
-    .carousel-track::-webkit-scrollbar { display: none; }
+
+    .carousel-track::-webkit-scrollbar {
+      display: none;
+    }
 
     .video-card {
-      flex: 0 0 calc(50% - 0.9rem);
-      min-width: 320px;
-      background-color: var(--card-bg);
-      border: 1px dashed var(--border-color);
-      border-radius: 3px;
-      overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    }
-
-    .video-card-frame {
+      flex: 0 0 calc(33.333% - 1rem);
+      min-width: 280px;
+      scroll-snap-align: start;
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
       position: relative;
-      width: 100%;
+    }
+
+    .video-wrapper {
+      position: relative;
       padding-bottom: 56.25%;
-      background: #000;
+      height: 0;
     }
 
-    .video-card-frame iframe {
+    .video-wrapper iframe {
       position: absolute;
-      top: 0; left: 0; width: 100%; height: 100%; border: 0;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: 0;
     }
 
-    .carousel-controls {
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      gap: 1.4rem;
-      margin-top: 1.8rem;
-    }
-
-    .btn-visit-channel {
-      font-family: var(--font-mono);
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      text-decoration: none;
-      color: var(--text-main);
-      background-color: var(--card-bg);
-      border: 1px dashed var(--border-color);
-      padding: 0.65rem 1.3rem;
-      border-radius: 3px;
-      transition: border-color 0.2s ease, background-color 0.2s ease;
+    .channel-cta {
       display: inline-flex;
       align-items: center;
       gap: 0.7rem;
-    }
-
-    .btn-visit-channel:hover {
-      border-color: var(--accent-color);
-      background-color: #171513;
-    }
-
-    .yt-icon-badge {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 22px; height: 16px;
-      background: #ff0000;
-      border-radius: 4px;
-      position: relative;
-      box-shadow: 0 1px 4px rgba(255, 0, 0, 0.35);
-    }
-
-    .yt-icon-badge::after {
-      content: '';
-      position: absolute;
-      left: 8px;
-      border-style: solid;
-      border-width: 3.5px 0 3.5px 6.5px;
-      border-color: transparent transparent transparent #ffffff;
-    }
-
-    .carousel-arrows { display: flex; gap: 0.7rem; }
-
-    .arrow-btn {
-      background: var(--card-bg);
-      border: 1px dashed var(--border-color);
-      color: var(--text-main);
-      width: 38px; height: 38px;
-      border-radius: 3px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
       font-family: var(--font-mono);
-      font-size: 1.05rem;
-      transition: border-color 0.2s, background-color 0.2s;
-    }
-
-    .arrow-btn:hover { border-color: var(--accent-color); background-color: #171513; }
-
-    /* Tha Digger */
-    .researcher-section {
-      padding-top: 5rem;
-      padding-bottom: 5rem;
-      border-bottom: 1px dashed var(--border-color);
-    }
-
-    .researcher-text {
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
       color: var(--text-muted);
-      font-size: 1.05rem;
-      max-width: 900px;
-    }
-
-    /* Algunos Ensayos */
-    .essays-section { padding-top: 5rem; }
-
-    .essays-bio {
-      color: var(--text-muted);
-      font-size: 1.05rem;
-      max-width: 900px;
-      margin-bottom: 3rem;
-    }
-
-    .album-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 2.4rem 2rem;
-    }
-
-    .album-item {
-      display: flex;
-      flex-direction: column;
-      border-radius: 3px;
-      overflow: hidden;
-      border: 1px dashed var(--border-color);
-      background-color: var(--card-bg);
       text-decoration: none;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-      transition: border-color 0.3s ease, transform 0.25s ease;
+      transition: color 0.2s ease;
+      margin-top: 1rem;
     }
 
-    .album-item-frame {
-      width: 100%;
-      aspect-ratio: 4 / 5;
-      overflow: hidden;
-      background-color: #080808;
-      position: relative;
+    .channel-cta:hover {
+      color: var(--accent-color);
     }
 
-    .album-item img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      display: block;
-      filter: grayscale(100%) contrast(0.92) brightness(0.88);
-      transition: filter 0.45s ease, transform 0.45s ease;
+    /* Retícula Ensayos Instagram */
+    .essays-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 2rem;
     }
 
-    .album-item:hover img {
-      filter: grayscale(0%) contrast(1.05) brightness(1);
-      transform: scale(1.025);
-    }
-
-    .album-overlay {
-      position: absolute;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(13, 12, 11, 0.5);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      opacity: 0;
-      transition: opacity 0.25s ease;
-    }
-
-    .album-overlay span {
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: #ffffff;
-      background-color: var(--accent-color);
-      padding: 0.5rem 1rem;
-      border-radius: 2px;
-    }
-
-    .album-item:hover { border-color: var(--accent-color); transform: translateY(-2px); }
-    .album-item:hover .album-overlay { opacity: 1; }
-
-    .essay-caption {
-      padding: 1.1rem 1.2rem;
-      border-top: 1px dashed var(--border-color);
-      background-color: #100f0e;
+    .essay-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      text-decoration: none;
       display: flex;
       flex-direction: column;
-      gap: 0.35rem;
+      overflow: hidden;
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .essay-card:hover {
+      border-color: var(--accent-color);
+      transform: translateY(-3px);
+    }
+
+    .essay-img-box {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      background: #181614;
+    }
+
+    .essay-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(100%);
+      transition: filter 0.3s ease, transform 0.4s ease;
+    }
+
+    .essay-card:hover .essay-img {
+      filter: grayscale(0%);
+      transform: scale(1.03);
+    }
+
+    .essay-info {
+      padding: 1.2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
     }
 
     .essay-title {
-      font-family: var(--font-mono);
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+      font-family: var(--font-display);
+      font-size: 0.88rem;
+      letter-spacing: 0.06em;
       color: var(--text-main);
-      line-height: 1.4;
-      transition: color 0.2s ease;
+      font-weight: 600;
     }
 
-    .album-item:hover .essay-title { color: #ffffff; }
+    .essay-meta {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
 
-    /* Footer */
+    /* Pie de página */
     footer {
       max-width: 1040px;
       width: 100%;
       margin: 0 auto;
-      padding: 2.8rem 2.5rem;
+      padding: 3rem 2.5rem;
       border-top: 1px dashed var(--border-color);
       display: flex;
       justify-content: space-between;
       align-items: center;
       font-family: var(--font-mono);
-      font-size: 0.78rem;
-      letter-spacing: 0.1em;
-      color: #5c554b;
-      position: relative;
-      z-index: 20;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      color: #615b52;
+    }
+
+    /* Cubo holográfico evasivo compacto */
+    #cubeCanvas {
+      position: fixed;
+      width: 70px;
+      height: 70px;
+      pointer-events: auto;
+      z-index: 1000;
+      cursor: crosshair;
     }
 
     @media (max-width: 820px) {
       header {
-        padding: 1.6rem 1.4rem;
-        flex-direction: column;
-        gap: 1.2rem;
-        align-items: flex-start;
+        padding: 2rem 1.5rem;
       }
-      .brand-logo { font-size: 1.05rem; }
-      .header-nav { gap: 1.1rem; }
-      .nav-link { font-size: 0.75rem; }
-      main { padding: 3.5rem 1.4rem; }
-      .hero-section { grid-template-columns: 1fr; text-align: center; gap: 3.5rem; }
-      .profile-container { order: -1; }
-      .bio-content h1 { font-size: 2rem; margin-bottom: 1.5rem; }
-      .social-links { justify-content: center; }
-      .youtube-section, .researcher-section, .essays-section { padding-top: 3.5rem; }
-      .video-card { flex: 0 0 100%; min-width: 260px; }
-      .carousel-controls { justify-content: center; flex-wrap: wrap; }
-      .floating-companion { width: 54px; height: 62px; }
-      footer { flex-direction: column; gap: 0.6rem; text-align: center; padding: 2rem 1.4rem; }
+      .header-nav {
+        gap: 1.2rem;
+        flex-wrap: wrap;
+      }
+      main {
+        padding: 3.5rem 1.5rem;
+      }
+      .hero-section {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 2rem;
+      }
+      .profile-img-wrap {
+        margin: 0 auto;
+        width: 180px;
+        height: 180px;
+      }
+      .social-links {
+        justify-content: center;
+      }
+      .video-card {
+        flex: 0 0 85%;
+      }
+      .essays-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+      }
+      footer {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- Cubo Cinemático Dinámico con Rebote Libre -->
-  <div class="floating-companion" id="companionBadge" title="Love Jones">
-    <div class="companion-inner" id="companionInner">
-      <svg viewBox="0 0 120 135" width="100%" height="100%">
-        <defs>
-          <filter id="goldCyberGlow" x="-30%" y="-30%" width="160%" height="160%">
-            <feGaussianBlur stdDeviation="2.2" result="glow" />
-            <feMerge>
-              <feMergeNode in="glow" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
-          <linearGradient id="cyberGoldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#ffffff" />
-            <stop offset="25%" stop-color="#ffe680" />
-            <stop offset="65%" stop-color="#d4af37" />
-            <stop offset="100%" stop-color="#997825" />
-          </linearGradient>
-          <linearGradient id="cyberInnerGrad" x1="0%" y1="100%" x2="100%" y2="0%">
-            <stop offset="0%" stop-color="#59430c" />
-            <stop offset="100%" stop-color="#c5a028" />
-          </linearGradient>
-        </defs>
-        <g stroke="url(#cyberInnerGrad)" stroke-width="1.2" stroke-dasharray="2.5 2" fill="none">
-          <line x1="60" y1="82" x2="60" y2="52" />
-          <line x1="28" y1="34" x2="60" y2="52" />
-          <line x1="92" y1="34" x2="60" y2="52" />
-        </g>
-        <polygon points="60,8 92,26 92,68 60,86 28,68 28,26" 
-                 stroke="url(#cyberGoldGrad)" stroke-width="1.8" fill="none" filter="url(#goldCyberGlow)" />
-        <g stroke="url(#cyberGoldGrad)" stroke-width="1.4" fill="none">
-          <line x1="60" y1="46" x2="60" y2="86" />
-          <line x1="60" y1="46" x2="28" y2="26" />
-          <line x1="60" y1="46" x2="92" y2="26" />
-        </g>
-        <circle cx="60" cy="8" r="2.2" fill="#ffffff" filter="url(#goldCyberGlow)" />
-        <circle cx="92" cy="26" r="2" fill="#ffe680" />
-        <circle cx="92" cy="68" r="2" fill="#ffe680" />
-        <circle cx="60" cy="86" r="2.2" fill="#ffffff" filter="url(#goldCyberGlow)" />
-        <circle cx="28" cy="68" r="2" fill="#ffe680" />
-        <circle cx="28" cy="26" r="2" fill="#ffe680" />
-        <g font-family="'Space Mono', monospace" font-size="21" font-weight="700" 
-           fill="url(#cyberGoldGrad)" filter="url(#goldCyberGlow)" letter-spacing="1">
-          <text x="60" y="53" text-anchor="middle" dominant-baseline="central">LJ</text>
-        </g>
-        <g font-family="'Space Mono', monospace" font-size="7.5" font-weight="700" letter-spacing="2">
-          <text x="18" y="112" fill="#ffffff" filter="url(#goldCyberGlow)">L</text>
-          <text x="25" y="112" fill="#d4af37" font-weight="400">OVE</text>
-          <text x="64" y="112" fill="#ffffff" filter="url(#goldCyberGlow)">J</text>
-          <text x="71" y="112" fill="#d4af37" font-weight="400">ONES</text>
-        </g>
-      </svg>
-    </div>
-  </div>
-
   <header>
     <a href="./" class="brand-logo">Love Jones</a>
     <nav class="header-nav">
       <a class="nav-link" href="https://substack.com/@loveejonnes" target="_blank" rel="noopener noreferrer">DROPGEMS</a>
-      <a class="nav-link" href="archivo.html?v=3">ARCHIVO</a>
-      <a class="nav-link" href="mi-trabajo.html">MI TRABAJO</a>
+      <a class="nav-link" href="archivo.html?v=4">ARCHIVO</a>
+      <a class="nav-link" href="mi-trabajo.html?v=4">MI TRABAJO</a>
       <a class="nav-link" href="mecenazgo.html">MECENAZGO</a>
       <a class="nav-link" href="contacto.html">CONTACTO</a>
     </nav>
   </header>
 
   <main>
+    <!-- Perfil de autor -->
     <section class="hero-section">
       <div class="profile-container">
         <div class="profile-img-wrap">
-          <img src="LoveJones pic1.jpeg" alt="Love Jones">
+          <img src="LoveJones pic1.jpeg" alt="Love Jones" class="profile-img">
         </div>
       </div>
-
       <div class="bio-content">
         <h1>Love Jones</h1>
-        <div class="bio-text">
-          <p>Love Jones es el aka de un escritor e investigador independiente de la ciudad de Bogotá, Colombia. Su paso por universidades como la Universidad Autónoma de Colombia y la Universidad de La Salle le dieron las bases para seguir formándose de manera independiente como escritor e investigador. Dentro de lo que podemos saber, actualmente se encuentra trabajando en un libro recopilatorio de ensayos sobre la cultura Hip-Hop.</p>
-        </div>
-
+        <p class="bio-text">
+          Curador, cronista y arqueólogo musical. Investigador de las narrativas sonoras, estéticas de culto y pensamiento crítico al margen del canon comercial.
+        </p>
         <div class="social-links">
-          <a class="social-icon-btn" href="https://www.youtube.com/@LoveeJonnes" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
-            <svg viewBox="0 0 24 24">
-              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-            </svg>
+          <a href="https://substack.com/@loveejonnes" target="_blank" rel="noopener noreferrer" class="social-icon" title="Substack">
+            <svg viewBox="0 0 24 24"><path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/></svg>
           </a>
-          <a class="social-icon-btn" href="https://www.instagram.com/loveejonnes/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-            <svg viewBox="0 0 24 24">
-              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-            </svg>
+          <a href="https://www.youtube.com/@Loveejonnes" target="_blank" rel="noopener noreferrer" class="social-icon" title="YouTube">
+            <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
           </a>
-          <a class="social-icon-btn" href="https://www.facebook.com/profile.php?id=61555913747279" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-            <svg viewBox="0 0 24 24">
-              <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/>
-            </svg>
+          <a href="https://www.instagram.com/loveejonnes/" target="_blank" rel="noopener noreferrer" class="social-icon" title="Instagram">
+            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
           </a>
         </div>
       </div>
     </section>
 
-    <!-- Curador Musical -->
-    <section class="youtube-section">
-      <div class="section-title">Curador Musical</div>
-      <p class="youtube-bio">
-        En el 2016 crea un canal de YouTube de divulgación de la música Hip-Hop obteniendo como respuesta feedback de más de 50.000 personas, además de haber adquirido un conocimiento más profundo sobre la cultura Hip-Hop participando en la promoción y divulgación de varios proyectos musicales. Su curaduría musical se basa en la recopilación de información que permita un entendimiento musical y cultural más accesible para todos.
+    <!-- Caja de correspondencia con Substack -->
+    <div class="correspondence-box">
+      <span class="box-tag">// DESPACHOS & ENSAYOS PERIÓDICOS</span>
+      <h2 class="box-title">Dropgems en Substack</h2>
+      <p class="box-desc">
+        La correspondencia semanal, análisis de discos, crónicas de escucha analógica y reflexiones de campo se publican directamente en nuestro canal de correspondencia. Suscríbase para recibir los textos en su bandeja de entrada.
       </p>
+      <a href="https://substack.com/@loveejonnes" target="_blank" rel="noopener noreferrer" class="box-link">
+        Consultar despachos &rarr;
+      </a>
+    </div>
 
-      <div class="carousel-container" id="carouselWrapper">
-        <div class="carousel-track" id="videoTrack">
+    <!-- Sección Audiovisual -->
+    <section class="editorial-section">
+      <div class="section-header">
+        <span class="section-tag">// ARCHIVO AUDIOVISUAL</span>
+        <h2 class="section-title">Curador Musical</h2>
+        <p class="section-bio">
+          Sesiones de exploración sonora, cortes de archivo y registros dedicados a la preservación del sample y la producción musical subterránea.
+        </p>
+      </div>
+      <div class="carousel-container">
+        <div class="carousel-track">
           <div class="video-card">
-            <div class="video-card-frame">
-              <iframe src="https://www.youtube-nocookie.com/embed/h0mO4AVF5fo" title="Video 1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <div class="video-wrapper">
+              <iframe src="https://www.youtube-nocookie.com/embed/n4sLwhEecP8" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
           </div>
           <div class="video-card">
-            <div class="video-card-frame">
-              <iframe src="https://www.youtube-nocookie.com/embed/B8b3iZbdeRI" title="Video 2" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <div class="video-wrapper">
+              <iframe src="https://www.youtube-nocookie.com/embed/kRjKz631V9I" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
           </div>
           <div class="video-card">
-            <div class="video-card-frame">
-              <iframe src="https://www.youtube-nocookie.com/embed/iMNGuvyUDgU" title="Video 3" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <div class="video-wrapper">
+              <iframe src="https://www.youtube-nocookie.com/embed/84i-U8g45rQ" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
-          </div>
-          <div class="video-card">
-            <div class="video-card-frame">
-              <iframe src="https://www.youtube-nocookie.com/embed/AjlUC94zqmY" title="Video 4" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-            </div>
-          </div>
-        </div>
-
-        <div class="carousel-controls">
-          <a class="btn-visit-channel" href="https://youtube.com/@loveejonnes?si=oOUMfSjxuuaMcoFe" target="_blank" rel="noopener noreferrer">
-            <span class="yt-icon-badge"></span>
-            Visitar canal
-          </a>
-          <div class="carousel-arrows">
-            <button type="button" class="arrow-btn" onclick="manualScroll(-1)" aria-label="Anterior">&#8592;</button>
-            <button type="button" class="arrow-btn" onclick="manualScroll(1)" aria-label="Siguiente">&#8594;</button>
           </div>
         </div>
       </div>
+      <a href="https://www.youtube.com/@Loveejonnes" target="_blank" rel="noopener noreferrer" class="channel-cta">
+        CANAL OFICIAL DE YOUTUBE &rarr;
+      </a>
     </section>
 
-    <!-- Tha Digger -->
-    <section class="researcher-section">
-      <div class="section-title">THA DIGGER AKA HUSTLER RESEARCHER</div>
-      <p class="researcher-text">
-        Su lógica de trabajo está basada en una autonomía de pensamiento crítico y objetivo. Para ello financia sus propias investigaciones que le permitan moverse libremente. Sin desmarcarse de la investigación objetiva (una especie de método científico) integra sus investigaciones con experiencias personales, dándole así al producto su marca personal.
-      </p>
-    </section>
-
-    <!-- Algunos Ensayos -->
-    <section class="essays-section">
-      <div class="section-title">Algunos Ensayos</div>
-      <p class="essays-bio">
-        Sus ensayos adaptados para Instagram representan una pequeña parte de su línea investigativa.
-      </p>
-
-      <div class="album-grid">
-        <a class="album-item" href="https://www.instagram.com/p/Dd8f-DJlr5V/?utm_source=ig_web_copy_link&stkn=NTc4MTIwNjQ2YQ==" target="_blank" rel="noopener noreferrer">
-          <div class="album-item-frame">
-            <img src="./1.jpg" alt="JAY-Z: IN MY LIFETIME">
-            <div class="album-overlay"><span>Leer &rarr;</span></div>
-          </div>
-          <div class="essay-caption"><div class="essay-title">JAY-Z: IN MY LIFETIME</div></div>
+    <!-- Galería de ensayos (Instagram) -->
+    <section class="editorial-section" style="border-bottom: none;">
+      <div class="section-header">
+        <span class="section-tag">// ARCHIVO CONDENSADO</span>
+        <h2 class="section-title">Algunos Ensayos</h2>
+        <p class="section-bio">
+          Ensayos visuales y micro-investigaciones publicadas periódicamente en formato de registro hemerográfico.
+        </p>
+      </div>
+      <div class="essays-grid">
+        <a href="https://www.instagram.com/p/DB1-kEkvn26/" target="_blank" rel="noopener noreferrer" class="essay-card">
+          <div class="essay-img-box"><img src="1.jpg" alt="Mach-Hommy" class="essay-img"></div>
+          <div class="essay-info"><span class="essay-title">Mach-Hommy</span><span class="essay-meta">Ensayo</span></div>
         </a>
-
-        <a class="album-item" href="https://www.instagram.com/p/Dc5H1-fllrm/?utm_source=ig_web_copy_link&stkn=MzRlODBiNWFlZA==" target="_blank" rel="noopener noreferrer">
-          <div class="album-item-frame">
-            <img src="./2.jpg" alt="ERIC B & RAKIM: PAID IN FULL">
-            <div class="album-overlay"><span>Leer &rarr;</span></div>
-          </div>
-          <div class="essay-caption"><div class="essay-title">ERIC B & RAKIM: PAID IN FULL</div></div>
+        <a href="https://www.instagram.com/p/C-j-l1pvOcf/" target="_blank" rel="noopener noreferrer" class="essay-card">
+          <div class="essay-img-box"><img src="2.jpg" alt="Roc Marciano" class="essay-img"></div>
+          <div class="essay-info"><span class="essay-title">Roc Marciano</span><span class="essay-meta">Ensayo</span></div>
         </a>
-
-        <a class="album-item" href="https://www.instagram.com/p/DbXANhqDH0F/?utm_source=ig_web_copy_link&stkn=NTc4MTIwNjQ2YQ==" target="_blank" rel="noopener noreferrer">
-          <div class="album-item-frame">
-            <img src="./3.jpg" alt="DA BRAT: FUNKDAFIED: EL DISCO FEMENINO DEL G-FUNK">
-            <div class="album-overlay"><span>Leer &rarr;</span></div>
-          </div>
-          <div class="essay-caption"><div class="essay-title">DA BRAT: FUNKDAFIED: EL DISCO FEMENINO DEL G-FUNK</div></div>
+        <a href="https://www.instagram.com/p/C-s7HkSve2B/" target="_blank" rel="noopener noreferrer" class="essay-card">
+          <div class="essay-img-box"><img src="3.jpg" alt="Armand Hammer" class="essay-img"></div>
+          <div class="essay-info"><span class="essay-title">Armand Hammer</span><span class="essay-meta">Ensayo</span></div>
         </a>
-
-        <a class="album-item" href="https://www.instagram.com/p/DW2o6MJjP29/?utm_source=ig_web_copy_link&stkn=NTc4MTIwNjQ2YQ==" target="_blank" rel="noopener noreferrer">
-          <div class="album-item-frame">
-            <img src="./4.jpg" alt="WESTSIDE GUNN: LA ESTÉTICA DE LA VIOLENCIA">
-            <div class="album-overlay"><span>Leer &rarr;</span></div>
-          </div>
-          <div class="essay-caption"><div class="essay-title">WESTSIDE GUNN: LA ESTÉTICA DE LA VIOLENCIA</div></div>
+        <a href="https://www.instagram.com/p/C-vA4v0vV9z/" target="_blank" rel="noopener noreferrer" class="essay-card">
+          <div class="essay-img-box"><img src="4.jpg" alt="Earl Sweatshirt" class="essay-img"></div>
+          <div class="essay-info"><span class="essay-title">Earl Sweatshirt</span><span class="essay-meta">Ensayo</span></div>
         </a>
-
-        <a class="album-item" href="https://www.instagram.com/p/DVipyx_jv64/?utm_source=ig_web_copy_link&stkn=NTc4MTIwNjQ2YQ==" target="_blank" rel="noopener noreferrer">
-          <div class="album-item-frame">
-            <img src="./5.jpg" alt="DOOM VS. GHOSTFACE: EL DISCO QUE NUNCA SALIÓ">
-            <div class="album-overlay"><span>Leer &rarr;</span></div>
-          </div>
-          <div class="essay-caption"><div class="essay-title">DOOM VS. GHOSTFACE: EL DISCO QUE NUNCA SALIÓ</div></div>
+        <a href="https://www.instagram.com/p/C-5T51Evn74/" target="_blank" rel="noopener noreferrer" class="essay-card">
+          <div class="essay-img-box"><img src="5.jpg" alt="Ka" class="essay-img"></div>
+          <div class="essay-info"><span class="essay-title">Ka</span><span class="essay-meta">Ensayo</span></div>
         </a>
-
-        <a class="album-item" href="https://www.instagram.com/p/DSa36b_AQaV/?utm_source=ig_web_copy_link&stkn=NTc4MTIwNjQ2YQ==" target="_blank" rel="noopener noreferrer">
-          <div class="album-item-frame">
-            <img src="./6.jpg" alt="MACH-HOMMY: UNO DE LOS RAPEROS MÁS RAROS DE NUESTRO TIEMPO">
-            <div class="album-overlay"><span>Leer &rarr;</span></div>
-          </div>
-          <div class="essay-caption"><div class="essay-title">MACH-HOMMY: UNO DE LOS RAPEROS MÁS RAROS DE NUESTRO TIEMPO</div></div>
+        <a href="https://www.instagram.com/p/DB6_gY-vD_E/" target="_blank" rel="noopener noreferrer" class="essay-card">
+          <div class="essay-img-box"><img src="1_2.jpg" alt="Westside Gunn" class="essay-img"></div>
+          <div class="essay-info"><span class="essay-title">Westside Gunn</span><span class="essay-meta">Ensayo</span></div>
         </a>
       </div>
     </section>
   </main>
+
+  <!-- Canvas del Cubo Cinético -->
+  <canvas id="cubeCanvas" width="70" height="70"></canvas>
 
   <footer>
     <div>&copy; Bogotá, Colombia.</div>
@@ -724,124 +594,92 @@
   </footer>
 
   <script>
+    // Limpieza de URL
     if (window.location.pathname.endsWith('/index.html')) {
       const cleanPath = window.location.pathname.replace('/index.html', '/');
       window.history.replaceState(null, '', cleanPath + window.location.search + window.location.hash);
     }
 
-    // Carrusel de Videos
-    const track = document.getElementById('videoTrack');
-    const wrapper = document.getElementById('carouselWrapper');
-    let isPaused = false;
-    const speed = 0.55;
+    // Cubo cinético compacto y evasivo
+    (function(){
+      const canvas = document.getElementById('cubeCanvas');
+      const ctx = canvas.getContext('2d');
+      let x = window.innerWidth - 100, y = window.innerHeight - 100;
+      let vx = 1.2, vy = 0.9;
+      let angleX = 0, angleY = 0;
+      const size = 18;
 
-    function autoScroll() {
-      if (!isPaused && track) {
-        track.scrollLeft += speed;
-        if (track.scrollLeft >= (track.scrollWidth - track.clientWidth - 1)) {
-          track.scrollLeft = 0;
+      const vertices = [
+        [-1, -1, -1], [1, -1, -1], [1, 1, -1], [-1, 1, -1],
+        [-1, -1,  1], [1, -1,  1], [1, 1,  1], [-1, 1,  1]
+      ];
+
+      const edges = [
+        [0,1],[1,2],[2,3],[3,0],
+        [4,5],[5,6],[6,7],[7,4],
+        [0,4],[1,5],[2,6],[3,7]
+      ];
+
+      function project(x3d, y3d, z3d) {
+        const radX = angleX * Math.PI / 180;
+        const radY = angleY * Math.PI / 180;
+        let y1 = y3d * Math.cos(radX) - z3d * Math.sin(radX);
+        let z1 = y3d * Math.sin(radX) + z3d * Math.cos(radX);
+        let x2 = x3d * Math.cos(radY) + z1 * Math.sin(radY);
+        let z2 = -x3d * Math.sin(radY) + z1 * Math.cos(radY);
+        const fov = 120;
+        const scale = fov / (fov + z2 + 80);
+        return [x2 * scale + 35, y1 * scale + 35];
+      }
+
+      function update() {
+        x += vx; y += vy;
+        if (x < 10 || x > window.innerWidth - 80) vx *= -1;
+        if (y < 10 || y > window.innerHeight - 80) vy *= -1;
+        canvas.style.left = x + 'px';
+        canvas.style.top = y + 'px';
+        angleX += 0.8; angleY += 1.1;
+
+        ctx.clearRect(0, 0, 70, 70);
+        ctx.strokeStyle = '#c2a661';
+        ctx.lineWidth = 1;
+        ctx.shadowColor = '#c2a661';
+        ctx.shadowBlur = 4;
+
+        edges.forEach(edge => {
+          const p1 = project(vertices[edge[0]][0] * size, vertices[edge[0]][1] * size, vertices[edge[0]][2] * size);
+          const p2 = project(vertices[edge[1]][0] * size, vertices[edge[1]][1] * size, vertices[edge[1]][2] * size);
+          ctx.beginPath();
+          ctx.moveTo(p1[0], p1[1]);
+          ctx.lineTo(p2[0], p2[1]);
+          ctx.stroke();
+        });
+
+        // Monograma central
+        ctx.font = '600 9px "Space Mono", monospace';
+        ctx.fillStyle = '#f2ede4';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('LJ', 35, 35);
+
+        requestAnimationFrame(update);
+      }
+
+      // Evasión al cursor
+      window.addEventListener('mousemove', (e) => {
+        const dx = (x + 35) - e.clientX;
+        const dy = (y + 35) - e.clientY;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        if (dist < 100) {
+          vx += (dx / dist) * 1.5;
+          vy += (dy / dist) * 1.5;
+          vx = Math.max(-4, Math.min(4, vx));
+          vy = Math.max(-4, Math.min(4, vy));
         }
-      }
-      requestAnimationFrame(autoScroll);
-    }
-    requestAnimationFrame(autoScroll);
+      });
 
-    wrapper.addEventListener('mouseenter', () => { isPaused = true; });
-    wrapper.addEventListener('mouseleave', () => { isPaused = false; });
-    wrapper.addEventListener('touchstart', () => { isPaused = true; }, { passive: true });
-    wrapper.addEventListener('touchend', () => { setTimeout(() => { isPaused = false; }, 2000); });
-
-    function manualScroll(direction) {
-      isPaused = true;
-      const card = track.querySelector('.video-card');
-      const step = card ? card.offsetWidth + 28 : 340;
-      track.scrollBy({ left: direction * step, behavior: 'smooth' });
-      setTimeout(() => { isPaused = false; }, 3000);
-    }
-
-    // Físicas del Cubo Dorado Evasivo
-    const companion = document.getElementById('companionBadge');
-    const companionInner = document.getElementById('companionInner');
-
-    let posX = Math.max(20, window.innerWidth - 110);
-    let posY = Math.max(20, window.innerHeight - 130);
-    let velX = (Math.random() > 0.5 ? 1 : -1) * 1.35;
-    let velY = (Math.random() > 0.5 ? 1 : -1) * 1.15;
-
-    const baseSpeed = 1.25;
-    let pointerX = -9999, pointerY = -9999;
-
-    function setPointerPos(x, y) { pointerX = x; pointerY = y; }
-    function clearPointerPos() { pointerX = -9999; pointerY = -9999; }
-
-    window.addEventListener('mousemove', (e) => setPointerPos(e.clientX, e.clientY));
-    window.addEventListener('mouseleave', clearPointerPos);
-    window.addEventListener('touchmove', (e) => {
-      if (e.touches.length > 0) setPointerPos(e.touches[0].clientX, e.touches[0].clientY);
-    }, { passive: true });
-    window.addEventListener('touchend', () => setTimeout(clearPointerPos, 400), { passive: true });
-
-    function triggerBounceImpulse() {
-      companionInner.style.transform = 'scale(0.72) rotate(15deg)';
-      setTimeout(() => { companionInner.style.transform = 'scale(1) rotate(0deg)'; }, 350);
-      const launchAngle = Math.random() * Math.PI * 2;
-      const launchForce = 13 + Math.random() * 7;
-      velX = Math.cos(launchAngle) * launchForce;
-      velY = Math.sin(launchAngle) * launchForce;
-    }
-
-    companion.addEventListener('click', (e) => { e.stopPropagation(); triggerBounceImpulse(); });
-    companion.addEventListener('touchstart', (e) => { e.stopPropagation(); triggerBounceImpulse(); }, { passive: false });
-
-    function updatePhysics() {
-      if (!companion) return;
-      const compW = companion.offsetWidth || 54;
-      const compH = companion.offsetHeight || 62;
-      const maxX = Math.max(0, window.innerWidth - compW);
-      const maxY = Math.max(0, window.innerHeight - compH);
-
-      const centerX = posX + compW / 2;
-      const centerY = posY + compH / 2;
-      const distX = pointerX - centerX;
-      const distY = pointerY - centerY;
-      const dist = Math.hypot(distX, distY);
-      const repulseRadius = window.innerWidth <= 820 ? 100 : 135;
-
-      if (dist < repulseRadius && dist > 0) {
-        const force = ((repulseRadius - dist) / repulseRadius) * 2.6;
-        const angle = Math.atan2(distY, distX);
-        velX -= Math.cos(angle) * force;
-        velY -= Math.sin(angle) * force;
-      }
-
-      const curSpeed = Math.hypot(velX, velY);
-      if (curSpeed > baseSpeed) {
-        velX *= 0.965;
-        velY *= 0.965;
-      } else if (curSpeed < 0.55) {
-        velX = (Math.random() - 0.5) * baseSpeed;
-        velY = (Math.random() - 0.5) * baseSpeed;
-      }
-
-      posX += velX;
-      posY += velY;
-
-      if (posX <= 0) { posX = 0; velX = -velX * 0.95; }
-      else if (posX >= maxX) { posX = maxX; velX = -velX * 0.95; }
-      if (posY <= 0) { posY = 0; velY = -velY * 0.95; }
-      else if (posY >= maxY) { posY = maxY; velY = -velY * 0.95; }
-
-      companion.style.transform = `translate3d(${posX.toFixed(2)}px, ${posY.toFixed(2)}px, 0)`;
-      requestAnimationFrame(updatePhysics);
-    }
-    requestAnimationFrame(updatePhysics);
-
-    window.addEventListener('resize', () => {
-      const compW = companion.offsetWidth || 54;
-      const compH = companion.offsetHeight || 62;
-      posX = Math.min(posX, Math.max(0, window.innerWidth - compW));
-      posY = Math.min(posY, Math.max(0, window.innerHeight - compH));
-    });
+      update();
+    })();
   </script>
 </body>
 </html>
