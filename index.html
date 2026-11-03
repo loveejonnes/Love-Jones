@@ -3,10 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+
   <title>Love Jones</title>
 
   <!-- Favicon -->
   <link rel="icon" type="image/jpeg" href="LoveJones pic1.jpeg">
+
+  <!-- Metatags Open Graph y Twitter -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://loveejonnes.github.io/Love-Jones/">
+  <meta property="og:title" content="Love Jones">
+  <meta property="og:description" content="Tha Digger aka Hustler Researcher. Escritor e investigador independiente">
+  <meta property="og:image" content="https://loveejonnes.github.io/Love-Jones/LoveJones%20pic1.jpeg">
+  <meta property="og:image:secure_url" content="https://loveejonnes.github.io/Love-Jones/LoveJones%20pic1.jpeg">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Love Jones">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://loveejonnes.github.io/Love-Jones/">
+  <meta name="twitter:title" content="Love Jones">
+  <meta name="twitter:description" content="Tha Digger aka Hustler Researcher. Escritor e investigador independiente">
+  <meta name="twitter:image" content="https://loveejonnes.github.io/Love-Jones/LoveJones%20pic1.jpeg">
 
   <!-- Tipografías -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,25 +45,13 @@
       --text-main: #dfd7c8;
       --text-muted: #8c8476;
       --border-color: #2b2622;
-      --gold-bright: #ffe680;
-      --gold-cyber: #d4af37;
       --font-mono: 'Space Mono', 'Courier Prime', monospace;
       --font-serif: 'Lora', Georgia, serif;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html, body {
-      cursor: default;
-    }
-
-    a, button {
-      cursor: pointer;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { cursor: default; }
+    a, button { cursor: pointer; }
 
     body {
       background-color: var(--bg-color);
@@ -56,27 +67,22 @@
       width: 100%;
     }
 
-    /* Grano de fondo */
+    /* Grano analógico */
     body::before {
       content: "";
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0; width: 100%; height: 100%;
       pointer-events: none;
       z-index: 9999;
       opacity: 0.045;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
     }
 
-    /* Cubo Cinemático Dinámico con Rebote Libre */
+    /* Cubo Cinemático Dinámico */
     .floating-companion {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 74px;
-      height: 85px;
+      top: 0; left: 0;
+      width: 74px; height: 85px;
       z-index: 500;
       pointer-events: auto;
       cursor: grab;
@@ -94,8 +100,7 @@
     }
 
     .companion-inner {
-      width: 100%;
-      height: 100%;
+      width: 100%; height: 100%;
       transform-origin: center;
       transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     }
@@ -125,14 +130,12 @@
       transition: opacity 0.2s ease;
     }
 
-    .brand-logo:hover {
-      opacity: 0.85;
-    }
+    .brand-logo:hover { opacity: 0.85; }
 
-    .header-nav {
-      display: flex;
-      align-items: center;
-      gap: 2.2rem;
+    .header-nav { 
+      display: flex; 
+      align-items: center; 
+      gap: 2.2rem; 
       flex-wrap: wrap;
     }
 
@@ -148,7 +151,7 @@
       white-space: nowrap;
     }
 
-    .nav-link:hover {
+    .nav-link:hover, .nav-link.active {
       color: var(--text-main);
       border-bottom-color: var(--accent-color);
     }
@@ -164,7 +167,6 @@
       z-index: 10;
     }
 
-    /* Sección Principal */
     .hero-section {
       display: grid;
       grid-template-columns: 320px 1fr;
@@ -174,14 +176,10 @@
       border-bottom: 1px dashed var(--border-color);
     }
 
-    .profile-container {
-      display: flex;
-      justify-content: center;
-    }
+    .profile-container { display: flex; justify-content: center; }
 
     .profile-img-wrap {
-      width: 280px;
-      height: 280px;
+      width: 280px; height: 280px;
       border-radius: 50%;
       border: 1px dashed var(--border-color);
       box-shadow: 0 0 35px rgba(0, 0, 0, 0.6);
@@ -190,8 +188,7 @@
     }
 
     .profile-img-wrap img {
-      width: 100%;
-      height: 100%;
+      width: 100%; height: 100%;
       object-fit: cover;
       display: block;
       filter: contrast(1.05) brightness(0.95);
@@ -213,12 +210,7 @@
       margin-bottom: 2.4rem;
     }
 
-    /* Redes Sociales */
-    .social-links {
-      display: flex;
-      align-items: center;
-      gap: 1.6rem;
-    }
+    .social-links { display: flex; align-items: center; gap: 1.6rem; }
 
     .social-icon-btn {
       display: inline-flex;
@@ -232,16 +224,8 @@
       padding: 0;
     }
 
-    .social-icon-btn svg {
-      width: 18px;
-      height: 18px;
-      fill: currentColor;
-    }
-
-    .social-icon-btn:hover {
-      color: var(--text-main);
-      transform: translateY(-1.5px);
-    }
+    .social-icon-btn svg { width: 18px; height: 18px; fill: currentColor; }
+    .social-icon-btn:hover { color: var(--text-main); transform: translateY(-1.5px); }
 
     .section-title {
       font-family: var(--font-mono);
@@ -253,7 +237,7 @@
       font-weight: 700;
     }
 
-    /* Sección Curador Musical */
+    /* Curador Musical */
     .youtube-section {
       padding-top: 5rem;
       padding-bottom: 5rem;
@@ -267,11 +251,7 @@
       margin-bottom: 3rem;
     }
 
-    .carousel-container {
-      position: relative;
-      width: 100%;
-      overflow: hidden;
-    }
+    .carousel-container { position: relative; width: 100%; overflow: hidden; }
 
     .carousel-track {
       display: flex;
@@ -280,12 +260,8 @@
       scroll-behavior: auto;
       padding-bottom: 1.2rem;
       scrollbar-width: none;
-      -ms-overflow-style: none;
     }
-
-    .carousel-track::-webkit-scrollbar {
-      display: none;
-    }
+    .carousel-track::-webkit-scrollbar { display: none; }
 
     .video-card {
       flex: 0 0 calc(50% - 0.9rem);
@@ -306,11 +282,7 @@
 
     .video-card-frame iframe {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: 0;
+      top: 0; left: 0; width: 100%; height: 100%; border: 0;
     }
 
     .carousel-controls {
@@ -348,8 +320,7 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 22px;
-      height: 16px;
+      width: 22px; height: 16px;
       background: #ff0000;
       border-radius: 4px;
       position: relative;
@@ -365,17 +336,13 @@
       border-color: transparent transparent transparent #ffffff;
     }
 
-    .carousel-arrows {
-      display: flex;
-      gap: 0.7rem;
-    }
+    .carousel-arrows { display: flex; gap: 0.7rem; }
 
     .arrow-btn {
       background: var(--card-bg);
       border: 1px dashed var(--border-color);
       color: var(--text-main);
-      width: 38px;
-      height: 38px;
+      width: 38px; height: 38px;
       border-radius: 3px;
       display: inline-flex;
       align-items: center;
@@ -385,12 +352,9 @@
       transition: border-color 0.2s, background-color 0.2s;
     }
 
-    .arrow-btn:hover {
-      border-color: var(--accent-color);
-      background-color: #171513;
-    }
+    .arrow-btn:hover { border-color: var(--accent-color); background-color: #171513; }
 
-    /* Sección Tha Digger aka Hustler Researcher */
+    /* Tha Digger */
     .researcher-section {
       padding-top: 5rem;
       padding-bottom: 5rem;
@@ -403,10 +367,8 @@
       max-width: 900px;
     }
 
-    /* Sección Algunos Ensayos (Con enlaces correspondientes) */
-    .essays-section {
-      padding-top: 5rem;
-    }
+    /* Algunos Ensayos */
+    .essays-section { padding-top: 5rem; }
 
     .essays-bio {
       color: var(--text-muted);
@@ -442,8 +404,7 @@
     }
 
     .album-item img {
-      width: 100%;
-      height: 100%;
+      width: 100%; height: 100%;
       object-fit: cover;
       display: block;
       filter: grayscale(100%) contrast(0.92) brightness(0.88);
@@ -457,10 +418,7 @@
 
     .album-overlay {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0; width: 100%; height: 100%;
       background: rgba(13, 12, 11, 0.5);
       display: flex;
       align-items: center;
@@ -481,14 +439,8 @@
       border-radius: 2px;
     }
 
-    .album-item:hover {
-      border-color: var(--accent-color);
-      transform: translateY(-2px);
-    }
-
-    .album-item:hover .album-overlay {
-      opacity: 1;
-    }
+    .album-item:hover { border-color: var(--accent-color); transform: translateY(-2px); }
+    .album-item:hover .album-overlay { opacity: 1; }
 
     .essay-caption {
       padding: 1.1rem 1.2rem;
@@ -510,16 +462,14 @@
       transition: color 0.2s ease;
     }
 
-    .album-item:hover .essay-title {
-      color: #ffffff;
-    }
+    .album-item:hover .essay-title { color: #ffffff; }
 
-    /* Pie de página */
+    /* Footer */
     footer {
       max-width: 1040px;
       width: 100%;
       margin: 0 auto;
-      padding: 2.5rem;
+      padding: 2.8rem 2.5rem;
       border-top: 1px dashed var(--border-color);
       display: flex;
       justify-content: space-between;
@@ -542,62 +492,23 @@
       .brand-logo { font-size: 1.05rem; }
       .header-nav { gap: 1.1rem; }
       .nav-link { font-size: 0.75rem; }
-      main { padding: 3.2rem 1.4rem; }
-      
-      .hero-section {
-        grid-template-columns: 1fr;
-        text-align: center;
-        gap: 3.5rem;
-        padding-bottom: 3.5rem;
-      }
-
-      .profile-container {
-        order: -1;
-      }
-
-      .bio-content h1 {
-        font-size: 2rem;
-        margin-bottom: 1.5rem;
-      }
-
-      .social-links {
-        justify-content: center;
-      }
-
-      .youtube-section,
-      .researcher-section,
-      .essays-section {
-        padding-top: 3.5rem;
-      }
-
-      .video-card {
-        flex: 0 0 100%;
-        min-width: 260px;
-      }
-
-      .carousel-controls {
-        justify-content: center;
-        flex-wrap: wrap;
-      }
-
-      .floating-companion {
-        width: 54px;
-        height: 62px;
-      }
-
-      footer {
-        flex-direction: column;
-        gap: 0.8rem;
-        text-align: center;
-        padding: 2rem 1.4rem;
-      }
+      main { padding: 3.5rem 1.4rem; }
+      .hero-section { grid-template-columns: 1fr; text-align: center; gap: 3.5rem; }
+      .profile-container { order: -1; }
+      .bio-content h1 { font-size: 2rem; margin-bottom: 1.5rem; }
+      .social-links { justify-content: center; }
+      .youtube-section, .researcher-section, .essays-section { padding-top: 3.5rem; }
+      .video-card { flex: 0 0 100%; min-width: 260px; }
+      .carousel-controls { justify-content: center; flex-wrap: wrap; }
+      .floating-companion { width: 54px; height: 62px; }
+      footer { flex-direction: column; gap: 0.6rem; text-align: center; padding: 2rem 1.4rem; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Cubo Cinemático Dinámico con Rebote Libre -->
-  <div class="floating-companion" id="companionBadge" title="Love Jones — Toca o persigue">
+  <!-- Cubo Cinemático Dinámico -->
+  <div class="floating-companion" id="companionBadge" title="Love Jones">
     <div class="companion-inner" id="companionInner">
       <svg viewBox="0 0 120 135" width="100%" height="100%">
         <defs>
@@ -608,47 +519,39 @@
               <feMergeNode in="SourceGraphic" />
             </feMerge>
           </filter>
-
           <linearGradient id="cyberGoldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" stop-color="#ffffff" />
             <stop offset="25%" stop-color="#ffe680" />
             <stop offset="65%" stop-color="#d4af37" />
             <stop offset="100%" stop-color="#997825" />
           </linearGradient>
-
           <linearGradient id="cyberInnerGrad" x1="0%" y1="100%" x2="100%" y2="0%">
             <stop offset="0%" stop-color="#59430c" />
             <stop offset="100%" stop-color="#c5a028" />
           </linearGradient>
         </defs>
-
         <g stroke="url(#cyberInnerGrad)" stroke-width="1.2" stroke-dasharray="2.5 2" fill="none">
           <line x1="60" y1="82" x2="60" y2="52" />
           <line x1="28" y1="34" x2="60" y2="52" />
           <line x1="92" y1="34" x2="60" y2="52" />
         </g>
-
         <polygon points="60,8 92,26 92,68 60,86 28,68 28,26" 
                  stroke="url(#cyberGoldGrad)" stroke-width="1.8" fill="none" filter="url(#goldCyberGlow)" />
-
         <g stroke="url(#cyberGoldGrad)" stroke-width="1.4" fill="none">
           <line x1="60" y1="46" x2="60" y2="86" />
           <line x1="60" y1="46" x2="28" y2="26" />
           <line x1="60" y1="46" x2="92" y2="26" />
         </g>
-
         <circle cx="60" cy="8" r="2.2" fill="#ffffff" filter="url(#goldCyberGlow)" />
         <circle cx="92" cy="26" r="2" fill="#ffe680" />
         <circle cx="92" cy="68" r="2" fill="#ffe680" />
         <circle cx="60" cy="86" r="2.2" fill="#ffffff" filter="url(#goldCyberGlow)" />
         <circle cx="28" cy="68" r="2" fill="#ffe680" />
         <circle cx="28" cy="26" r="2" fill="#ffe680" />
-
         <g font-family="'Space Mono', monospace" font-size="21" font-weight="700" 
            fill="url(#cyberGoldGrad)" filter="url(#goldCyberGlow)" letter-spacing="1">
           <text x="60" y="53" text-anchor="middle" dominant-baseline="central">LJ</text>
         </g>
-
         <g font-family="'Space Mono', monospace" font-size="7.5" font-weight="700" letter-spacing="2">
           <text x="18" y="112" fill="#ffffff" filter="url(#goldCyberGlow)">L</text>
           <text x="25" y="112" fill="#d4af37" font-weight="400">OVE</text>
@@ -659,18 +562,17 @@
     </div>
   </div>
 
-  <!-- Encabezado -->
   <header>
     <a href="./" class="brand-logo">Love Jones</a>
     <nav class="header-nav">
       <a class="nav-link" href="https://substack.com/@loveejonnes" target="_blank" rel="noopener noreferrer">DROPGEMS</a>
-      <a class="nav-link" href="archivo.html?v=4">ARCHIVO</a>
-      <a class="nav-link" href="mi-trabajo.html?v=4">MI TRABAJO</a>
+      <a class="nav-link" href="archivo.html?v=3">ARCHIVO</a>
+      <a class="nav-link" href="mi-trabajo.html">MI TRABAJO</a>
+      <a class="nav-link" href="mecenazgo.html">MECENAZGO</a>
       <a class="nav-link" href="contacto.html">CONTACTO</a>
     </nav>
   </header>
 
-  <!-- Contenido Central -->
   <main>
     <section class="hero-section">
       <div class="profile-container">
@@ -686,18 +588,16 @@
         </div>
 
         <div class="social-links">
-          <a class="social-icon-btn" href="https://www.youtube.com/@LoveeJonnes" target="_blank" rel="noopener noreferrer" aria-label="Canal de YouTube">
+          <a class="social-icon-btn" href="https://www.youtube.com/@LoveeJonnes" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
             <svg viewBox="0 0 24 24">
               <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
             </svg>
           </a>
-
           <a class="social-icon-btn" href="https://www.instagram.com/loveejonnes/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
             <svg viewBox="0 0 24 24">
               <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
             </svg>
           </a>
-
           <a class="social-icon-btn" href="https://www.facebook.com/profile.php?id=61555913747279" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
             <svg viewBox="0 0 24 24">
               <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/>
@@ -707,7 +607,7 @@
       </div>
     </section>
 
-    <!-- Sección Curador Musical -->
+    <!-- Curador Musical -->
     <section class="youtube-section">
       <div class="section-title">Curador Musical</div>
       <p class="youtube-bio">
@@ -751,7 +651,7 @@
       </div>
     </section>
 
-    <!-- Sección Tha Digger aka Hustler Researcher -->
+    <!-- Tha Digger -->
     <section class="researcher-section">
       <div class="section-title">THA DIGGER AKA HUSTLER RESEARCHER</div>
       <p class="researcher-text">
@@ -759,7 +659,7 @@
       </p>
     </section>
 
-    <!-- Sección Algunos Ensayos -->
+    <!-- Algunos Ensayos -->
     <section class="essays-section">
       <div class="section-title">Algunos Ensayos</div>
       <p class="essays-bio">
@@ -767,88 +667,57 @@
       </p>
 
       <div class="album-grid">
-        <!-- Foto 1: JAY-Z -->
-        <a class="album-item" href="https://www.instagram.com/p/Dd8f-DJlr5V/" target="_blank" rel="noopener noreferrer">
+        <a class="album-item" href="https://www.instagram.com/p/DV49k9hjO30/?utm_source=ig_web_copy_link&stkn=MzRlODBiNWFlZA==" target="_blank" rel="noopener noreferrer">
           <div class="album-item-frame">
-            <img src="./1.jpg" alt="1. JAY-Z: IN MY LIFETIME">
-            <div class="album-overlay">
-              <span>Leer &rarr;</span>
-            </div>
+            <img src="./1.jpg" alt="JAY-Z: IN MY LIFETIME">
+            <div class="album-overlay"><span>Leer &rarr;</span></div>
           </div>
-          <div class="essay-caption">
-            <div class="essay-title">1. JAY-Z: IN MY LIFETIME</div>
-          </div>
+          <div class="essay-caption"><div class="essay-title">JAY-Z: IN MY LIFETIME</div></div>
         </a>
 
-        <!-- Foto 2: ERIC B & RAKIM -->
-        <a class="album-item" href="https://www.instagram.com/p/Dc5H1-fllrm/" target="_blank" rel="noopener noreferrer">
+        <a class="album-item" href="https://www.instagram.com/p/Dd8f-DJlr5V/?utm_source=ig_web_copy_link&stkn=MzRlODBiNWFlZA==" target="_blank" rel="noopener noreferrer">
           <div class="album-item-frame">
-            <img src="./2.jpg" alt="2. ERIC B & RAKIM: PAID IN FULL">
-            <div class="album-overlay">
-              <span>Leer &rarr;</span>
-            </div>
+            <img src="./2.jpg" alt="ERIC B & RAKIM: PAID IN FULL">
+            <div class="album-overlay"><span>Leer &rarr;</span></div>
           </div>
-          <div class="essay-caption">
-            <div class="essay-title">2. ERIC B & RAKIM: PAID IN FULL</div>
-          </div>
+          <div class="essay-caption"><div class="essay-title">ERIC B & RAKIM: PAID IN FULL</div></div>
         </a>
 
-        <!-- Foto 3: DA BRAT -->
-        <a class="album-item" href="https://www.instagram.com/p/DbXANhqDH0F/" target="_blank" rel="noopener noreferrer">
+        <a class="album-item" href="https://www.instagram.com/p/DSa36b_AQaV/?utm_source=ig_web_copy_link&stkn=MzRlODBiNWFlZA==" target="_blank" rel="noopener noreferrer">
           <div class="album-item-frame">
-            <img src="./3.jpg" alt="3. DA BRAT: FUNKDAFIED: EL DISCO FEMENINO DEL G-FUNK">
-            <div class="album-overlay">
-              <span>Leer &rarr;</span>
-            </div>
+            <img src="./3.jpg" alt="DA BRAT: FUNKDAFIED: EL DISCO FEMENINO DEL G-FUNK">
+            <div class="album-overlay"><span>Leer &rarr;</span></div>
           </div>
-          <div class="essay-caption">
-            <div class="essay-title">3. DA BRAT: FUNKDAFIED: EL DISCO FEMENINO DEL G-FUNK</div>
-          </div>
+          <div class="essay-caption"><div class="essay-title">DA BRAT: FUNKDAFIED: EL DISCO FEMENINO DEL G-FUNK</div></div>
         </a>
 
-        <!-- Foto 4: WESTSIDE GUNN -->
-        <a class="album-item" href="https://www.instagram.com/p/DW2o6MJjP29/" target="_blank" rel="noopener noreferrer">
+        <a class="album-item" href="https://www.instagram.com/p/DbXANhqDH0F/?utm_source=ig_web_copy_link&stkn=MzRlODBiNWFlZA==" target="_blank" rel="noopener noreferrer">
           <div class="album-item-frame">
-            <img src="./4.jpg" alt="4. WESTSIDE GUNN: LA ESTÉTICA DE LA VIOLENCIA">
-            <div class="album-overlay">
-              <span>Leer &rarr;</span>
-            </div>
+            <img src="./4.jpg" alt="WESTSIDE GUNN: LA ESTÉTICA DE LA VIOLENCIA">
+            <div class="album-overlay"><span>Leer &rarr;</span></div>
           </div>
-          <div class="essay-caption">
-            <div class="essay-title">4. WESTSIDE GUNN: LA ESTÉTICA DE LA VIOLENCIA</div>
-          </div>
+          <div class="essay-caption"><div class="essay-title">WESTSIDE GUNN: LA ESTÉTICA DE LA VIOLENCIA</div></div>
         </a>
 
-        <!-- Foto 5: DOOM VS. GHOSTFACE -->
-        <a class="album-item" href="https://www.instagram.com/p/DVipyx_jv64/" target="_blank" rel="noopener noreferrer">
+        <a class="album-item" href="https://www.instagram.com/p/DW2o6MJjP29/?utm_source=ig_web_copy_link&stkn=MzRlODBiNWFlZA==" target="_blank" rel="noopener noreferrer">
           <div class="album-item-frame">
-            <img src="./5.jpg" alt="5. DOOM VS. GHOSTFACE: EL DISCO QUE NUNCA SALIÓ">
-            <div class="album-overlay">
-              <span>Leer &rarr;</span>
-            </div>
+            <img src="./5.jpg" alt="DOOM VS. GHOSTFACE: EL DISCO QUE NUNCA SALIÓ">
+            <div class="album-overlay"><span>Leer &rarr;</span></div>
           </div>
-          <div class="essay-caption">
-            <div class="essay-title">5. DOOM VS. GHOSTFACE: EL DISCO QUE NUNCA SALIÓ</div>
-          </div>
+          <div class="essay-caption"><div class="essay-title">DOOM VS. GHOSTFACE: EL DISCO QUE NUNCA SALIÓ</div></div>
         </a>
 
-        <!-- Foto 6: MACH-HOMMY -->
-        <a class="album-item" href="https://www.instagram.com/p/DSa36b_AQaV/" target="_blank" rel="noopener noreferrer">
+        <a class="album-item" href="https://www.instagram.com/p/DVipyx_jv64/?utm_source=ig_web_copy_link&stkn=MzRlODBiNWFlZA==" target="_blank" rel="noopener noreferrer">
           <div class="album-item-frame">
-            <img src="./6.jpg" alt="6. MACH-HOMMY: UNO DE LOS RAPEROS MÁS RAROS DE NUESTRO TIEMPO">
-            <div class="album-overlay">
-              <span>Leer &rarr;</span>
-            </div>
+            <img src="./6.jpg" alt="MACH-HOMMY: UNO DE LOS RAPEROS MÁS RAROS DE NUESTRO TIEMPO">
+            <div class="album-overlay"><span>Leer &rarr;</span></div>
           </div>
-          <div class="essay-caption">
-            <div class="essay-title">6. MACH-HOMMY: UNO DE LOS RAPEROS MÁS RAROS DE NUESTRO TIEMPO</div>
-          </div>
+          <div class="essay-caption"><div class="essay-title">MACH-HOMMY: UNO DE LOS RAPEROS MÁS RAROS DE NUESTRO TIEMPO</div></div>
         </a>
       </div>
     </section>
   </main>
 
-  <!-- Pie de página -->
   <footer>
     <div>&copy; Bogotá, Colombia.</div>
     <div>Love Jones</div>
@@ -875,15 +744,12 @@
       }
       requestAnimationFrame(autoScroll);
     }
-
     requestAnimationFrame(autoScroll);
 
     wrapper.addEventListener('mouseenter', () => { isPaused = true; });
     wrapper.addEventListener('mouseleave', () => { isPaused = false; });
     wrapper.addEventListener('touchstart', () => { isPaused = true; }, { passive: true });
-    wrapper.addEventListener('touchend', () => {
-      setTimeout(() => { isPaused = false; }, 2000);
-    });
+    wrapper.addEventListener('touchend', () => { setTimeout(() => { isPaused = false; }, 2000); });
 
     function manualScroll(direction) {
       isPaused = true;
@@ -893,7 +759,7 @@
       setTimeout(() => { isPaused = false; }, 3000);
     }
 
-    // Cinemática y Físicas del Cubo Dorado Evasivo
+    // Físicas del Cubo Dorado Evasivo
     const companion = document.getElementById('companionBadge');
     const companionInner = document.getElementById('companionInner');
 
@@ -905,52 +771,30 @@
     const baseSpeed = 1.25;
     let pointerX = -9999, pointerY = -9999;
 
-    function setPointerPos(x, y) {
-      pointerX = x;
-      pointerY = y;
-    }
-
-    function clearPointerPos() {
-      pointerX = -9999;
-      pointerY = -9999;
-    }
+    function setPointerPos(x, y) { pointerX = x; pointerY = y; }
+    function clearPointerPos() { pointerX = -9999; pointerY = -9999; }
 
     window.addEventListener('mousemove', (e) => setPointerPos(e.clientX, e.clientY));
     window.addEventListener('mouseleave', clearPointerPos);
-
     window.addEventListener('touchmove', (e) => {
-      if (e.touches.length > 0) {
-        setPointerPos(e.touches[0].clientX, e.touches[0].clientY);
-      }
+      if (e.touches.length > 0) setPointerPos(e.touches[0].clientX, e.touches[0].clientY);
     }, { passive: true });
-
-    window.addEventListener('touchend', () => {
-      setTimeout(clearPointerPos, 400);
-    }, { passive: true });
+    window.addEventListener('touchend', () => setTimeout(clearPointerPos, 400), { passive: true });
 
     function triggerBounceImpulse() {
       companionInner.style.transform = 'scale(0.72) rotate(15deg)';
       setTimeout(() => { companionInner.style.transform = 'scale(1) rotate(0deg)'; }, 350);
-
       const launchAngle = Math.random() * Math.PI * 2;
       const launchForce = 13 + Math.random() * 7;
       velX = Math.cos(launchAngle) * launchForce;
       velY = Math.sin(launchAngle) * launchForce;
     }
 
-    companion.addEventListener('click', (e) => {
-      e.stopPropagation();
-      triggerBounceImpulse();
-    });
-
-    companion.addEventListener('touchstart', (e) => {
-      e.stopPropagation();
-      triggerBounceImpulse();
-    }, { passive: false });
+    companion.addEventListener('click', (e) => { e.stopPropagation(); triggerBounceImpulse(); });
+    companion.addEventListener('touchstart', (e) => { e.stopPropagation(); triggerBounceImpulse(); }, { passive: false });
 
     function updatePhysics() {
       if (!companion) return;
-
       const compW = companion.offsetWidth || 54;
       const compH = companion.offsetHeight || 62;
       const maxX = Math.max(0, window.innerWidth - compW);
@@ -984,15 +828,12 @@
 
       if (posX <= 0) { posX = 0; velX = -velX * 0.95; }
       else if (posX >= maxX) { posX = maxX; velX = -velX * 0.95; }
-
       if (posY <= 0) { posY = 0; velY = -velY * 0.95; }
       else if (posY >= maxY) { posY = maxY; velY = -velY * 0.95; }
 
       companion.style.transform = `translate3d(${posX.toFixed(2)}px, ${posY.toFixed(2)}px, 0)`;
-
       requestAnimationFrame(updatePhysics);
     }
-
     requestAnimationFrame(updatePhysics);
 
     window.addEventListener('resize', () => {
