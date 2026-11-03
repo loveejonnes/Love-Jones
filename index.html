@@ -20,7 +20,7 @@
   <meta property="og:description" content="Tha Digger aka Hustler Researcher. Escritor e investigador independiente">
   <meta property="og:image" content="https://loveejonnes.github.io/Love-Jones/LoveJones%20pic1.jpeg">
 
-  <!-- Tipografías: Monoespaciada técnica + Romana de lectura -->
+  <!-- Tipografías de Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
@@ -56,7 +56,6 @@
       width: 100%;
     }
 
-    /* Grano de celuloide analógico */
     body::before {
       content: "";
       position: fixed;
@@ -67,7 +66,6 @@
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
     }
 
-    /* Cubo 3D Dinámico */
     #cubeCanvas {
       position: fixed;
       width: 70px;
@@ -79,7 +77,6 @@
       touch-action: none;
     }
 
-    /* Encabezado */
     header {
       width: 100%;
       padding: 2.6rem 2.5rem;
@@ -130,7 +127,6 @@
       border-bottom-color: var(--accent-color);
     }
 
-    /* Área Principal */
     main {
       flex: 1;
       max-width: 1040px;
@@ -141,7 +137,6 @@
       z-index: 10;
     }
 
-    /* Perfil de autor */
     .hero-section {
       display: grid;
       grid-template-columns: 200px 1fr;
@@ -205,7 +200,6 @@
       fill: currentColor;
     }
 
-    /* Secciones editoriales */
     .editorial-section {
       padding: 5rem 0;
       border-bottom: 1px dashed var(--border-color);
@@ -238,7 +232,6 @@
       max-width: 820px;
     }
 
-    /* Carrusel de YouTube */
     .carousel-container {
       position: relative;
       margin: 2.4rem 0 1.2rem 0;
@@ -305,7 +298,6 @@
       transform: translateX(4px);
     }
 
-    /* Galería Ensayos Instagram */
     .essays-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -363,7 +355,6 @@
       font-weight: 700;
     }
 
-    /* Pie de página */
     footer {
       max-width: 1040px;
       width: 100%;
@@ -412,7 +403,6 @@
 </head>
 <body>
 
-  <!-- Canvas del Cubo 3D Dinámico -->
   <canvas id="cubeCanvas" width="70" height="70"></canvas>
 
   <header>
@@ -426,7 +416,6 @@
   </header>
 
   <main>
-    <!-- Perfil de autor -->
     <section class="hero-section">
       <div class="profile-container">
         <div class="profile-img-wrap">
@@ -452,90 +441,95 @@
       </div>
     </section>
 
-    <!-- Sección YouTube -->
+    <!-- Sección YouTube corregida -->
     <section class="editorial-section">
       <span class="section-tag">YOUTUBE</span>
       <h2 class="section-title">CURADOR MUSICAL</h2>
       <p class="section-bio">
-        En el 2016 crea un canal de YouTube de divulgación de la música Hip-Hop obteniendo como respuesta feedback de más de 50.000 personas, además de haber adquirido un conocimiento más profundo sobre la cultura Hip-Hop participando en la promoción y divulgación de varios proyectos musicales. Su curaduría musical se basa en la recopilación de información que permita un entendimiento musical y cultural más accesible para todos.
+        En el 2016 crea un canal de YouTube de divulgación de la música Hip-Hop obteniendo como respuesta feedback de más de 50.000 personas, además de haber adquirido un conocimiento más profundo sobre la cultura Hip-Hop participando en la promoción y divulgación de varios proyectos musicales. Su curaduría musical se basa en la recopilación de información que permita un entendimiento musical y cultural más accesible para todos.[cite: 2]
       </p>
 
       <div class="carousel-container" id="videoCarousel">
         <div class="carousel-track" id="videoTrack">
           <div class="video-card">
             <div class="video-wrapper">
-              <iframe src="https://www.youtube-nocookie.com/embed/n4sLwhEecP8" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <iframe src="https://www.youtube-nocookie.com/embed/h0mO4AVF5fo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
           </div>
           <div class="video-card">
             <div class="video-wrapper">
-              <iframe src="https://www.youtube-nocookie.com/embed/kRjKz631V9I" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <iframe src="https://www.youtube-nocookie.com/embed/B8b3iZbdeRI" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
           </div>
           <div class="video-card">
             <div class="video-wrapper">
-              <iframe src="https://www.youtube-nocookie.com/embed/84i-U8g45rQ" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <iframe src="https://www.youtube-nocookie.com/embed/iMNGuvyUDgU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+          </div>
+          <div class="video-card">
+            <div class="video-wrapper">
+              <iframe src="https://www.youtube-nocookie.com/embed/AjlUC94zqmY" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
           </div>
         </div>
       </div>
 
-      <a href="https://www.youtube.com/@Loveejonnes" target="_blank" rel="noopener noreferrer" class="channel-cta">
-        VISITAR CANAL <span class="arrow-red">&rarr;</span>
+      <a href="https://youtube.com/@loveejonnes?si=oOUMfSjxuuaMcoFe" target="_blank" rel="noopener noreferrer" class="channel-cta">
+        VISITAR CANAL <span class="arrow-red">&rarr;</span>[cite: 1, 3]
       </a>
     </section>
 
     <!-- Sección Tha Digger aka Hustler Researcher -->
     <section class="editorial-section">
-      <h2 class="section-title">THA DIGGER AKA HUSTLER RESEARCHER</h2>
+      <h2 class="section-title">THA DIGGER AKA HUSTLER RESEARCHER</h2>[cite: 2]
       <p class="section-bio">
-        Su lógica de trabajo está basada en una autonomía de pensamiento crítico y objetivo. Para ello financia sus propias investigaciones que le permitan moverse libremente. Sin desmarcarse de la investigación objetiva (una especie de método científico) integra sus investigaciones con experiencias personales, dándole así al producto su marca personal.
+        Su lógica de trabajo está basada en una autonomía de pensamiento crítico y objetivo. Para ello financia sus propias investigaciones que le permitan moverse libremente. Sin desmarcarse de la investigación objetiva (una especie de método científico) integra sus investigaciones con experiencias personales, dándole así al producto su marca personal.[cite: 2]
       </p>
     </section>
 
     <!-- Sección ALGUNOS ENSAYOS -->
     <section class="editorial-section" style="border-bottom: none;">
-      <h2 class="section-title">ALGUNOS ENSAYOS</h2>
+      <h2 class="section-title">ALGUNOS ENSAYOS</h2>[cite: 2]
       <p class="section-bio">
-        Sus ensayos adaptados para Instagram representan una pequeña parte de su línea investigativa.
+        Sus ensayos adaptados para Instagram representan una pequeña parte de su línea investigativa.[cite: 2]
       </p>
 
       <div class="essays-grid">
         <a href="https://www.instagram.com/p/Dd8f-DJlr5V/?utm_source=ig_web_copy_link&stkn=NTc4MTIwNjQ2YQ==" target="_blank" rel="noopener noreferrer" class="essay-card">
           <div class="essay-img-box"><img src="1.jpg" alt="Jay-Z" class="essay-img"></div>
-          <div class="essay-info"><span class="essay-title">JAY-Z: IN MY LIFETIME</span></div>
+          <div class="essay-info"><span class="essay-title">JAY-Z: IN MY LIFETIME</span></div>[cite: 1]
         </a>
         <a href="https://www.instagram.com/p/Dc5H1-fllrm/?utm_source=ig_web_copy_link&stkn=MzRlODBiNWFlZA==" target="_blank" rel="noopener noreferrer" class="essay-card">
           <div class="essay-img-box"><img src="2.jpg" alt="Eric B & Rakim" class="essay-img"></div>
-          <div class="essay-info"><span class="essay-title">ERIC B & RAKIM: PAID IN FULL</span></div>
+          <div class="essay-info"><span class="essay-title">ERIC B & RAKIM: PAID IN FULL</span></div>[cite: 1]
         </a>
         <a href="https://www.instagram.com/p/DbXANhqDH0F/?utm_source=ig_web_copy_link&stkn=NTc4MTIwNjQ2YQ==" target="_blank" rel="noopener noreferrer" class="essay-card">
           <div class="essay-img-box"><img src="3.jpg" alt="Da Brat" class="essay-img"></div>
-          <div class="essay-info"><span class="essay-title">DA BRAT: FUNKDAFIED: EL DISCO FEMENINO DEL G-FUNK</span></div>
+          <div class="essay-info"><span class="essay-title">DA BRAT: FUNKDAFIED: EL DISCO FEMENINO DEL G-FUNK</span></div>[cite: 1]
         </a>
         <a href="https://www.instagram.com/p/DW2o6MJjP29/?utm_source=ig_web_copy_link&stkn=NTc4MTIwNjQ2YQ==" target="_blank" rel="noopener noreferrer" class="essay-card">
           <div class="essay-img-box"><img src="4.jpg" alt="Westside Gunn" class="essay-img"></div>
-          <div class="essay-info"><span class="essay-title">WESTSIDE GUNN: LA ESTÉTICA DE LA VIOLENCIA</span></div>
+          <div class="essay-info"><span class="essay-title">WESTSIDE GUNN: LA ESTÉTICA DE LA VIOLENCIA</span></div>[cite: 1]
         </a>
         <a href="https://www.instagram.com/p/DVipyx_jv64/?utm_source=ig_web_copy_link&stkn=NTc4MTIwNjQ2YQ==" target="_blank" rel="noopener noreferrer" class="essay-card">
           <div class="essay-img-box"><img src="5.jpg" alt="DOOM vs Ghostface" class="essay-img"></div>
-          <div class="essay-info"><span class="essay-title">DOOM VS. GHOSTFACE: EL DISCO QUE NUNCA SALIÓ</span></div>
+          <div class="essay-info"><span class="essay-title">DOOM VS. GHOSTFACE: EL DISCO QUE NUNCA SALIÓ</span></div>[cite: 1]
         </a>
         <a href="https://www.instagram.com/p/DSa36b_AQaV/?utm_source=ig_web_copy_link&stkn=NTc4MTIwNjQ2YQ==" target="_blank" rel="noopener noreferrer" class="essay-card">
           <div class="essay-img-box"><img src="6.jpg" alt="Mach-Hommy" class="essay-img"></div>
-          <div class="essay-info"><span class="essay-title">MACH-HOMMY: UNO DE LOS RAPEROS MÁS RAROS DE NUESTRO TIEMPO</span></div>
+          <div class="essay-info"><span class="essay-title">MACH-HOMMY: UNO DE LOS RAPEROS MÁS RAROS DE NUESTRO TIEMPO</span></div>[cite: 1]
         </a>
       </div>
 
       <a href="https://www.instagram.com/loveejonnes/" target="_blank" rel="noopener noreferrer" class="channel-cta">
-        VER PERFIL DE INSTAGRAM <span class="arrow-red">&rarr;</span>
+        VER PERFIL DE INSTAGRAM <span class="arrow-red">&rarr;</span>[cite: 1, 2]
       </a>
     </section>
   </main>
 
   <footer>
-    <div>&copy; Bogotá, Colombia.</div>
-    <div>Love Jones</div>
+    <div>&copy; Bogotá, Colombia.</div>[cite: 9]
+    <div>Love Jones</div>[cite: 9]
   </footer>
 
   <script>
@@ -544,7 +538,6 @@
       window.history.replaceState(null, '', cleanPath + window.location.search + window.location.hash);
     }
 
-    // Paneo suave continuo del carrusel de YouTube
     const track = document.getElementById('videoTrack');
     let scrollPos = 0;
     let isPaused = false;
@@ -566,7 +559,6 @@
     }
     requestAnimationFrame(autoScroll);
 
-    // Cubo 3D Cinemático en Canvas con evasión física
     (function(){
       const canvas = document.getElementById('cubeCanvas');
       const ctx = canvas.getContext('2d');
@@ -621,7 +613,6 @@
           ctx.stroke();
         });
 
-        // Monograma central
         ctx.font = '600 9px "Space Mono", monospace';
         ctx.fillStyle = '#f2ede4';
         ctx.textAlign = 'center';
@@ -631,7 +622,6 @@
         requestAnimationFrame(update);
       }
 
-      // Evasión suave al cursor o al tacto
       window.addEventListener('mousemove', (e) => {
         const dx = (x + 35) - e.clientX;
         const dy = (y + 35) - e.clientY;
